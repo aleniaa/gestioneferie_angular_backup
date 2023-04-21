@@ -6,8 +6,8 @@ export interface Utente{
     telefono: string;
     emailVigilfuoco: string;
     ruolo: string;
-    //codiceUtente: string;
+    codiceUtente: string;
     accountDipvvf: string;
-    // password: string;
+    password: string;
 
 }
