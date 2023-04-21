@@ -44,18 +44,18 @@
             </button>
          </div>
          <div class="modal-body">
-            <form #addForm="ngForm" (ngSubmit)="onAggiungiUtente(addForm)" id="addForm">
+            <form #addForm="ngForm" (ngSubmit)="onAggiungiUtente(addForm)" id="addForm" ngNativeValidate>
             <div class="form-group">
                <label for="name">Nome</label>
-               <input type="text" ngModel name="nome" class="form-control" id="name" placeholder="Name" required>
+               <input type="text" ngModel name="nome" class="form-control" id="name" placeholder="Name" required/>
             </div>
             <div class="form-group">
                 <label for="phone">Cognome</label>
-                <input type="text" ngModel name="cognome" class="form-control" id="cognome" placeholder="Cognome" required>
+                <input type="text" ngModel name="cognome" class="form-control" id="cognome" placeholder="Cognome" required/>
              </div>
             <div class="form-group">
                <label for="email">Email Vigilfuoco</label>
-               <input type="email" ngModel name="emailVigilfuoco" value="@vigilfuoco.it" class="form-control" id="email" placeholder="Email" required>
+               <input type="email" ngModel name="emailVigilfuoco" value="@vigilfuoco.it" class="form-control" id="email" placeholder="nome.cognome@vigilfuoco.it" pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it" title="devi rispettare il formato nome.cognome@vigilfuoco.it" required />
             </div>
             <div class="form-group">
                <label for="phone">Telefono</label>
@@ -67,7 +67,7 @@
             </div>
             <div class="form-group">
                 <label for="ruolo">Ruolo</label>
-                <select ngModel name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo" form="addForm" required>
+                <select ngModel name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo" form="addForm" required >
                     <option value="USER">Utente</option>
                     <option value="ADMIN">Admin</option>
                     <option value="FERIE">Approvazione ferie</option>
@@ -75,7 +75,7 @@
             </div>
             <div class="modal-footer">
                <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid" >Aggiungi Utente</button>
+               <button type="submit" class="btn btn-primary"  >Aggiungi Utente</button> <!-- [disabled]="addForm.invalid" -->
             </div>
             </form>
          </div>
