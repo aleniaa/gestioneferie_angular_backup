@@ -1,11 +1,27 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
- <div id="containerAdd" *ngFor= "let utente of utenti">
-     <a (click)="onOpenModal(utente, 'add')">Aggiungi utente</a>
-</div> 
+<!--  <div id="aggiungiUtenteButton" >
+     <a (click)="onClickAggiungiUtente('add')">Aggiungi utente</a>
+</div> --> 
+
+<div class="container">
+<h1>Gestione Utenti</h1>
+
+</div>
+
+<div class="container" id="addUtenteButton-container">
+   <div class="row">
+       <div class="col-md-6 col-xl-3">
+         <div id="aggiungiUtenteButton" >
+            <button class="btn btn-primary" (click)="onClickAggiungiUtente('add')">Aggiungi nuovo utente</button>
+         </div>
+   </div>
+</div>
+
 
 <div class="container" id="main-container">
     <div class="row">
+      <h2>Elenco Utenti:</h2>
         <div class="col-md-6 col-xl-3" *ngFor= "let utente of utenti">
             <div  class="card m-b-30">
                 <div class="card-body row">
@@ -23,8 +39,8 @@
                 </ul>
                 <div class="card-body">
                     <div class="float-right btn-group btn-group-sm">
-                        <a (click)="onOpenModal(utente, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                        <a (click)="onOpenModal(utente, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                        <button (click)="onOpenModal(utente, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"> Modifica</i> </button>
+                        <button (click)="onOpenModal(utente, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"> Cancella</i></button>
                     </div>
 
                 </div>

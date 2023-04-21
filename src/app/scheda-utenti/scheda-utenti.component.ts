@@ -58,14 +58,10 @@ export class SchedaUtentiComponent implements OnInit{
   public onOpenModal(utente: Utente, mode: string): void {
     const button = document.createElement('button');
     const container= document.getElementById('main-container');
-    const containerAdd = document.getElementById('containerAdd');
+    
     button.type= 'button';
     button.style.display= 'none';
     button.setAttribute('data-toggle','modal');
-    if(mode === 'add'){
-      button.setAttribute('data-target','#aggiungiUtenteModal');
-
-    }
     if(mode === 'edit'){
       button.setAttribute('data-target','#aggiornaUtenteModal');
 
@@ -76,7 +72,26 @@ export class SchedaUtentiComponent implements OnInit{
     }
 
     container?.appendChild(button);
-    containerAdd?.appendChild(button);
+    
+    button.click();
+
+
+  }
+
+  public onClickAggiungiUtente(mode: string): void {
+    const button = document.createElement('button');
+    const aggiungiUtenteButton = document.getElementById('aggiungiUtenteButton');
+    button.type= 'button';
+    button.className= "btn btn-primary";
+    button.style.display= 'none';
+    button.setAttribute('data-toggle','modal');
+    if(mode === 'add'){
+      button.setAttribute('data-target','#aggiungiUtenteModal');
+
+    }
+    
+
+    aggiungiUtenteButton?.appendChild(button);
     button.click();
 
 
