@@ -49,9 +49,11 @@ export class SchedaUtentiComponent implements OnInit{
       (response: Utente) => { //jfoiewfjwoiej
         console.log(response);
         this.getUtenti();
+        addForm.reset();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
+        addForm.reset();
       },
     ); //addform.value restituisce una rappresentaione json dei dati inseriti nel form
   }
