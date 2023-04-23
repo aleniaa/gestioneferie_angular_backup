@@ -132,6 +132,7 @@
                <input type="hidden" ngModel="{{modificaUtente?.id}}" name="id" class="form-control" id="id" > <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
                <input type="hidden" ngModel="{{modificaUtente?.codiceUtente}}" name="codiceUtente" class="form-control" id="codiceUtente">
                <input type="hidden" ngModel="{{modificaUtente?.password}}" name="password" class="form-control" id="password">
+               <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf" class="form-control" id="accountDipvvf">
 
                <div class="form-group">
                    <label for="phone">Cognome</label>
@@ -151,7 +152,7 @@
                </div>
                <div class="form-group">
                    <label for="ruolo">Ruolo</label>
-                   <select ngModel="{{modificaUtente?.ruolo}}" name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo" form="addForm"  >
+                   <select ngModel="{{modificaUtente?.ruolo}}" name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo" form="addForm"  required="">
                        <option value="UTENTE">Utente</option>
                        <option value="ADMIN">Admin</option>
                        <option value="FERIE">Approvazione ferie</option>

@@ -111,7 +111,7 @@ export class SchedaUtentiComponent implements OnInit{
     for(const utente of this.utenti){
       if(utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
       || utente.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
-      || utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+      //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
       ){
         risultati.push(utente);
       }
