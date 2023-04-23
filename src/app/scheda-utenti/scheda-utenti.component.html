@@ -77,15 +77,15 @@
             <form #addForm="ngForm" (ngSubmit)="onAggiungiUtente(addForm)" id="addForm" ngNativeValidate>
             <div class="form-group">
                <label for="name">Nome</label>
-               <input type="text" ngModel name="nome" class="form-control" id="nome" placeholder="Nome" required/>
+               <input type="text" ngModel name="nome" class="form-control" id="nome" placeholder="Nome" pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/>
             </div>
             <div class="form-group">
                 <label for="phone">Cognome</label>
-                <input type="text" ngModel name="cognome" class="form-control" id="cognome" placeholder="Cognome" required/>
+                <input type="text" ngModel name="cognome" class="form-control" id="cognome" placeholder="Cognome" pattern="[A-Za-z0-9]+" title="Inserisci un cognome valido" required/>
              </div>
             <div class="form-group">
                <label for="email">Email Vigilfuoco</label>
-               <input type="text" ngModel name="emailVigilfuoco" class="form-control" id="emailVigilfuoco" placeholder="nome.cognome@vigilfuoco.it" pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it" title="devi rispettare il formato nome.cognome@vigilfuoco.it" required />
+               <input type="text" ngModel name="emailVigilfuoco" class="form-control" id="emailVigilfuoco" value="@vigilfuoco.it" placeholder="nome.cognome@vigilfuoco.it" pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it" title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required />
             </div>
             <div class="form-group">
                <label for="phone">Telefono</label>
@@ -93,7 +93,7 @@
             </div>
             <div class="form-group">
                <label for="password">Password</label>
-               <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Inserisci password temporanea" >
+               <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Inserisci password temporanea" pattern="[A-Za-z0-9]+" title="Inserisci una password valida">
             </div>
             <div class="form-group">
                 <label for="ruolo">Ruolo</label>
@@ -127,16 +127,18 @@
               <form #editForm="ngForm" (ngSubmit)="aggiornaUtente(editForm.value)" id="addForm" ngNativeValidate>
                 <div class="form-group">
                   <label for="name">Nome</label>
-                  <input type="text" ngModel="{{modificaUtente?.nome}}" name="nome" class="form-control" id="name" placeholder="Name" required/>
+                  <!-- <input type="text" ngModel="{{modificaUtente?.nome}}" name="nome" class="form-control" id="name" placeholder="Nome" ngModel pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/> -->
+                  <input type="text" [ngModel]="modificaUtente?.nome" name="nome" class="form-control" id="name" placeholder="Nome" ngModel pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/>
+
                </div>
                <input type="hidden" ngModel="{{modificaUtente?.id}}" name="id" class="form-control" id="id" > <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
                <input type="hidden" ngModel="{{modificaUtente?.codiceUtente}}" name="codiceUtente" class="form-control" id="codiceUtente">
                <input type="hidden" ngModel="{{modificaUtente?.password}}" name="password" class="form-control" id="password">
-               <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf" class="form-control" id="accountDipvvf">
+               <!-- <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf" class="form-control" id="accountDipvvf"> -->
 
                <div class="form-group">
                    <label for="phone">Cognome</label>
-                   <input type="text" ngModel="{{modificaUtente?.cognome}}" name="cognome" class="form-control" id="cognome" placeholder="Cognome" required/>
+                   <input type="text" ngModel="{{modificaUtente?.cognome}}" name="cognome" class="form-control" id="cognome" placeholder="Cognome" pattern="[A-Za-z0-9]+" title="Inserisci un cognome valido" required/>
                 </div>
                <div class="form-group">
                   <label for="email">Email Vigilfuoco</label>

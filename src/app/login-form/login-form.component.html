@@ -1,6 +1,6 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="wrapper fadeInDown">
@@ -15,20 +15,15 @@
     <!-- Login Form -->
     <form #loginForm="ngForm" (ngSubmit)="accediUtente(loginForm)">
       <input type="text"  ngModel id="accountDipvvf" class="fadeIn second" name="accountDipvvf" placeholder="Username"  >
-      <input type="text" ngModel id="password" class="fadeIn third" name="password" placeholder="Password" >
+      <input type="password" ngModel id="password" class="fadeIn third" name="password" placeholder="Password" >
       <input type="submit" class="fadeIn fourth" value="Accedi">
     </form>
-<!-- 
-    <form >
-      <input type="text"  [(ngModel)]="username" id="username" class="fadeIn second" name="username" placeholder="Username"  >
-      <input type="text" [(ngModel)]="password" id="password" class="fadeIn third" name="password" placeholder="Password" >
-      <input type="submit" class="fadeIn fourth" value="Accedi" (click)=accediUtente()>
-    </form> -->
+
 
     <!-- Remind Passowrd -->
-    <div id="formFooter">
+ <!--    <div id="formFooter">
       <a class="underlineHover" href="#">Password dimenticata?</a>
-    </div>
+    </div> -->
 
   </div>
 </div>
