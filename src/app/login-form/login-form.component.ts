@@ -1,11 +1,53 @@
-import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+import { Utente } from '../utente';
+import { NgForm } from '@angular/forms';
+import { LoginService } from '../login.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
+
+  public username: string;
+  public password: string;
+  
+  public utente: Utente;
+
+  constructor(private loginService: LoginService) { }
+
+  ngOnInit(): void {
+  }
+
+  public accediUtente(loginForm: NgForm){
+    this.loginService.accediUtente(loginForm.value).subscribe(
+      (response: object) => {
+        console.log(response);
+        loginForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        loginForm.reset();
+        
+      },
+    )
+  }
+
+/*   public accediUtente(): void {
+    this.loginService.accediUtente(this.username, this.password)
+    .subscribe(
+      data=>{
+        alert("login success")
+      }, 
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        
+      },
+    );
+  } */
 
 }
 

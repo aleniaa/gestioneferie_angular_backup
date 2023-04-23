@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { navbarComponent } from './navbarComponent/navbar.component';
 import { NavbarUserComponent } from './navbar-user/navbar-user.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { AggiungiUtenteFormComponent } from './aggiungi-utente-form/aggiungi-utente-form.component';
 import { SchedaUtentiComponent } from './scheda-utenti/scheda-utenti.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
@@ -19,7 +18,6 @@ import { FormsModule } from '@angular/forms';
     navbarComponent,
     NavbarUserComponent,
     LoginFormComponent,
-    AggiungiUtenteFormComponent,
     SchedaUtentiComponent,
     NavbarAdminComponent,
     HomeAdminComponent
