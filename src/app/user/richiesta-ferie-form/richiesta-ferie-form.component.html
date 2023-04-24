@@ -1,10 +1,55 @@
-<div class="container" id="main-container">
-    <div class="row">
-      <h2 style="padding-top: 5px;">Elenco Utenti:</h2>
-        <div class="col-md-6 col-xl-3" >
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Scegli il tipo di permesso
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
+      <a class="dropdown-item" (click)="toggleForm('congedo')">CONGEDO ORDINARIO</a>
+      <a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a>
+      <a class="dropdown-item" (click)="toggleForm('recuero_ore')">RECUPERO ORE ECCDENTI</a>
+      <a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a>
+    </div>
+  </div>
+
+
+<div class="container" id="permesso_form" style="display: none;">
+    <div class="row" >
+      <h2 style="padding-top: 5px;">CONGEDO ORDINARIO:</h2>
+        <div >
             <form>
-                
+                <div class="form-group">
+                    <label for="ferie_dal">Giorni di ferie dal </label>
+                    <input type="date" ngModel name="ferie_dal" class="form-control" id="ferie_dal"  title="Data inizio ferie" required/>
+                 </div>
+                 <div class="form-group">
+                     <label for="ferie_al">al</label>
+                     <input type="text" ngModel name="ferie_al" class="form-control" id="ferie_al" title="Data fine ferie" required/>
+                  </div>
+                 <div class="form-group">
+                    <label for="email">Email Vigilfuoco</label>
+                    <input type="text" ngModel name="emailVigilfuoco" class="form-control" id="emailVigilfuoco" value="@vigilfuoco.it" placeholder="nome.cognome@vigilfuoco.it" pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it" title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required />
+                 </div>
+                 <div class="form-group">
+                    <label for="phone">Telefono</label>
+                    <input type="text" ngModel name="telefono" class="form-control" id="phone" placeholder="Phone" >
+                 </div>
+                 <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Inserisci password temporanea" pattern="[A-Za-z0-9]+" title="Inserisci una password valida" required>
+                 </div>
+                 <div class="form-group">
+                     <label for="ruolo">Ruolo</label>
+                     <select ngModel name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo"  form="addForm" required>
+                         <option value="UTENTE">Utente</option>
+                         <option value="ADMIN">Admin</option>
+                         <option value="FERIE">Approvazione ferie</option>
+                     </select>
+                 </div>
+                 <div class="modal-footer">
+                    <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit"  class="btn btn-primary"  >Aggiungi Utente</button> <!-- [disabled]="addForm.invalid" -->
+                 </div>
             </form>
         </div>
     </div>
 </div>
+
