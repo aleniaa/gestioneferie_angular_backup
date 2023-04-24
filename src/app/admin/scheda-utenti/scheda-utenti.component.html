@@ -1,0 +1,194 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<div class="container">
+   <h1>Gestione Utenti</h1>
+   <div style="padding: 5px;" class="container" id="addUtenteButton-container">
+      <div class="row">
+          <div class="col-md-6 col-xl-3">
+            <div id="aggiungiUtenteButton" >
+               <button class="btn btn-primary" (click)="onOpenModal(null,'add')">Aggiungi nuovo utente</button>
+            </div>
+         </div>
+         <div class="col-md-6 col-xl-3">
+            <form class="form-inline my-2 my-lg-0">
+               <input type="search" (ngModelChange)="cercaUtenti(key.value)" #key="ngModel" ngModel 
+               name="key" id="searchName" class="form-control mr-sm-2" placeholder="Cerca utenti..">
+      
+            </form>
+         </div>
+      </div> 
+   </div >
+
+</div >
+
+
+
+<div class="container" id="main-container">
+    <div class="row">
+      <h2 style="padding-top: 5px;">Elenco Utenti:</h2>
+        <!-- Notification for no employees -->
+      <div *ngIf="utenti?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+         <div class="alert alert-info" role="alert">
+         <h4 class="alert-heading">Nessun utente trovato</h4>
+    
+      </div>
+   </div> 
+        <div class="col-md-6 col-xl-3" *ngFor= "let utente of utenti">
+            <div  class="card m-b-30">
+               <div class="card-style" >
+                <div class="card-body row">
+                    <div class="col-6">
+                        <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>{{utente?.cognome}}</h5> <!-- il punto interrogativo serve a controllare che la risorsa esista prima che vi si acceda -->
+                        <p class="m-0">{{utente?.nome}}</p>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email :<br>{{utente?.emailVigilfuoco}}</li>
+                    <li class="list-group-item"><i class="fa fa-phone float-right"></i>{{utente?.telefono}}</li>
+                </ul>
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <button (click)="onOpenModal(utente, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"> Modifica</i> </button>
+                        <button (click)="onOpenModal(utente, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"> Cancella</i></button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Employee Modal -->
+<div class="modal fade" id="aggiungiUtenteModal" tabindex="-1" role="dialog" aria-labelledby="aggiungiUtenteModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="aggiungiUtenteModalLabel">Add Employee</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAggiungiUtente(addForm)" id="addForm" ngNativeValidate>
+            <div class="form-group">
+               <label for="name">Nome</label>
+               <input type="text" ngModel name="nome" class="form-control" id="nome" placeholder="Nome" pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/>
+            </div>
+            <div class="form-group">
+                <label for="phone">Cognome</label>
+                <input type="text" ngModel name="cognome" class="form-control" id="cognome" placeholder="Cognome" pattern="[A-Za-z0-9]+" title="Inserisci un cognome valido" required/>
+             </div>
+            <div class="form-group">
+               <label for="email">Email Vigilfuoco</label>
+               <input type="text" ngModel name="emailVigilfuoco" class="form-control" id="emailVigilfuoco" value="@vigilfuoco.it" placeholder="nome.cognome@vigilfuoco.it" pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it" title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required />
+            </div>
+            <div class="form-group">
+               <label for="phone">Telefono</label>
+               <input type="text" ngModel name="telefono" class="form-control" id="phone" placeholder="Phone" >
+            </div>
+            <div class="form-group">
+               <label for="password">Password</label>
+               <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Inserisci password temporanea" pattern="[A-Za-z0-9]+" title="Inserisci una password valida" required>
+            </div>
+            <div class="form-group">
+                <label for="ruolo">Ruolo</label>
+                <select ngModel name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo"  form="addForm" required>
+                    <option value="UTENTE">Utente</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="FERIE">Approvazione ferie</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+               <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit"  class="btn btn-primary"  >Aggiungi Utente</button> <!-- [disabled]="addForm.invalid" -->
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div> 
+  
+  <!-- Edit Modal -->
+  <div class="modal fade" id="aggiornaUtenteModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="aggiornaUtenteModalLabel">Modifica utente</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+              <form #editForm="ngForm" (ngSubmit)="aggiornaUtente(editForm.value)" id="editForm" ngNativeValidate>
+                <div class="form-group">
+                  <label for="name">Nome</label>
+                  <!-- <input type="text" ngModel="{{modificaUtente?.nome}}" name="nome" class="form-control" id="name" placeholder="Nome" ngModel pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/> -->
+                  <input type="text" [ngModel]="modificaUtente?.nome" name="nome" class="form-control" id="name" placeholder="Nome" ngModel pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/>
+
+               </div>
+               <input type="hidden" ngModel="{{modificaUtente?.id}}" name="id" class="form-control" id="id" > <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
+               <input type="hidden" ngModel="{{modificaUtente?.codiceUtente}}" name="codiceUtente" class="form-control" id="codiceUtente">
+               <input type="hidden" ngModel="{{modificaUtente?.password}}" name="password" class="form-control" id="password">
+               <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf" class="form-control" id="accountDipvvf"> 
+
+               <div class="form-group">
+                   <label for="phone">Cognome</label>
+                   <input type="text" ngModel="{{modificaUtente?.cognome}}" name="cognome" class="form-control" id="cognome" placeholder="Cognome" pattern="[A-Za-z0-9]+" title="Inserisci un cognome valido" required/>
+                </div>
+               <div class="form-group">
+                  <label for="email">Email Vigilfuoco</label>
+                  <input type="text" ngModel="{{modificaUtente?.emailVigilfuoco}}" name="emailVigilfuoco" value="@vigilfuoco.it" class="form-control" id="email" value="@vigilfuoco.it" placeholder="nome.cognome@vigilfuoco.it" pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it" title="devi rispettare il formato nome.cognome@vigilfuoco.it" required />
+               </div>
+               <div class="form-group">
+                  <label for="phone">Telefono</label>
+                  <input type="text" ngModel="{{modificaUtente?.telefono}}" name="telefono" class="form-control" id="phone" placeholder="Phone" >
+               </div>
+               <div class="form-group">
+                  <label for="imageUrl">Immagine (facoltativo)</label>
+                  <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" >
+               </div>
+               <div class="form-group">
+                   <label for="ruolo">Ruolo</label>
+                   <select ngModel="{{modificaUtente?.ruolo}}" name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo" form="editForm"  required="">
+                       <option value="UTENTE">Utente</option>
+                       <option value="ADMIN">Admin</option>
+                       <option value="FERIE">Approvazione ferie</option>
+                   </select>
+               </div>
+                <div class="modal-footer">
+                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button (click)="aggiornaUtente(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Salva modifiche</button>
+                </div> 
+             </form> 
+          </div>
+       </div>
+    </div>
+  </div>
+  
+  <!-- Delete Modal -->
+  <div class="modal fade" id="cancellaUtenteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Cancella utente</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Sicuro di voler cancellare l'utente {{deleteUtente?.nome}}? </p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="cancellaUtente(deleteUtente?.id)" class="btn btn-danger" data-dismiss="modal">Si</button>
+             </div>
+          </div>
+       </div>
+    </div> 
+  </div>
+
+  
