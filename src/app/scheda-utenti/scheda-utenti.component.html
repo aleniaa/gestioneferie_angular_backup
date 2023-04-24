@@ -93,11 +93,11 @@
             </div>
             <div class="form-group">
                <label for="password">Password</label>
-               <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Inserisci password temporanea" pattern="[A-Za-z0-9]+" title="Inserisci una password valida">
+               <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Inserisci password temporanea" pattern="[A-Za-z0-9]+" title="Inserisci una password valida" required>
             </div>
             <div class="form-group">
                 <label for="ruolo">Ruolo</label>
-                <select ngModel name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo"  required>
+                <select ngModel name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo"  form="addForm" required>
                     <option value="UTENTE">Utente</option>
                     <option value="ADMIN">Admin</option>
                     <option value="FERIE">Approvazione ferie</option>
@@ -105,7 +105,7 @@
             </div>
             <div class="modal-footer">
                <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-primary"  >Aggiungi Utente</button> <!-- [disabled]="addForm.invalid" -->
+               <button type="submit"  class="btn btn-primary"  >Aggiungi Utente</button> <!-- [disabled]="addForm.invalid" -->
             </div>
             </form>
          </div>
@@ -124,7 +124,7 @@
              </button>
           </div>
           <div class="modal-body">
-              <form #editForm="ngForm" (ngSubmit)="aggiornaUtente(editForm.value)" id="addForm" ngNativeValidate>
+              <form #editForm="ngForm" (ngSubmit)="aggiornaUtente(editForm.value)" id="editForm" ngNativeValidate>
                 <div class="form-group">
                   <label for="name">Nome</label>
                   <!-- <input type="text" ngModel="{{modificaUtente?.nome}}" name="nome" class="form-control" id="name" placeholder="Nome" ngModel pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/> -->
@@ -134,7 +134,7 @@
                <input type="hidden" ngModel="{{modificaUtente?.id}}" name="id" class="form-control" id="id" > <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
                <input type="hidden" ngModel="{{modificaUtente?.codiceUtente}}" name="codiceUtente" class="form-control" id="codiceUtente">
                <input type="hidden" ngModel="{{modificaUtente?.password}}" name="password" class="form-control" id="password">
-               <!-- <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf" class="form-control" id="accountDipvvf"> -->
+               <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf" class="form-control" id="accountDipvvf"> 
 
                <div class="form-group">
                    <label for="phone">Cognome</label>
@@ -154,7 +154,7 @@
                </div>
                <div class="form-group">
                    <label for="ruolo">Ruolo</label>
-                   <select ngModel="{{modificaUtente?.ruolo}}" name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo" form="addForm"  required="">
+                   <select ngModel="{{modificaUtente?.ruolo}}" name="ruolo" class="form-control" id="ruolo" placeholder="Ruolo" form="editForm"  required="">
                        <option value="UTENTE">Utente</option>
                        <option value="ADMIN">Admin</option>
                        <option value="FERIE">Approvazione ferie</option>

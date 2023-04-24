@@ -66,7 +66,7 @@ export class SchedaUtentiComponent implements OnInit{
   }
 
   public onAggiungiUtente(addForm: NgForm): void{
-    document.getElementById('add-employee-form')?.click();
+    document.getElementById('aggiungiUtenteModal')?.click();
     this.utenteService.aggiungiUtente(addForm.value).subscribe(
       (response: Utente) => { //jfoiewfjwoiej
         console.log(response);
