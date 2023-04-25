@@ -1,5 +1,8 @@
+
+<div class="main-container">
+<div class="col">
 <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Scegli il tipo di permesso
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
@@ -9,7 +12,7 @@
       <a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a>
     </div>
   </div>
-
+</div>
 
 <div class="container" id="ferie_form" >
   
@@ -49,23 +52,32 @@
     <div class="row" >
         <h2 style="padding-top: 5px;">PERMESSO BREVE (fino a 36 ore annue)</h2>
           <form #permesso_breve="ngForm" id="permesso_breve" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(permesso_breve)"  -->
-              <div class="form-group">
+              
+            <div class="row">
+              <div class="col">
+            <div class="form-group">
                   <label for="dalle_ore">Dalle ore: </label>
                   <input type="time" ngModel name="dalle_ore" class="form-control" id="dalle_ore"  title="Ore inizio" required/>
                </div>
+              </div>
+              <div class="col">
                <div class="form-group">
-                   <label for="alle_ore">al</label>
+                   <label for="alle_ore">alle ore</label>
                    <input type="time" ngModel name="alle_ore" class="form-control" id="alle_ore" title="Ore fine" required/>
                 </div>
+              </div>
+              <div class="col">
                 <div class="form-group">
-                  <label for="del_giorno">al</label>
+                  <label for="del_giorno">del giorno</label>
                   <input type="date" ngModel name="del_giorno" class="form-control" id="del_giorno" title="Giorno" required/>
                </div>
+              </div>
+            </div>
                 <div class="form-group">
-                  <p >Numero ore toali: </p><input id="totOre" readonly/>
-                  <p >Da recuperare entro il mese successivo</p>                    
+                  <p >Numero ore totali: </p><input id="totOre" readonly/>
+                  <p ><i>Da recuperare entro il mese successivo</i></p>                    
                </div>
-
+             
                <div class="form-group">
                    <label for="approvazione">Da sottomettere per approvazione a:</label>
                    <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"  form="congedo" required>
@@ -269,5 +281,5 @@
           </form>
       </div>
   </div>
-
+</div>
 

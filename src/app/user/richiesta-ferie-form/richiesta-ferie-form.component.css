@@ -1,0 +1,25 @@
+.form-check-label, .form-check-input{
+    cursor: pointer;
+}
+
+.form-check-input{
+    outline: 1px solid #1e5180;
+}
+
+.form-check{
+    padding: 2px;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    padding-left: 1150px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    padding-left: 1150px;
+}
