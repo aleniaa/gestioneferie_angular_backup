@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { UtenteService } from './utente.service';
+
 import { HttpClientModule } from '@angular/common/http';
 import { navbarComponent } from './navbarComponent/navbar.component';
 import { NavbarUserComponent } from './navbar-user/navbar-user.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { SchedaUtentiComponent } from './scheda-utenti/scheda-utenti.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { FormsModule } from '@angular/forms';
+import { UtenteService } from './core/services/utente.service';
+import { SchedaUtentiComponent } from './admin/scheda-utenti/scheda-utenti.component';
 
 @NgModule({
   declarations: [

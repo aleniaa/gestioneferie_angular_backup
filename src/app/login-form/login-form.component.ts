@@ -1,9 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Utente } from '../utente';
 import { NgForm } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Utente } from '../core/models/utente';
 
 @Component({
   selector: 'app-login-form',
