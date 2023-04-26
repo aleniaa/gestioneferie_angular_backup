@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { navbarComponent } from './navbarComponent/navbar.component';
-import { NavbarUserComponent } from './navbar-user/navbar-user.component';
+import { NavbarUserComponent } from './user/navbar-user/navbar-user.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
+import { NavbarAdminComponent } from './admin/navbar-admin/navbar-admin.component';
 import { FormsModule } from '@angular/forms';
 import { UtenteService } from './core/services/utente.service';
 import { SchedaUtentiComponent } from './admin/scheda-utenti/scheda-utenti.component';
