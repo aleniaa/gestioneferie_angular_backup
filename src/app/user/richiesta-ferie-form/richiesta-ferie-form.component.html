@@ -1,285 +1,397 @@
-
 <div class="main-container">
-<div class="col">
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Scegli il tipo di permesso
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
-      <a class="dropdown-item" (click)="toggleForm('congedo')">CONGEDO ORDINARIO</a>
-      <a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a>
-      <a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a>
-      <a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a>
+  <div class="col">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Scegli il tipo di permesso
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
+        <a class="dropdown-item" (click)="toggleForm('congedo')">CONGEDO ORDINARIO</a>
+        <a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a>
+        <a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a>
+        <a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="container" id="ferie_form" >
-  
-</div>
+  <div class="container" id="ferie_form">
 
-<div id="congedo_form" style="display: none;">
-  <div class="row" >
-        <h2 style="padding-top: 5px;">CONGEDO ORDINARIO</h2>
-          <form #congedo="ngForm" id="congedo" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(congedo)"  -->
-              <div class="form-group">
-                  <label for="ferie_dal">Giorni di ferie dal </label>
-                  <input type="date" ngModel name="ferie_dal" class="form-control" id="ferie_dal"  title="Data inizio ferie" required/>
-               </div>
-               <div class="form-group">
-                   <label for="ferie_al">al</label>
-                   <input type="date" ngModel name="ferie_al" class="form-control" id="ferie_al" title="Data fine ferie" required/>
-                </div>
-                <div class="form-group">
-                  <p >Giorni toali: </p><input id="totGiorni" readonly/>                    
-               </div>
+  </div>
 
-               <div class="form-group">
-                   <label for="approvazione">Da sottomettere per approvazione a:</label>
-                   <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"  form="congedo" required>
-                       <option value="UTENTE">Nome funzionario</option>
-                   </select>
-               </div>
-               <div class="modal-footer">
-                  <button type="submit"  class="btn btn-primary"  >Invia</button> <!-- [disabled]="addForm.invalid" -->
-               </div>
-          </form>
+  <div id="congedo_form" style="display: none;">
+    
+      
+      <h2 style="padding-top: 5px;">CONGEDO ORDINARIO</h2>
+      <form #congedo="ngForm" id="congedo" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(congedo)"  -->
+        <div class="row">
+        <div class="col">
+
+        <div class="form-group">
+          <label for="ferie_dal">Giorni di ferie dal </label>
+          <input type="date" ngModel name="ferie_dal" class="form-control" id="ferie_dal" title="Data inizio ferie"
+            required />
+        </div>
       </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="ferie_al">al</label>
+          <input type="date" ngModel name="ferie_al" class="form-control" id="ferie_al" title="Data fine ferie"
+            required />
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <p>Giorni totali: </p><input id="totGiorni" readonly />
+        </div>
+      </div>
+      </div>
+        <div class="form-group">
+          <label for="approvazione">Da sottomettere per approvazione a:</label>
+          <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
+            form="congedo" required>
+            <option value="UTENTE">Nome funzionario</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
+        </div>
+      </form>
+    
   </div>
 
 
   <div id="permesso_breve_form" style="display: none;">
-    <div class="row" >
-        <h2 style="padding-top: 5px;">PERMESSO BREVE (fino a 36 ore annue)</h2>
-          <form #permesso_breve="ngForm" id="permesso_breve" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(permesso_breve)"  -->
-              
-            <div class="row">
-              <div class="col">
+    <div class="row">
+      <h2 style="padding-top: 5px;">PERMESSO BREVE (fino a 36 ore annue)</h2>
+      <form #permesso_breve="ngForm" id="permesso_breve" ngNativeValidate>
+        <!-- (ngSubmit)="inviaPermesso(permesso_breve)"  -->
+
+        <div class="row">
+          <div class="col">
             <div class="form-group">
-                  <label for="dalle_ore">Dalle ore: </label>
-                  <input type="time" ngModel name="dalle_ore" class="form-control" id="dalle_ore"  title="Ore inizio" required/>
-               </div>
-              </div>
-              <div class="col">
-               <div class="form-group">
-                   <label for="alle_ore">alle ore</label>
-                   <input type="time" ngModel name="alle_ore" class="form-control" id="alle_ore" title="Ore fine" required/>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label for="del_giorno">del giorno</label>
-                  <input type="date" ngModel name="del_giorno" class="form-control" id="del_giorno" title="Giorno" required/>
-               </div>
-              </div>
+              <label for="dalle_ore">Dalle ore: </label>
+              <input type="time" ngModel name="dalle_ore" class="form-control" id="dalle_ore" title="Ore inizio"
+                required />
             </div>
-                <div class="form-group">
-                  <p >Numero ore totali: </p><input id="totOre" readonly/>
-                  <p ><i>Da recuperare entro il mese successivo</i></p>                    
-               </div>
-             
-               <div class="form-group">
-                   <label for="approvazione">Da sottomettere per approvazione a:</label>
-                   <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"  form="congedo" required>
-                       <option value="UTENTE">Nome funzionario</option>
-                   </select>
-               </div>
-               <div class="modal-footer">
-                  <button type="submit"  class="btn btn-primary"  >Invia</button> <!-- [disabled]="addForm.invalid" -->
-               </div>
-          </form>
-      </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="alle_ore">alle ore</label>
+              <input type="time" ngModel name="alle_ore" class="form-control" id="alle_ore" title="Ore fine" required />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="del_giorno">del giorno</label>
+              <input type="date" ngModel name="del_giorno" class="form-control" id="del_giorno" title="Giorno"
+                required />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <p>Numero ore totali: </p><input id="totOre" readonly />
+          <p><i>Da recuperare entro il mese successivo</i></p>
+        </div>
+
+        <div class="form-group">
+          <label for="approvazione">Da sottomettere per approvazione a:</label>
+          <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
+            form="congedo" required>
+            <option value="UTENTE">Nome funzionario</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
+        </div>
+      </form>
+    </div>
   </div>
 
   <div id="recupero_ore_form" style="display: none;">
-    <div class="row" >
-        <h2 style="padding-top: 5px;">RECUPERO ORE ECCEDENTI (Effettuate oltre l'orario di servizio)</h2>
-          <form #recupero_ore="ngForm" id="recupero_ore" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(recupero_ore)"  -->
-              <div class="form-group">
-                  <label for="dalle_ore">Dalle ore: </label>
-                  <input type="time" ngModel name="dalle_ore" class="form-control" id="dalle_ore"  title="Ore inizio" required/>
-               </div>
-               <div class="form-group">
-                   <label for="alle_ore">al</label>
-                   <input type="time" ngModel name="alle_ore" class="form-control" id="alle_ore" title="Ore fine" required/>
-                </div>
-                <div class="form-group">
-                  <label for="del_giorno">al</label>
-                  <input type="date" ngModel name="del_giorno" class="form-control" id="del_giorno" title="Giorno" required/>
-               </div>
-                <div class="form-group">
-                  <p >Numero ore toali: </p><input id="totOre" readonly/>
-                                      
-               </div>
-
-               <div class="form-group">
-                   <label for="approvazione">Da sottomettere per approvazione a:</label>
-                   <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"  form="congedo" required>
-                       <option value="UTENTE">Nome funzionario</option>
-                   </select>
-               </div>
-               <div class="modal-footer">
-                  <button type="submit"  class="btn btn-primary"  >Invia</button> <!-- [disabled]="addForm.invalid" -->
-               </div>
-          </form>
+    <div class="row">
+      <h2 style="padding-top: 5px;">RECUPERO ORE ECCEDENTI (Effettuate oltre l'orario di servizio)</h2>
+      <form #recupero_ore="ngForm" id="recupero_ore" ngNativeValidate>
+        <!-- (ngSubmit)="inviaPermesso(recupero_ore)"  -->
+        <div class="row">
+          <div class="col">
+        <div class="form-group">
+          <label for="dalle_ore">Dalle ore: </label>
+          <input type="time" ngModel name="dalle_ore" class="form-control" id="dalle_ore" title="Ore inizio" required />
+        </div>
       </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="alle_ore">al</label>
+          <input type="time" ngModel name="alle_ore" class="form-control" id="alle_ore" title="Ore fine" required />
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="del_giorno">del</label>
+          <input type="date" ngModel name="del_giorno" class="form-control" id="del_giorno" title="Giorno" required />
+        </div>
+      </div>
+        <div class="form-group">
+          <p>Numero ore totali: </p><input id="totOre" readonly />
+
+        </div>
+      </div>
+        <div class="form-group">
+          <label for="approvazione">Da sottomettere per approvazione a:</label>
+          <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
+            form="congedo" required>
+            <option value="UTENTE">Nome funzionario</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
+        </div>
+      </form>
+    </div>
   </div>
 
   <div id="permessi_form" style="display: none;">
-    <div class="row" >
-        <h2 style="padding-top: 5px;">ALTRI PERMESSI</h2>
-        
-          <form #permessi="ngForm" id="permessi" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(permessi)"  -->
-            <div class="row"> 
+    <div class="row">
+      <h2 style="padding-top: 5px;">ALTRI PERMESSI</h2>
+
+      <form #permessi="ngForm" id="permessi" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(permessi)"  -->
+        <div class="row">
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="concorsiEdEsami"
+                value="concorsiEdEsami" checked>
+              <label class="form-check-label" for="concorsiEdEsami"> Concorsi ed Esami (8 gg/anno) </label>
+
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="luttoFamiliare"
+                value="luttoFamiliare" />
+              <label class="form-check-label" for="luttoFamiliare"> Lutto familiare (3 gg/evento) </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="graviInfermita"
+                value="graviInfermita" />
+              <label class="form-check-label" for="graviInfermita"> Gravi infermità 18 ore/anno </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="matrimonio"
+                value="matrimonio" />
+              <label class="form-check-label" for="matrimonio"> Matrimonio(15 gg consecutivi) </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="sport" value="sport" />
+              <label class="form-check-label" for="sport"> Attività ginnico-sportiva </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="motiviPersonali"
+                value="motiviPersonali" />
+              <label class="form-check-label" for="motiviPersonali"> Motivi personali o familiari (18 oee/anno) </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="malattiaDLGS"
+                value="malattiaDLGS" />
+              <label class="form-check-label" for="malattiaDLGS"> Malattia cure/terapie D.Lgs. n.119 del 18/07/2011 (30
+                gg./anno)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="malattia_visite"
+                value="malattia_visite" />
+              <label class="form-check-label" for="malattia_visite"> Malattia per visite, terapie, prestazioni
+                specialistiche ed esami
+                diagnostici (18 h /anno)</label>
+              <p><i>(obbligatoria documentazione medica giustificativa assenza)</i></p>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="sangue" value="sangue" />
+              <label class="form-check-label" for="sangue"> Donazione Sangue (24 ore dalla donazione)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="studio" value="studio" />
+              <label class="form-check-label" for="studio"> Motivi di studio (max 150 ore/anno)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="Testimonianze"
+                value="Testimonianze" />
+              <label class="form-check-label" for="Testimonianze"> Testimonianze per motivi di servizio
+                (illimitate)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="sindacale"
+                value="sindacale" />
+              <label class="form-check-label" for="sindacale"> Permesso sindacale</label>
+            </div>
+            <h6>L. 265/99 - artt. 18 e 24</h6>
+            <div class="form-check">
+
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="cariche_elettive"
+                value="cariche_elettive" />
+              <label class="form-check-label" for="cariche_elettive"> Cariche elettive</label>
+            </div>
+            <h6>D.P.R. 30/03/57 n.361 – L. 29/01/92 n.69</h6>
+            <div class="form-check">
+
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="elezioni" value="elezioni" />
+              <label class="form-check-label" for="elezioni"> Permesso per elezioni/referendum</label>
+              <p><i>(Assenze per Funzioni Elettorali – 18 ore/evento - Obbligatoria documentazione giustificativa)</i>
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <h6>L. 104/92 - art.33 (2ore/g - 18ore/mese)</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso"
+                id="assistenza_disabili" value="assistenza_disabili" />
+              <label class="form-check-label" for="assistenza_disabili"> Assistenza disabili</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso"
+                id="permessi_individuali" value="permessi_individuali" />
+              <label class="form-check-label" for="permessi_individuali"> Permessi individuali</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso"
+                id="prolungamento_congedo_parentale" value="prolungamento_congedo_parentale" />
+              <label class="form-check-label" for="prolungamento_congedo_parentale"> Prolungamento del congedo parentale
+                L.104/92
+                (Circ. n. 139 17/07/2015)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="congedo_parentale"
+                value="congedo_parentale" />
+              <label class="form-check-label" for="congedo_parentale"> Congedo parentale</label>
+              <p><i>(obbligatoria autocertificazione del coniuge)</i></p>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="riposi_giornalieri"
+                value="riposi_giornalieri" />
+              <label class="form-check-label" for="riposi_giornalieri"> Riposi giornalieri</label>
+              <p><i>(obbligatoria documentazione relativa al coniuge)</i></p>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="malattia_figlio"
+                value="malattia_figlio" />
+              <label class="form-check-label" for="malattia_figlio"> Congedo per malattia figlio/a</label>
+              <p><i>(obbligatoria certificazione malattia figlio/a)</i></p>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="allattamento"
+                value="allattamento" />
+              <label class="form-check-label" for="allattamento"> Permessi orari retribuiti per allattamento</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="paternita"
+                value="paternita" />
+              <label class="form-check-label" for="paternita"> Congedo obbligatorio di paternità 10 gg /5 turni</label>
+            </div>
+          </div>
+        </div>
+        <h6 style="text-align: center;">E comunica che la fruizione del permesso, ove autorizzata, comporterà l’assenza
+          dal servizio</h6>
+
+        <!-- ------------------------------- -->
+
+        <div class="container">
+          <div id="dettagli_form">
+            <div class="row">
+
               <div class="col">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" ngModel name="concorsiEdEsami" id="concorsiEdEsami" value="concorsiEdEsami" checked>
-                  <label class="form-check-label" for="concorsiEdEsami"> Concorsi ed Esami (8 gg/anno) </label>
+                <div class="form-group">
+                  <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_ore"
+                    value="checkbox_ore" />
+                  <label class="form-check-label" for="dalle_ore"> Dalle ore </label>
+                  <input type="time" ngModel name="dalle_ore" id="dalle_ore" />
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-check-label" for="alle_ore"> alle ore </label>
+                  <input type="time" ngModel name="alle_ore" id="alle_ore" />
+                </div>
 
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="luttoFamiliare"  id="luttoFamiliare" value="luttoFamiliare" />
-                <label class="form-check-label" for="luttoFamiliare"> Lutto familiare (3 gg/evento) </label>
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-check-label" for="del giorno"> del giorno </label>
+                  <input type="date" ngModel name="del giorno" id="del giorno" />
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="graviInfermita"  id="graviInfermita" value="graviInfermita" />
-                <label class="form-check-label" for="graviInfermita"> Gravi infermità 18 ore/anno </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="matrimonio"  id="matrimonio" value="matrimonio" />
-                <label class="form-check-label" for="matrimonio"> Matrimonio(15 gg consecutivi) </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="sport"  id="sport" value="sport" />
-                <label class="form-check-label" for="sport"> Attività ginnico-sportiva </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="motiviPersonali"  id="motiviPersonali" value="motiviPersonali" />
-                <label class="form-check-label" for="motiviPersonali"> Motivi personali o familiari (18 oee/anno) </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="malattiaDLGS"  id="malattiaDLGS" value="malattiaDLGS" />
-                <label class="form-check-label" for="malattiaDLGS"> Malattia cure/terapie D.Lgs. n.119 del 18/07/2011 (30 gg./anno)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="malattia_visite"  id="malattia_visite" value="malattia_visite" />
-                <label class="form-check-label" for="malattia_visite"> Malattia per visite, terapie, prestazioni specialistiche ed esami
-                  diagnostici (18 h /anno)</label>
-                  <p><i>(obbligatoria documentazione medica giustificativa assenza)</i></p>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="malattia_visite"  id="malattia_visite" value="malattia_visite" />
-                <label class="form-check-label" for="malattia_visite"> Malattia per visite, terapie, prestazioni specialistiche ed esami
-                  diagnostici (18 h /anno)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="sangue"  id="sangue" value="sangue" />
-                <label class="form-check-label" for="sangue"> Donazione Sangue (24 ore dalla donazione)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="studio"  id="studio" value="studio" />
-                <label class="form-check-label" for="studio"> Motivi di studio (max 150 ore/anno)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="Testimonianze"  id="Testimonianze" value="Testimonianze" />
-                <label class="form-check-label" for="Testimonianze"> Testimonianze per motivi di servizio (illimitate)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="sindacale"  id="sindacale" value="sindacale" />
-                <label class="form-check-label" for="sindacale"> Permesso sindacale</label>
-              </div>
-              <h6>L. 265/99 - artt. 18 e 24</h6>
-              <div class="form-check">
-               
-                <input class="form-check-input" type="checkbox" ngModel name="cariche_elettive"  id="cariche_elettive" value="cariche_elettive" />
-                <label class="form-check-label" for="cariche_elettive"> Cariche elettive</label>
-              </div>
-              <h6>D.P.R. 30/03/57 n.361 – L. 29/01/92 n.69</h6>
-              <div class="form-check">
-            
-                <input class="form-check-input" type="checkbox" ngModel name="elezioni"  id="elezioni" value="elezioni" />
-                <label class="form-check-label" for="elezioni"> Permesso per elezioni/referendum</label>
-                  <p><i>(Assenze per Funzioni Elettorali – 18 ore/evento - Obbligatoria documentazione giustificativa)</i></p>
+
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-check-label" for="totOre"> per un totale di ore: </label>
+                  <input type="text" ngModel name="totOre" id="totOre" disabled="true" />
+                  <!-- ------------------------------- -->
+                </div>
               </div>
             </div>
-            <div class="col">
-              <h6>L. 104/92 - art.33 (2ore/g - 18ore/mese)</h6>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="assistenza_disabili"  id="assistenza_disabili" value="assistenza_disabili" />
-                <label class="form-check-label" for="assistenza_disabili"> Assistenza disabili</label>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_giorni"
+                    value="checkbox_giorni" />
+                  <label class="form-check-label" for="dal_giorno"> Dal giorno </label>
+                  <input type="date" ngModel name="dal_giorno" id="dal_giorno" />
+
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="permessi_individuali"  id="permessi_individuali" value="permessi_individuali" />
-                <label class="form-check-label" for="permessi_individuali"> Permessi individuali</label>
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-check-label" for="al_giorno"> al giorno </label>
+                  <input type="date" ngModel name="al_giorno" id="al_giorno" />
+
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="prolungamento_congedo_parentale"  id="prolungamento_congedo_parentale" value="prolungamento_congedo_parentale" />
-                <label class="form-check-label" for="prolungamento_congedo_parentale"> Prolungamento del congedo parentale L.104/92
-                  (Circ. n. 139 17/07/2015)</label>
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-check-label" for="totOre"> per un totale di giorni: </label>
+                  <input type="text" ngModel name="totGiorni" id="totGiorni" value="totGiorni" />
+
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="congedo_parentale"  id="congedo_parentale" value="congedo_parentale" />
-                <label class="form-check-label" for="congedo_parentale"> Congedo parentale</label>
-                <p><i>(obbligatoria autocertificazione del coniuge)</i></p>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_turni"
+                    value="checkbox_turni" />
+                  <label class="form-check-label" for="dal_turno"> Dal turno </label>
+                  <input type="text" ngModel name="dal_turno" id="dal_turno" />
+
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="riposi_giornalieri"  id="riposi_giornalieri" value="riposi_giornalieri" />
-                <label class="form-check-label" for="riposi_giornalieri"> Riposi giornalieri</label>
-                <p><i>(obbligatoria documentazione relativa al coniuge)</i></p>
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-check-label" for="num_turni"> per numero turni </label>
+                  <input type="text" ngModel name="num_turni" id="num_turni" />
+
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="malattia_figlio"  id="malattia_figlio" value="malattia_figlio" />
-                <label class="form-check-label" for="malattia_figlio"> Congedo per malattia figlio/a</label>
-                <p><i>(obbligatoria certificazione malattia figlio/a)</i></p>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="allattamento"  id="allattamento" value="allattamento" />
-                <label class="form-check-label" for="allattamento"> Permessi orari retribuiti per allattamento</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" ngModel name="paternita"  id="paternita" value="paternita" />
-                <label class="form-check-label" for="paternita"> Congedo obbligatorio di paternità 10 gg /5 turni</label>
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-check-label" for="totGiorni"> per un totale di giorni: </label>
+                  <input type="text" ngModel name="totGiorni" id="totGiorni" value="totGiorni" />
+
+                </div>
               </div>
             </div>
           </div>
-          <h6 style="text-align: center;">E comunica che la fruizione del permesso, ove autorizzata, comporterà l’assenza dal servizio</h6>
-        <div id="dettagli_form">
-          <div class="row">
-            <div class="col">
-          <div class="form-group">
-            <input class="form-check-input" type="checkbox" ngModel name="checkbox_ore"  id="checkbox_ore" value="checkbox_ore" />
-            <label class="form-check-label" for="dalle_ore"> Dalle ore </label>
-            <input type="text" ngModel name="dalle_ore"  id="dalle_ore" value="dalle_ore" />
-        
-          </div>
+
         </div>
-        <div class="col">
-          <div class="form-group">
-            <label class="form-check-label" for="alle_ore"> alle ore </label>
-            <input type="text" ngModel name="alle_ore"  id="alle_ore" value="alle_ore" />
-            
-          </div>
+        <h4>SI ALLEGA/SEGUIRA' DOCUMENTAZIONE GIUSTIFICATIVA</h4>
+        <div class="form-group">
+          <label for="approvazione">Da sottomettere per approvazione a:</label>
+          <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
+            form="congedo" required>
+            <option value="UTENTE">Nome funzionario</option>
+          </select>
         </div>
-        <div class="col">
-          <div class="form-group">
-            <label class="form-check-label" for="totOre"> per un totale di ore: </label>
-            <input type="text" ngModel name="totOre"  id="totOre" value="totOre" />
-            
-          </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
         </div>
-        </div>
-      </div>
-              <div class="form-check">
-                 <label for="approvazione">Da sottomettere per approvazione a:</label>
-                 <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"  form="congedo" required>
-                     <option value="UTENTE">Nome funzionario</option>
-                 </select>
-              </div>
-              <div class="modal-footer">
-                <button type="submit"  class="btn btn-primary"  >Invia</button> <!-- [disabled]="addForm.invalid" -->
-              </div>
-          </form>
-      </div>
+      </form>
+    </div>
   </div>
 </div>
-

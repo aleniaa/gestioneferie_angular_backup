@@ -3,7 +3,7 @@
 }
 
 .form-check-input{
-    outline: 1px solid #1e5180;
+    outline: 1px solid #000000;
 }
 
 .form-check{
@@ -16,10 +16,11 @@
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
-    padding-left: 1150px;
+    width: 20px;
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
-    padding-left: 1150px;
+    width: 20px;
+    
 }
