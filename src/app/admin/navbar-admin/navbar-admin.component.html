@@ -7,12 +7,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" routerLinkActive="active">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Gestisci Utenti</a>
+            <a class="nav-link active" aria-current="page" routerLink="scheda-utenti">Gestisci Utenti</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Richiedi Ferie</a>
+            <a class="nav-link" routerLink="richiesta-ferie">Richiedi Ferie</a>
           </li>
 <!--           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,3 +36,4 @@
       </div>
     </div>
   </nav>
+  <router-outlet></router-outlet>

@@ -1,4 +1,6 @@
-<div class="main-container">
+<div class="container">
+  <h1>Richiesta Ferie</h1>
+  <div class="row">
   <div class="col">
     <div class="dropdown">
       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -13,6 +15,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <div class="container" id="ferie_form">
 
@@ -27,15 +30,15 @@
         <div class="col">
 
         <div class="form-group">
-          <label for="ferie_dal">Giorni di ferie dal </label>
-          <input type="date" ngModel name="ferie_dal" class="form-control" id="ferie_dal" title="Data inizio ferie"
+          <label for="dataInizio">Giorni di ferie dal </label>
+          <input type="date" ngModel name="dataInizio" class="form-control" id="dataInizio" title="Data inizio ferie"
             required />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="ferie_al">al</label>
-          <input type="date" ngModel name="ferie_al" class="form-control" id="ferie_al" title="Data fine ferie"
+          <label for="dataFine">al</label>
+          <input type="date" ngModel name="dataFine" class="form-control" id="dataFine" title="Data fine ferie"
             required />
         </div>
       </div>

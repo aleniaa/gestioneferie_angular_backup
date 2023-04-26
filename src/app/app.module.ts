@@ -13,6 +13,7 @@ import { UtenteService } from './core/services/utente.service';
 import { SchedaUtentiComponent } from './admin/scheda-utenti/scheda-utenti.component';
 import { RichiestaFerieFormComponent } from './user/richiesta-ferie-form/richiesta-ferie-form.component';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [
     UtenteService //potrei anche commentarlo perchè in utenteservice c'è @injectable provided in root
