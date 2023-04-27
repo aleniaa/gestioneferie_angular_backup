@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Richiesta Ferie</h1>
+  <h1>Richiesta Permessi</h1>
   <div class="row">
   <div class="col">
     <div class="dropdown">
@@ -44,7 +44,7 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <p>Giorni totali: </p><input id="totGiorni" readonly />
+          <p>Giorni totali: </p><input id="totGiorni" name="totGiorni" readonly />
         </div>
       </div>
       </div>
@@ -72,34 +72,34 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label for="dalle_ore">Dalle ore: </label>
-              <input type="time" ngModel name="dalle_ore" class="form-control" id="dalle_ore" title="Ore inizio"
+              <label for="dalleOre">Dalle ore: </label>
+              <input type="time" ngModel name="dalleOre" class="form-control" id="dalleOre" title="Ore inizio"
                 required />
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="alle_ore">alle ore</label>
-              <input type="time" ngModel name="alle_ore" class="form-control" id="alle_ore" title="Ore fine" required />
+              <label for="alleOre">alle ore</label>
+              <input type="time" ngModel name="alleOre" class="form-control" id="alleOre" title="Ore fine" required />
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="del_giorno">del giorno</label>
-              <input type="date" ngModel name="del_giorno" class="form-control" id="del_giorno" title="Giorno"
+              <label for="delGiorno">del giorno</label>
+              <input type="date" ngModel name="delGiorno" class="form-control" id="delGiorno" title="Giorno"
                 required />
             </div>
           </div>
         </div>
         <div class="form-group">
-          <p>Numero ore totali: </p><input id="totOre" readonly />
+          <p>Numero ore totali: </p><input id="totOre" name="totOre" readonly />
           <p><i>Da recuperare entro il mese successivo</i></p>
         </div>
 
         <div class="form-group">
           <label for="approvazione">Da sottomettere per approvazione a:</label>
           <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
-            form="congedo" required>
+            form="permesso_breve" required>
             <option value="UTENTE">Nome funzionario</option>
           </select>
         </div>
@@ -118,31 +118,31 @@
         <div class="row">
           <div class="col">
         <div class="form-group">
-          <label for="dalle_ore">Dalle ore: </label>
-          <input type="time" ngModel name="dalle_ore" class="form-control" id="dalle_ore" title="Ore inizio" required />
+          <label for="dalleOre">Dalle ore: </label>
+          <input type="time" ngModel name="dalleOre" class="form-control" id="dalleOre" title="Ore inizio" required />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="alle_ore">al</label>
-          <input type="time" ngModel name="alle_ore" class="form-control" id="alle_ore" title="Ore fine" required />
+          <label for="alleOre">al</label>
+          <input type="time" ngModel name="alleOre" class="form-control" id="alleOre" title="Ore fine" required />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="del_giorno">del</label>
-          <input type="date" ngModel name="del_giorno" class="form-control" id="del_giorno" title="Giorno" required />
+          <label for="delGiorno">del giorno</label>
+          <input type="date" ngModel name="delGiorno" class="form-control" id="delGiorno" title="Giorno" required />
         </div>
       </div>
         <div class="form-group">
-          <p>Numero ore totali: </p><input id="totOre" readonly />
+          <p>Numero ore totali: </p><input id="totOre" name="totOre" readonly />
 
         </div>
       </div>
         <div class="form-group">
           <label for="approvazione">Da sottomettere per approvazione a:</label>
           <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
-            form="congedo" required>
+            form="recupero_ore" required>
             <option value="UTENTE">Nome funzionario</option>
           </select>
         </div>
@@ -152,6 +152,7 @@
       </form>
     </div>
   </div>
+<!-- _________________________________________ FORM PERMESSI _________________________________________ -->
 
   <div id="permessi_form" style="display: none;">
     <div class="row">
@@ -301,22 +302,22 @@
                 <div class="form-group">
                   <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_ore"
                     value="checkbox_ore" />
-                  <label class="form-check-label" for="dalle_ore"> Dalle ore </label>
-                  <input type="time" ngModel name="dalle_ore" id="dalle_ore" />
+                  <label class="form-check-label" for="dalleOre"> Dalle ore </label>
+                  <input type="time" ngModel name="dalleOre" id="dalleOre" />
 
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label class="form-check-label" for="alle_ore"> alle ore </label>
-                  <input type="time" ngModel name="alle_ore" id="alle_ore" />
+                  <label class="form-check-label" for="alleOre"> alle ore </label>
+                  <input type="time" ngModel name="alleOre" id="alleOre" />
                 </div>
 
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label class="form-check-label" for="del giorno"> del giorno </label>
-                  <input type="date" ngModel name="del giorno" id="del giorno" />
+                  <label class="form-check-label" for="delGiorno"> del Giorno </label>
+                  <input type="date" ngModel name="delGiorno" id="delGiorno" />
                 </div>
               </div>
 
@@ -387,7 +388,7 @@
         <div class="form-group">
           <label for="approvazione">Da sottomettere per approvazione a:</label>
           <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
-            form="congedo" required>
+            form="permessi" required>
             <option value="UTENTE">Nome funzionario</option>
           </select>
         </div>

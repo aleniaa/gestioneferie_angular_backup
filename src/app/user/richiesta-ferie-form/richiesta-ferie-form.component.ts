@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class RichiestaFerieFormComponent {
 
+  
+
 public toggleForm(form: string): void{
 
   var x = document.getElementById("ferie_form");
