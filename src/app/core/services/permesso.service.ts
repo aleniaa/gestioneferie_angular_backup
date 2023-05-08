@@ -3,31 +3,23 @@ import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Utente } from '../models/utente';
 import { environment } from 'src/enviroments/environment';
-
-
+import { Permesso } from '../models/permesso';
 @Injectable({
-  providedIn: 'root' //questo serve a non inserire questo service in app.module
+  providedIn: 'root'
 })
-export class UtenteService {
+export class PermessoService {
 
-
-  //
-  
   private apiServerUrl= environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
-  public getUtenti(): Observable<Utente[]>{
-    return this.http.get<any>(`${this.apiServerUrl}/utente/all`);
-
-  }
-
-  public getUtentiFerie(): Observable<Utente[]> {
+  public getUtentiFerie(): Observable<Utente[]>{
     return this.http.get<any>(`${this.apiServerUrl}/utente/ferie`);
+
   }
 
-  public aggiungiUtente(utente: Utente): Observable<Utente>{
-    return this.http.post<Utente>(`${this.apiServerUrl}/utente/add`, utente);
+  public aggiungiPermesso(permesso: Permesso): Observable<Permesso>{
+    return this.http.post<Permesso>(`${this.apiServerUrl}/permesso/add`, permesso);
 
   }
 
@@ -43,5 +35,4 @@ export class UtenteService {
     return this.http.get<any>(`${this.apiServerUrl}/utente/find/${idUtente}`);
 
   }
-  
 }
