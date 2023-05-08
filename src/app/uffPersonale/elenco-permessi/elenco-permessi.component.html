@@ -1,0 +1,34 @@
+
+<div class="container">
+
+    <div class="col" >
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID permesso</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cognome</th>
+                <th scope="col">Dal giorno</th>
+                <th scope="col">Al giorno</th>
+                <th scope="col">Giorni totali</th>
+                <th scope="col">Approvato da</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor= "let permesso of permessi">
+                <th scope="row">{{permesso?.id}}</th>
+                <td>{{permesso?.idUtente}}</td>
+                <td>{{permesso?.idUtente}}</td>
+                <td>{{permesso?.dataInizio}}</td>
+                <td>{{permesso?.dataFine}}</td>
+                <td>{{permesso?.totGiorni}}</td>
+                <td>{{permesso?.idUtenteApprovazione}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+
+
