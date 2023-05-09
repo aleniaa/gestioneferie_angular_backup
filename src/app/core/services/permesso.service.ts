@@ -31,8 +31,8 @@ export class PermessoService {
     return this.http.get<any>(`${this.apiServerUrl}/permesso/allCongedo`);
   }
 
-  public cancellaUtente(idUtente: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiServerUrl}/utente/delete/${idUtente}`);
+  public search(permesso: Permesso): Observable<Permesso[]>{
+    return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso);
   }
 
   public trovaUtente(idUtente: number): Observable<Utente[]>{
