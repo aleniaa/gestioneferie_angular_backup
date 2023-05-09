@@ -23,8 +23,12 @@ export class PermessoService {
 
   }
 
-  public aggiornaUtente(utente: Utente): Observable<Utente>{
-    return this.http.put<Utente>(`${this.apiServerUrl}/utente/update`, utente);
+  public getAllPermessi(): Observable<Permesso[]>{
+    return this.http.get<any>(`${this.apiServerUrl}/permesso/all`);
+  }
+
+  public getAllPermessiCongedo(): Observable<Permesso[]>{
+    return this.http.get<any>(`${this.apiServerUrl}/permesso/allCongedo`);
   }
 
   public cancellaUtente(idUtente: number): Observable<void>{

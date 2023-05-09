@@ -4,7 +4,7 @@ export interface Permesso{
 
     id: number;
     dataInizio: Date;
-    daatFine: Date;
+    dataFine: Date;
     totGiorni: number;
     tipoPermesso: String;
     idUtenteApprovazione: number;

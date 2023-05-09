@@ -1,13 +1,57 @@
-import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Permesso } from 'src/app/core/models/permesso';
+import { Utente } from 'src/app/core/models/utente';
+import { PermessoService } from 'src/app/core/services/permesso.service';
+import { UtenteService } from 'src/app/core/services/utente.service';
 
 @Component({
   selector: 'app-richiesta-ferie-form',
   templateUrl: './richiesta-ferie-form.component.html',
   styleUrls: ['./richiesta-ferie-form.component.css']
 })
-export class RichiestaFerieFormComponent {
+export class RichiestaFerieFormComponent implements OnInit {
 
-  
+  public utentiFerie: Utente[] = [];
+
+  constructor(private utenteService: UtenteService, private permessoService: PermessoService) { }
+
+  ngOnInit()  {
+    
+    this.getUtentiFerie();
+
+  }
+
+  public getUtentiFerie(): void{
+    this.utenteService.getUtentiFerie().subscribe(
+      (response: Utente[]) => {
+        this.utentiFerie = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  public aggiungiPermesso(permessoForm: NgForm): void{
+
+    this.permessoService.aggiungiPermesso(permessoForm.value).subscribe(
+      (response: Permesso) => { //jfoiewfjwoiej
+        console.log(response);
+        permessoForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        permessoForm.reset();
+      },
+    );
+
+
+  }
+
+
+
 
 public toggleForm(form: string): void{
 

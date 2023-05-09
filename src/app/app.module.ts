@@ -14,6 +14,8 @@ import { SchedaUtentiComponent } from './admin/scheda-utenti/scheda-utenti.compo
 import { RichiestaFerieFormComponent } from './user/richiesta-ferie-form/richiesta-ferie-form.component';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { AppRoutingModule } from './app-routing.module';
+import { GestionePermessiComponent } from './approvazione_ferie/gestione-permessi/gestione-permessi.component';
+import { ElencoPermessiComponent } from './uffPersonale/elenco-permessi/elenco-permessi.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AppRoutingModule } from './app-routing.module';
     SchedaUtentiComponent,
     NavbarAdminComponent,
     HomeAdminComponent,
-    RichiestaFerieFormComponent
+    RichiestaFerieFormComponent,
+    GestionePermessiComponent,
+    ElencoPermessiComponent
   ],
   imports: [
     BrowserModule,

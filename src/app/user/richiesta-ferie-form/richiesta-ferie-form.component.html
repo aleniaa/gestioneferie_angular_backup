@@ -25,7 +25,8 @@
     
       
       <h2 style="padding-top: 5px;">CONGEDO ORDINARIO</h2>
-      <form #congedo="ngForm" id="congedo" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(congedo)"  -->
+      <form #congedo="ngForm" (ngSubmit)="aggiungiPermesso(congedo)" id="congedo" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(congedo)"  -->
+        <input type="hidden" ngModel="congedo" name="tipoPermesso" id="tipoPermesso" > <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
         <div class="row">
         <div class="col">
 
@@ -50,9 +51,9 @@
       </div>
         <div class="form-group">
           <label for="approvazione">Da sottomettere per approvazione a:</label>
-          <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
+          <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" placeholder="Scegli funzionario"
             form="congedo" required>
-            <option value="UTENTE">Nome funzionario</option>
+            <option *ngFor= "let utente of utentiFerie" [ngValue]="utente.id"> {{utente?.cognome + " " + utente?.nome}}</option>
           </select>
         </div>
         <div class="modal-footer">
@@ -66,8 +67,8 @@
   <div id="permesso_breve_form" style="display: none;">
     <div class="row">
       <h2 style="padding-top: 5px;">PERMESSO BREVE (fino a 36 ore annue)</h2>
-      <form #permesso_breve="ngForm" id="permesso_breve" ngNativeValidate>
-        <!-- (ngSubmit)="inviaPermesso(permesso_breve)"  -->
+      <form #permesso_breve="ngForm" (ngSubmit)="aggiungiPermesso(permesso_breve)" id="permesso_breve" ngNativeValidate>
+        <input type="hidden" ngModel="permesso_breve" name="tipoPermesso" id="tipoPermesso" >
 
         <div class="row">
           <div class="col">
@@ -85,8 +86,8 @@
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="delGiorno">del giorno</label>
-              <input type="date" ngModel name="delGiorno" class="form-control" id="delGiorno" title="Giorno"
+              <label for="dataInizio">del giorno</label>
+              <input type="date" ngModel name="dataInizio" class="form-control" id="dataInizio" title="Giorno"
                 required />
             </div>
           </div>
@@ -98,9 +99,9 @@
 
         <div class="form-group">
           <label for="approvazione">Da sottomettere per approvazione a:</label>
-          <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
+          <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" placeholder="Scegli funzionario"
             form="permesso_breve" required>
-            <option value="UTENTE">Nome funzionario</option>
+            <option *ngFor= "let utente of utentiFerie" [ngValue]="utente.id"> {{utente?.cognome + " " + utente?.nome}}</option>
           </select>
         </div>
         <div class="modal-footer">
@@ -113,8 +114,8 @@
   <div id="recupero_ore_form" style="display: none;">
     <div class="row">
       <h2 style="padding-top: 5px;">RECUPERO ORE ECCEDENTI (Effettuate oltre l'orario di servizio)</h2>
-      <form #recupero_ore="ngForm" id="recupero_ore" ngNativeValidate>
-        <!-- (ngSubmit)="inviaPermesso(recupero_ore)"  -->
+      <form #recupero_ore="ngForm" (ngSubmit)="aggiungiPermesso(recupero_ore)" id="recupero_ore" ngNativeValidate>
+        <input type="hidden" ngModel="recupero_ore" name="tipoPermesso" id="tipoPermesso" >
         <div class="row">
           <div class="col">
         <div class="form-group">
@@ -130,8 +131,8 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="delGiorno">del giorno</label>
-          <input type="date" ngModel name="delGiorno" class="form-control" id="delGiorno" title="Giorno" required />
+          <label for="dataInizio">del giorno</label>
+          <input type="date" ngModel name="dataInizio" class="form-control" id="dataInizio" title="Giorno" required />
         </div>
       </div>
         <div class="form-group">
@@ -139,13 +140,13 @@
 
         </div>
       </div>
-        <div class="form-group">
-          <label for="approvazione">Da sottomettere per approvazione a:</label>
-          <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
-            form="recupero_ore" required>
-            <option value="UTENTE">Nome funzionario</option>
-          </select>
-        </div>
+      <div class="form-group">
+        <label for="approvazione">Da sottomettere per approvazione a:</label>
+        <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" placeholder="Scegli funzionario"
+          form="recupero_ore" required>
+          <option *ngFor= "let utente of utentiFerie" [ngValue]="utente.id"> {{utente?.cognome + " " + utente?.nome}}</option>
+        </select>
+      </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
         </div>
@@ -158,47 +159,47 @@
     <div class="row">
       <h2 style="padding-top: 5px;">ALTRI PERMESSI</h2>
 
-      <form #permessi="ngForm" id="permessi" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(permessi)"  -->
+      <form #permessi="ngForm" (ngSubmit)="aggiungiPermesso(permessi)" id="permessi" ngNativeValidate> 
         <div class="row">
           <div class="col">
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="concorsiEdEsami"
-                value="concorsiEdEsami" checked>
+              <input class="form-check-input" type="radio" ngModel="concorsiEdEsami" name="tipoPermesso" id="concorsiEdEsami"
+                value="concorsiEdEsami" required>
               <label class="form-check-label" for="concorsiEdEsami"> Concorsi ed Esami (8 gg/anno) </label>
 
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="luttoFamiliare"
+              <input class="form-check-input" type="radio" ngModel="luttoFamiliare" name="tipoPermesso" id="luttoFamiliare"
                 value="luttoFamiliare" />
               <label class="form-check-label" for="luttoFamiliare"> Lutto familiare (3 gg/evento) </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="graviInfermita"
+              <input class="form-check-input" type="radio" ngModel="graviInfermita" name="tipoPermesso" id="graviInfermita"
                 value="graviInfermita" />
               <label class="form-check-label" for="graviInfermita"> Gravi infermità 18 ore/anno </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="matrimonio"
+              <input class="form-check-input" type="radio" ngModel="matrimonio" name="tipoPermesso" id="matrimonio"
                 value="matrimonio" />
               <label class="form-check-label" for="matrimonio"> Matrimonio(15 gg consecutivi) </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="sport" value="sport" />
+              <input class="form-check-input" type="radio" ngModel="sport" name="tipoPermesso" id="sport" value="sport" />
               <label class="form-check-label" for="sport"> Attività ginnico-sportiva </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="motiviPersonali"
+              <input class="form-check-input" type="radio" ngModel="motiviPersonali" name="tipoPermesso" id="motiviPersonali"
                 value="motiviPersonali" />
               <label class="form-check-label" for="motiviPersonali"> Motivi personali o familiari (18 oee/anno) </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="malattiaDLGS"
+              <input class="form-check-input" type="radio" ngModel="malattiaDLGS" name="tipoPermesso" id="malattiaDLGS"
                 value="malattiaDLGS" />
               <label class="form-check-label" for="malattiaDLGS"> Malattia cure/terapie D.Lgs. n.119 del 18/07/2011 (30
                 gg./anno)</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="malattia_visite"
+              <input class="form-check-input" type="radio" ngModel="malattia_visite" name="tipoPermesso" id="malattia_visite"
                 value="malattia_visite" />
               <label class="form-check-label" for="malattia_visite"> Malattia per visite, terapie, prestazioni
                 specialistiche ed esami
@@ -206,35 +207,35 @@
               <p><i>(obbligatoria documentazione medica giustificativa assenza)</i></p>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="sangue" value="sangue" />
+              <input class="form-check-input" type="radio" ngModel="sangue" name="tipoPermesso" id="sangue" value="sangue" />
               <label class="form-check-label" for="sangue"> Donazione Sangue (24 ore dalla donazione)</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="studio" value="studio" />
+              <input class="form-check-input" type="radio" ngModel="studio" name="tipoPermesso" id="studio" value="studio" />
               <label class="form-check-label" for="studio"> Motivi di studio (max 150 ore/anno)</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="Testimonianze"
+              <input class="form-check-input" type="radio" ngModel="Testimonianze" name="tipoPermesso" id="Testimonianze"
                 value="Testimonianze" />
               <label class="form-check-label" for="Testimonianze"> Testimonianze per motivi di servizio
                 (illimitate)</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="sindacale"
+              <input class="form-check-input" type="radio" ngModel="sindacale" name="tipoPermesso" id="sindacale"
                 value="sindacale" />
               <label class="form-check-label" for="sindacale"> Permesso sindacale</label>
             </div>
             <h6>L. 265/99 - artt. 18 e 24</h6>
             <div class="form-check">
 
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="cariche_elettive"
+              <input class="form-check-input" type="radio" ngModel="cariche_elettive" name="tipoPermesso" id="cariche_elettive"
                 value="cariche_elettive" />
               <label class="form-check-label" for="cariche_elettive"> Cariche elettive</label>
             </div>
             <h6>D.P.R. 30/03/57 n.361 – L. 29/01/92 n.69</h6>
             <div class="form-check">
 
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="elezioni" value="elezioni" />
+              <input class="form-check-input" type="radio" ngModel="elezioni" name="tipoPermesso" id="elezioni" value="elezioni" />
               <label class="form-check-label" for="elezioni"> Permesso per elezioni/referendum</label>
               <p><i>(Assenze per Funzioni Elettorali – 18 ore/evento - Obbligatoria documentazione giustificativa)</i>
               </p>
@@ -243,47 +244,47 @@
           <div class="col">
             <h6>L. 104/92 - art.33 (2ore/g - 18ore/mese)</h6>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso"
+              <input class="form-check-input" type="radio" ngModel="assistenza_disabili" name="tipoPermesso"
                 id="assistenza_disabili" value="assistenza_disabili" />
               <label class="form-check-label" for="assistenza_disabili"> Assistenza disabili</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso"
+              <input class="form-check-input" type="radio" ngModel="permessi_individuali" name="tipoPermesso"
                 id="permessi_individuali" value="permessi_individuali" />
               <label class="form-check-label" for="permessi_individuali"> Permessi individuali</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso"
+              <input class="form-check-input" type="radio" ngModel="prolungamento_congedo_parentale" name="tipoPermesso"
                 id="prolungamento_congedo_parentale" value="prolungamento_congedo_parentale" />
               <label class="form-check-label" for="prolungamento_congedo_parentale"> Prolungamento del congedo parentale
                 L.104/92
                 (Circ. n. 139 17/07/2015)</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="congedo_parentale"
+              <input class="form-check-input" type="radio" ngModel="congedo_parentale" name="tipoPermesso" id="congedo_parentale"
                 value="congedo_parentale" />
               <label class="form-check-label" for="congedo_parentale"> Congedo parentale</label>
               <p><i>(obbligatoria autocertificazione del coniuge)</i></p>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="riposi_giornalieri"
+              <input class="form-check-input" type="radio" ngModel="riposi_giornalieri" name="tipoPermesso" id="riposi_giornalieri"
                 value="riposi_giornalieri" />
               <label class="form-check-label" for="riposi_giornalieri"> Riposi giornalieri</label>
               <p><i>(obbligatoria documentazione relativa al coniuge)</i></p>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="malattia_figlio"
+              <input class="form-check-input" type="radio" ngModel="malattia_figlio" name="tipoPermesso" id="malattia_figlio"
                 value="malattia_figlio" />
               <label class="form-check-label" for="malattia_figlio"> Congedo per malattia figlio/a</label>
               <p><i>(obbligatoria certificazione malattia figlio/a)</i></p>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="allattamento"
+              <input class="form-check-input" type="radio" ngModel="allattamento" name="tipoPermesso" id="allattamento"
                 value="allattamento" />
               <label class="form-check-label" for="allattamento"> Permessi orari retribuiti per allattamento</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" ngModel name="tipo_permesso" id="paternita"
+              <input class="form-check-input" type="radio" ngModel="paternita" name="tipoPermesso" id="paternita"
                 value="paternita" />
               <label class="form-check-label" for="paternita"> Congedo obbligatorio di paternità 10 gg /5 turni</label>
             </div>
@@ -301,7 +302,7 @@
               <div class="col">
                 <div class="form-group">
                   <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_ore"
-                    value="checkbox_ore" />
+                    value="checkbox_ore" required />
                   <label class="form-check-label" for="dalleOre"> Dalle ore </label>
                   <input type="time" ngModel name="dalleOre" id="dalleOre" />
 
@@ -316,8 +317,8 @@
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label class="form-check-label" for="delGiorno"> del Giorno </label>
-                  <input type="date" ngModel name="delGiorno" id="delGiorno" />
+                  <label class="form-check-label" for="dataInizio"> del Giorno </label>
+                  <input type="date" ngModel name="dataInizio" id="dataInizio" />
                 </div>
               </div>
 
@@ -335,15 +336,15 @@
                 <div class="form-group">
                   <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_giorni"
                     value="checkbox_giorni" />
-                  <label class="form-check-label" for="dal_giorno"> Dal giorno </label>
-                  <input type="date" ngModel name="dal_giorno" id="dal_giorno" />
+                  <label class="form-check-label" for="dataInizio"> Dal giorno </label>
+                  <input type="date" ngModel name="dataInizio" id="dal_giorno" />
 
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label class="form-check-label" for="al_giorno"> al giorno </label>
-                  <input type="date" ngModel name="al_giorno" id="al_giorno" />
+                  <label class="form-check-label" for="dataFine"> al giorno </label>
+                  <input type="date" ngModel name="dataFine" id="al_giorno" />
 
                 </div>
               </div>
@@ -356,7 +357,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
               <div class="col">
                 <div class="form-group">
                   <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_turni"
@@ -381,15 +382,16 @@
                 </div>
               </div>
             </div>
+            <input type="reset"> -->
           </div>
 
         </div>
         <h4>SI ALLEGA/SEGUIRA' DOCUMENTAZIONE GIUSTIFICATIVA</h4>
         <div class="form-group">
           <label for="approvazione">Da sottomettere per approvazione a:</label>
-          <select ngModel name="approvazione" class="form-control" id="approvazione" placeholder="Scegli funzionario"
+          <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" placeholder="Scegli funzionario"
             form="permessi" required>
-            <option value="UTENTE">Nome funzionario</option>
+            <option *ngFor= "let utente of utentiFerie" [ngValue]="utente.id"> {{utente?.cognome + " " + utente?.nome}}</option>
           </select>
         </div>
         <div class="modal-footer">
