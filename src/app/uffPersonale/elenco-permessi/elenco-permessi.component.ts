@@ -43,7 +43,7 @@ export class ElencoPermessiComponent implements OnInit{
   public selezionaUtente(utenteSelezionato: Utente): void {
     var inputValue = document.getElementById('utenteSelezionato');
     inputValue.setAttribute("value", utenteSelezionato.accountDipvvf);
-    
+    this.utentiTrovati= [];
 
   }
 

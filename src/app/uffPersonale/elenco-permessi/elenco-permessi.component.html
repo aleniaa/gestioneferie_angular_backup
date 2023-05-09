@@ -1,7 +1,7 @@
 
 
 <div class="container">
-  
+  <h2>Ricerca permessi per:</h2>
   <div class="col">
       
 <form #searchForm="ngForm" (ngSubmit)="search(searchForm)" id="searchForm" ngNativeValidate> <!-- (ngSubmit)="search(searchForm)" -->
@@ -12,14 +12,14 @@
           <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso"  form="searchForm" >
               <option value="congedo ordinario">Congedo Ordinario</option>
               <option value="permesso breve">Permesso breve</option>
-              <option value="recupero ore">Recupero ore</option>
+              <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
               <option value="Altri permessi">Altri permessi</option>
           </select>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
-        <label for="key">Utente:</label>
+        <label for="key">Utente richiedente:</label>
            <input type="text" (ngModelChange)="cercaUtente(key.value)" #key="ngModel" ngModel 
            name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente..">
          
@@ -34,14 +34,28 @@
           <input type="text" value="" name="utente" id="utenteSelezionato" class="form-control" disabled>
       </div>
     </div>
+
+    <!-- Da implementare la data di approvazione anche nel backend -->
+  <div class="col"> 
+    <div class="form-group">
+        <label for="dataApprovazione">Data approvazione permesso:</label>
+        <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie">
+    </div>
+  </div>
+
+  </div>
+
+
+  <div class="row">
     <div class="col">
       <div class="form-group">
         <button type="submit"  class="btn btn-primary"  >Cerca</button>
 
       </div>
     </div>
-    
   </div>
+    
+  
       </form>
   </div>
   
@@ -60,6 +74,9 @@
                 <th scope="col">Dal giorno</th>
                 <th scope="col">Al giorno</th>
                 <th scope="col">Giorni totali</th>
+                <th scope="col">Dalle ore</th>
+                <th scope="col">Alle ore</th>
+                <th scope="col">Ore totali</th>
                 <th scope="col">Approvato da</th>
 
               </tr>
@@ -72,6 +89,9 @@
                 <td>{{permesso?.dataInizio}}</td>
                 <td>{{permesso?.dataFine}}</td>
                 <td>{{permesso?.totGiorni}}</td>
+                <td>{{permesso?.dalleOre}}</td>
+                <td>{{permesso?.alleOre}}</td>
+                <td>{{permesso?.totOre}}</td>
                 <td>{{permesso?.idUtenteApprovazione}}</td>
               </tr>
             </tbody>

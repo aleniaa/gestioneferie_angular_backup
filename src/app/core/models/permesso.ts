@@ -10,6 +10,7 @@ export interface Permesso{
     idUtenteApprovazione: number;
     dalleOre: Time;
     alleOre: Time;
+    totOre: number;
     delGiorno: Date;
     idUtente: number;
 }
