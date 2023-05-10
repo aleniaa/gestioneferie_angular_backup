@@ -16,4 +16,5 @@ export interface Permesso{
     idUtente: number;
     utenteRichiedente: Utente;
     utenteApprovazione: Utente;
+    note: String;
 }
