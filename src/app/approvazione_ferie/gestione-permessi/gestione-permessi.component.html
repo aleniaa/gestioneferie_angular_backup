@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor= "let permesso of permessi">
+          <tr *ngFor= "let permesso of permessiPending">
             <th scope="row">{{permesso?.tipoPermesso}}</th>
             <td>{{permesso?.idUtente}}</td>
             <td>{{permesso?.idUtente}}</td>
@@ -35,7 +35,7 @@
         </tbody>
       </table>
       <h3>Permessi approvati:</h3>
-      <table class="table table-striped" id="congedo">
+      <table class="table table-striped" id="permessiApprovati">
         <thead>
           <tr>
             <th scope="col">Tipo permesso</th>
@@ -52,7 +52,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor= "let permesso of permessi">
+          <tr *ngFor= "let permesso of permessiApprovati">
             <th scope="row">{{permesso?.tipoPermesso}}</th>
             <td>{{permesso?.idUtente}}</td>
             <td>{{permesso?.idUtente}}</td>
@@ -84,7 +84,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor= "let permesso of permessi">
+          <tr *ngFor= "let permesso of permessiRespinti">
             <th scope="row">{{permesso?.tipoPermesso}}</th>
             <td>{{permesso?.idUtente}}</td>
             <td>{{permesso?.idUtente}}</td>

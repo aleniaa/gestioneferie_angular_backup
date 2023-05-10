@@ -35,8 +35,19 @@ export class PermessoService {
     return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso);
   }
 
-  public trovaUtente(idUtente: number): Observable<Utente[]>{
-    return this.http.get<any>(`${this.apiServerUrl}/utente/find/${idUtente}`);
+// public getAllPermessiPending(status: number): Observable<Permesso[]>{
+//     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);
+//   }
 
+//   public getAllPermessiApprovati(status: number): Observable<Permesso[]>{
+//     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);
+//   }
+
+//   public getAllPermessiRespinti(status: number): Observable<Permesso[]>{
+//     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);
+//   }
+
+  public getPermessiByStatus(status: number): Observable<Permesso[]>{
+    return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);
   }
 }

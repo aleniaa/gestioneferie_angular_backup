@@ -12,6 +12,9 @@ import { UtenteService } from 'src/app/core/services/utente.service';
 export class GestionePermessiComponent implements OnInit {
 
   public permessi: Permesso[] = [];
+  public permessiPending: Permesso[] = [];
+  public permessiApprovati: Permesso[] = [];
+  public permessiRespinti: Permesso[] = [];
 
   constructor(private permessoService: PermessoService, private utenteService: UtenteService) { }
  
@@ -19,6 +22,8 @@ export class GestionePermessiComponent implements OnInit {
     
     //this.getPermessi();
     this.getPermessi();
+    //this.getPermessiPending();
+    this.getPermessiByStatus();
     //this.getUtenti();
   }
 
@@ -27,6 +32,55 @@ export class GestionePermessiComponent implements OnInit {
     this.permessoService.getAllPermessi().subscribe(
       (response: Permesso[]) => {
         this.permessi = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  // public getPermessiPending(): void{
+  //   this.permessoService.getAllPermessiPending(0).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiPending = response;
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+  // }
+
+  // public getPermessiApprovati(): void{
+  //   this.permessoService.getAllPermessiApprovati(1).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiPending = response;
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+  // }
+
+  public getPermessiByStatus(): void{
+    this.permessoService.getPermessiByStatus(0).subscribe(
+      (response: Permesso[]) => {
+        this.permessiPending = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+    this.permessoService.getPermessiByStatus(1).subscribe(
+      (response: Permesso[]) => {
+        this.permessiApprovati = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+    this.permessoService.getPermessiByStatus(2).subscribe(
+      (response: Permesso[]) => {
+        this.permessiRespinti = response;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
