@@ -1,4 +1,5 @@
 import { Time } from "@angular/common";
+import { Utente } from "./utente";
 
 export interface Permesso{
 
@@ -7,10 +8,12 @@ export interface Permesso{
     dataFine: Date;
     totGiorni: number;
     tipoPermesso: String;
-    idUtenteApprovazione: number;
+    idUtenteApprovazione: Object;
     dalleOre: Time;
     alleOre: Time;
     totOre: number;
     delGiorno: Date;
     idUtente: number;
+    utenteRichiedente: Utente;
+    utenteApprovazione: Utente;
 }

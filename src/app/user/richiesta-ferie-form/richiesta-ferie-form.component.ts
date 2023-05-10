@@ -39,16 +39,19 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.permessoService.aggiungiPermesso(permessoForm.value).subscribe(
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);
-        permessoForm.reset();
+        //permessoForm.reset();
+        alert("Richiesta inviata correttamente");
+      
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        permessoForm.reset();
+        //permessoForm.reset();
       },
     );
 
-
   }
+
+  
 
 
 

@@ -14,6 +14,7 @@
               <option value="permesso breve">Permesso breve</option>
               <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
               <option value="Altri permessi">Altri permessi</option>
+              <option value="tutti i permessi">Tutti i permessi</option>
           </select>
       </div>
     </div>
@@ -30,7 +31,7 @@
     </div>
     <div class="col">
       <div class="form-group">
-          <label for="utente">Utente selezionato</label>
+          <label for="utente">Utente richiedente selezionato:</label>
           <input type="text" value="" name="utente" id="utenteSelezionato" class="form-control" disabled>
       </div>
     </div>
@@ -92,7 +93,7 @@
                 <td>{{permesso?.dalleOre}}</td>
                 <td>{{permesso?.alleOre}}</td>
                 <td>{{permesso?.totOre}}</td>
-                <td>{{permesso?.idUtenteApprovazione}}</td>
+                <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
               </tr>
             </tbody>
           </table>

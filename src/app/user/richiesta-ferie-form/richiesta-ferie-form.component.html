@@ -26,7 +26,7 @@
       
       <h2 style="padding-top: 5px;">CONGEDO ORDINARIO</h2>
       <form #congedo="ngForm" (ngSubmit)="aggiungiPermesso(congedo)" id="congedo" ngNativeValidate> <!-- (ngSubmit)="inviaPermesso(congedo)"  -->
-        <input type="hidden" ngModel="Congedo Ordinario" name="tipoPermesso" id="tipoPermesso" > <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
+        <input type="hidden" ngModel="Congedo Ordinario" ng-value="Congedo Ordinario" value="Congedo Ordinario" name="tipoPermesso" id="tipoPermesso" required> <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
         <div class="row">
         <div class="col">
 
@@ -391,7 +391,7 @@
           <label for="approvazione">Da sottomettere per approvazione a:</label>
           <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" placeholder="Scegli funzionario"
             form="permessi" required>
-            <option *ngFor= "let utente of utentiFerie" [ngValue]="utente.id"> {{utente?.cognome + " " + utente?.nome}}</option>
+            <option *ngFor= "let utenteApprovazione of utentiFerie" [ngValue]="utenteApprovazione.id"> {{utenteApprovazione?.cognome + " " + utenteApprovazione?.nome}}</option>
           </select>
         </div>
         <div class="modal-footer">
