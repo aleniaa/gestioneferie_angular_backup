@@ -15,13 +15,14 @@ export class GestionePermessiComponent implements OnInit {
   public permessiPending: Permesso[] = [];
   public permessiApprovati: Permesso[] = [];
   public permessiRespinti: Permesso[] = [];
+  //public permesso: Permesso;
 
   constructor(private permessoService: PermessoService, private utenteService: UtenteService) { }
  
   ngOnInit()  {
     
     //this.getPermessi();
-    this.getPermessi();
+    //this.getPermessi();
     //this.getPermessiPending();
     this.getPermessiByStatus();
     //this.getUtenti();
@@ -39,27 +40,6 @@ export class GestionePermessiComponent implements OnInit {
     )
   }
 
-  // public getPermessiPending(): void{
-  //   this.permessoService.getAllPermessiPending(0).subscribe(
-  //     (response: Permesso[]) => {
-  //       this.permessiPending = response;
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //     }
-  //   )
-  // }
-
-  // public getPermessiApprovati(): void{
-  //   this.permessoService.getAllPermessiApprovati(1).subscribe(
-  //     (response: Permesso[]) => {
-  //       this.permessiPending = response;
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //     }
-  //   )
-  // }
 
   public getPermessiByStatus(): void{
     this.permessoService.getPermessiByStatus(0).subscribe(
@@ -86,6 +66,20 @@ export class GestionePermessiComponent implements OnInit {
         alert(error.message);
       }
     )
+  }
+
+  public conferma(decisione: string, permesso: Permesso): void{
+    console.log("sono dentro conferma");
+    this.permessoService.changeStatus(decisione, permesso).subscribe(
+      (response: Permesso) => { //jfoiewfjwoiej
+        console.log(response);
+        this.getPermessiByStatus();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        this.getPermessiByStatus();
+      },
+    );
   }
 
 }

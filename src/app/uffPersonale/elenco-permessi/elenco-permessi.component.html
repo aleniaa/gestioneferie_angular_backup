@@ -21,26 +21,44 @@
     <div class="col">
       <div class="form-group">
         <label for="key">Utente richiedente:</label>
-           <input type="text" (ngModelChange)="cercaUtente(key.value)" #key="ngModel" ngModel 
+           <input type="text" (ngModelChange)="cercaUtenteRichidente(key.value)" #key="ngModel" ngModel 
            name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente..">
          
            <ul class="list-group" id="utentiTrovati">
-            <li class="list-group-item" *ngFor= "let utente of utentiTrovati" value="{{utente?.id}}"><a (click)="selezionaUtente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
+            <li class="list-group-item" *ngFor= "let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
           </ul>
         </div>
     </div>
     <div class="col">
       <div class="form-group">
-          <label for="utente">Utente richiedente selezionato:</label>
-          <input type="text" value="" name="utente" id="utenteSelezionato" class="form-control" disabled>
+          <label for="utenteRichiedente">Utente richiedente selezionato:</label>
+          <input type="number" value="" name="idUtente" id="utenteSelezionato" class="form-control" disabled>
       </div>
     </div>
 
-    <!-- Da implementare la data di approvazione anche nel backend -->
+    
   <div class="col"> 
     <div class="form-group">
         <label for="dataApprovazione">Data approvazione permesso:</label>
         <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie">
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="form-group">
+      <label for="key">Utente che ha approvato il permesso:</label>
+         <input type="text" (ngModelChange)="cercaUtenteApprovatore(key.value)" #key="ngModel" ngModel 
+         name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente..">
+       
+         <ul class="list-group" id="utentiTrovati">
+          <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
+        </ul>
+      </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+        <label for="utenteApprovazione">Utente approvatore selezionato:</label>
+        <input type="text" name="idUtenteApprovazione" id="utenteApprovatoreSelezionato" class="form-control" disabled>
     </div>
   </div>
 
@@ -70,8 +88,7 @@
             <thead>
               <tr>
                 <th scope="col">Tipo permesso</th>
-                <th scope="col">Nome richiedente</th>
-                <th scope="col">Cognome richiedente</th>
+                <th scope="col">Richiedente</th>
                 <th scope="col">Dal giorno</th>
                 <th scope="col">Al giorno</th>
                 <th scope="col">Giorni totali</th>
@@ -79,13 +96,13 @@
                 <th scope="col">Alle ore</th>
                 <th scope="col">Ore totali</th>
                 <th scope="col">Approvato da</th>
+                <th scope="col">Approvato in data:</th>
 
               </tr>
             </thead>
             <tbody>
               <tr *ngFor= "let permesso of permessi">
                 <th scope="row">{{permesso?.tipoPermesso}}</th>
-                <td>{{permesso?.idUtente}}</td>
                 <td>{{permesso?.idUtente}}</td>
                 <td>{{permesso?.dataInizio}}</td>
                 <td>{{permesso?.dataFine}}</td>
@@ -94,6 +111,7 @@
                 <td>{{permesso?.alleOre}}</td>
                 <td>{{permesso?.totOre}}</td>
                 <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
+                <td>{{permesso?.dataApprovazione}}</td>
               </tr>
             </tbody>
           </table>

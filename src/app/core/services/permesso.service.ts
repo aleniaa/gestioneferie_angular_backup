@@ -35,17 +35,9 @@ export class PermessoService {
     return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso);
   }
 
-// public getAllPermessiPending(status: number): Observable<Permesso[]>{
-//     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);
-//   }
-
-//   public getAllPermessiApprovati(status: number): Observable<Permesso[]>{
-//     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);
-//   }
-
-//   public getAllPermessiRespinti(status: number): Observable<Permesso[]>{
-//     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);
-//   }
+  public changeStatus(decisione: string, permesso: Permesso): Observable<Permesso> {
+    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/updateStatus/${decisione}`, permesso);
+  } 
 
   public getPermessiByStatus(status: number): Observable<Permesso[]>{
     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);

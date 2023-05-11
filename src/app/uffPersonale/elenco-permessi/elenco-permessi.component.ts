@@ -16,14 +16,15 @@ export class ElencoPermessiComponent implements OnInit{
 
   public permessi: Permesso[] = [];
   public utenti: Utente[] = [];
-  public utentiTrovati: Utente[] = [];
+  public utentiRichiedentiTrovati: Utente[] = [];
+  public utentiApprovatoriTrovati: Utente[] = [];
 
   constructor(private permessoService: PermessoService, private utenteService: UtenteService) { }
 
   ngOnInit()  {
     
     //this.getPermessi();
-    this.getPermessiCongedo();
+    //this.getPermessiCongedo();
     this.getUtenti();
   }
 
@@ -32,6 +33,7 @@ export class ElencoPermessiComponent implements OnInit{
     this.permessoService.search(searchForm.value).subscribe(
       (response: Permesso[]) => {
         this.permessi = response;
+        
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -40,36 +42,69 @@ export class ElencoPermessiComponent implements OnInit{
 
   }
 
-  public selezionaUtente(utenteSelezionato: Utente): void {
+  public selezionaUtenteRichiedente(utenteSelezionato: Utente): void {
     var inputValue = document.getElementById('utenteSelezionato');
     inputValue.setAttribute("value", utenteSelezionato.accountDipvvf);
-    this.utentiTrovati= [];
+    this.utentiRichiedentiTrovati= [];
 
   }
 
-  public cercaUtente(key: string): void{
+  public selezionaUtenteApprovatore(utenteApprovatoreSelezionato: Utente): void {
+    var inputValue = document.getElementById('utenteApprovatoreSelezionato');
+    inputValue.setAttribute("value", utenteApprovatoreSelezionato.accountDipvvf);
+    this.utentiApprovatoriTrovati= [];
+
+  }
+
+  public cercaUtenteRichidente(key: string): void{
     
     const risultati: Utente[]=[];
+    
     for(const utente of this.utenti){
       if(utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
       || utente.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
       //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
       ){
+
         risultati.push(utente);
         
       }
     }
-
-    this.utentiTrovati= risultati;
+    this.utentiRichiedentiTrovati= risultati;
     
     if(risultati.length===0 || !key) {
       if(key===""){
-        this.utentiTrovati= [];
+        this.utentiRichiedentiTrovati= [];
+       
       }
       
-    } 
-
+    }
   }
+
+    public cercaUtenteApprovatore(key: string): void{
+      const risultatiApprovatori: Utente[]=[];
+      for(const utente of this.utenti){
+        if(utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        || utente.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        ){
+          if(utente.ruolo.match("FERIE")){
+            risultatiApprovatori.push(utente);
+          }
+          
+        }
+      }
+      this.utentiApprovatoriTrovati= risultatiApprovatori;
+      
+      
+      if( !key || risultatiApprovatori.length===0) {
+        if(key===""){
+          
+          this.utentiApprovatoriTrovati= [];
+        }
+        
+      }
+    }
 
   public getUtenti(): void {
     this.utenteService.getUtenti().subscribe(

@@ -1,14 +1,14 @@
 
 <div class="container">
 <h2>Gestione Permessi</h2>
-<h3>Permessi in attesa di approvazione :</h3>
+
 <div class="col" >
+  <h3>Permessi in attesa di approvazione :</h3>
     <table class="table table-striped" id="permessi_da_approvare">
         <thead>
           <tr>
             <th scope="col">Tipo permesso</th>
-            <th scope="col">Nome richiedente</th>
-            <th scope="col">Cognome richiedente</th>
+            <th scope="col">Richiedente</th>
             <th scope="col">Dal giorno</th>
             <th scope="col">Al giorno</th>
             <th scope="col">Giorni totali</th>
@@ -23,13 +23,14 @@
           <tr *ngFor= "let permesso of permessiPending">
             <th scope="row">{{permesso?.tipoPermesso}}</th>
             <td>{{permesso?.idUtente}}</td>
-            <td>{{permesso?.idUtente}}</td>
             <td>{{permesso?.dataInizio}}</td>
             <td>{{permesso?.dataFine}}</td>
             <td>{{permesso?.totGiorni}}</td>
             <td>{{permesso?.dalleOre}}</td>
             <td>{{permesso?.alleOre}}</td>
             <td>{{permesso?.totOre}}</td>
+            <td><button type="button" (click)='conferma("approva", permesso)' class="btn btn-primary">Approva</button> </td>
+            <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td>
             
           </tr>
         </tbody>
@@ -39,14 +40,14 @@
         <thead>
           <tr>
             <th scope="col">Tipo permesso</th>
-            <th scope="col">Nome richiedente</th>
-            <th scope="col">Cognome richiedente</th>
+            <th scope="col">Richiedente</th>
             <th scope="col">Dal giorno</th>
             <th scope="col">Al giorno</th>
             <th scope="col">Giorni totali</th>
             <th scope="col">Dalle ore</th>
             <th scope="col">Alle ore</th>
             <th scope="col">Ore totali</th>
+            <th scope="col">Approvato in data:</th>
             
 
           </tr>
@@ -55,13 +56,13 @@
           <tr *ngFor= "let permesso of permessiApprovati">
             <th scope="row">{{permesso?.tipoPermesso}}</th>
             <td>{{permesso?.idUtente}}</td>
-            <td>{{permesso?.idUtente}}</td>
             <td>{{permesso?.dataInizio}}</td>
             <td>{{permesso?.dataFine}}</td>
             <td>{{permesso?.totGiorni}}</td>
             <td>{{permesso?.dalleOre}}</td>
             <td>{{permesso?.alleOre}}</td>
             <td>{{permesso?.totOre}}</td>
+            <td>{{permesso?.dataApprovazione}}</td>
             
           </tr>
         </tbody>
@@ -71,14 +72,14 @@
         <thead>
           <tr>
             <th scope="col">Tipo permesso</th>
-            <th scope="col">Nome richiedente</th>
-            <th scope="col">Cognome richiedente</th>
+            <th scope="col">Richiedente</th>
             <th scope="col">Dal giorno</th>
             <th scope="col">Al giorno</th>
             <th scope="col">Giorni totali</th>
             <th scope="col">Dalle ore</th>
             <th scope="col">Alle ore</th>
             <th scope="col">Ore totali</th>
+            <th scope="col">Respinto in data:</th>
             
 
           </tr>
@@ -87,13 +88,13 @@
           <tr *ngFor= "let permesso of permessiRespinti">
             <th scope="row">{{permesso?.tipoPermesso}}</th>
             <td>{{permesso?.idUtente}}</td>
-            <td>{{permesso?.idUtente}}</td>
             <td>{{permesso?.dataInizio}}</td>
             <td>{{permesso?.dataFine}}</td>
             <td>{{permesso?.totGiorni}}</td>
             <td>{{permesso?.dalleOre}}</td>
             <td>{{permesso?.alleOre}}</td>
             <td>{{permesso?.totOre}}</td>
+            <td>{{permesso?.dataApprovazione}}</td>
             
           </tr>
         </tbody>

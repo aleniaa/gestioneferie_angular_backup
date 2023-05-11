@@ -8,11 +8,11 @@ export interface Permesso{
     dataFine: Date;
     totGiorni: number;
     tipoPermesso: String;
-    idUtenteApprovazione: Object;
+    idUtenteApprovazione: number;
     dalleOre: Time;
     alleOre: Time;
     totOre: number;
-    delGiorno: Date;
+    dataApprovazione: Date;
     idUtente: number;
     utenteRichiedente: Utente;
     utenteApprovazione: Utente;
