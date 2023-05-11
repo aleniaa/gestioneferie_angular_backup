@@ -14,7 +14,7 @@
               <option value="permesso breve">Permesso breve</option>
               <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
               <option value="Altri permessi">Altri permessi</option>
-              <option value="tutti i permessi">Tutti i permessi</option>
+              <option value="">Tutti i permessi</option>
           </select>
       </div>
     </div>
@@ -32,8 +32,10 @@
     <div class="col">
       <div class="form-group">
           <label for="utenteRichiedente">Utente richiedente selezionato:</label>
-          <input type="number" value="" name="idUtente" id="utenteSelezionato" class="form-control" disabled>
-      </div>
+          <input  name="idUtente" id="utenteRichiedente" class="form-control" disabled>
+          <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtente" class="form-control" id="idUtenteRichiedente" > 
+
+        </div>
     </div>
 
     
@@ -58,8 +60,10 @@
   <div class="col">
     <div class="form-group">
         <label for="utenteApprovazione">Utente approvatore selezionato:</label>
-        <input type="text" name="idUtenteApprovazione" id="utenteApprovatoreSelezionato" class="form-control" disabled>
-    </div>
+        <input type="text" id="utenteApprovatoreSelezionato" class="form-control" disabled>
+        <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" > 
+    
+      </div>
   </div>
 
   </div>

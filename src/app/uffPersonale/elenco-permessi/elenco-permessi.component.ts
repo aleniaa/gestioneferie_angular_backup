@@ -18,6 +18,8 @@ export class ElencoPermessiComponent implements OnInit{
   public utenti: Utente[] = [];
   public utentiRichiedentiTrovati: Utente[] = [];
   public utentiApprovatoriTrovati: Utente[] = [];
+  public utenteApprovatore: Utente;
+  public utenteRichiedente: Utente;
 
   constructor(private permessoService: PermessoService, private utenteService: UtenteService) { }
 
@@ -33,6 +35,7 @@ export class ElencoPermessiComponent implements OnInit{
     this.permessoService.search(searchForm.value).subscribe(
       (response: Permesso[]) => {
         this.permessi = response;
+        searchForm.resetForm();
         
       },
       (error: HttpErrorResponse) => {
@@ -42,14 +45,16 @@ export class ElencoPermessiComponent implements OnInit{
 
   }
 
-  public selezionaUtenteRichiedente(utenteSelezionato: Utente): void {
-    var inputValue = document.getElementById('utenteSelezionato');
-    inputValue.setAttribute("value", utenteSelezionato.accountDipvvf);
+  public selezionaUtenteRichiedente(utenteRichiedenteSelezionato: Utente): void {
+    this.utenteRichiedente= utenteRichiedenteSelezionato;
+    var inputValue = document.getElementById('idUtenteRichiedente');
+    inputValue.setAttribute("value", utenteRichiedenteSelezionato.accountDipvvf);
     this.utentiRichiedentiTrovati= [];
 
   }
 
   public selezionaUtenteApprovatore(utenteApprovatoreSelezionato: Utente): void {
+    this.utenteApprovatore= utenteApprovatoreSelezionato;
     var inputValue = document.getElementById('utenteApprovatoreSelezionato');
     inputValue.setAttribute("value", utenteApprovatoreSelezionato.accountDipvvf);
     this.utentiApprovatoriTrovati= [];
