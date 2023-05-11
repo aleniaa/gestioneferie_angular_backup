@@ -1,0 +1,15 @@
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+thead {
+    background-color: #002d72;
+    border-radius: 5px;
+}
+
+thead th {
+    color: #fff;
+  }

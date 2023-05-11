@@ -4,7 +4,7 @@
 
 <div class="col" >
   <h3>Permessi in attesa di approvazione :</h3>
-    <table class="table table-striped" id="permessi_da_approvare">
+    <table class="table" id="permessi_da_approvare">
         <thead>
           <tr>
             <th scope="col">Tipo permesso</th>
@@ -20,6 +20,10 @@
           </tr>
         </thead>
         <tbody>
+          <tr scope="row" *ngIf="permessiPending?.length == 0" >
+            
+            <h4 class="alert-heading">Nessun permesso da approvare</h4>
+        </tr> 
           <tr *ngFor= "let permesso of permessiPending">
             <th scope="row">{{permesso?.tipoPermesso}}</th>
             <td>{{permesso?.idUtente}}</td>
@@ -36,7 +40,7 @@
         </tbody>
       </table>
       <h3>Permessi approvati:</h3>
-      <table class="table table-striped" id="permessiApprovati">
+      <table class="table" id="permessiApprovati">
         <thead>
           <tr>
             <th scope="col">Tipo permesso</th>
@@ -68,7 +72,7 @@
         </tbody>
       </table>
       <h3>Permessi respinti:</h3>
-      <table class="table table-striped" id="congedo">
+      <table class="table " id="congedo">
         <thead>
           <tr>
             <th scope="col">Tipo permesso</th>
