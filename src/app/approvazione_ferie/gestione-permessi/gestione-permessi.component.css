@@ -1,4 +1,4 @@
-table td,
+/* table td,
 table th {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -12,4 +12,75 @@ thead {
 
 thead th {
     color: #fff;
-  }
+  } */
+
+
+
+/* table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+
+.card {
+  border-radius: .5rem;
+  padding: 0%;
+}
+
+/* .table-scroll {
+  border-radius: .5rem;
+  max-height: 200px;
+  
+  /* overflow: auto; 
+} 
+
+.table-scroll table thead th {
+  font-size: 1rem;
+}
+
+tbody{
+  display: block;
+  overflow-y: scroll;
+  max-height: 200px;
+  width: 100%;
+}
+
+thead {
+  top: 0;
+  position: sticky;
+}
+
+.table-scroll tbody {
+    position: absolute;
+
+}
+
+.table-scroll tr {
+    width: 100%;
+    table-layout: fixed;
+    display: inline-table;
+}
+
+.table-scroll thead > tr > th {
+    border: none;
+    
+} */
+
+.table-scroll{
+    position: absolute;
+    overflow-y: scroll;
+    max-height: 200px;
+    border-radius: .5rem;
+}
+
+.card {
+  border-radius: .5rem;
+  padding: 0%;
+}
+
+thead th {
+  color: #fff;
+}

@@ -35,7 +35,7 @@ export class ElencoPermessiComponent implements OnInit{
     this.permessoService.search(searchForm.value).subscribe(
       (response: Permesso[]) => {
         this.permessi = response;
-        searchForm.resetForm();
+        //searchForm.resetForm();
         
       },
       (error: HttpErrorResponse) => {

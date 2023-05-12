@@ -70,11 +70,20 @@
 
 
   <div class="row">
+    <div class="col-10">
+      <div class="form-group">
+        
+        <button type="submit"  class="btn btn-primary"  >Cerca</button>
+        
+      </div>
+    </div>
     <div class="col">
       <div class="form-group">
-        <button type="submit"  class="btn btn-primary"  >Cerca</button>
-
+        
+        
+        <input type="reset" class="btn btn-secondary" value="Resetta tutti i campi">
       </div>
+
     </div>
   </div>
     
@@ -85,42 +94,58 @@
 
 </div>
 
-<div class="container">
 
-    <div class="col" >
-        <table class="table table-striped" id="congedo">
-            <thead>
-              <tr>
-                <th scope="col">Tipo permesso</th>
-                <th scope="col">Richiedente</th>
-                <th scope="col">Dal giorno</th>
-                <th scope="col">Al giorno</th>
-                <th scope="col">Giorni totali</th>
-                <th scope="col">Dalle ore</th>
-                <th scope="col">Alle ore</th>
-                <th scope="col">Ore totali</th>
-                <th scope="col">Approvato da</th>
-                <th scope="col">Approvato in data:</th>
 
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor= "let permesso of permessi">
-                <th scope="row">{{permesso?.tipoPermesso}}</th>
-                <td>{{permesso?.idUtente}}</td>
-                <td>{{permesso?.dataInizio}}</td>
-                <td>{{permesso?.dataFine}}</td>
-                <td>{{permesso?.totGiorni}}</td>
-                <td>{{permesso?.dalleOre}}</td>
-                <td>{{permesso?.alleOre}}</td>
-                <td>{{permesso?.totOre}}</td>
-                <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
-                <td>{{permesso?.dataApprovazione}}</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-</div>
 
+<section class="intro">
+    
+      <div class="container">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+                  
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #002d72;position: sticky;top: 0;">
+                      <tr>
+                        <th scope="col">Tipo permesso</th>
+                        <th scope="col">Richiedente</th>
+                        <th scope="col">Dal giorno</th>
+                        <th scope="col">Al giorno</th>
+                        <th scope="col">Giorni totali</th>
+                        <th scope="col">Dalle ore</th>
+                        <th scope="col">Alle ore</th>
+                        <th scope="col">Ore totali</th>
+                        <th scope="col">Approvato da</th>
+                        <th scope="col">Approvato in data:</th>
+        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor= "let permesso of permessi">
+                        <th scope="row">{{permesso?.tipoPermesso}}</th>
+                        <td>{{permesso?.idUtente}}</td>
+                        <td>{{permesso?.dataInizio}}</td>
+                        <td>{{permesso?.dataFine}}</td>
+                        <td>{{permesso?.totGiorni}}</td>
+                        <td>{{permesso?.dalleOre}}</td>
+                        <td>{{permesso?.alleOre}}</td>
+                        <td>{{permesso?.totOre}}</td>
+                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
+                        <td>{{permesso?.dataApprovazione}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+
+</section>
 
 

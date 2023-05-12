@@ -2,108 +2,185 @@
 <div class="container">
 <h2>Gestione Permessi</h2>
 
-<div class="col" >
+<section class="intro">
   <h3>Permessi in attesa di approvazione :</h3>
-    <table class="table" id="permessi_da_approvare">
-        <thead>
-          <tr>
-            <th scope="col">Tipo permesso</th>
-            <th scope="col">Richiedente</th>
-            <th scope="col">Dal giorno</th>
-            <th scope="col">Al giorno</th>
-            <th scope="col">Giorni totali</th>
-            <th scope="col">Dalle ore</th>
-            <th scope="col">Alle ore</th>
-            <th scope="col">Ore totali</th>
+  <div class="bg-image h-100" style="background-color: #f5f7fa;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+                  
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #002d72; position: sticky;top: 0;">
+                      <tr>
+                        <th scope="col">Tipo permesso</th>
+                        <th scope="col">Richiedente</th>
+                        <th scope="col">Dal giorno</th>
+                        <th scope="col">Al giorno</th>
+                        <th scope="col">Giorni totali</th>
+                        <th scope="col">Dalle ore</th>
+                        <th scope="col">Alle ore</th>
+                        <th scope="col">Ore totali</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        
             
+                      </tr>
+                    </thead>
+                    <div *ngIf="permessiPending?.length == 0" >
+                      
+                      <h5 class="alert-heading">Nessun permesso da approvare</h5>
+                  </div> 
+                    <tbody>
+                      <tr *ngFor= "let permesso of permessiPending">
+                        <th scope="row">{{permesso?.tipoPermesso}}</th>
+                        <td>{{permesso?.idUtente}}</td>
+                        <td>{{permesso?.dataInizio}}</td>
+                        <td>{{permesso?.dataFine}}</td>
+                        <td>{{permesso?.totGiorni}}</td>
+                        <td>{{permesso?.dalleOre}}</td>
+                        <td>{{permesso?.alleOre}}</td>
+                        <td>{{permesso?.totOre}}</td>
+                        <td><button type="button" (click)='conferma("approva", permesso)' class="btn btn-primary">Approva</button> </td>
+                        <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr scope="row" *ngIf="permessiPending?.length == 0" >
-            
-            <h4 class="alert-heading">Nessun permesso da approvare</h4>
-        </tr> 
-          <tr *ngFor= "let permesso of permessiPending">
-            <th scope="row">{{permesso?.tipoPermesso}}</th>
-            <td>{{permesso?.idUtente}}</td>
-            <td>{{permesso?.dataInizio}}</td>
-            <td>{{permesso?.dataFine}}</td>
-            <td>{{permesso?.totGiorni}}</td>
-            <td>{{permesso?.dalleOre}}</td>
-            <td>{{permesso?.alleOre}}</td>
-            <td>{{permesso?.totOre}}</td>
-            <td><button type="button" (click)='conferma("approva", permesso)' class="btn btn-primary">Approva</button> </td>
-            <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td>
-            
-          </tr>
-        </tbody>
-      </table>
-      <h3>Permessi approvati:</h3>
-      <table class="table" id="permessiApprovati">
-        <thead>
-          <tr>
-            <th scope="col">Tipo permesso</th>
-            <th scope="col">Richiedente</th>
-            <th scope="col">Dal giorno</th>
-            <th scope="col">Al giorno</th>
-            <th scope="col">Giorni totali</th>
-            <th scope="col">Dalle ore</th>
-            <th scope="col">Alle ore</th>
-            <th scope="col">Ore totali</th>
-            <th scope="col">Approvato in data:</th>
-            
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor= "let permesso of permessiApprovati">
-            <th scope="row">{{permesso?.tipoPermesso}}</th>
-            <td>{{permesso?.idUtente}}</td>
-            <td>{{permesso?.dataInizio}}</td>
-            <td>{{permesso?.dataFine}}</td>
-            <td>{{permesso?.totGiorni}}</td>
-            <td>{{permesso?.dalleOre}}</td>
-            <td>{{permesso?.alleOre}}</td>
-            <td>{{permesso?.totOre}}</td>
-            <td>{{permesso?.dataApprovazione}}</td>
-            
-          </tr>
-        </tbody>
-      </table>
-      <h3>Permessi respinti:</h3>
-      <table class="table " id="congedo">
-        <thead>
-          <tr>
-            <th scope="col">Tipo permesso</th>
-            <th scope="col">Richiedente</th>
-            <th scope="col">Dal giorno</th>
-            <th scope="col">Al giorno</th>
-            <th scope="col">Giorni totali</th>
-            <th scope="col">Dalle ore</th>
-            <th scope="col">Alle ore</th>
-            <th scope="col">Ore totali</th>
-            <th scope="col">Respinto in data:</th>
-            
+                </div>
+              </div>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor= "let permesso of permessiRespinti">
-            <th scope="row">{{permesso?.tipoPermesso}}</th>
-            <td>{{permesso?.idUtente}}</td>
-            <td>{{permesso?.dataInizio}}</td>
-            <td>{{permesso?.dataFine}}</td>
-            <td>{{permesso?.totGiorni}}</td>
-            <td>{{permesso?.dalleOre}}</td>
-            <td>{{permesso?.alleOre}}</td>
-            <td>{{permesso?.totOre}}</td>
-            <td>{{permesso?.dataApprovazione}}</td>
+<section class="intro">
+  <h3>Permessi approvati:</h3>
+  <div class="bg-image h-100" style="background-color: #f5f7fa;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+            <div class="card">
+              <div class="card-body p-0">
+                <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+                  
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #002d72; position: sticky;top: 0;">
+                      <tr>
+                        <th scope="col">Tipo permesso</th>
+                        <th scope="col">Richiedente</th>
+                        <th scope="col">Dal giorno</th>
+                        <th scope="col">Al giorno</th>
+                        <th scope="col">Giorni totali</th>
+                        <th scope="col">Dalle ore</th>
+                        <th scope="col">Alle ore</th>
+                        <th scope="col">Ore totali</th>
+                        <th scope="col">Approvato in data:</th>
+                        
             
-          </tr>
-        </tbody>
-      </table>
-</div>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor= "let permesso of permessiApprovati">
+                        <th scope="row">{{permesso?.tipoPermesso}}</th>
+                        <td>{{permesso?.idUtente}}</td>
+                        <td>{{permesso?.dataInizio}}</td>
+                        <td>{{permesso?.dataFine}}</td>
+                        <td>{{permesso?.totGiorni}}</td>
+                        <td>{{permesso?.dalleOre}}</td>
+                        <td>{{permesso?.alleOre}}</td>
+                        <td>{{permesso?.totOre}}</td>
+                        <td>{{permesso?.dataApprovazione}}</td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <h3>Permessi respinti:</h3>
+  <div class="bg-image h-100" style="background-color: #f5f7fa;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+                  
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #002d72;position: sticky;top: 0;">
+                      <tr>
+                        <th scope="col">Tipo permesso</th>
+                        <th scope="col">Richiedente</th>
+                        <th scope="col">Dal giorno</th>
+                        <th scope="col">Al giorno</th>
+                        <th scope="col">Giorni totali</th>
+                        <th scope="col">Dalle ore</th>
+                        <th scope="col">Alle ore</th>
+                        <th scope="col">Ore totali</th>
+                        <th scope="col">Respinto in data:</th>
+                        
+            
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor= "let permesso of permessiRespinti">
+                        <th scope="row">{{permesso?.tipoPermesso}}</th>
+                        <td>{{permesso?.idUtente}}</td>
+                        <td>{{permesso?.dataInizio}}</td>
+                        <td>{{permesso?.dataFine}}</td>
+                        <td>{{permesso?.totGiorni}}</td>
+                        <td>{{permesso?.dalleOre}}</td>
+                        <td>{{permesso?.alleOre}}</td>
+                        <td>{{permesso?.totOre}}</td>
+                        <td>{{permesso?.dataApprovazione}}</td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </div>
