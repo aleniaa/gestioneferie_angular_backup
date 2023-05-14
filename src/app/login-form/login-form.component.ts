@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Utente } from '../core/models/utente';
+import { first } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -16,13 +18,15 @@ export class LoginFormComponent implements OnInit {
   public password: string;
   
   public utente: Utente;
+  
+  error: string;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private route: Router) { }
 
   ngOnInit(): void {
   }
 
-  public accediUtente(loginForm: NgForm){
+/*   public accediUtente(loginForm: NgForm){
     this.loginService.accediUtente(loginForm.value).subscribe(
       (response: object) => {
         console.log(response);
@@ -34,20 +38,23 @@ export class LoginFormComponent implements OnInit {
         
       },
     )
-  }
-
-/*   public accediUtente(): void {
-    this.loginService.accediUtente(this.username, this.password)
-    .subscribe(
-      data=>{
-        alert("login success")
-      }, 
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        
-      },
-    );
   } */
+
+  public accediUtente(loginForm: NgForm){
+    this.loginService.accediUtente(loginForm.value)
+    .pipe(first())
+            .subscribe({
+                next: () => {
+                    // get return url from query parameters or default to home page
+                    console.log("login success");
+                    this.route.navigate(['/elenco-permessi']);
+
+                },
+                error: error => {
+                  this.error = "Invalid username or password";
+                }
+            });
+  }
 
 }
 
