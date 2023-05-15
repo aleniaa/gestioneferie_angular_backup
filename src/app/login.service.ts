@@ -11,11 +11,16 @@ import { map } from 'rxjs';
 })
 export class LoginService {
 
-  private userSubject: BehaviorSubject<Utente | null>;
-  public user: Observable<Utente | null>;
+  private currentUserSubject: BehaviorSubject<Utente | null>;
+  public currentUser: Observable<Utente | null>;
   private apiServerUrl= environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+    this.currentUserSubject= new BehaviorSubject<Utente>({} as any);
+    this.currentUser = this.currentUserSubject.asObservable();
+
+   }
 
 /*   public accediUtente(accountDipvvf: string, password: string): Observable<object>{
     //console.log(utente);
@@ -23,15 +28,31 @@ export class LoginService {
     //return this.http.post(`${this.apiServerUrl}/utente/login`, utente);
   } */
 
-  public accediUtente(utente: Utente): Observable<object>{
+  public accediUtente(utente: Utente): Observable<Utente>{
     //console.log(utente);
     //return this.http.post<any>(`${this.apiServerUrl}/login`, utente, {responseType: 'text' as 'json'})
     return this.http.post<Utente>(`${this.apiServerUrl}/login`, utente)
-    .pipe(map(user => {
-      localStorage.setItem('user', JSON.stringify(user));
-      this.userSubject.next(user);
-      return user;
-    }))
+    .pipe(map(currentUser => {
+      if(currentUser){
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        this.currentUserSubject.next(currentUser);
+        console.log("login service success");
+      }else{
+        console.log("non funziona un cazzo");
+      }
+
+      return currentUser;
+    }));
+  }
+
+  public get currentUserValue(): Utente {
+    return this.currentUserSubject.value;
+  }
+
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next({} as any);
   }
 
 }

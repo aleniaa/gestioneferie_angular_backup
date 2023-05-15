@@ -44,10 +44,27 @@ export class LoginFormComponent implements OnInit {
     this.loginService.accediUtente(loginForm.value)
     .pipe(first())
             .subscribe({
-                next: () => {
+                next: (data) => {
                     // get return url from query parameters or default to home page
+                    console.log(data);
                     console.log("login success");
                     this.route.navigate(['/elenco-permessi']);
+/*                     switch (data.ruolo) {
+                      case 'ADMIN':
+                        this.route.navigate(['/admin']);
+                        break;
+                      case 'FERIE':
+                        this.route.navigate(['/operator']);
+                        break;
+                      case 'USER':
+                        this.route.navigate(['/doctor']);
+                        break;
+                      case 'PERSONALE':
+                        this.route.navigate(['/doctor']);
+                        break;
+                      default:
+                        this.error = 'Invalid credentials';
+                    } */
 
                 },
                 error: error => {

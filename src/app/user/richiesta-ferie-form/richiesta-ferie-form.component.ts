@@ -5,6 +5,7 @@ import { Permesso } from 'src/app/core/models/permesso';
 import { Utente } from 'src/app/core/models/utente';
 import { PermessoService } from 'src/app/core/services/permesso.service';
 import { UtenteService } from 'src/app/core/services/utente.service';
+import { LoginService } from 'src/app/login.service';
 
 @Component({
   selector: 'app-richiesta-ferie-form',
@@ -14,8 +15,14 @@ import { UtenteService } from 'src/app/core/services/utente.service';
 export class RichiestaFerieFormComponent implements OnInit {
 
   public utentiFerie: Utente[] = [];
+  public utenteLoggato: Utente;
 
-  constructor(private utenteService: UtenteService, private permessoService: PermessoService) { }
+  constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) { 
+    this.utenteLoggato = loginService.currentUserValue;
+    console.log("utente loggato in ferie");
+    console.log(this.utenteLoggato);
+
+  }
 
   ngOnInit()  {
     
