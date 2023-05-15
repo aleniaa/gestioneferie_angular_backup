@@ -9,6 +9,7 @@ export interface Permesso{
     totGiorni: number;
     tipoPermesso: String;
     idUtenteApprovazione: number;
+    idUtenteRichiedente: number;
     dalleOre: Time;
     alleOre: Time;
     totOre: number;

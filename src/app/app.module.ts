@@ -16,6 +16,7 @@ import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GestionePermessiComponent } from './approvazione_ferie/gestione-permessi/gestione-permessi.component';
 import { ElencoPermessiComponent } from './uffPersonale/elenco-permessi/elenco-permessi.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,9 @@ import { ElencoPermessiComponent } from './uffPersonale/elenco-permessi/elenco-p
     navbarComponent,
     NavbarUserComponent,
     LoginFormComponent,
-    SchedaUtentiComponent,
-    NavbarAdminComponent,
-    HomeAdminComponent,
+    //SchedaUtentiComponent,
+    //NavbarAdminComponent,
+    //HomeAdminComponent,
     RichiestaFerieFormComponent,
     GestionePermessiComponent,
     ElencoPermessiComponent
@@ -37,7 +38,8 @@ import { ElencoPermessiComponent } from './uffPersonale/elenco-permessi/elenco-p
     AppRoutingModule
   ],
   providers: [
-    UtenteService //potrei anche commentarlo perchè in utenteservice c'è @injectable provided in root
+    UtenteService, //potrei anche commentarlo perchè in utenteservice c'è @injectable provided in root
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

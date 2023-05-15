@@ -48,7 +48,7 @@ export class LoginFormComponent implements OnInit {
                     // get return url from query parameters or default to home page
                     console.log(data);
                     console.log("login success");
-                    this.route.navigate(['/elenco-permessi']);
+                    this.route.navigate(['/admin']);
 /*                     switch (data.ruolo) {
                       case 'ADMIN':
                         this.route.navigate(['/admin']);
