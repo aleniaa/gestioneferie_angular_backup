@@ -5,11 +5,12 @@ import { RichiestaFerieFormComponent } from './user/richiesta-ferie-form/richies
 import { GestionePermessiComponent } from './approvazione_ferie/gestione-permessi/gestione-permessi.component';
 import { ElencoPermessiComponent } from './uffPersonale/elenco-permessi/elenco-permessi.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginFormComponent },
   { path: 'login', component: LoginFormComponent },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate : [AuthGuard]},
 
   { path: 'scheda-utenti', component: SchedaUtentiComponent },
   { path: 'richiesta-ferie', component: RichiestaFerieFormComponent},

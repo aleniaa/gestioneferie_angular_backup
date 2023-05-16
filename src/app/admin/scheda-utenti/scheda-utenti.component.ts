@@ -83,6 +83,8 @@ export class SchedaUtentiComponent implements OnInit{
 
 
   public aggiornaUtente(utente: Utente): void{
+    console.log("utente di aggiorna utente: ");
+    console.log(utente);
     this.utenteService.aggiornaUtente(utente).subscribe(
       (response: Utente) => { //jfoiewfjwoiej
         console.log(response);

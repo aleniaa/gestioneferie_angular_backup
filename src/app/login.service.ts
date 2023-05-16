@@ -31,17 +31,18 @@ export class LoginService {
   public accediUtente(utente: Utente): Observable<Utente>{
     //console.log(utente);
     //return this.http.post<any>(`${this.apiServerUrl}/login`, utente, {responseType: 'text' as 'json'})
-    return this.http.post<Utente>(`${this.apiServerUrl}/login`, utente)
-    .pipe(map(currentUser => {
-      if(currentUser){
-        localStorage.setItem('user', JSON.stringify(currentUser));
-        this.currentUserSubject.next(currentUser);
+    return this.http.post<any>(`${this.apiServerUrl}/login`, utente)
+    .pipe(map(user => {
+      if(user){
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
         console.log("login service success");
+        console.log(this.currentUserSubject.value);
       }else{
         console.log("non funziona un cazzo");
       }
 
-      return currentUser;
+      return user;
     }));
   }
 
@@ -49,10 +50,10 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
 
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next({} as any);
-  }
+  // logout() {
+  //   // remove user from local storage to log user out
+  //   localStorage.removeItem('currentUser');
+  //   this.currentUserSubject.next({} as any);
+  // }
 
 }
