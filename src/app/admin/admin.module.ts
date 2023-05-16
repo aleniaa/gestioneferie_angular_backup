@@ -5,6 +5,7 @@ import { SchedaUtentiComponent } from './scheda-utenti/scheda-utenti.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule } from '@angular/forms';
+import { IMieiPermessiComponent } from '../user/i-miei-permessi/i-miei-permessi.component';
 
 
 
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     HomeAdminComponent,
     SchedaUtentiComponent,
-    NavbarAdminComponent
+    NavbarAdminComponent,
+    IMieiPermessiComponent
   ],
   imports: [
     CommonModule,

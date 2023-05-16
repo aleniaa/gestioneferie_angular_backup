@@ -1,0 +1,16 @@
+
+.table-scroll{
+    position: absolute;
+    overflow-y: scroll;
+    max-height: 200px;
+    border-radius: .5rem;
+}
+
+.card {
+  border-radius: .5rem;
+  padding: 0%;
+}
+
+thead th {
+  color: #fff;
+}

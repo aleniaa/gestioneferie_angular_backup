@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { navbarComponent } from './navbarComponent/navbar.component';
 import { NavbarUserComponent } from './user/navbar-user/navbar-user.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { NavbarAdminComponent } from './admin/navbar-admin/navbar-admin.component';
@@ -17,11 +16,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { GestionePermessiComponent } from './approvazione_ferie/gestione-permessi/gestione-permessi.component';
 import { ElencoPermessiComponent } from './uffPersonale/elenco-permessi/elenco-permessi.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { IMieiPermessiComponent } from './user/i-miei-permessi/i-miei-permessi.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    navbarComponent,
     NavbarUserComponent,
     LoginFormComponent,
     //SchedaUtentiComponent,
@@ -29,7 +29,9 @@ import { AuthGuard } from './core/guards/auth.guard';
     //HomeAdminComponent,
     RichiestaFerieFormComponent,
     GestionePermessiComponent,
-    ElencoPermessiComponent
+    ElencoPermessiComponent,
+    NavbarComponent,
+    //IMieiPermessiComponent
   ],
   imports: [
     BrowserModule,

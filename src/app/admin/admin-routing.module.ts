@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { SchedaUtentiComponent } from './scheda-utenti/scheda-utenti.component';
 import { RichiestaFerieFormComponent } from '../user/richiesta-ferie-form/richiesta-ferie-form.component';
+import { IMieiPermessiComponent } from '../user/i-miei-permessi/i-miei-permessi.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'gestioneUtenti', component: SchedaUtentiComponent },
       { path: 'richiediPermessi', component: RichiestaFerieFormComponent },
+      { path: 'iMieiPermessi', component: IMieiPermessiComponent },
 
     ]
   }
