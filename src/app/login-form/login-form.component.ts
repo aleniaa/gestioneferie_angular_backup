@@ -48,15 +48,18 @@ export class LoginFormComponent implements OnInit {
                     // get return url from query parameters or default to home page
                     console.log(data);
                     console.log("login success");
-                    if(data) this.route.navigate(['/admin']);
-/*                     switch (data.ruolo) {
+                    if(data) //this.route.navigate(['/admin']);
+                     switch (data.ruolo) {
                       case 'ADMIN':
                         this.route.navigate(['/admin']);
                         break;
                       case 'FERIE':
-                        this.route.navigate(['/operator']);
+                        this.route.navigate(['/ferie']);
                         break;
-                      case 'USER':
+                        default:
+                        this.error = 'Invalid credentials';
+                     }
+                     /* case 'USER':
                         this.route.navigate(['/doctor']);
                         break;
                       case 'PERSONALE':

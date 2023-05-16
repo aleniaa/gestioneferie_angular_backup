@@ -3,24 +3,23 @@ import { Router } from '@angular/router';
 import { NavModel } from 'src/app/shared/navbar/nav.model';
 
 @Component({
-  selector: 'app-home-admin',
-  templateUrl: './home-admin.component.html',
-  styleUrls: ['./home-admin.component.css']
+  selector: 'app-home-ferie',
+  templateUrl: './home-ferie.component.html',
+  styleUrls: ['./home-ferie.component.css']
 })
-export class HomeAdminComponent implements OnInit {
+export class HomeFerieComponent implements OnInit{
 
   navbarlinks: NavModel[] = [];
   titlelink: string;
 
   constructor(private route: Router) {
-    this.navbarlinks.push({ header: "Gestione Utenti", link: "gestioneUtenti" });
+    this.navbarlinks.push({ header: "Approva permessi", link: "gestionePermessi" });
     this.navbarlinks.push({ header: "Richiedi permessi", link: "richiediPermessi" });
     this.navbarlinks.push({ header: "I miei permessi", link: "iMieiPermessi" });
-    this.titlelink = "/admin/users";
+    this.titlelink = "/ferie/gestionePermessi";
   }
-
+  
   ngOnInit(): void {
-    this.route.navigate(['/admin/gestioneUtenti']);
+    this.route.navigate(['/ferie/gestionePermessi']);
   }
-
 }

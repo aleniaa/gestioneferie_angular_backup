@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: '', component: LoginFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate : [AuthGuard]},
+  { path: 'ferie', loadChildren: () => import('./approvazione_ferie/ferie.module').then(m => m.FerieModule), canActivate : [AuthGuard]},
 
   { path: 'scheda-utenti', component: SchedaUtentiComponent },
   { path: 'richiesta-ferie', component: RichiestaFerieFormComponent},

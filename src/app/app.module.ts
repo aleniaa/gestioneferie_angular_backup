@@ -17,7 +17,8 @@ import { GestionePermessiComponent } from './approvazione_ferie/gestione-permess
 import { ElencoPermessiComponent } from './uffPersonale/elenco-permessi/elenco-permessi.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { IMieiPermessiComponent } from './user/i-miei-permessi/i-miei-permessi.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { HomeFerieComponent } from './approvazione_ferie/home-ferie/home-ferie.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +29,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     //NavbarAdminComponent,
     //HomeAdminComponent,
     RichiestaFerieFormComponent,
-    GestionePermessiComponent,
+    //GestionePermessiComponent,
     ElencoPermessiComponent,
+    //HomeFerieComponent,
     //NavbarComponent,
     //IMieiPermessiComponent
   ],

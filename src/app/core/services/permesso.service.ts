@@ -50,4 +50,11 @@ export class PermessoService {
     return this.http.get<any>(`${this.apiServerUrl}/permesso/statusRichiedente/${status}`,{params: params});
   }
 
+  public getPermessiApprovatoreByStatus(status: number, idApprovatore: number): Observable<Permesso[]>{
+    
+    let params = new HttpParams()
+    .set('idApprovatore', idApprovatore);
+    return this.http.get<any>(`${this.apiServerUrl}/permesso/statusApprovatore/${status}`,{params: params});
+  }
+
 }

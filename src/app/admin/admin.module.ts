@@ -6,7 +6,7 @@ import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule } from '@angular/forms';
 import { IMieiPermessiComponent } from '../user/i-miei-permessi/i-miei-permessi.component';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
 
 
 
@@ -15,7 +15,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
     HomeAdminComponent,
     SchedaUtentiComponent,
     NavbarAdminComponent,
-    IMieiPermessiComponent,
+    //IMieiPermessiComponent,
     NavbarComponent
   ],
   imports: [
