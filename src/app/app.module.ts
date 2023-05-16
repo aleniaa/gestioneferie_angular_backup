@@ -30,7 +30,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     RichiestaFerieFormComponent,
     GestionePermessiComponent,
     ElencoPermessiComponent,
-    NavbarComponent,
+    //NavbarComponent,
     //IMieiPermessiComponent
   ],
   imports: [

@@ -13,14 +13,14 @@ export class HomeAdminComponent implements OnInit {
   titlelink: string;
 
   constructor(private route: Router) {
-    this.navbarlinks.push({ header: "Utenti", link: "users" });
-    this.navbarlinks.push({ header: "Pazienti", link: "patients" });
-    this.navbarlinks.push({ header: "Triage", link: "triages" });
+    this.navbarlinks.push({ header: "Gestione Utenti", link: "gestioneUtenti" });
+    this.navbarlinks.push({ header: "Richiedi permessi", link: "richiediPermessi" });
+    this.navbarlinks.push({ header: "I miei permessi", link: "iMieiPermessi" });
     this.titlelink = "/admin/users";
   }
 
   ngOnInit(): void {
-    this.route.navigate(['/admin/users']);
+    this.route.navigate(['/admin/gestioneUtenti']);
   }
 
 }
