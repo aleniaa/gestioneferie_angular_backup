@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Permesso } from 'src/app/core/models/permesso';
 import { Utente } from 'src/app/core/models/utente';
 import { PermessoService } from 'src/app/core/services/permesso.service';
@@ -73,18 +74,49 @@ export class GestionePermessiComponent implements OnInit {
     )
   }
 
-  public conferma(decisione: string, permesso: Permesso): void{
-    console.log("sono dentro conferma");
-    this.permessoService.changeStatus(decisione, permesso).subscribe(
-      (response: Permesso) => { //jfoiewfjwoiej
-        console.log(response);
-        this.getPermessiApprovatoreByStatus();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        this.getPermessiApprovatoreByStatus();
-      },
-    );
+  public conferma(decisione: string, permesso: Permesso, confermaForm: NgForm): void{
+
+
+    console.log("il form è:");
+    console.log(confermaForm.value);
+    if(decisione=== "conferma"){ //senzaa le note il permesso cambia solo status
+      this.permessoService.changeStatus(decisione, permesso).subscribe(
+        (response: Permesso) => { //jfoiewfjwoiej
+          console.log(response);
+          this.getPermessiApprovatoreByStatus();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+          this.getPermessiApprovatoreByStatus();
+        },
+      );
+    }else{
+      this.permessoService.changeStatus(decisione, confermaForm.value).subscribe(
+        (response: Permesso) => { //jfoiewfjwoiej
+          console.log(response);
+          this.getPermessiApprovatoreByStatus();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+          this.getPermessiApprovatoreByStatus();
+        },
+      );
+    }
+    
   }
 
+
+
+  public onRespingiPermesso(permesso: Permesso):void {
+    const button = document.createElement('button');
+    const container= document.getElementById('main-container');
+    
+    button.type= 'button';
+    button.style.display= 'none';
+    button.setAttribute('data-toggle','modal');
+    button.setAttribute('data-target','#respingiPermesso');
+    container?.appendChild(button);
+    
+    button.click();
+  }
 }

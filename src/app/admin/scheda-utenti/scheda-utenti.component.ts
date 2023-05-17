@@ -66,6 +66,10 @@ export class SchedaUtentiComponent implements OnInit{
   }
 
   public onAggiungiUtente(addForm: NgForm): void{
+
+    console.log("il form di aggiungi utente è:");
+    console.log(addForm.value);
+
     document.getElementById('aggiungiUtenteModal')?.click();
     this.utenteService.aggiungiUtente(addForm.value).subscribe(
       (response: Utente) => { //jfoiewfjwoiej
@@ -85,6 +89,7 @@ export class SchedaUtentiComponent implements OnInit{
   public aggiornaUtente(utente: Utente): void{
     console.log("utente di aggiorna utente: ");
     console.log(utente);
+    
     this.utenteService.aggiornaUtente(utente).subscribe(
       (response: Utente) => { //jfoiewfjwoiej
         console.log(response);
