@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { HomeFerieComponent } from './home-ferie/home-ferie.component';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,13 +14,14 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     HomeFerieComponent,
     //NavbarComponent,
-    IMieiPermessiComponent,
+    //IMieiPermessiComponent,
     GestionePermessiComponent
   ],
   imports: [
     CommonModule,
     FerieRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class FerieModule { }

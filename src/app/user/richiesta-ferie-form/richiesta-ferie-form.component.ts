@@ -19,7 +19,7 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) { 
     this.utenteLoggato = loginService.currentUserValue;
-    console.log("utente loggato in ferie");
+    console.log("utente loggato in ferie:");
     console.log(this.utenteLoggato);
 
   }

@@ -1,6 +1,6 @@
 
 <div class="container">
-    <h2>Gestione Permessi</h2>
+    <h2>I miei permessi</h2>
     
     <section class="intro">
       <h3>Permessi in attesa di approvazione :</h3>
@@ -31,8 +31,8 @@
                         </thead>
                         <div *ngIf="permessiPending?.length == 0" >
                           
-                          <h5 class="alert-heading">Nessun permesso da approvare</h5>
-                      </div> 
+                          <h5 class="alert-heading">Nessun permesso trovato</h5>
+                        </div> 
                         <tbody>
                           <tr *ngFor= "let permesso of permessiPending">
                             <th scope="row">{{permesso?.tipoPermesso}}</th>
@@ -88,6 +88,10 @@
                 
                           </tr>
                         </thead>
+                        <div *ngIf="permessiApprovati?.length == 0" >
+                          
+                          <h5 class="alert-heading">Nessun permesso trovato</h5>
+                        </div>
                         <tbody>
                           <tr *ngFor= "let permesso of permessiApprovati">
                             <th scope="row">{{permesso?.tipoPermesso}}</th>
@@ -142,6 +146,10 @@
                 
                           </tr>
                         </thead>
+                        <div *ngIf="permessiRespinti?.length == 0" >
+                          
+                          <h5 class="alert-heading">Nessun permesso trovato</h5>
+                        </div>
                         <tbody>
                           <tr *ngFor= "let permesso of permessiRespinti">
                             <th scope="row">{{permesso?.tipoPermesso}}</th>

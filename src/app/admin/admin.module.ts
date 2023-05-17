@@ -7,6 +7,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule } from '@angular/forms';
 import { IMieiPermessiComponent } from '../user/i-miei-permessi/i-miei-permessi.component';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,15 +15,15 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
   declarations: [
     HomeAdminComponent,
     SchedaUtentiComponent,
-    NavbarAdminComponent,
+    //NavbarAdminComponent,
     //IMieiPermessiComponent,
-    NavbarComponent
+    //NavbarComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
-
+    FormsModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

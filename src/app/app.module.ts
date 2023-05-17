@@ -30,7 +30,7 @@ import { HomeFerieComponent } from './approvazione_ferie/home-ferie/home-ferie.c
     //HomeAdminComponent,
     RichiestaFerieFormComponent,
     //GestionePermessiComponent,
-    ElencoPermessiComponent,
+    //ElencoPermessiComponent,
     //HomeFerieComponent,
     //NavbarComponent,
     //IMieiPermessiComponent

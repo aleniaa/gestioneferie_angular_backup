@@ -50,10 +50,13 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
 
-  // logout() {
-  //   // remove user from local storage to log user out
-  //   localStorage.removeItem('currentUser');
-  //   this.currentUserSubject.next({} as any);
-  // }
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next({} as any);
+    const utente: Utente = this.currentUserValue;
+    console.log(utente);
+
+  }
 
 }

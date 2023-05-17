@@ -69,6 +69,8 @@
     <div class="row">
       <h2 style="padding-top: 5px;">PERMESSO BREVE (fino a 36 ore annue)</h2>
       <form #permesso_breve="ngForm" (ngSubmit)="aggiungiPermesso(permesso_breve)" id="permesso_breve" ngNativeValidate>
+        <input type="hidden" ngModel="{{utenteLoggato?.id}}"  name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente">
+
         <input type="hidden" ngModel="Permesso breve" name="tipoPermesso" id="tipoPermesso" >
 
         <div class="row">
@@ -116,6 +118,8 @@
     <div class="row">
       <h2 style="padding-top: 5px;">RECUPERO ORE ECCEDENTI (Effettuate oltre l'orario di servizio)</h2>
       <form #recupero_ore="ngForm" (ngSubmit)="aggiungiPermesso(recupero_ore)" id="recupero_ore" ngNativeValidate>
+        <input type="hidden" ngModel="{{utenteLoggato?.id}}"  name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente">
+
         <input type="hidden" ngModel="Recupero ore eccedenti" name="tipoPermesso" id="tipoPermesso" >
         <div class="row">
           <div class="col">
@@ -161,6 +165,8 @@
       <h2 style="padding-top: 5px;">ALTRI PERMESSI</h2>
 
       <form #permessi="ngForm" (ngSubmit)="aggiungiPermesso(permessi)" id="permessi" ngNativeValidate> 
+        <input type="hidden" ngModel="{{utenteLoggato?.id}}"  name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente">
+
         <div class="row">
           <div class="col">
             <div class="form-check">
