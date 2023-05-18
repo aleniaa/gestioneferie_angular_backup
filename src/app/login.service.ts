@@ -16,17 +16,13 @@ export class LoginService {
   private apiServerUrl= environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
-
-    this.currentUserSubject= new BehaviorSubject<Utente>({} as any);
+     const storedUser = localStorage.getItem('currentUser');
+    this.currentUserSubject= new BehaviorSubject<Utente>(
+      storedUser ? JSON.parse(storedUser): null
+    );
     this.currentUser = this.currentUserSubject.asObservable();
 
    }
-
-/*   public accediUtente(accountDipvvf: string, password: string): Observable<object>{
-    //console.log(utente);
-    return this.http.post<any>(`${this.apiServerUrl}/login`, { accountDipvvf, password })
-    //return this.http.post(`${this.apiServerUrl}/utente/login`, utente);
-  } */
 
   public accediUtente(utente: Utente): Observable<Utente>{
     //console.log(utente);

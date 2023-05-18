@@ -79,7 +79,11 @@ export class GestionePermessiComponent implements OnInit {
 
     console.log("il form è:");
     console.log(confermaForm.value);
-    if(decisione=== "conferma"){ //senzaa le note il permesso cambia solo status
+
+    console.log("il tipo permesso invece è:");
+    console.log(permesso);
+
+    if(decisione=== "approva"){ //senzaa le note il permesso cambia solo status
       this.permessoService.changeStatus(decisione, permesso).subscribe(
         (response: Permesso) => { //jfoiewfjwoiej
           console.log(response);

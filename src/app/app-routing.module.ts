@@ -17,7 +17,9 @@ const routes: Routes = [
   { path: 'scheda-utenti', component: SchedaUtentiComponent },
   { path: 'richiesta-ferie', component: RichiestaFerieFormComponent},
   { path: 'gestione-permessi', component: GestionePermessiComponent},
-  { path: 'elenco-permessi', component: ElencoPermessiComponent}
+  { path: 'elenco-permessi', component: ElencoPermessiComponent},
+ // { path: '**', component: ErrorComponent  },
+
 ];
 
 @NgModule({
