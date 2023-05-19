@@ -6,6 +6,7 @@ import { GestionePermessiComponent } from './approvazione_ferie/gestione-permess
 import { ElencoPermessiComponent } from './uffPersonale/elenco-permessi/elenco-permessi.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   { path: '', component: LoginFormComponent },
@@ -14,11 +15,11 @@ const routes: Routes = [
   { path: 'ferie', loadChildren: () => import('./approvazione_ferie/ferie.module').then(m => m.FerieModule), canActivate : [AuthGuard]},
   { path: 'personale', loadChildren: () => import('./uffPersonale/uff-personale.module').then(m => m.UffPersonaleModule), canActivate : [AuthGuard]},
 
-  { path: 'scheda-utenti', component: SchedaUtentiComponent },
-  { path: 'richiesta-ferie', component: RichiestaFerieFormComponent},
-  { path: 'gestione-permessi', component: GestionePermessiComponent},
-  { path: 'elenco-permessi', component: ElencoPermessiComponent},
- // { path: '**', component: ErrorComponent  },
+  // { path: 'scheda-utenti', component: SchedaUtentiComponent },
+  // { path: 'richiesta-ferie', component: RichiestaFerieFormComponent},
+  // { path: 'gestione-permessi', component: GestionePermessiComponent},
+  // { path: 'elenco-permessi', component: ElencoPermessiComponent},
+  { path: '**', component: ErrorComponent  },
 
 ];
 

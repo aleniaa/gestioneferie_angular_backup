@@ -15,6 +15,7 @@ export class IMieiPermessiComponent {
   public permessiPending: Permesso[] = [];
   public permessiApprovati: Permesso[] = [];
   public permessiRespinti: Permesso[] = [];
+  public permessoSelezionato: Permesso;
 
   constructor(private permessoService: PermessoService, private loginService: LoginService){}
 
@@ -25,6 +26,22 @@ export class IMieiPermessiComponent {
     //this.getPermessiPending();
     this.getPermessiRichiedenteByStatus();
     //this.getUtenti();
+  }
+
+  public visualizzaNote(permesso: Permesso):void{
+    this.permessoSelezionato =permesso;
+    
+    console.log("sono dentro visulizza note") ;
+    const button = document.createElement('button');
+    const container= document.getElementById('main-container');
+    
+    button.type= 'button';
+    button.style.display= 'none';
+    button.setAttribute('data-toggle','modal');
+    button.setAttribute('data-target','#vediNote');
+    container?.appendChild(button);
+    
+    button.click();
   }
   
   public getPermessiRichiedenteByStatus(): void{

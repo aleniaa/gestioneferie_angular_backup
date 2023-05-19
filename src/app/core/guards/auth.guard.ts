@@ -15,8 +15,6 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const utente: Utente = this.loginService.currentUserValue;
-      console.log(localStorage.getItem("currentUser"));
-      console.log(utente);
       if (utente.accountDipvvf!=null) {      
         return true;      
         }else{

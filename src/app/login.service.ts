@@ -42,7 +42,7 @@ export class LoginService {
     }));
   }
 
-  public get currentUserValue(): Utente {
+  public get currentUserValue(): Utente | null{
     return this.currentUserSubject.value;
   }
 

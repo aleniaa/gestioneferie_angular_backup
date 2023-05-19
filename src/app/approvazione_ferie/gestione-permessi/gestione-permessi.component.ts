@@ -82,7 +82,7 @@ export class GestionePermessiComponent implements OnInit {
 
     console.log("il tipo permesso invece è:");
     console.log(permesso);
-
+    document.getElementById('respingiPermesso')?.click();
     if(decisione=== "approva"){ //senzaa le note il permesso cambia solo status
       this.permessoService.changeStatus(decisione, permesso).subscribe(
         (response: Permesso) => { //jfoiewfjwoiej
@@ -111,7 +111,7 @@ export class GestionePermessiComponent implements OnInit {
 
 
 
-  public onRespingiPermesso(permesso: Permesso):void {
+  public onRespingiPermesso():void {
     const button = document.createElement('button');
     const container= document.getElementById('main-container');
     

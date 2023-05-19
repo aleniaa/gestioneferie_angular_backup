@@ -51,7 +51,7 @@
                         <!-- <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td> -->
                         
 
-                        <td><button (click)="onRespingiPermesso(permesso)" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"> Respingi</i></button></td>
+                        <td><button (click)="onRespingiPermesso()" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Respingi"><i class="fa fa-times"> Respingi</i></button></td>
                         <div class="modal fade" id="respingiPermesso" tabindex="-1" role="dialog" aria-labelledby="respingiPermessoModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                            <div class="modal-content">
@@ -71,8 +71,8 @@
                                   
                                  
                                   <div class="form-group">
-                                    <label for="note">Note</label>
-                                    <textarea ngModel name="note" class="form-control" id="note" placeholder="note" title="Inserisci il motivo per cui stai respingendo il permesso" required>bu</textarea>
+                                    <label for="note">Inserisci il motivo per cui stai respingendo il permesso:</label>
+                                    <textarea ngModel name="note" class="form-control" id="note" placeholder="Motivo" title="Inserisci il motivo per cui stai respingendo il permesso" maxlength="200" required></textarea>
                                  </div>
                                 
                                  <div class="modal-footer">
