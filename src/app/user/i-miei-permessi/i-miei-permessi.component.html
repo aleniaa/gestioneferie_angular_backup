@@ -17,7 +17,6 @@
                         <thead style="background-color: #002d72; position: sticky;top: 0;">
                           <tr>
                             <th scope="col">Tipo permesso</th>
-                            <th scope="col">Richiedente</th>
                             <th scope="col">Dal giorno</th>
                             <th scope="col">Al giorno</th>
                             <th scope="col">Giorni totali</th>
@@ -36,7 +35,6 @@
                         <tbody>
                           <tr *ngFor= "let permesso of permessiPending">
                             <th scope="row">{{permesso?.tipoPermesso}}</th>
-                            <td>{{permesso?.idUtente}}</td>
                             <td>{{permesso?.dataInizio}}</td>
                             <td>{{permesso?.dataFine}}</td>
                             <td>{{permesso?.totGiorni}}</td>
@@ -76,7 +74,6 @@
                         <thead style="background-color: #002d72; position: sticky;top: 0;">
                           <tr>
                             <th scope="col">Tipo permesso</th>
-                            <th scope="col">Richiedente</th>
                             <th scope="col">Dal giorno</th>
                             <th scope="col">Al giorno</th>
                             <th scope="col">Giorni totali</th>
@@ -95,7 +92,6 @@
                         <tbody>
                           <tr *ngFor= "let permesso of permessiApprovati">
                             <th scope="row">{{permesso?.tipoPermesso}}</th>
-                            <td>{{permesso?.idUtente}}</td>
                             <td>{{permesso?.dataInizio}}</td>
                             <td>{{permesso?.dataFine}}</td>
                             <td>{{permesso?.totGiorni}}</td>
@@ -134,7 +130,6 @@
                         <thead style="background-color: #002d72;position: sticky;top: 0;">
                           <tr>
                             <th scope="col">Tipo permesso</th>
-                            <th scope="col">Richiedente</th>
                             <th scope="col">Dal giorno</th>
                             <th scope="col">Al giorno</th>
                             <th scope="col">Giorni totali</th>
@@ -154,7 +149,6 @@
                         <tbody>
                           <tr *ngFor= "let permesso of permessiRespinti">
                             <th scope="row">{{permesso?.tipoPermesso}}</th>
-                            <td>{{permesso?.idUtente}}</td>
                             <td>{{permesso?.dataInizio}}</td>
                             <td>{{permesso?.dataFine}}</td>
                             <td>{{permesso?.totGiorni}}</td>
