@@ -20,6 +20,11 @@ export class ElencoPermessiComponent implements OnInit{
   public utentiApprovatoriTrovati: Utente[] = [];
   public utenteApprovatore: Utente;
   public utenteRichiedente: Utente;
+  public infoRichiedente: string;
+  public infoApprovatore: string;
+
+
+  
 
   constructor(private permessoService: PermessoService, private utenteService: UtenteService) { }
 
@@ -31,7 +36,7 @@ export class ElencoPermessiComponent implements OnInit{
   }
 
   public search(searchForm: NgForm): void{
-    
+    console.log(searchForm.value);
     this.permessoService.search(searchForm.value).subscribe(
       (response: Permesso[]) => {
         this.permessi = response;
@@ -47,21 +52,19 @@ export class ElencoPermessiComponent implements OnInit{
 
   public selezionaUtenteRichiedente(utenteRichiedenteSelezionato: Utente): void {
     this.utenteRichiedente= utenteRichiedenteSelezionato;
-    var inputValue = document.getElementById('idUtenteRichiedenteSelezionato');
-    inputValue.setAttribute("value", utenteRichiedenteSelezionato.accountDipvvf);
+    this.infoRichiedente= utenteRichiedenteSelezionato.nome + " " + utenteRichiedenteSelezionato.cognome;
     this.utentiRichiedentiTrovati= [];
 
   }
 
   public selezionaUtenteApprovatore(utenteApprovatoreSelezionato: Utente): void {
     this.utenteApprovatore= utenteApprovatoreSelezionato;
-    var inputValue = document.getElementById('utenteApprovatoreSelezionato');
-    inputValue.setAttribute("value", utenteApprovatoreSelezionato.accountDipvvf);
+    this.infoApprovatore = utenteApprovatoreSelezionato.nome + " " + utenteApprovatoreSelezionato.cognome;
     this.utentiApprovatoriTrovati= [];
 
   }
 
-  public cercaUtenteRichidente(key: string): void{
+  public cercaUtenteRichiedente(key: string): void{
     
     const risultati: Utente[]=[];
     

@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -16,11 +17,15 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   public utentiFerie: Utente[] = [];
   public utenteLoggato: Utente;
+  public dataInizio: Date;
+  public oreInizio: Time;
+
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) { 
     this.utenteLoggato = loginService.currentUserValue;
     console.log("utente loggato in ferie:");
     console.log(this.utenteLoggato);
+
 
   }
 
@@ -29,6 +34,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.getUtentiFerie();
 
   }
+
 
   public getUtentiFerie(): void{
     this.utenteService.getUtentiFerie().subscribe(
@@ -42,7 +48,9 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   public aggiungiPermesso(permessoForm: NgForm): void{
+    console.log("il permesso è: ");
 
+    console.log(permessoForm.value);
     this.permessoService.aggiungiPermesso(permessoForm.value).subscribe(
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);

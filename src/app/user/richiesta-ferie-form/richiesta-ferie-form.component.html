@@ -33,14 +33,14 @@
 
         <div class="form-group">
           <label for="dataInizio">Giorni di ferie dal </label>
-          <input type="date" ngModel name="dataInizio" class="form-control" id="dataInizio" title="Data inizio ferie"
+          <input type="date" [(ngModel)]="dataInizio" name="dataInizio"  class="form-control" id="dataInizio" title="Data inizio ferie"
             required />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label for="dataFine">al</label>
-          <input type="date" ngModel name="dataFine" class="form-control" id="dataFine" title="Data fine ferie"
+          <input type="date" ngModel name="dataFine" class="form-control" id="dataFine" [min]="dataInizio" title="Data fine ferie"
             required />
         </div>
       </div>
@@ -83,7 +83,7 @@
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="alleOre">alle ore</label>
+              <label for="alleOre">alle ore: </label>
               <input type="time" ngModel name="alleOre" class="form-control" id="alleOre" title="Ore fine" required />
             </div>
           </div>
@@ -325,7 +325,7 @@
               <div class="col">
                 <div class="form-group">
                   <label class="form-check-label" for="dataInizio"> del Giorno </label>
-                  <input type="date" ngModel name="dataInizio" id="dataInizio" />
+                  <input type="date" [(ngModel)]="dataInizio" name="dataInizio" id="dataInizio" />
                 </div>
               </div>
 
@@ -351,7 +351,7 @@
               <div class="col">
                 <div class="form-group">
                   <label class="form-check-label" for="dataFine"> al giorno </label>
-                  <input type="date" ngModel name="dataFine" id="al_giorno" />
+                  <input type="date" ngModel name="dataFine" [min]="dataInizio" id="al_giorno" />
 
                 </div>
               </div>

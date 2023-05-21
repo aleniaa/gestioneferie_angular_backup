@@ -21,21 +21,16 @@
     <div class="col">
       <div class="form-group">
         <label for="key">Utente richiedente:</label>
-           <input type="text" (ngModelChange)="cercaUtenteRichidente(key.value)" #key="ngModel" ngModel 
+           <input type="text" (ngModelChange)="cercaUtenteRichiedente(key.value)" #key="ngModel" [(ngModel)]="infoRichiedente" 
            name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente..">
          
            <ul class="list-group" id="utentiTrovati">
             <li class="list-group-item" *ngFor= "let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
           </ul>
         </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
-          <label for="idUtenteRichiedente">Utente richiedente selezionato:</label>
-          <input  name="idUtenteRichiedenteSelezionato" id="idUtenteRichiedenteSelezionato" class="form-control" disabled>
-          <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente" > 
 
-        </div>
+        <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente" > 
+
     </div>
 
     
@@ -49,20 +44,14 @@
   <div class="col">
     <div class="form-group">
       <label for="key">Utente che ha approvato il permesso:</label>
-         <input type="text" (ngModelChange)="cercaUtenteApprovatore(key.value)" #key="ngModel" ngModel 
-         name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente..">
+         <input type="text" (ngModelChange)="cercaUtenteApprovatore(keyApp.value)" #keyApp="ngModel" [(ngModel)]="infoApprovatore"  
+         name="keyApp" id="searchNameApp"  class="form-control mr-sm-2" placeholder="Cerca utente..">
        
          <ul class="list-group" id="utentiTrovati">
           <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
         </ul>
-      </div>
-  </div>
-  <div class="col">
-    <div class="form-group">
-        <label for="utenteApprovazione">Utente approvatore selezionato:</label>
-        <input type="text" id="utenteApprovatoreSelezionato" class="form-control" disabled>
         <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" > 
-    
+
       </div>
   </div>
 

@@ -10,7 +10,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./scheda-utenti.component.css']
 })
 export class SchedaUtentiComponent implements OnInit{
-  
+  nomeUtente: String = "";
+  cognomeUtente: String = "";
+  accountDipvvf: String ="";
+  emailVigilfuoco: String= "";
   public utenti: Utente[] = [];
   public modificaUtente!: Utente; //il punto esclamativo serve a non dover inizializzare la variabile per forza
   public deleteUtente!: Utente;
@@ -21,6 +24,15 @@ export class SchedaUtentiComponent implements OnInit{
     
     this.getUtenti();
 
+  }
+
+  updateAccountDipvvf(){
+    this.accountDipvvf = this.nomeUtente + "." + this.cognomeUtente;
+    this.emailVigilfuoco = this.accountDipvvf + "@vigilfuoco.it";
+  }
+
+  updateEmailVigilfuoco(){
+    this.emailVigilfuoco = this.accountDipvvf + "@vigilfuoco.it";
   }
 
   public getUtenti(): void {

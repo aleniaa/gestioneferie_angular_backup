@@ -77,19 +77,24 @@
             <form #addForm="ngForm" (ngSubmit)="onAggiungiUtente(addForm)" id="addForm" ngNativeValidate>
             <div class="form-group">
                <label for="nome">Nome</label>
-               <input type="text" ngModel name="nome" class="form-control" id="nome" placeholder="Nome" pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/>
+               <input type="text" [(ngModel)]="nomeUtente" (ngModelChange)="updateAccountDipvvf()" name="nome" class="form-control" id="nome" placeholder="Nome" pattern="[A-Za-z0-9]+" title="Inserisci un nome valido" required/>
             </div>
             <div class="form-group">
                 <label for="phone">Cognome</label>
-                <input type="text" ngModel name="cognome" class="form-control" id="cognome" placeholder="Cognome" pattern="[A-Za-z0-9]+" title="Inserisci un cognome valido" required/>
+                <input type="text" [(ngModel)]="cognomeUtente" name="cognome" (ngModelChange)="updateAccountDipvvf()" class="form-control" id="cognome" placeholder="Cognome" pattern="[A-Za-z0-9]+" title="Inserisci un cognome valido" required/>
              </div>
-            <div class="form-group">
-               <label for="email">Email Vigilfuoco</label>
-               <input type="text" ngModel name="emailVigilfuoco" class="form-control" id="emailVigilfuoco"  placeholder="nome.cognome@vigilfuoco.it" pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it" title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required />
+             <div class="form-group">
+               <label for="accountDipvvf">accountDipvvf </label>
+               <input type="text" [(ngModel)]="accountDipvvf" (ngModelChange)="updateEmailVigilfuoco()" name="accountDipvvf" class="form-control" id="accountDipvvf" />
             </div>
             <div class="form-group">
+               <label for="email">Email Vigilfuoco</label>
+               <input type="text" [(ngModel)]="emailVigilfuoco" name="emailVigilfuoco"  class="form-control" id="emailVigilfuoco"  placeholder="nome.cognome@vigilfuoco.it" pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it" title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required />
+            </div>
+
+            <div class="form-group">
                <label for="phone">Telefono</label>
-               <input type="text" ngModel name="telefono" class="form-control" id="phone" placeholder="Phone" >
+               <input type="text" ngModel name="telefono" class="form-control" id="phone" placeholder="Telefono" >
             </div>
             <div class="form-group">
                <label for="password">Password</label>
