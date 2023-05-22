@@ -48,7 +48,9 @@ export class GestionePermessiComponent implements OnInit {
   public getPermessiApprovatoreByStatus(): void{
     //const utente: Utente = this.loginService.currentUserValue;
 
+    //var values = JSON.parse(sessionStorage.getItem("currentUser"));
     var values = JSON.parse(localStorage.getItem("currentUser"));
+
     var idUtenteApp = values.id; 
     console.log(idUtenteApp);
 

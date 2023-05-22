@@ -32,6 +32,8 @@ export class LoginService {
     .pipe(map(user => {
       if(user){
         localStorage.setItem('currentUser', JSON.stringify(user));
+        //sessionStorage.setItem('currentUser', JSON.stringify(user));
+
         this.currentUserSubject.next(user);
         console.log("login service success");
         console.log(this.currentUserSubject.value);
@@ -50,9 +52,12 @@ export class LoginService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    //sessionStorage.removeItem('currentUser');
     this.currentUserSubject.next({} as any);
     const utente: Utente = this.currentUserValue;
-    console.log(utente);
+    console.log("utente corrente dopo logout:");
+    //console.log(sessionStorage.getItem("currentUser"));
+    console.log(localStorage.getItem("currentUser"));
 
   }
 

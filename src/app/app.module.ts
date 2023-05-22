@@ -20,6 +20,7 @@ import { IMieiPermessiComponent } from './user/i-miei-permessi/i-miei-permessi.c
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeFerieComponent } from './approvazione_ferie/home-ferie/home-ferie.component';
 import { ErrorComponent } from './error/error.component';
+import { HomeUserComponent } from './user/home-user/home-user.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ErrorComponent } from './error/error.component';
     //HomeAdminComponent,
     RichiestaFerieFormComponent,
     ErrorComponent,
+    //HomeUserComponent,
     //GestionePermessiComponent,
     //ElencoPermessiComponent,
     //HomeFerieComponent,

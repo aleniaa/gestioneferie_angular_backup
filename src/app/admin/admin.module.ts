@@ -15,9 +15,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     HomeAdminComponent,
     SchedaUtentiComponent,
-    //NavbarAdminComponent,
+    NavbarAdminComponent,
     //IMieiPermessiComponent,
-    //NavbarComponent
   ],
   imports: [
     CommonModule,

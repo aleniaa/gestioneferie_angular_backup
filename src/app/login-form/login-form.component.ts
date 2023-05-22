@@ -59,16 +59,13 @@ export class LoginFormComponent implements OnInit {
                       case 'PERSONALE':
                         this.route.navigate(['/personale']);
                         break;
-                        default:
-                        this.error = 'Invalid credentials';
-                     }
-                     /* case 'USER':
-                        this.route.navigate(['/doctor']);
+                      case 'UTENTE':
+                        console.log("caso login ruolo utente:   UTENTE");
+                        this.route.navigate(['/utente']);
                         break;
-                      
                       default:
                         this.error = 'Invalid credentials';
-                    } */
+                     }
 
                 },
                 error: error => {
