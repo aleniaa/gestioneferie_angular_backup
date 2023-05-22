@@ -15,7 +15,9 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const utente: Utente = this.loginService.currentUserValue;
+
       if (utente.accountDipvvf!=null) {      
+      //if (localStorage.getItem('currentUser')) {      
         return true;      
         }else{
                   // navigate to login page as user is not authenticated      

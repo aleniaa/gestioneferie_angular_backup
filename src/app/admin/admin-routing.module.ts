@@ -8,22 +8,28 @@ import { IMieiPermessiComponent } from '../user/i-miei-permessi/i-miei-permessi.
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeAdminComponent,
-    children: [
-      { path: 'gestioneUtenti', component: SchedaUtentiComponent },
+     path: '', component: HomeAdminComponent,
+    // children: [
+    //   { path: 'gestioneUtenti', component: SchedaUtentiComponent },
+    //   { path: 'richiediPermessi', component: RichiestaFerieFormComponent },
+    //   { path: 'iMieiPermessi', component: IMieiPermessiComponent },
+
+    // ]
+  },
+
+  { path: 'gestioneUtenti', component: SchedaUtentiComponent },
       { path: 'richiediPermessi', component: RichiestaFerieFormComponent },
       { path: 'iMieiPermessi', component: IMieiPermessiComponent },
 
-    ]
-  }
 ];
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    //RouterModule.forChild(routes)
+    RouterModule.forRoot(routes),
+
   ],
   exports: [RouterModule]
 })

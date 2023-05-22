@@ -48,10 +48,12 @@ export class IMieiPermessiComponent {
 
     //localStorage.getItem("currentUser")
 
-      const utente: Utente = this.loginService.currentUserValue;
-      console.log("l'utente corrente da getcurrent user è:");
-      console.log(utente);
-    this.permessoService.getPermessiRichiedenteByStatus(0, utente.id).subscribe(
+      //const utente: Utente = this.loginService.currentUserValue;
+
+      var values = JSON.parse(localStorage.getItem("currentUser"));
+      var idUtenteApp = values.id; 
+
+    this.permessoService.getPermessiRichiedenteByStatus(0, idUtenteApp).subscribe(
       (response: Permesso[]) => {
         this.permessiPending = response;
       },
@@ -59,7 +61,7 @@ export class IMieiPermessiComponent {
         alert(error.message);
       }
     )
-    this.permessoService.getPermessiRichiedenteByStatus(1, utente.id).subscribe(
+    this.permessoService.getPermessiRichiedenteByStatus(1, idUtenteApp).subscribe(
       (response: Permesso[]) => {
         this.permessiApprovati = response;
       },
@@ -67,7 +69,7 @@ export class IMieiPermessiComponent {
         alert(error.message);
       }
     )
-    this.permessoService.getPermessiRichiedenteByStatus(2, utente.id).subscribe(
+    this.permessoService.getPermessiRichiedenteByStatus(2, idUtenteApp).subscribe(
       (response: Permesso[]) => {
         this.permessiRespinti = response;
       },

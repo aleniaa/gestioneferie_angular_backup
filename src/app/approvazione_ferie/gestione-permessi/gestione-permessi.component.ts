@@ -46,9 +46,13 @@ export class GestionePermessiComponent implements OnInit {
 
 
   public getPermessiApprovatoreByStatus(): void{
-    const utente: Utente = this.loginService.currentUserValue;
+    //const utente: Utente = this.loginService.currentUserValue;
 
-    this.permessoService.getPermessiApprovatoreByStatus(0, utente.id).subscribe(
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    var idUtenteApp = values.id; 
+    console.log(idUtenteApp);
+
+    this.permessoService.getPermessiApprovatoreByStatus(0, idUtenteApp).subscribe(
       (response: Permesso[]) => {
         this.permessiPending = response;
       },
@@ -56,7 +60,7 @@ export class GestionePermessiComponent implements OnInit {
         alert(error.message);
       }
     )
-    this.permessoService.getPermessiApprovatoreByStatus(1, utente.id).subscribe(
+    this.permessoService.getPermessiApprovatoreByStatus(1, idUtenteApp).subscribe(
       (response: Permesso[]) => {
         this.permessiApprovati = response;
       },
@@ -64,7 +68,7 @@ export class GestionePermessiComponent implements OnInit {
         alert(error.message);
       }
     )
-    this.permessoService.getPermessiApprovatoreByStatus(2, utente.id).subscribe(
+    this.permessoService.getPermessiApprovatoreByStatus(2, idUtenteApp).subscribe(
       (response: Permesso[]) => {
         this.permessiRespinti = response;
       },

@@ -20,7 +20,7 @@ export class HomeAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.navigate(['/admin/gestioneUtenti']);
+    //this.route.navigate(['/admin/gestioneUtenti']);
   }
 
 }
