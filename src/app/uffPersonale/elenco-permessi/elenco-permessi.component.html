@@ -10,11 +10,12 @@
       <div class="form-group">
           <label for="tipoPermesso">Tipo di permesso:</label>
           <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso"  form="searchForm" >
-              <option value="congedo ordinario">Congedo Ordinario</option>
+            <option value="tutti i permessi">Tutti i permessi</option>  
+            <option value="congedo ordinario">Congedo Ordinario</option>
               <option value="permesso breve">Permesso breve</option>
               <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
-              <option value="Altri permessi">Altri permessi</option>
-              <option value="tutti i permessi">Tutti i permessi</option>
+              <option value="altri permessi">Altri permessi</option>
+              
           </select>
       </div>
     </div>
@@ -43,7 +44,7 @@
 
   <div class="col">
     <div class="form-group">
-      <label for="key">Utente che ha approvato il permesso:</label>
+      <label for="keyApp">Utente che ha approvato il permesso:</label>
          <input type="text" (ngModelChange)="cercaUtenteApprovatore(keyApp.value)" #keyApp="ngModel" [(ngModel)]="infoApprovatore"  
          name="keyApp" id="searchNameApp"  class="form-control mr-sm-2" placeholder="Cerca utente..">
        
