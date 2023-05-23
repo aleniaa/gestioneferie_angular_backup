@@ -19,6 +19,8 @@ export class RichiestaFerieFormComponent implements OnInit {
   public utenteLoggato: Utente;
   public dataInizio: Date;
   public oreInizio: Time;
+  public oreFine: Time;
+
 
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) { 

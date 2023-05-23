@@ -23,17 +23,21 @@ export class ModificaPassComponent {
   }
 
 
-  public modificaPass(){
+  public modificaPass(changePassForm: NgForm){
     var idUtenteLoggato= this.utenteLoggato.id;
     var oldPassw= this.oldPass;
     var newPassw= this.newPass;
 
     this.utenteService.changePass(idUtenteLoggato, oldPassw, newPassw).subscribe(
       (response: string) => {
-        alert(response);
+        alert("Password aggiornata");
+        changePassForm.reset();
       },
       (error: HttpErrorResponse) => {
+        changePassForm.reset();
+        console.log("sono in errore");
         alert(error.message);
+
       }
     );
 
