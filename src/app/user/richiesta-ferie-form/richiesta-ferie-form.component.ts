@@ -17,10 +17,12 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   public utentiFerie: Utente[] = [];
   public utenteLoggato: Utente;
-  public dataInizio: Date;
+  public dataInizio: string;
+  public dataFine: string;
   public oreInizio: string;
   public oreFine: string;
   public totOre: string;
+  public totGiorni: number;
 
 
 
@@ -31,6 +33,8 @@ export class RichiestaFerieFormComponent implements OnInit {
      this.oreInizio = "";
      this.oreFine = "";
      this.totOre = "";
+     this.dataFine= "";
+     this.dataInizio="";
 
   }
 
@@ -64,6 +68,25 @@ export class RichiestaFerieFormComponent implements OnInit {
       this.totOre= "";
     }
     
+  }
+
+  public updateTotGiorni(){
+    console.log(this.dataFine);
+
+
+    // Extract year, month, and day from the date strings
+    const [year1, month1, day1] = this.dataInizio.split("-").map(Number);
+    const [year2, month2, day2] = this.dataFine.split("-").map(Number);
+
+    // Create Date objects
+    const date1 = new Date(year1, month1 - 1, day1);
+    const date2 = new Date(year2, month2 - 1, day2);
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+
+    // Convert milliseconds to days
+    const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    this.totGiorni= diffInDays;
+    console.log(diffInDays);
   }
   
   public getUtentiFerie(): void{

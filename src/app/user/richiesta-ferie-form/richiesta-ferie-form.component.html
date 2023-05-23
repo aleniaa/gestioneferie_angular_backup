@@ -33,20 +33,20 @@
 
         <div class="form-group">
           <label for="dataInizio">Giorni di ferie dal </label>
-          <input type="date" [(ngModel)]="dataInizio" name="dataInizio"  class="form-control" id="dataInizio" title="Data inizio ferie"
+          <input type="date" [(ngModel)]="dataInizio" (ngModelChange)="updateTotGiorni()" name="dataInizio"  class="form-control" id="dataInizio" title="Data inizio ferie"
             required />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label for="dataFine">al</label>
-          <input type="date" ngModel name="dataFine" class="form-control" id="dataFine" [min]="dataInizio" title="Data fine ferie"
+          <input type="date" [(ngModel)]="dataFine" (ngModelChange)="updateTotGiorni()" name="dataFine" class="form-control" id="dataFine" [min]="dataInizio" title="Data fine ferie"
             required />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <p>Giorni totali: </p><input id="totGiorni" name="totGiorni" readonly />
+          <p>Giorni totali: </p><input id="totGiorni" [(ngModel)]="totGiorni" name="totGiorni" readonly />
         </div>
       </div>
       </div>
