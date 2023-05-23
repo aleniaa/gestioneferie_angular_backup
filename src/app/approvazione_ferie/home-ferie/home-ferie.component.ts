@@ -16,6 +16,7 @@ export class HomeFerieComponent implements OnInit{
     this.navbarlinks.push({ header: "Approva permessi", link: "gestionePermessi" });
     this.navbarlinks.push({ header: "Richiedi permessi", link: "richiediPermessi" });
     this.navbarlinks.push({ header: "I miei permessi", link: "iMieiPermessi" });
+    this.navbarlinks.push({ header: "Modifica password", link: "modificaPass" });
     this.titlelink = "/ferie/gestionePermessi";
   }
   

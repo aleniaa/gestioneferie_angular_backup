@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Utente } from '../models/utente';
 import { environment } from 'src/enviroments/environment';
@@ -43,6 +43,18 @@ export class UtenteService {
   public trovaUtente(idUtente: number): Observable<Utente[]>{
     return this.http.get<any>(`${this.apiServerUrl}/utente/find/${idUtente}`);
 
+  }
+
+  public changePass( idUtenteLoggato: number, oldPass: string, newPass: string){
+    console.log("nel service utente service la vecchia pass è ")
+    console.log(oldPass)
+    console.log(idUtenteLoggato)
+    console.log(newPass)
+    let params = new HttpParams()
+    .set("oldPass", oldPass)
+    // .set('newPass', newPass)
+    // .set('idUtenteLoggato', idUtenteLoggato);
+    return this.http.put<any>(`${this.apiServerUrl}/utente/changePass`, {params: params});
   }
   
 }

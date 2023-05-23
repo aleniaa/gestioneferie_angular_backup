@@ -1,0 +1,18 @@
+<div class="container">
+<h3>Modifica password</h3>
+
+    <form #changePass="ngForm" (ngSubmit)="modificaPass()" id="congedo" ngNativeValidate>
+        <div class="form-group">
+            <label for="oldPassw">Vecchia password</label>
+            <input type="password" [(ngModel)]="oldPass" placeholder="Vecchia password"  name="oldPass"  class="form-control" id="oldPass" title="Vecchia password">
+        </div>
+        <div class="form-group">
+            <label for="newPassw">Nuova password</label>
+            <input type="password" [(ngModel)]="newPass" placeholder="Nuova password"  name="newPass"  class="form-control" id="newPass" title="Nuova password">
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
+        </div>
+    </form>
+
+</div>

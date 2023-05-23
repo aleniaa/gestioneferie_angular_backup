@@ -5,6 +5,7 @@ import { HomePersonaleComponent } from './home-personale/home-personale.componen
 import { RichiestaFerieFormComponent } from '../user/richiesta-ferie-form/richiesta-ferie-form.component';
 import { IMieiPermessiComponent } from '../user/i-miei-permessi/i-miei-permessi.component';
 import { ElencoPermessiComponent } from './elenco-permessi/elenco-permessi.component';
+import { ModificaPassComponent } from '../shared/modifica-pass/modifica-pass.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,8 @@ const routes: Routes = [
       { path: 'ricercaPermessi', component: ElencoPermessiComponent },
       { path: 'richiediPermessi', component: RichiestaFerieFormComponent },
       { path: 'iMieiPermessi', component: IMieiPermessiComponent },
+      { path: 'modificaPass', component: ModificaPassComponent },
+
 
     ]
   }

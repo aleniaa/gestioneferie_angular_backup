@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { RichiestaFerieFormComponent } from '../user/richiesta-ferie-form/richiesta-ferie-form.component';
 import { IMieiPermessiComponent } from '../user/i-miei-permessi/i-miei-permessi.component';
+import { ModificaPassComponent } from '../shared/modifica-pass/modifica-pass.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,8 @@ const routes: Routes = [
       { path: 'gestionePermessi', component: GestionePermessiComponent },
       { path: 'richiediPermessi', component: RichiestaFerieFormComponent },
       { path: 'iMieiPermessi', component: IMieiPermessiComponent },
+      { path: 'modificaPass', component: ModificaPassComponent },
+
 
     ]
   }
