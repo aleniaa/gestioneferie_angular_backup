@@ -18,8 +18,9 @@ export class RichiestaFerieFormComponent implements OnInit {
   public utentiFerie: Utente[] = [];
   public utenteLoggato: Utente;
   public dataInizio: Date;
-  public oreInizio: Time;
-  public oreFine: Time;
+  public oreInizio: string;
+  public oreFine: string;
+  public totOre: string;
 
 
 
@@ -27,7 +28,9 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.utenteLoggato = loginService.currentUserValue;
     console.log("utente loggato in ferie:");
     console.log(this.utenteLoggato);
-
+     this.oreInizio = "";
+     this.oreFine = "";
+     this.totOre = "";
 
   }
 
@@ -37,7 +40,32 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   }
 
-
+  public updateTotOre(){
+    if(this.oreInizio.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$") && this.oreFine.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")){
+      const [hours1, minutes1] = this.oreInizio.split(":");
+      const [hours2, minutes2] = this.oreFine.split(":");    //const oreInizioD: Date = new Date(this.oreInizio);
+      const oreInizioD = new Date();
+      oreInizioD.setHours(Number(hours1));
+      oreInizioD.setMinutes(Number(minutes1));
+  
+      const oreFineD = new Date();
+      oreFineD.setHours(Number(hours2));
+      oreFineD.setMinutes(Number(minutes2));
+  
+      const differenceInMilliseconds = Math.abs(oreFineD.getTime() - oreInizioD.getTime());
+      const differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60));
+      const differenceInHours = Math.floor(differenceInMinutes / 60);
+      const remainingMinutes = differenceInMinutes % 60;
+      
+      this.totOre= differenceInHours + " ore e " + remainingMinutes + " minuti";
+      console.log(differenceInHours + "ore e " + remainingMinutes + " minuti");
+      
+    }else{
+      this.totOre= "";
+    }
+    
+  }
+  
   public getUtentiFerie(): void{
     this.utenteService.getUtentiFerie().subscribe(
       (response: Utente[]) => {
@@ -56,13 +84,13 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.permessoService.aggiungiPermesso(permessoForm.value).subscribe(
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);
-        //permessoForm.reset();
+        permessoForm.reset();
         alert("Richiesta inviata correttamente");
       
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        //permessoForm.reset();
+        permessoForm.reset();
       },
     );
 
