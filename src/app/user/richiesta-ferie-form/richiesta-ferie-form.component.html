@@ -1,21 +1,21 @@
 <div class="container">
-  <h1>Richiesta Permessi</h1>
-  <div class="row">
-  <div class="col">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" mdbDropdownToggle
-        aria-haspopup="true" aria-expanded="false">
-        Scegli il tipo di permesso
-      </button>
-      <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
-        <li><a class="dropdown-item" (click)="toggleForm('congedo')">CONGEDO ORDINARIO</a></li>
-        <li><a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a></li>
-        <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a></li>
-        <li><a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a></li>
-      </ul>
+    <h1>Richiesta Permessi</h1>
+    <div class="row">
+    <div class="col">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" mdbDropdownToggle
+          aria-haspopup="true" aria-expanded="false">
+          Scegli il tipo di permesso
+        </button>
+        <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
+          <li><a class="dropdown-item" (click)="toggleForm('congedo')">CONGEDO ORDINARIO</a></li>
+          <li><a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a></li>
+          <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a></li>
+          <li><a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a></li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
   <div class="container" id="ferie_form">
 

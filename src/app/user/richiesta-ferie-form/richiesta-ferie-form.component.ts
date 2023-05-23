@@ -28,8 +28,8 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) { 
     this.utenteLoggato = loginService.currentUserValue;
-    console.log("utente loggato in ferie:");
-    console.log(this.utenteLoggato);
+    // console.log("utente loggato in ferie:");
+    // console.log(this.utenteLoggato);
      this.oreInizio = "";
      this.oreFine = "";
      this.totOre = "";
@@ -62,7 +62,7 @@ export class RichiestaFerieFormComponent implements OnInit {
       const remainingMinutes = differenceInMinutes % 60;
       
       this.totOre= differenceInHours + " ore e " + remainingMinutes + " minuti";
-      console.log(differenceInHours + "ore e " + remainingMinutes + " minuti");
+      // console.log(differenceInHours + "ore e " + remainingMinutes + " minuti");
       
     }else{
       this.totOre= "";
@@ -101,9 +101,9 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   public aggiungiPermesso(permessoForm: NgForm): void{
-    console.log("il permesso è: ");
+    // console.log("il permesso è: ");
 
-    console.log(permessoForm.value);
+    // console.log(permessoForm.value);
     this.permessoService.aggiungiPermesso(permessoForm.value).subscribe(
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);
