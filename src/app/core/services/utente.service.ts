@@ -46,15 +46,14 @@ export class UtenteService {
   }
 
   public changePass( idUtenteLoggato: number, oldPass: string, newPass: string){
-    console.log("nel service utente service la vecchia pass è ")
-    console.log(oldPass)
-    console.log(idUtenteLoggato)
-    console.log(newPass)
+
     let params = new HttpParams()
     .set("oldPass", oldPass)
-    // .set('newPass', newPass)
-    // .set('idUtenteLoggato', idUtenteLoggato);
-    return this.http.put<any>(`${this.apiServerUrl}/utente/changePass`, {params: params});
+    .set('newPass', newPass)
+    .set('idUtenteLoggato', idUtenteLoggato);
+    
+    return this.http.put<any>(`${this.apiServerUrl}/utente/changePass`, null, {params: params});
+    //perchè il secondo parametro di http.put è relativo al requestbody e non ai param.
   }
   
 }
