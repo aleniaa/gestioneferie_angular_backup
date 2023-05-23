@@ -43,3 +43,22 @@ ul li:hover {
     color: black;
     cursor: pointer;
   }
+
+  .menu-item {
+    float: left;
+    position: relative; /* <-- added declaration */
+
+}
+
+.menu-item ul {
+  margin-top: 5px;
+  list-style-type: none;
+
+
+  z-index: 10000;
+  position: absolute;  /* <-- added declarations */
+  left: 0; top: 100%;  /*     here               */
+  width: 100%;         /*     and here...        */
+
+  transition: height 1s ease;
+}

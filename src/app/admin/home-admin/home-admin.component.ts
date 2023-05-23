@@ -17,6 +17,7 @@ export class HomeAdminComponent implements OnInit {
     this.navbarlinks.push({ header: "Richiedi permessi", link: "richiediPermessi" });
     this.navbarlinks.push({ header: "I miei permessi", link: "iMieiPermessi" });
     this.titlelink = "/admin/users";
+    //this.route.navigate(['/admin/gestioneUtenti']);
   }
 
   ngOnInit(): void {

@@ -57,4 +57,8 @@ export class PermessoService {
     return this.http.get<any>(`${this.apiServerUrl}/permesso/statusApprovatore/${status}`,{params: params});
   }
 
+  public cancellaPermesso(idPermesso: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/permesso/delete/${idPermesso}`);
+  }
+
 }

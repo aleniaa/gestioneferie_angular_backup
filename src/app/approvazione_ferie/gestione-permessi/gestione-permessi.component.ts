@@ -18,6 +18,7 @@ export class GestionePermessiComponent implements OnInit {
   public permessiPending: Permesso[] = [];
   public permessiApprovati: Permesso[] = [];
   public permessiRespinti: Permesso[] = [];
+  public permessoSelezionato: Permesso;
   //public permesso: Permesso;
 
   constructor(private permessoService: PermessoService, private utenteService: UtenteService, private loginService: LoginService) { }
@@ -32,7 +33,22 @@ export class GestionePermessiComponent implements OnInit {
     this.getPermessiApprovatoreByStatus();
   }
 
-  
+  public visualizzaNote(permesso: Permesso):void{
+    this.permessoSelezionato =permesso;
+    
+    console.log("sono dentro visulizza note") ;
+    const button = document.createElement('button');
+    const container= document.getElementById('main-container');
+    
+    button.type= 'button';
+    button.style.display= 'none';
+    button.setAttribute('data-toggle','modal');
+    button.setAttribute('data-target','#vediNote');
+    container?.appendChild(button);
+    
+    button.click();
+  }
+
   public getPermessi(): void {
     this.permessoService.getAllPermessi().subscribe(
       (response: Permesso[]) => {

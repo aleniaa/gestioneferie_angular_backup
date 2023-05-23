@@ -77,7 +77,17 @@ html {
     border-bottom: 2px solid #5fbae9;
   }
   
-  
+  .alert {
+    padding: 15px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin: 5px 20px 40px 20px;
+    font-size: 15px;
+
+  }
   
   /* FORM TYPOGRAPHY*/
   

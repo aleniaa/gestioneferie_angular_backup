@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarUserComponent } from './user/navbar-user/navbar-user.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { NavbarAdminComponent } from './admin/navbar-admin/navbar-admin.component';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +24,6 @@ import { HomeUserComponent } from './user/home-user/home-user.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarUserComponent,
     LoginFormComponent,
     //SchedaUtentiComponent,
     //NavbarAdminComponent,

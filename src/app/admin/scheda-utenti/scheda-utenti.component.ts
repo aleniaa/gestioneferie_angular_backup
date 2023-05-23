@@ -85,12 +85,14 @@ export class SchedaUtentiComponent implements OnInit{
     document.getElementById('aggiungiUtenteModal')?.click();
     this.utenteService.aggiungiUtente(addForm.value).subscribe(
       (response: Utente) => { //jfoiewfjwoiej
+      //(response: String) => { //jfoiewfjwoiej
+
         console.log(response);
         this.getUtenti();
         addForm.reset();
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert("La mail vigilfuoco o l'account Dipvvf sono già presenti nel database");
         addForm.reset();
       },
     ); //addform.value restituisce una rappresentaione json dei dati inseriti nel form

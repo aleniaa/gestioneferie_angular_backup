@@ -4,142 +4,140 @@
   <h2>Ricerca permessi per:</h2>
   <div class="col">
       
-<form #searchForm="ngForm" (ngSubmit)="search(searchForm)" id="searchForm" ngNativeValidate> <!-- (ngSubmit)="search(searchForm)" -->
-  <div class="row" >
-    <div class="col">
-      <div class="form-group">
-          <label for="tipoPermesso">Tipo di permesso:</label>
-          <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso"  form="searchForm" >
-            <option value="tutti i permessi">Tutti i permessi</option>  
-            <option value="congedo ordinario">Congedo Ordinario</option>
-              <option value="permesso breve">Permesso breve</option>
-              <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
-              <option value="altri permessi">Altri permessi</option>
-              
-          </select>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
-        <label for="key">Utente richiedente:</label>
-           <input type="text" (ngModelChange)="cercaUtenteRichiedente(key.value)" #key="ngModel" [(ngModel)]="infoRichiedente" 
-           name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente..">
-         
-           <ul class="list-group" id="utentiTrovati">
-            <li class="list-group-item" *ngFor= "let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
-          </ul>
+    <form #searchForm="ngForm" (ngSubmit)="search(searchForm)" id="searchForm" ngNativeValidate> <!-- (ngSubmit)="search(searchForm)" -->
+      <div class="row" >
+        <div class="col">
+          <div class="form-group">
+              <label for="tipoPermesso">Tipo di permesso:</label>
+              <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso"  form="searchForm" >
+                <option value="tutti i permessi">Tutti i permessi</option>  
+                <option value="congedo ordinario">Congedo Ordinario</option>
+                  <option value="permesso breve">Permesso breve</option>
+                  <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
+                  <option value="altri permessi">Altri permessi</option>
+                  
+              </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group menu-item">
+            <label for="key">Utente richiedente:</label>
+              <input type="text" (ngModelChange)="cercaUtenteRichiedente(key.value)" #key="ngModel" [(ngModel)]="infoRichiedente" 
+              name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente..">
+            
+              <ul class="list-group" id="utentiTrovati">
+                <li class="list-group-item" *ngFor= "let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
+              </ul>
+            </div>
+
+            <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente" > 
+
         </div>
 
-        <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente" > 
+        
+        <div class="col"> 
+          <div class="form-group">
+              <label for="dataApprovazione">Data approvazione permesso:</label>
+              <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie">
+          </div>
+        </div>
 
-    </div>
+        <div class="col">
+          <div class="form-group menu-item">
+            <label for="keyApp">Utente che ha approvato il permesso:</label>
+              <input type="text" (ngModelChange)="cercaUtenteApprovatore(keyApp.value)" #keyApp="ngModel" [(ngModel)]="infoApprovatore"  
+              name="keyApp" id="searchNameApp"  class="form-control mr-sm-2" placeholder="Cerca utente..">
+            
+              <ul class="list-group" id="utentiTrovati">
+                <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
+              </ul>
+              <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" > 
 
-    
-  <div class="col"> 
-    <div class="form-group">
-        <label for="dataApprovazione">Data approvazione permesso:</label>
-        <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie">
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="form-group">
-      <label for="keyApp">Utente che ha approvato il permesso:</label>
-         <input type="text" (ngModelChange)="cercaUtenteApprovatore(keyApp.value)" #keyApp="ngModel" [(ngModel)]="infoApprovatore"  
-         name="keyApp" id="searchNameApp"  class="form-control mr-sm-2" placeholder="Cerca utente..">
-       
-         <ul class="list-group" id="utentiTrovati">
-          <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
-        </ul>
-        <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" > 
+            </div>
+        </div>
 
       </div>
-  </div>
-
-  </div>
 
 
-  <div class="row">
-    <div class="col-10">
-      <div class="form-group">
-        
-        <button type="submit"  class="btn btn-primary"  >Cerca</button>
-        
+      <div class="row">
+        <div class="col-10">
+          <div class="form-group">
+            
+            <button type="submit"  class="btn btn-primary"  >Cerca</button>
+            
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            
+            
+            <input type="reset" class="btn btn-secondary" value="Resetta tutti i campi">
+          </div>
+
+        </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
         
-        
-        <input type="reset" class="btn btn-secondary" value="Resetta tutti i campi">
-      </div>
-
-    </div>
-  </div>
-    
-  
-      </form>
+      
+    </form>
   </div>
   
+
+  <div class="row justify-content-center">
+    <!-- <div class="col"> -->
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+            
+            <table class="table table-striped mb-0">
+              <thead style="background-color: #002d72;position: sticky;top: 0;">
+                <tr>
+                  <th scope="col">Tipo permesso</th>
+                  <th scope="col">Richiedente</th>
+                  <th scope="col">Dal giorno</th>
+                  <th scope="col">Al giorno</th>
+                  <th scope="col">Giorni totali</th>
+                  <th scope="col">Dalle ore</th>
+                  <th scope="col">Alle ore</th>
+                  <th scope="col">Ore totali</th>
+                  <th scope="col">Approvato da</th>
+                  <th scope="col">Approvato in data:</th>
+  
+                </tr>
+              </thead>
+              <div *ngIf="permessi?.length == 0" >
+                    
+                <h5 class="alert-heading">Nessun permesso trovato</h5>
+              </div> 
+              <tbody>
+                <tr *ngFor= "let permesso of permessi">
+                  <th scope="row">{{permesso?.tipoPermesso}}</th>
+                  <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
+                  <td>{{permesso?.dataInizio}}</td>
+                  <td>{{permesso?.dataFine}}</td>
+                  <td>{{permesso?.totGiorni}}</td>
+                  <td>{{permesso?.dalleOre}}</td>
+                  <td>{{permesso?.alleOre}}</td>
+                  <td>{{permesso?.totOre}}</td>
+                  <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
+                  <td>{{permesso?.dataApprovazione}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+  </div>
 
 </div>
 
-
-
-
-<section class="intro">
     
-      <div class="container">
-        <div class="row justify-content-center">
-          <!-- <div class="col"> -->
-            <div class="card">
-              <div class="card-body p-0">
-                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
-                  
-                  <table class="table table-striped mb-0">
-                    <thead style="background-color: #002d72;position: sticky;top: 0;">
-                      <tr>
-                        <th scope="col">Tipo permesso</th>
-                        <th scope="col">Richiedente</th>
-                        <th scope="col">Dal giorno</th>
-                        <th scope="col">Al giorno</th>
-                        <th scope="col">Giorni totali</th>
-                        <th scope="col">Dalle ore</th>
-                        <th scope="col">Alle ore</th>
-                        <th scope="col">Ore totali</th>
-                        <th scope="col">Approvato da</th>
-                        <th scope="col">Approvato in data:</th>
-        
-                      </tr>
-                    </thead>
-                    <div *ngIf="permessi?.length == 0" >
-                          
-                      <h5 class="alert-heading">Nessun permesso trovato</h5>
-                    </div> 
-                    <tbody>
-                      <tr *ngFor= "let permesso of permessi">
-                        <th scope="row">{{permesso?.tipoPermesso}}</th>
-                        <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
-                        <td>{{permesso?.dataInizio}}</td>
-                        <td>{{permesso?.dataFine}}</td>
-                        <td>{{permesso?.totGiorni}}</td>
-                        <td>{{permesso?.dalleOre}}</td>
-                        <td>{{permesso?.alleOre}}</td>
-                        <td>{{permesso?.totOre}}</td>
-                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
-                        <td>{{permesso?.dataApprovazione}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+  
 
 
-                </div>
-              </div>
-            </div>
-          <!-- </div> -->
-        </div>
-      </div>
 
-</section>
+
 
 

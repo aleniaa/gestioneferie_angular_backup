@@ -21,24 +21,13 @@ export class LoginFormComponent implements OnInit {
   
   error: string;
 
-  constructor(private loginService: LoginService, private route: Router) { }
+  constructor(private loginService: LoginService, private route: Router) {
+    this.error = '';
+   }
 
   ngOnInit(): void {
   }
 
-/*   public accediUtente(loginForm: NgForm){
-    this.loginService.accediUtente(loginForm.value).subscribe(
-      (response: object) => {
-        console.log(response);
-        loginForm.reset();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        loginForm.reset();
-        
-      },
-    )
-  } */
 
   public accediUtente(loginForm: NgForm){
     this.loginService.accediUtente(loginForm.value)
@@ -47,8 +36,8 @@ export class LoginFormComponent implements OnInit {
                 next: (data) => {
                     // get return url from query parameters or default to home page
                     console.log(data);
-                    console.log("login success");
-                    if(data) //this.route.navigate(['/admin']);
+                    
+                    if(data) 
                      switch (data.ruolo) {
                       case 'ADMIN':
                         this.route.navigate(['/admin']);
@@ -64,14 +53,20 @@ export class LoginFormComponent implements OnInit {
                         this.route.navigate(['/utente']);
                         break;
                       default:
-                        this.error = 'Invalid credentials';
+                        this.error = 'Credenziali non valide';
+                        console.log(this.error);
                      }
 
                 },
-                error: error => {
-                  this.error = "Invalid username or password";
+                error: () => {
+
+                  this.error = 'Username o password non validi';
+                  loginForm.reset();
+                  console.log(this.error);
                 }
-            });
+            }
+            
+            );
   }
 
 }

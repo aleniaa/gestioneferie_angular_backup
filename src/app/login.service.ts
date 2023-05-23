@@ -25,7 +25,9 @@ export class LoginService {
 
    }
 
-  public accediUtente(utente: Utente): Observable<Utente>{
+  //public accediUtente(utente: Utente): Observable<Utente>{
+    public accediUtente(utente: Utente){
+
     //console.log(utente);
     //return this.http.post<any>(`${this.apiServerUrl}/login`, utente, {responseType: 'text' as 'json'})
     return this.http.post<any>(`${this.apiServerUrl}/login`, utente)
@@ -38,7 +40,7 @@ export class LoginService {
         console.log("login service success");
         console.log(this.currentUserSubject.value);
       }else{
-        console.log("non funziona un cazzo");
+        console.log("login fallito");
       }
 
       return user;
@@ -54,10 +56,7 @@ export class LoginService {
     localStorage.removeItem('currentUser');
     //sessionStorage.removeItem('currentUser');
     this.currentUserSubject.next({} as any);
-    const utente: Utente = this.currentUserValue;
-    console.log("utente corrente dopo logout:");
-    //console.log(sessionStorage.getItem("currentUser"));
-    console.log(localStorage.getItem("currentUser"));
+    //const utente: Utente = this.currentUserValue;
 
   }
 
