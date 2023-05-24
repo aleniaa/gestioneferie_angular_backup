@@ -104,11 +104,11 @@
   
                 </tr>
               </thead>
-              <div *ngIf="permessi?.length == 0" >
-                    
-                <h5 class="alert-heading">Nessun permesso trovato</h5>
-              </div> 
+
               <tbody>
+                <tr *ngIf="permessi?.length == 0" >
+                  <td colspan="10">Nessun permesso trovato</td>
+                </tr>
                 <tr *ngFor= "let permesso of permessi">
                   <th scope="row">{{permesso?.tipoPermesso}}</th>
                   <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>

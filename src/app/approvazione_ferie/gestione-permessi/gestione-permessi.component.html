@@ -1,12 +1,12 @@
 
-<div class="container">
+<div class="container wrapper fadeInDown" id="formContent">
 <h2>Gestione Permessi</h2>
 
-<section class="intro" id="main-container" >
+<section class="intro fadeIn first" >
   <h3>Permessi in attesa di approvazione :</h3>
   <div class="bg-image h-100" style="background-color: #f5f7fa;">
     <div class="mask d-flex align-items-center h-100">
-      <div class="container">
+      <div class="container" >
         <div class="row justify-content-center">
           <!-- <div class="col"> -->
             <div class="card">
@@ -30,11 +30,11 @@
             
                       </tr>
                     </thead>
-                    <div *ngIf="permessiPending?.length == 0" >
-                      
-                      <h5 class="alert-heading">Nessun permesso da approvare</h5>
-                  </div> 
+
                     <tbody>
+                      <tr *ngIf="permessiPending?.length == 0" >
+                        <td colspan="10">Nessun permesso da approvare</td>
+                      </tr>
                       <tr *ngFor= "let permesso of permessiPending">
                         <th scope="row">{{permesso?.tipoPermesso}}</th>
                         <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
@@ -103,7 +103,7 @@
   </div>
 </section>
 
-<section class="intro">
+<section class="intro fadeIn second">
   <h3>Permessi approvati:</h3>
   <div class="bg-image h-100" style="background-color: #f5f7fa;">
     <div class="mask d-flex align-items-center h-100">
@@ -131,6 +131,9 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <tr *ngIf="permessiApprovati?.length == 0" >
+                        <td colspan="10">Nessun permesso approvato</td>
+                      </tr>
                       <tr *ngFor= "let permesso of permessiApprovati">
                         <th scope="row">{{permesso?.tipoPermesso}}</th>
                         <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
@@ -157,12 +160,12 @@
   </div>
 </section>
 
-<section class="intro">
+<section class="intro fadeIn third"  >
   <h3>Permessi respinti:</h3>
   <div class="bg-image h-100" style="background-color: #f5f7fa;">
     <div class="mask d-flex align-items-center h-100">
       <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" >
           <!-- <div class="col"> -->
             <div class="card">
               <div class="card-body p-0">
@@ -186,6 +189,9 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <tr *ngIf="permessiRespinti?.length == 0" >
+                        <td colspan="10">Nessun permesso respinto</td>
+                      </tr>
                       <tr *ngFor= "let permesso of permessiRespinti">
                         <th scope="row">{{permesso?.tipoPermesso}}</th>
                         <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
@@ -200,27 +206,10 @@
                         <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i class="fa fa-times"> Vedi note</i></button></td>
                       </tr>
                         
-                        <div class="modal fade" id="vediNote" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                           <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title" id="noteModalLabel">Note rilasciate:</h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                 <span aria-hidden="true">&times;</span>
-                                 </button>
-                              </div>
-                              <div class="modal-body">
-                                <p>{{permessoSelezionato?.note}}</p>
-                                <div class="modal-footer">
-                                    <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                                </div>
-                             
-                              </div>
-                           </div>
-                         </div>
-                         </div>
+
                     </tbody>
                   </table>
+
 
 
                 </div>
@@ -234,12 +223,29 @@
 </section>
 
 
-
-
-
-
-
-
-
-
 </div>
+
+
+<!-- ____________________ MODAL NOTE ________________ -->
+
+<div id="main-container">
+  <div class="modal fade" id="vediNote" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="noteModalLabel">Note rilasciate:</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+          <p>{{permessoSelezionato?.note}}</p>
+          <div class="modal-footer">
+              <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+          </div>
+       
+        </div>
+     </div>
+   </div>
+   </div>
+  </div>
