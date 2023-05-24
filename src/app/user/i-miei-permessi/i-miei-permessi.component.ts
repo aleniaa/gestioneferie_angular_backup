@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Permesso } from 'src/app/core/models/permesso';
 import { Utente } from 'src/app/core/models/utente';
+import { FileUploadService } from 'src/app/core/services/file-upload.service';
 import { PermessoService } from 'src/app/core/services/permesso.service';
 import { LoginService } from 'src/app/login.service';
 
@@ -17,8 +18,9 @@ export class IMieiPermessiComponent {
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
   public permessoDaCancellare: Permesso;
+  selectedFile: File;
 
-  constructor(private permessoService: PermessoService, private loginService: LoginService){}
+  constructor(private permessoService: PermessoService, private fileUploadService: FileUploadService){}
 
   ngOnInit()  {
     
@@ -42,6 +44,25 @@ export class IMieiPermessiComponent {
     container?.appendChild(button);
     
     button.click();
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload(): void {
+    if (this.selectedFile) {
+      this.fileUploadService.uploadFile(this.selectedFile).subscribe(
+        (response: any) => {
+          console.log(response);
+          alert('File uploaded successfully');
+        },
+        (error: any) => {
+          console.error(error);
+          alert('Failed to upload file');
+        }
+      );
+    }
   }
 
   public cancellaPermesso(permesso: Permesso): void{

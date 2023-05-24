@@ -18,4 +18,5 @@ export interface Permesso{
     utenteRichiedente: Utente;
     utenteApprovazione: Utente;
     note: String;
+    elencoFile: File[];
 }

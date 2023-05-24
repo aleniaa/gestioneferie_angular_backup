@@ -86,6 +86,9 @@
                             <th scope="col">Ore totali</th>
                             <th scope="col">Approvato da</th>
                             <th scope="col">Approvato in data</th>
+                            <th scope="col">Visualizza allegati:</th>
+                            <th scope="col">Upload allegati:</th>
+
                             
                 
                           </tr>
@@ -105,6 +108,15 @@
                             <td>{{permesso?.totOre}}</td>
                             <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
                             <td>{{permesso?.dataApprovazione}}</td>
+                            <td>visualizza</td>
+                            <td>
+                              <form>
+                                <input type="file" (change)="onFileSelected($event)" >
+                                <button (click)="onUpload()">Upload</button>
+                              </form>
+                              
+                            </td> <!--  id="elencoFile" name="elencoFile" -->
+
                             
                           </tr>
                         </tbody>
