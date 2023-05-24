@@ -50,9 +50,10 @@ export class IMieiPermessiComponent {
     this.selectedFile = event.target.files[0];
   }
 
-  onUpload(): void {
+  onUpload(permessoSelezionato: Permesso): void {
+
     if (this.selectedFile) {
-      this.fileUploadService.uploadFile(this.selectedFile).subscribe(
+      this.fileUploadService.uploadFile(this.selectedFile, permessoSelezionato).subscribe(
         (response: any) => {
           console.log(response);
           alert('File uploaded successfully');
