@@ -48,7 +48,7 @@ export class IMieiPermessiComponent {
     this.permessoService.cancellaPermesso(permesso.id).subscribe(
       (response: void) => { //jfoiewfjwoiej
         //console.log(response);
-        alert("Permesso cancellato");
+        //alert("Permesso cancellato");
         this.getPermessiRichiedenteByStatus();
 
         

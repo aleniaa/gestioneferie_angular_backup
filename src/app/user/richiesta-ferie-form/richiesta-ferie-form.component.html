@@ -19,7 +19,7 @@
 
   <div class="container" id="ferie_form">
 
-  </div>
+ 
 
   <div id="congedo_form" style="display: none;">
     
@@ -157,7 +157,7 @@
       </form>
     </div>
   </div>
-<!-- _________________________________________ FORM PERMESSI _________________________________________ -->
+  <!-- _________________________________________ FORM PERMESSI _________________________________________ -->
 
   <div id="permessi_form" style="display: none;">
     <div class="row">
@@ -309,7 +309,7 @@
                 <div class="form-group">
                   <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_ore"
                     value="checkbox_ore" required />
-                  <label class="form-check-label" for="dalleOre"> Dalle ore </label>
+                  <label class="form-check-label" for="dalleOre"> Dalle ore: </label>
                   <input type="text" [(ngModel)]="oreInizio" (ngModelChange)="updateTotOre()" name="dalleOre" class="form-control" id="dalleOre" title="Inserisci ore nel formato HH:mm" pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" required />
                 </div>
               </div>
@@ -328,7 +328,7 @@
 
               <div class="col">
                 <div class="form-group">
-                  <label class="form-check-label" for="totOre"> per un totale di ore: </label>
+                  <label class="form-check-label" for="totOre"> per un totale di: </label>
                   <input id="totOre"  [(ngModel)]="totOre" name="totOre" readonly />                  <!-- ------------------------------- -->
                 </div>
               </div>
@@ -352,40 +352,16 @@
                 </div>
               </div>
               <div class="col">
-                <div class="form-group">
-                  <label class="form-check-label" for="totOre"> per un totale di giorni: </label>
-                  <input type="text" ngModel name="totGiorni" id="totGiorni" value="totGiorni" />
-
+                
+                  
+                  <div class="form-group">
+                    <label class="form-check-label" for="totGiorni"> per un totale di giorni: </label>
+                    <input id="totGiorni" [(ngModel)]="totGiorni" name="totGiorni" readonly />
+                  
                 </div>
               </div>
             </div>
 
-            <!-- <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <input class="form-check-input" type="radio" ngModel name="assenza_per" id="checkbox_turni"
-                    value="checkbox_turni" />
-                  <label class="form-check-label" for="dal_turno"> Dal turno </label>
-                  <input type="text" ngModel name="dal_turno" id="dal_turno" />
-
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="form-check-label" for="num_turni"> per numero turni </label>
-                  <input type="text" ngModel name="num_turni" id="num_turni" />
-
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="form-check-label" for="totGiorni"> per un totale di giorni: </label>
-                  <input type="text" ngModel name="totGiorni" id="totGiorni" value="totGiorni" />
-
-                </div>
-              </div>
-            </div>
-            <input type="reset"> -->
           </div>
 
         </div>
@@ -401,6 +377,11 @@
           <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
         </div>
       </form>
+
     </div>
+    </div>
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="message">
+    {{message}}
   </div>
 </div>

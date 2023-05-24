@@ -23,18 +23,20 @@ export class RichiestaFerieFormComponent implements OnInit {
   public oreFine: string;
   public totOre: string;
   public totGiorni: number;
+  public message: string;
 
 
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) { 
     this.utenteLoggato = loginService.currentUserValue;
-    // console.log("utente loggato in ferie:");
-    // console.log(this.utenteLoggato);
+    console.log("utente loggato in ferie:");
+    console.log(this.utenteLoggato);
      this.oreInizio = "";
      this.oreFine = "";
      this.totOre = "";
      this.dataFine= "";
      this.dataInizio="";
+     this.message="";
 
   }
 
@@ -45,6 +47,10 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   public updateTotOre(){
+    if(this.oreInizio===null || this.oreFine===null ){
+      this.oreInizio = "";
+      this.oreFine = "";
+    }
     if(this.oreInizio.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$") && this.oreFine.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")){
       const [hours1, minutes1] = this.oreInizio.split(":");
       const [hours2, minutes2] = this.oreFine.split(":");    //const oreInizioD: Date = new Date(this.oreInizio);
@@ -101,14 +107,14 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   public aggiungiPermesso(permessoForm: NgForm): void{
-    // console.log("il permesso è: ");
-
-    // console.log(permessoForm.value);
+    console.log("utente loggato in ferie:");
+    console.log(this.utenteLoggato);
     this.permessoService.aggiungiPermesso(permessoForm.value).subscribe(
-      (response: Permesso) => { //jfoiewfjwoiej
+      (response: string) => { 
+        this.message=response;
         console.log(response);
         permessoForm.reset();
-        alert("Richiesta inviata correttamente");
+        
       
       },
       (error: HttpErrorResponse) => {

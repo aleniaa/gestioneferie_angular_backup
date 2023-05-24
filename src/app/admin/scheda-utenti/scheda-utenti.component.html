@@ -139,7 +139,7 @@
                </div>
                <input type="hidden" ngModel="{{modificaUtente?.id}}" name="id" class="form-control" id="id" > <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
                <input type="hidden" ngModel="{{modificaUtente?.codiceUtente}}" name="codiceUtente" class="form-control" id="codiceUtente">
-               <input type="hidden" ngModel="{{modificaUtente?.password}}" name="password" class="form-control" id="password">
+               <!-- <input type="hidden" ngModel="{{modificaUtente?.password}}" name="password" class="form-control" id="password"> -->
                <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf" class="form-control" id="accountDipvvf"> 
 
                <div class="form-group">
@@ -156,7 +156,7 @@
                </div>
                <div class="form-group">
                   <label for="password">Modifica password:</label>
-                  <input type="text" ngModel name="password" class="form-control" id="password" placeholder="inserisci nuova password" >
+                  <input type="password" ngModel="{{modificaUtente?.password}}" name="password" class="form-control" id="password" placeholder="inserisci nuova password" >
                </div>
                <div class="form-group">
                    <label for="ruolo">Ruolo</label>

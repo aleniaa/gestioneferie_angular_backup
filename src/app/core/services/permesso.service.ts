@@ -18,8 +18,13 @@ export class PermessoService {
 
   }
 
-  public aggiungiPermesso(permesso: Permesso): Observable<Permesso>{
-    return this.http.post<Permesso>(`${this.apiServerUrl}/permesso/add`, permesso);
+  // public aggiungiPermesso(permesso: Permesso): Observable<Permesso>{
+  //   return this.http.post<Permesso>(`${this.apiServerUrl}/permesso/add`, permesso);
+
+  // }
+
+  public aggiungiPermesso(permesso: Permesso){
+    return this.http.post<any>(`${this.apiServerUrl}/permesso/add`, permesso, {responseType: 'text' as 'json'});
 
   }
 
