@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/enviroments/environment';
@@ -21,10 +21,16 @@ export class FileUploadService {
     return this.http.post<any>(`${this.apiServerUrl}/upload/uploadFile`, formData, {responseType: 'text' as 'json'});
   }
 
-  getFiles(idPermesso:number): Observable<any> {
+  getFiles(idPermesso:number): Observable<File[]> {
     let params = new HttpParams()
     .set('idPermesso', idPermesso);
-    return this.http.get(`${this.apiServerUrl}/upload/getFile`,{params: params});
+    const headers = new HttpHeaders().append('Accept', 'application/octet-stream');
+
+    return this.http.get<File[]>(`${this.apiServerUrl}/upload/getFile`,{
+      params,
+      //headers,
+      //responseType: 'blob' as 'json'
+    });
   }
   
 }

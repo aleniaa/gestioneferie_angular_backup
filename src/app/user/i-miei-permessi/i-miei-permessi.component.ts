@@ -19,6 +19,7 @@ export class IMieiPermessiComponent {
   public permessoSelezionato: Permesso;
   public permessoDaCancellare: Permesso;
   selectedFile: File;
+  allegato: File[];
 
   constructor(private permessoService: PermessoService, private fileUploadService: FileUploadService){}
 
@@ -66,8 +67,9 @@ export class IMieiPermessiComponent {
 
     
     this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
-      (response: any) => {
+      (response: File[]) => {
         console.log(response);
+        this.allegato= response;
         alert('file ricevuti');
       },
       (error: any) => {
@@ -77,22 +79,41 @@ export class IMieiPermessiComponent {
     );
   }
 
-  // onUpload(permessoSelezionato: Permesso): void {
 
-  //   if (this.selectedFile) {
-  //     console.log(this.selectedFile)
-  //     this.fileUploadService.uploadFile(this.selectedFile, permessoSelezionato).subscribe(
-  //       (response: any) => {
-  //         console.log(response);
-  //         alert('File uploaded successfully');
-  //       },
-  //       (error: any) => {
-  //         console.error(error);
-  //         alert('Failed to upload file');
-  //       }
-  //     );
-  //   }
+  // downloadFile(): void {
+
+  //       const url = window.URL.createObjectURL(this.allegato);
+  //       const a = document.createElement('a');
+  //       document.body.appendChild(a);
+  //       a.href = url;
+  //       a.download = 'filename.ext'; // Set the desired filename
+  //       a.click();
+  //       window.URL.revokeObjectURL(url);
+  //       a.remove();
+
   // }
+
+  downloadFiles(): void {
+    if (this.allegato && this.allegato.length > 0) {
+      for (let i = 0; i < this.allegato.length; i++) {
+        const file = this.allegato[i];
+        const url = window.URL.createObjectURL(file);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = file.name; // Set the desired filename
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
+      }
+    } else {
+      // Handle the case when allegato is empty or null
+      console.error('No files to download');
+    }
+  }
+  
+  
+  
 
   
   onUpload(): void {
