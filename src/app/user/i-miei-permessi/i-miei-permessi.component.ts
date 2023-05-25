@@ -48,13 +48,58 @@ export class IMieiPermessiComponent {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
+
   }
 
-  onUpload(permessoSelezionato: Permesso): void {
+  onVisualizzaAllegati(permesso: Permesso):void{
+    this.permessoSelezionato = permesso;
+    const button = document.createElement('button');
+    const container= document.getElementById('main-container');
+    
+    button.type= 'button';
+    button.style.display= 'none';
+    button.setAttribute('data-toggle','modal');
+    button.setAttribute('data-target','#visualizzaAllegatiModal');
+    container?.appendChild(button);
+    
+    button.click();
+
+    
+    this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
+      (response: any) => {
+        console.log(response);
+        alert('file ricevuti');
+      },
+      (error: any) => {
+        console.error(error);
+        alert('errore');
+      }
+    );
+  }
+
+  // onUpload(permessoSelezionato: Permesso): void {
+
+  //   if (this.selectedFile) {
+  //     console.log(this.selectedFile)
+  //     this.fileUploadService.uploadFile(this.selectedFile, permessoSelezionato).subscribe(
+  //       (response: any) => {
+  //         console.log(response);
+  //         alert('File uploaded successfully');
+  //       },
+  //       (error: any) => {
+  //         console.error(error);
+  //         alert('Failed to upload file');
+  //       }
+  //     );
+  //   }
+  // }
+
+  
+  onUpload(): void {
 
     if (this.selectedFile) {
       console.log(this.selectedFile)
-      this.fileUploadService.uploadFile(this.selectedFile, permessoSelezionato).subscribe(
+      this.fileUploadService.uploadFile(this.selectedFile, this.permessoSelezionato).subscribe(
         (response: any) => {
           console.log(response);
           alert('File uploaded successfully');
@@ -66,6 +111,9 @@ export class IMieiPermessiComponent {
       );
     }
   }
+
+
+
 
   public cancellaPermesso(permesso: Permesso): void{
     this.permessoService.cancellaPermesso(permesso.id).subscribe(
