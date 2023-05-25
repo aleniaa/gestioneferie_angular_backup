@@ -18,7 +18,11 @@ export class FileUploadService {
     formData.append('file', file);
     formData.append('permesso', JSON.stringify(permesso));
 
-    return this.http.post<any>(`${this.apiServerUrl}/permesso/uploadFile`, formData);
+    return this.http.post<any>(`${this.apiServerUrl}/permesso/uploadFile`, formData, {responseType: 'text' as 'json'});
+  }
+
+  getFiles(): Observable<any> {
+    return this.http.get(`$${this.apiServerUrl}/permesso/getFiles`);
   }
   
 }

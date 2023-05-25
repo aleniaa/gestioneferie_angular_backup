@@ -53,6 +53,7 @@ export class IMieiPermessiComponent {
   onUpload(permessoSelezionato: Permesso): void {
 
     if (this.selectedFile) {
+      console.log(this.selectedFile)
       this.fileUploadService.uploadFile(this.selectedFile, permessoSelezionato).subscribe(
         (response: any) => {
           console.log(response);
