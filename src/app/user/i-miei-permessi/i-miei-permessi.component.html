@@ -259,10 +259,18 @@
          <div class="modal-body">
           
             <p>Sicuro di voler cancellare l'utente ? </p>
-            <form>
-              <input type="file" (change)="onFileSelected($event)" >
+            <form enctype="multipart/form-data">
+              <input type="file" (change)="onFileSelected($event)" name="files" multiple class="form-control" >
             </form>
-            <div (click)="downloadFiles()">Download File</div>
+            <div *ngIf="filenames?.length > 0" class="js-upload-finished">
+              <h3>Processed files</h3>
+              <div *ngFor="let filename of filenames" class="list-group">
+                <a (click)="onDownloadFile(filename)" class="list-group-item list-group-item-success" style="cursor: pointer;">
+                  {{ filename }}            
+                  <a class="alert-success float-right">Download</a>
+                </a><br>
+              </div>
+            </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
     
