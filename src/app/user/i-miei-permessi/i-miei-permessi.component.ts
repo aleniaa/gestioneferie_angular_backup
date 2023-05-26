@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Permesso } from 'src/app/core/models/permesso';
 import { Utente } from 'src/app/core/models/utente';
 import { FileUploadService } from 'src/app/core/services/file-upload.service';
@@ -23,8 +23,11 @@ export class IMieiPermessiComponent {
   allegato: File[];
   filenames: string[] = [];
   fileStatus = { status: '', requestType: '', percent: 0 };
+  @ViewChild('fileForm') fileInputRef!: ElementRef<HTMLInputElement>;
 
-  constructor(private permessoService: PermessoService, private fileUploadService: FileUploadService){}
+  constructor(private permessoService: PermessoService, private fileUploadService: FileUploadService){
+    this.selectedFile=null;
+  }
 
   ngOnInit()  {
     
@@ -52,8 +55,12 @@ export class IMieiPermessiComponent {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files;
-
+    if(this.selectedFile){
+      document.getElementById("selectFileAlert").style.display = "none";
+    }
   }
+
+
 
   onVisualizzaAllegati(permesso: Permesso):void{
     this.permessoSelezionato = permesso;
@@ -78,47 +85,12 @@ export class IMieiPermessiComponent {
         console.log(error);
       }
     );
+
+    this.filenames=[];
   }
 
-
-  // downloadFile(): void {
-
-  //       const url = window.URL.createObjectURL(this.allegato);
-  //       const a = document.createElement('a');
-  //       document.body.appendChild(a);
-  //       a.href = url;
-  //       a.download = 'filename.ext'; // Set the desired filename
-  //       a.click();
-  //       window.URL.revokeObjectURL(url);
-  //       a.remove();
-
-  // }
-
-  // downloadFiles(): void {
-  //   if (this.allegato && this.allegato.length > 0) {
-  //     for (let i = 0; i < this.allegato.length; i++) {
-  //       const file = this.allegato[i];
-  //       const url = window.URL.createObjectURL(file);
-  //       const a = document.createElement('a');
-  //       document.body.appendChild(a);
-  //       a.href = url;
-  //       a.download = file.name; // Set the desired filename
-  //       a.click();
-  //       window.URL.revokeObjectURL(url);
-  //       a.remove();
-  //     }
-  //   } else {
-  //     // Handle the case when allegato is empty or null
-  //     console.error('No files to download');
-  //   }
-  // }
-  
-  onUpload(): void {
-    const formData = new FormData();
-    for (const file of this.selectedFile) { 
-      formData.append('files', file, file.name);
-     }
-    this.fileUploadService.uploadFile(formData, this.permessoSelezionato).subscribe(
+  getUploadedFile(){
+    this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
       event => {
         console.log(event);
         this.resportProgress(event);
@@ -127,6 +99,39 @@ export class IMieiPermessiComponent {
         console.log(error);
       }
     );
+
+    this.filenames=[];
+  }
+
+
+  
+  onUpload(): void {
+    const formData = new FormData();
+    if(this.selectedFile){
+      for (const file of this.selectedFile) { 
+        formData.append('files', file, file.name);
+       }
+      this.fileUploadService.uploadFile(formData, this.permessoSelezionato).subscribe(
+        event => {
+          console.log(event);
+          this.resportProgress(event);
+          this.selectedFile=null;
+          
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      );
+
+      if (this.fileInputRef) {
+        this.fileInputRef.nativeElement.value = "";
+
+      }
+      
+    }else{
+      document.getElementById("selectFileAlert").style.display = "block";
+    }
+
   }
 
     // define a function to download files
@@ -141,25 +146,19 @@ export class IMieiPermessiComponent {
         }
       );
     }
-  
 
+    onDeleteFile(filename: string){
+      this.fileUploadService.deleteFile(filename, this.permessoSelezionato.id).subscribe(
+        (response: void) => { 
+          this.getUploadedFile();
   
-  // onUpload(): void {
-
-  //   if (this.selectedFile) {
-  //     console.log(this.selectedFile)
-  //     this.fileUploadService.uploadFile(this.selectedFile, this.permessoSelezionato).subscribe(
-  //       (response: any) => {
-  //         console.log(response);
-  //         alert('File uploaded successfully');
-  //       },
-  //       (error: any) => {
-  //         console.error(error);
-  //         alert('Failed to upload file');
-  //       }
-  //     );
-  //   }
-  // }
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        },
+      );
+    }
+  
 
 
   private resportProgress(httpEvent: HttpEvent<string[] | Blob>): void {
@@ -179,14 +178,10 @@ export class IMieiPermessiComponent {
           for (const filename of httpEvent.body) {
             this.filenames.unshift(filename);
           }
+          console.log('Ho appena aggiunto un file a filenames');
         } else {
           saveAs(new File([httpEvent.body!], httpEvent.headers.get('Content-Disposition').split(';')[1].trim().substring(9)!, 
                   {type: `${httpEvent.headers.get('Content-Type')};charset=utf-8`}));
-          // saveAs(new Blob([httpEvent.body!], 
-          //   { type: `${httpEvent.headers.get('Content-Type')};charset=utf-8`}),
-          //    httpEvent.headers.get('File-Name'));
-          console.log(httpEvent.headers.get('Content-Disposition').split(';')[1].trim().substring(9));
-          console.log(httpEvent.headers.get('Content-Type'));
 
         }
         this.fileStatus.status = 'done';

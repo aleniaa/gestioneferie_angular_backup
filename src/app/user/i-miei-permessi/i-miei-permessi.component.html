@@ -108,7 +108,7 @@
                             <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
                             <td>{{permesso?.dataApprovazione}}</td>
                             <td>   
-                              <button (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
+                              <button class="btn btn-primary tooltips" (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
 <!-- 
                               <form>
                                 <input type="file" (change)="onFileSelected($event)" >
@@ -256,28 +256,41 @@
             <span aria-hidden="true">&times;</span>
             </button>
          </div>
+
          <div class="modal-body">
           
-          <h3>Allegati trovati:</h3>
+          <h3>Allegati:</h3>
+          <ng-container *ngIf="filenames?.length > 0; else noFiles">
           <div *ngIf="filenames?.length > 0" class="js-upload-finished">
             <div *ngFor="let filename of filenames" class="list-group">
-              <a (click)="onDownloadFile(filename)" class="list-group-item list-group-item-success" style="cursor: pointer;">
-                {{ filename }}            
-                <a class="alert-success float-right">Download</a>
-              </a><br>
+              <div class="list-group-item list-group-item-success">
+                <p>{{ filename }} </p>
+              <a (click)="onDownloadFile(filename)" class="float-right downloadAndEliminalink" #downloadFileButton >Download</a>
+              <a (click)="onDeleteFile(filename)" class="float-right downloadAndEliminalink" #eliminaFileButton >Elimina</a>
+           
+                
+              </div><br>
             </div>
           </div>
-            <form enctype="multipart/form-data">
-              <input type="file" (change)="onFileSelected($event)" name="files" multiple class="form-control" >
+        </ng-container>
+        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!</div>
+        <ng-template #noFiles>
+          <div class="alert alert-dark" role="alert">Nessun allegato presente.</div>
+        </ng-template>
+
+            <form id="fileForm" enctype="multipart/form-data">
+              <input type="file" (change)="onFileSelected($event)" name="files" multiple class="form-control" id="fileInput">
             </form>
 
             <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
     
-                <button (click)="onUpload()">Upload</button>
+                <button (click)="onUpload()" class="btn btn-primary tooltips">Upload</button>
                          
             </div>
          </div>
+
+
       </div>
    </div> 
  </div>

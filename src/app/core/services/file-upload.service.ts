@@ -13,14 +13,6 @@ export class FileUploadService {
   
   constructor(private http: HttpClient) {}
 
-  // uploadFile(file: File, permesso: Permesso): Observable<any> {
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   formData.append('permesso', JSON.stringify(permesso));
-
-  //   return this.http.post<any>(`${this.apiServerUrl}/upload/uploadFile`, formData, {responseType: 'text' as 'json'});
-  // }
-
   uploadFile(formData: FormData, permesso: Permesso): Observable<any> {
 
     formData.append('permesso', JSON.stringify(permesso));
@@ -52,6 +44,18 @@ export class FileUploadService {
         observe: 'events',
         responseType: 'blob'
       });
+    }
+
+    deleteAllFile(filename: string, idPermesso:number): Observable<void>{
+      let params = new HttpParams()
+      .set('idPermesso', idPermesso);
+        return this.http.delete<void>(`${this.apiServerUrl}/upload/deleteAllFile/${filename}`, {params});
+    }
+
+    deleteFile(filename: string, idPermesso:number): Observable<void>{
+      let params = new HttpParams()
+      .set('idPermesso', idPermesso);
+        return this.http.delete<void>(`${this.apiServerUrl}/upload/deleteFile/${filename}`, {params});
     }
   
 }
