@@ -31,15 +31,14 @@ export class FileUploadService {
     });
   }
 
-  getFiles(idPermesso:number): Observable<File[]> {
+  getFiles(idPermesso:number): Observable<any> {
     let params = new HttpParams()
     .set('idPermesso', idPermesso);
-    const headers = new HttpHeaders().append('Accept', 'application/octet-stream');
 
-    return this.http.get<File[]>(`${this.apiServerUrl}/upload/getFile`,{
+    return this.http.get<string[]>(`${this.apiServerUrl}/upload/getFile`,{
       params,
-      //headers,
-      //responseType: 'blob' as 'json'
+      reportProgress: true,
+      observe: 'events'
     });
   }
 

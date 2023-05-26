@@ -5,6 +5,7 @@ import { Utente } from 'src/app/core/models/utente';
 import { FileUploadService } from 'src/app/core/services/file-upload.service';
 import { PermessoService } from 'src/app/core/services/permesso.service';
 import { LoginService } from 'src/app/login.service';
+import { saveAs } from 'file-saver-es';
 
 @Component({
   selector: 'app-i-miei-permessi',
@@ -68,17 +69,15 @@ export class IMieiPermessiComponent {
     button.click();
 
     
-    // this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
-    //   (response: File[]) => {
-    //     console.log(response);
-    //     this.allegato= response;
-    //     alert('file ricevuti');
-    //   },
-    //   (error: any) => {
-    //     console.error(error);
-    //     alert('errore');
-    //   }
-    // );
+    this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
+      event => {
+        console.log(event);
+        this.resportProgress(event);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
   }
 
 
@@ -95,24 +94,24 @@ export class IMieiPermessiComponent {
 
   // }
 
-  downloadFiles(): void {
-    if (this.allegato && this.allegato.length > 0) {
-      for (let i = 0; i < this.allegato.length; i++) {
-        const file = this.allegato[i];
-        const url = window.URL.createObjectURL(file);
-        const a = document.createElement('a');
-        document.body.appendChild(a);
-        a.href = url;
-        a.download = file.name; // Set the desired filename
-        a.click();
-        window.URL.revokeObjectURL(url);
-        a.remove();
-      }
-    } else {
-      // Handle the case when allegato is empty or null
-      console.error('No files to download');
-    }
-  }
+  // downloadFiles(): void {
+  //   if (this.allegato && this.allegato.length > 0) {
+  //     for (let i = 0; i < this.allegato.length; i++) {
+  //       const file = this.allegato[i];
+  //       const url = window.URL.createObjectURL(file);
+  //       const a = document.createElement('a');
+  //       document.body.appendChild(a);
+  //       a.href = url;
+  //       a.download = file.name; // Set the desired filename
+  //       a.click();
+  //       window.URL.revokeObjectURL(url);
+  //       a.remove();
+  //     }
+  //   } else {
+  //     // Handle the case when allegato is empty or null
+  //     console.error('No files to download');
+  //   }
+  // }
   
   onUpload(): void {
     const formData = new FormData();
@@ -181,11 +180,14 @@ export class IMieiPermessiComponent {
             this.filenames.unshift(filename);
           }
         } else {
-          saveAs(new File([httpEvent.body!], httpEvent.headers.get('File-Name')!, 
+          saveAs(new File([httpEvent.body!], httpEvent.headers.get('Content-Disposition').split(';')[1].trim().substring(9)!, 
                   {type: `${httpEvent.headers.get('Content-Type')};charset=utf-8`}));
           // saveAs(new Blob([httpEvent.body!], 
           //   { type: `${httpEvent.headers.get('Content-Type')};charset=utf-8`}),
           //    httpEvent.headers.get('File-Name'));
+          console.log(httpEvent.headers.get('Content-Disposition').split(';')[1].trim().substring(9));
+          console.log(httpEvent.headers.get('Content-Type'));
+
         }
         this.fileStatus.status = 'done';
         break;
