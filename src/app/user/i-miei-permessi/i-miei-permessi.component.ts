@@ -94,6 +94,7 @@ export class IMieiPermessiComponent {
       event => {
         console.log(event);
         this.resportProgress(event);
+
       },
       (error: HttpErrorResponse) => {
         console.log(error);
