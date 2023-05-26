@@ -61,7 +61,7 @@ export class LoginService {
   checkPassword(password: string){
     let params = new HttpParams()
     .set('password', password);
-    return this.http.post<any>(`${this.apiServerUrl}/permesso/add`, {params:params}, {responseType: 'text' as 'json'});
+    return this.http.put<any>(`${this.apiServerUrl}/login/checkPass`, {params:params}, {responseType: 'text' as 'json'});
 
   }
 
