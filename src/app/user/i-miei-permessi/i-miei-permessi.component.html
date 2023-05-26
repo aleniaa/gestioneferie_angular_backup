@@ -1,293 +1,302 @@
-
 <div class="container wrapper fadeInDown">
-    <h2>I miei permessi</h2>
-    
-    <section class="intro fadeIn first">
-      <h3>Permessi in attesa di approvazione :</h3>
-      <div class="bg-image h-100" style="background-color: #f5f7fa;">
-        <div class="mask d-flex align-items-center h-100">
-          <div class="container">
-            <div class="row justify-content-center">
-              <!-- <div class="col"> -->
-                <div class="card">
-                  <div class="card-body p-0">
-                    <div class="table-responsive bg-white table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
-                      
-                      <table class="table table-striped mb-0">
-                        <thead style="background-color: #002d72; position: sticky;top: 0;">
-                          <tr>
-                            <th scope="col">Tipo permesso</th>
-                            <th scope="col">Dal giorno</th>
-                            <th scope="col">Al giorno</th>
-                            <th scope="col">Giorni totali</th>
-                            <th scope="col">Dalle ore</th>
-                            <th scope="col">Alle ore</th>
-                            <th scope="col">Ore totali</th>
-                            <th scope="col">In revisione da</th>
-                            <th scope="col">Allegati:</th>
-                            <th scope="col"></th>
+  <h2>I miei permessi</h2>
 
-                
-                          </tr>
-                        </thead> 
-                        <tbody>
-                          <tr *ngIf="permessiPending?.length == 0" >
-                            <td colspan="10">Nessun permesso da approvare</td>
-                          </tr>
-                          <tr *ngFor= "let permesso of permessiPending">
-                            <th scope="row">{{permesso?.tipoPermesso}}</th>
-                            <td>{{permesso?.dataInizio}}</td>
-                            <td>{{permesso?.dataFine}}</td>
-                            <td>{{permesso?.totGiorni}}</td>
-                            <td>{{permesso?.dalleOre}}</td>
-                            <td>{{permesso?.alleOre}}</td>
-                            <td>{{permesso?.totOre}}</td>
-                            <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
-                            <td><button class="btn btn-primary tooltips" (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td> 
-                            <td><button (click)="selezionaPermessoDaCancellare(permesso)" class="btn btn-danger" data-placement="top" data-toggle="tooltip" data-original-title="eliminaPermesso"><i class="fa fa-times">Elimina</i></button></td>
+  <section class="intro fadeIn first">
+    <h3>Permessi in attesa di approvazione :</h3>
 
-                            
-                          </tr>
-                        </tbody>
-                      </table>
-    
-    
-                    </div>
-                  </div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <!-- <div class="col"> -->
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive bg-white table-scroll" data-mdb-perfect-scrollbar="true"
+                  style="position: relative;">
+
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #002d72; position: sticky;top: 0;">
+                      <tr>
+                        <th scope="col">Tipo permesso</th>
+                        <th scope="col">Dal giorno</th>
+                        <th scope="col">Al giorno</th>
+                        <th scope="col">Giorni totali</th>
+                        <th scope="col">Dalle ore</th>
+                        <th scope="col">Alle ore</th>
+                        <th scope="col">Ore totali</th>
+                        <th scope="col">In revisione da</th>
+                        <th scope="col">Allegati:</th>
+                        <th scope="col"></th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngIf="permessiPending?.length == 0">
+                        <td colspan="10">Nessun permesso da approvare</td>
+                      </tr>
+                      <tr *ngFor="let permesso of permessiPending">
+                        <th scope="row">{{permesso?.tipoPermesso}}</th>
+                        <td>{{permesso?.dataInizio}}</td>
+                        <td>{{permesso?.dataFine}}</td>
+                        <td>{{permesso?.totGiorni}}</td>
+                        <td>{{permesso?.dalleOre}}</td>
+                        <td>{{permesso?.alleOre}}</td>
+                        <td>{{permesso?.totOre}}</td>
+                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
+                        <td><button class="btn btn-primary tooltips"
+                            (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td>
+                        <td><button (click)="selezionaPermessoDaCancellare(permesso)" class="btn btn-danger"
+                            data-placement="top" data-toggle="tooltip" data-original-title="eliminaPermesso"><i
+                              class="fa fa-times">Elimina</i></button></td>
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+
                 </div>
-              <!-- </div> -->
+              </div>
             </div>
+            <!-- </div> -->
           </div>
-        </div>
-      </div>
 
-
-
-    </section>
-    
-    <section class="intro fadeIn second">
-      <h3>Permessi approvati:</h3>
-      <div class="bg-image h-100" style="background-color: #f5f7fa;">
-        <div class="mask d-flex align-items-center h-100">
-          <div class="container">
-            <div class="row justify-content-center">
-              <!-- <div class="col"> -->
-                <div class="card">
-                  <div class="card-body p-0">
-                    <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
-                      
-                      <table class="table table-striped mb-0">
-                        <thead style="background-color: #002d72; position: sticky;top: 0;">
-                          <tr>
-                            <th scope="col">Tipo permesso</th>
-                            <th scope="col">Dal giorno</th>
-                            <th scope="col">Al giorno</th>
-                            <th scope="col">Giorni totali</th>
-                            <th scope="col">Dalle ore</th>
-                            <th scope="col">Alle ore</th>
-                            <th scope="col">Ore totali</th>
-                            <th scope="col">Approvato da</th>
-                            <th scope="col">Approvato in data</th>
-                            <th scope="col">Allegati:</th>
-
-                            
-                
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <tr *ngIf="permessiApprovati?.length == 0" >
-                            <td colspan="10">Nessun permesso approvato</td>
-                          </tr>
-                          <tr *ngFor= "let permesso of permessiApprovati">
-                            <th scope="row">{{permesso?.tipoPermesso}}</th>
-                            <td>{{permesso?.dataInizio}}</td>
-                            <td>{{permesso?.dataFine}}</td>
-                            <td>{{permesso?.totGiorni}}</td>
-                            <td>{{permesso?.dalleOre}}</td>
-                            <td>{{permesso?.alleOre}}</td>
-                            <td>{{permesso?.totOre}}</td>
-                            <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
-                            <td>{{permesso?.dataApprovazione}}</td>
-                            <td><button class="btn btn-primary tooltips" (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td> 
-
-                              
-                            
-
-                            
-                          </tr>
-                        </tbody>
-                      </table>
-    
-    
-                    </div>
-                  </div>
-                </div>
-              <!-- </div> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section class="intro fadeIn third" id="main-container">
-      <h3>Permessi respinti:</h3>
-      <div class="bg-image h-100" style="background-color: #f5f7fa;">
-        <div class="mask d-flex align-items-center h-100">
-          <div class="container">
-            <div class="row justify-content-center">
-              <!-- <div class="col"> -->
-                <div class="card">
-                  <div class="card-body p-0">
-                    <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
-                      
-                      <table class="table table-striped mb-0">
-                        <thead style="background-color: #002d72;position: sticky;top: 0;">
-                          <tr>
-                            <th scope="col">Tipo permesso</th>
-                            <th scope="col">Dal giorno</th>
-                            <th scope="col">Al giorno</th>
-                            <th scope="col">Giorni totali</th>
-                            <th scope="col">Dalle ore</th>
-                            <th scope="col">Alle ore</th>
-                            <th scope="col">Ore totali</th>
-                            <th scope="col">Respinto da</th>
-                            <th scope="col">Respinto in data</th>
-                            <th scope="col">Note:</th>
-                            
-                
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <tr *ngIf="permessiRespinti?.length == 0" >
-                            <td colspan="10">Nessun permesso respinto</td>
-                          </tr>
-                          <tr *ngFor= "let permesso of permessiRespinti">
-                            <th scope="row">{{permesso?.tipoPermesso}}</th>
-                            <td>{{permesso?.dataInizio}}</td>
-                            <td>{{permesso?.dataFine}}</td>
-                            <td>{{permesso?.totGiorni}}</td>
-                            <td>{{permesso?.dalleOre}}</td>
-                            <td>{{permesso?.alleOre}}</td>
-                            <td>{{permesso?.totOre}}</td>
-                            <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
-                            <td>{{permesso?.dataApprovazione}}</td>
-                            <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i class="fa fa-times"> Vedi note</i></button></td>
-                          </tr>
-                            
-
-                            
-                            
-                          
-                        </tbody>
-                      </table>
-    
-    
-                    </div>
-                  </div>
-                </div>
-              <!-- </div> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
     </div>
 
-    
+
+
+  </section>
+
+  <section class="intro fadeIn second">
+    <h3>Permessi approvati:</h3>
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <!-- <div class="col"> -->
+            <div class="card">
+              <div class="card-body p-0">
+                <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #002d72; position: sticky;top: 0;">
+                      <tr>
+                        <th scope="col">Tipo permesso</th>
+                        <th scope="col">Dal giorno</th>
+                        <th scope="col">Al giorno</th>
+                        <th scope="col">Giorni totali</th>
+                        <th scope="col">Dalle ore</th>
+                        <th scope="col">Alle ore</th>
+                        <th scope="col">Ore totali</th>
+                        <th scope="col">Approvato da</th>
+                        <th scope="col">Approvato in data</th>
+                        <th scope="col">Allegati:</th>
+
+
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr *ngIf="permessiApprovati?.length == 0">
+                        <td colspan="10">Nessun permesso approvato</td>
+                      </tr>
+                      <tr *ngFor="let permesso of permessiApprovati">
+                        <th scope="row">{{permesso?.tipoPermesso}}</th>
+                        <td>{{permesso?.dataInizio}}</td>
+                        <td>{{permesso?.dataFine}}</td>
+                        <td>{{permesso?.totGiorni}}</td>
+                        <td>{{permesso?.dalleOre}}</td>
+                        <td>{{permesso?.alleOre}}</td>
+                        <td>{{permesso?.totOre}}</td>
+                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
+                        <td>{{permesso?.dataApprovazione}}</td>
+                        <td><button class="btn btn-primary tooltips"
+                            (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td>
+
+
+
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+          </div>
+        </div>
+
+  </section>
+
+  <section class="intro fadeIn third" id="main-container">
+    <h3>Permessi respinti:</h3>
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <!-- <div class="col"> -->
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                  style="position: relative;">
+
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #002d72;position: sticky;top: 0;">
+                      <tr>
+                        <th scope="col">Tipo permesso</th>
+                        <th scope="col">Dal giorno</th>
+                        <th scope="col">Al giorno</th>
+                        <th scope="col">Giorni totali</th>
+                        <th scope="col">Dalle ore</th>
+                        <th scope="col">Alle ore</th>
+                        <th scope="col">Ore totali</th>
+                        <th scope="col">Respinto da</th>
+                        <th scope="col">Respinto in data</th>
+                        <th scope="col">Note:</th>
+
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr *ngIf="permessiRespinti?.length == 0">
+                        <td colspan="10">Nessun permesso respinto</td>
+                      </tr>
+                      <tr *ngFor="let permesso of permessiRespinti">
+                        <th scope="row">{{permesso?.tipoPermesso}}</th>
+                        <td>{{permesso?.dataInizio}}</td>
+                        <td>{{permesso?.dataFine}}</td>
+                        <td>{{permesso?.totGiorni}}</td>
+                        <td>{{permesso?.dalleOre}}</td>
+                        <td>{{permesso?.alleOre}}</td>
+                        <td>{{permesso?.totOre}}</td>
+                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
+                        <td>{{permesso?.dataApprovazione}}</td>
+                        <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips"
+                            data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i
+                              class="fa fa-times"> Vedi note</i></button></td>
+                      </tr>
+
+
+
+
+
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+          </div>
+        </div>
+
+  </section>
+
+
+</div>
+
+
 <!-- ____________ NOTE MODAL______________ -->
 
 <div class="modal fade" id="vediNote" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-   <div class="modal-content">
+    <div class="modal-content">
       <div class="modal-header">
-         <h5 class="modal-title" id="noteModalLabel">Note rilasciate:</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-         </button>
+        <h5 class="modal-title" id="noteModalLabel">Note rilasciate:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <p>{{permessoSelezionato?.note}}</p>
         <div class="modal-footer">
-            <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+          <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
         </div>
-     
+
       </div>
-   </div>
- </div>
- </div>
+    </div>
+  </div>
+</div>
 
-         <!-- Delete Modal -->
-         <div class="modal fade" id="eliminaPermessoModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="deleteModelLabel">Cancella utente</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body">
-                  <p>Sicuro di voler cancellare il permesso {{permessoDaCancellare?.tipoPermesso}} del {{permessoDaCancellare?.dataInizio}}? </p>
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                     <button (click)="cancellaPermesso(permessoDaCancellare)" class="btn btn-danger" data-dismiss="modal">Si</button>
-                  </div>
-               </div>
-            </div>
-         </div> 
-       </div>
+<!-- Delete Modal -->
+<div class="modal fade" id="eliminaPermessoModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModelLabel">Cancella utente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Sicuro di voler cancellare il permesso {{permessoDaCancellare?.tipoPermesso}} del
+          {{permessoDaCancellare?.dataInizio}}? </p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button (click)="cancellaPermesso(permessoDaCancellare)" class="btn btn-danger"
+            data-dismiss="modal">Si</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-         <!-- Visualizza allegati modal -->
+<!-- Visualizza allegati modal -->
 
-  <div class="modal fade" id="visualizzaAllegatiModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="deleteModelLabel">Allegati</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
+<div class="modal fade" id="visualizzaAllegatiModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModelLabel">Allegati</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-         <div class="modal-body">
-          
-          <h3>Allegati:</h3>
-          <ng-container *ngIf="filenames?.length > 0; else noFiles">
+      <div class="modal-body">
+
+        <h3>Allegati:</h3>
+        <ng-container *ngIf="filenames?.length > 0; else noFiles">
           <div *ngIf="filenames?.length > 0" class="js-upload-finished">
-            <div *ngFor="let filename of filenames" class="list-group">
+            <div *ngFor="let filename of filenames" class="list-group" style="padding-bottom: 5px;">
               <div class="list-group-item list-group-item-success">
-                <p>{{ filename }} </p>
-              <a (click)="onDownloadFile(filename)" class="float-right downloadAndEliminalink" #downloadFileButton >Download</a>
-              <a (click)="onDeleteFile(filename)" class="float-right downloadAndEliminalink" #eliminaFileButton >Elimina</a>
-           
-                
-              </div><br>
+                <div class="filename">{{ filename }} </div>
+                <a (click)="onDownloadFile(filename)" class="float-right downloadAndEliminalink"
+                  #downloadFileButton>Download</a>
+                <a (click)="onDeleteFile(filename)" class="float-right downloadAndEliminalink"
+                  #eliminaFileButton>Elimina</a>
+
+
+              </div>
             </div>
           </div>
         </ng-container>
-        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!</div>
+
         <ng-template #noFiles>
           <div class="alert alert-dark" role="alert">Nessun allegato presente.</div>
         </ng-template>
 
-            <form id="fileForm" enctype="multipart/form-data">
-              <input type="file" (change)="onFileSelected($event)" accept="image/*, application/pdf" name="files" multiple class="form-control" id="fileInput">
-            </form>
+        <form id="fileForm" enctype="multipart/form-data">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*, application/pdf" name="files" multiple
+            class="form-control" id="fileInput">
+        </form><br>
+        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
 
-            <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-    
-                <button (click)="onUpload()" class="btn btn-primary tooltips">Upload</button>
-                         
-            </div>
-         </div>
+          <button (click)="onUpload()" class="btn btn-primary tooltips">Upload</button>
 
-
+        </div>
       </div>
-   </div> 
- </div>
+
+
+    </div>
+  </div>
+</div>

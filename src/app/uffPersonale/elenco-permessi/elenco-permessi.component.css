@@ -7,6 +7,13 @@
     background: transparent no-repeat 3px 170px;
 } */
 
+.filename {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+
+}
 
 .table-scroll{
   position: absolute;

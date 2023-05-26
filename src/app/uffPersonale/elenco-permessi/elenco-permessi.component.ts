@@ -1,10 +1,13 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Permesso } from 'src/app/core/models/permesso';
 import { Utente } from 'src/app/core/models/utente';
+import { FileUploadService } from 'src/app/core/services/file-upload.service';
 import { PermessoService } from 'src/app/core/services/permesso.service';
 import { UtenteService } from 'src/app/core/services/utente.service';
+import { saveAs } from 'file-saver-es';
+
 
 @Component({
   selector: 'app-elenco-permessi',
@@ -22,17 +25,103 @@ export class ElencoPermessiComponent implements OnInit{
   public utenteRichiedente: Utente;
   public infoRichiedente: string;
   public infoApprovatore: string;
+  public permessoSelezionato: Permesso;
+  filenames: string[] = [];
+  fileStatus = { status: '', requestType: '', percent: 0 };
 
 
   
 
-  constructor(private permessoService: PermessoService, private utenteService: UtenteService) { }
+  constructor(private permessoService: PermessoService, private utenteService: UtenteService, private fileUploadService: FileUploadService) { }
 
   ngOnInit()  {
     
     //this.getPermessi();
     //this.getPermessiCongedo();
     this.getUtenti();
+  }
+
+  onVisualizzaAllegati(permesso: Permesso):void{
+    this.permessoSelezionato = permesso;
+    const button = document.createElement('button');
+    const container= document.getElementById('main-container');
+    
+    button.type= 'button';
+    button.style.display= 'none';
+    button.setAttribute('data-toggle','modal');
+    button.setAttribute('data-target','#visualizzaAllegatiModal');
+    container?.appendChild(button);
+    
+    button.click();
+
+    
+    this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
+      event => {
+        console.log(event);
+        this.resportProgress(event);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+
+    this.filenames=[];
+  }
+  
+  onDisplayFile(filename: string): void {
+    // Assuming 'filename' is the URL of the file to be displayed
+    window.open(filename, '_blank');
+  }
+
+      // define a function to download files
+      onDownloadFile(filename: string): void {
+        this.fileUploadService.download(filename, this.permessoSelezionato.id).subscribe(
+          event => {
+            console.log(event);
+            this.resportProgress(event);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error);
+          }
+        );
+      }
+
+  private resportProgress(httpEvent: HttpEvent<string[] | Blob>): void {
+    switch(httpEvent.type) {
+      case HttpEventType.UploadProgress:
+        this.updateStatus(httpEvent.loaded, httpEvent.total!, 'Uploading... ');
+        break;
+      case HttpEventType.DownloadProgress:
+        this.updateStatus(httpEvent.loaded, httpEvent.total!, 'Downloading... ');
+        break;
+      case HttpEventType.ResponseHeader:
+        console.log('Header returned', httpEvent);
+        break;
+      case HttpEventType.Response:
+        if (httpEvent.body instanceof Array) {
+          this.fileStatus.status = 'done';
+          for (const filename of httpEvent.body) {
+            this.filenames.unshift(filename);
+          }
+          console.log('Ho appena aggiunto un file a filenames');
+        } else {
+          saveAs(new File([httpEvent.body!], httpEvent.headers.get('Content-Disposition').split(';')[1].trim().substring(9)!, 
+                  {type: `${httpEvent.headers.get('Content-Type')};charset=utf-8`}));
+
+        }
+        this.fileStatus.status = 'done';
+        break;
+        default:
+          console.log(httpEvent);
+          break;
+      
+    }
+  }
+
+  private updateStatus(loaded: number, total: number, requestType: string): void {
+    this.fileStatus.status = 'progress';
+    this.fileStatus.requestType = requestType;
+    this.fileStatus.percent = Math.round(100 * loaded / total);
   }
 
   public search(searchForm: NgForm): void{

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/enviroments/environment';
@@ -25,11 +25,8 @@ export class LoginService {
 
    }
 
-  //public accediUtente(utente: Utente): Observable<Utente>{
     public accediUtente(utente: Utente){
 
-    //console.log(utente);
-    //return this.http.post<any>(`${this.apiServerUrl}/login`, utente, {responseType: 'text' as 'json'})
     return this.http.post<any>(`${this.apiServerUrl}/login`, utente)
     .pipe(map(user => {
       if(user){
@@ -57,6 +54,14 @@ export class LoginService {
     //sessionStorage.removeItem('currentUser');
     this.currentUserSubject.next({} as any);
     //const utente: Utente = this.currentUserValue;
+
+  }
+
+  //controlla se la password dell'utente è ancora quella di default
+  checkPassword(password: string){
+    let params = new HttpParams()
+    .set('password', password);
+    return this.http.post<any>(`${this.apiServerUrl}/permesso/add`, {params:params}, {responseType: 'text' as 'json'});
 
   }
 
