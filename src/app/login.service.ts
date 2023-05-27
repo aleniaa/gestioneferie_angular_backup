@@ -58,10 +58,11 @@ export class LoginService {
   }
 
   //controlla se la password dell'utente è ancora quella di default
-  checkPassword(password: string){
+  checkPassword(password: string, idUtenteLoggato: number){
     let params = new HttpParams()
-    .set('password', password);
-    return this.http.put<any>(`${this.apiServerUrl}/login/checkPass`, {params:params}, {responseType: 'text' as 'json'});
+    .set('password', password)
+    .set('idUtenteLoggato', idUtenteLoggato);
+    return this.http.put<any>(`${this.apiServerUrl}/login/checkPass`, null, {params:params});
 
   }
 

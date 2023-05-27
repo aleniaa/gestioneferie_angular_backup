@@ -10,17 +10,23 @@ body, figure, h1, h2, h3, h4, h5, h6, p, ol, ul, dl, li, dt, dd, blockquote, pre
   
   /* Global Styles */
    body {
-    background-color: #dcdcdc;
+    background-color: #eee6db;
     color: #333333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
+
+
   
   
  .container {
 
-    padding: 20px;
+    padding: 5px;
     max-width: 90%;
     /* width: 1000px; */
-
     background-color: #ffffff;
     /* background-color: #F5F7FA; */
 
@@ -107,22 +113,14 @@ body, figure, h1, h2, h3, h4, h5, h6, p, ol, ul, dl, li, dt, dd, blockquote, pre
     margin-bottom: 20px;
   } */
   
-  /* Footer */
-  footer {
-    background-color: #333333;
-    color: #ffffff;
-    padding: 20px;
-    text-align: center;
-  }
+
 
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;
-    padding: 30px;
 
     position: relative;
-    padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     text-align: center;

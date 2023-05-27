@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { IMieiPermessiComponent } from '../user/i-miei-permessi/i-miei-permessi.component';
 import { ModificaPassComponent } from './modifica-pass/modifica-pass.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     NavbarComponent,
     IMieiPermessiComponent,
-    ModificaPassComponent
+    ModificaPassComponent,
+    FooterComponent
 
   ],
   imports: [
@@ -22,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     NavbarComponent,
-    IMieiPermessiComponent
+    IMieiPermessiComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

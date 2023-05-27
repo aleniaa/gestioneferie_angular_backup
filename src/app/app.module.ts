@@ -20,6 +20,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeFerieComponent } from './approvazione_ferie/home-ferie/home-ferie.component';
 import { ErrorComponent } from './error/error.component';
 import { HomeUserComponent } from './user/home-user/home-user.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HomeUserComponent } from './user/home-user/home-user.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
     UtenteService, //potrei anche commentarlo perchè in utenteservice c'è @injectable provided in root
