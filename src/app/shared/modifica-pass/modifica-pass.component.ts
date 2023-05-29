@@ -14,6 +14,8 @@ export class ModificaPassComponent {
   utenteLoggato: Utente;
   oldPass: string;
   newPass: string;
+  message:string;
+  errorMessage:string;
 
   constructor(private utenteService: UtenteService, private loginService: LoginService){
     // this.oldPass="";
@@ -30,13 +32,16 @@ export class ModificaPassComponent {
 
     this.utenteService.changePass(idUtenteLoggato, oldPassw, newPassw).subscribe(
       (response: string) => {
-        alert("Password aggiornata");
         changePassForm.reset();
+        this.message=response;
+        this.errorMessage="";
+
+        
       },
-      (error: HttpErrorResponse) => {
+      (error: any) => {
         changePassForm.reset();
-        console.log("sono in errore");
-        alert(error.message);
+        this.errorMessage=error?.error;
+        this.message='';
 
       }
     );

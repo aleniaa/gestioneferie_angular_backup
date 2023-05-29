@@ -52,7 +52,7 @@ export class UtenteService {
     .set('newPass', newPass)
     .set('idUtenteLoggato', idUtenteLoggato);
     
-    return this.http.put<any>(`${this.apiServerUrl}/utente/changePass`, null, {params: params});
+    return this.http.put<string>(`${this.apiServerUrl}/utente/changePass`, null, {params: params, responseType: 'text' as 'json' });
     //perchè il secondo parametro di http.put è relativo al requestbody e non ai param.
   }
   

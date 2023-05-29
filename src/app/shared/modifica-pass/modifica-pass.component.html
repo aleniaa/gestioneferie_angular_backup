@@ -1,18 +1,31 @@
 <div class="container fadeInDown">
-<h3>Modifica password</h3>
+    <div class="row">
+        <h3>Modifica password</h3>
 
-    <form #changePass="ngForm" (ngSubmit)="modificaPass(changePass)" id="changePassForm" ngNativeValidate>
-        <div class="form-group">
-            <label for="oldPassw">Vecchia password</label>
-            <input type="password" [(ngModel)]="oldPass" placeholder="Vecchia password"  name="oldPass"  class="form-control" id="oldPass" title="Vecchia password">
+        <form #changePass="ngForm" (ngSubmit)="modificaPass(changePass)" id="changePassForm" ngNativeValidate>
+            <div class="form-group">
+                <label for="oldPass">Vecchia password</label>
+                <input type="password" [(ngModel)]="oldPass" placeholder="Vecchia password" name="oldPass"
+                    class="form-control" id="oldPass" title="Vecchia password">
+            </div>
+            <div class="form-group">
+                <label for="newPass">Nuova password</label>
+                <input type="password" [(ngModel)]="newPass" placeholder="Nuova password" name="newPass"
+                    class="form-control" id="newPass" title="Nuova password">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="alert alert-success" role="alert" *ngIf="message">
+                {{message}}
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                {{errorMessage}}
+            </div>
         </div>
-        <div class="form-group">
-            <label for="newPassw">Nuova password</label>
-            <input type="password" [(ngModel)]="newPass" placeholder="Nuova password"  name="newPass"  class="form-control" id="newPass" title="Nuova password">
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
-        </div>
-    </form>
-
+    </div>
 </div>
