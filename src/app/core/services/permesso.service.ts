@@ -40,9 +40,15 @@ export class PermessoService {
     return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso);
   }
 
-  public changeStatus(decisione: string, permesso: Permesso): Observable<Permesso> {
-    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/updateStatus/${decisione}`, permesso);
+  public approvaPermesso(permesso: Permesso): Observable<Permesso> {
+    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/approvaPermesso`, permesso);
   } 
+
+  public respingiPermesso(note: string, permesso: Permesso): Observable<Permesso> {
+    let params = new HttpParams()
+    .set('note', note);
+    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/respingiPermesso`, permesso,{params: params});
+  }
 
   public getPermessiByStatus(status: number): Observable<Permesso[]>{
     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);

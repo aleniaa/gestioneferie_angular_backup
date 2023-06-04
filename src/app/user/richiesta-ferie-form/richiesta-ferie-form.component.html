@@ -114,7 +114,9 @@
           <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
         </div>
       </form>
-
+      <div class="alert alert-success" role="alert" *ngIf="message">
+        {{message}}
+      </div>
     </div>
 <!-- _________________ PERMESSO BREVE _______________ -->
 
@@ -171,6 +173,9 @@
             <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
           </div>
         </form>
+        <div class="alert alert-success" role="alert" *ngIf="message">
+          {{message}}
+        </div>
       </div>
     </div>
 
@@ -225,6 +230,9 @@
             <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
           </div>
         </form>
+        <div class="alert alert-success" role="alert" *ngIf="message">
+          {{message}}
+        </div>
       </div>
     </div>
 
@@ -465,10 +473,10 @@
             <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
           </div>
         </form>
-
+          <!-- </div> -->
+        <div class="alert alert-success" role="alert" *ngIf="message">
+          {{message}}
+        </div>
       </div>
     </div>
-  <!-- </div> -->
-  <div class="alert alert-success" role="alert" *ngIf="message">
-    {{message}}
-  </div>
+

@@ -19,9 +19,11 @@ export class GestionePermessiComponent implements OnInit {
   public permessiApprovati: Permesso[] = [];
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
-  //public permesso: Permesso;
+  public note: string;
 
-  constructor(private permessoService: PermessoService, private utenteService: UtenteService, private loginService: LoginService) { }
+  constructor(private permessoService: PermessoService, private utenteService: UtenteService, private loginService: LoginService) { 
+    this.note="";
+  }
  
   ngOnInit()  {
     
@@ -96,44 +98,45 @@ export class GestionePermessiComponent implements OnInit {
     )
   }
 
-  public conferma(decisione: string, permesso: Permesso, confermaForm: NgForm): void{
-
-
-    console.log("il form è:");
-    console.log(confermaForm.value);
-
-    console.log("il tipo permesso invece è:");
-    console.log(permesso);
-    document.getElementById('respingiPermesso')?.click();
-    if(decisione=== "approva"){ //senzaa le note il permesso cambia solo status
-      this.permessoService.changeStatus(decisione, permesso).subscribe(
-        (response: Permesso) => { //jfoiewfjwoiej
-          console.log(response);
-          this.getPermessiApprovatoreByStatus();
-        },
-        (error: HttpErrorResponse) => {
-          alert(error.message);
-          this.getPermessiApprovatoreByStatus();
-        },
-      );
-    }else{
-      this.permessoService.changeStatus(decisione, confermaForm.value).subscribe(
-        (response: Permesso) => { //jfoiewfjwoiej
-          console.log(response);
-          this.getPermessiApprovatoreByStatus();
-        },
-        (error: HttpErrorResponse) => {
-          alert(error.message);
-          this.getPermessiApprovatoreByStatus();
-        },
-      );
-    }
+  public approvaPermesso(permesso: Permesso): void{
     
+      this.permessoService.approvaPermesso(permesso).subscribe(
+        (response: Permesso) => { //jfoiewfjwoiej
+          console.log(response);
+          this.getPermessiApprovatoreByStatus();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+          this.getPermessiApprovatoreByStatus();
+        },
+      );
+    
+    
+  }
+
+  public respingiPermesso(){
+    document.getElementById('respingiPermesso')?.click();
+    console.log("le note sono:")
+    console.log(this.note)
+    this.permessoService.respingiPermesso(this.note, this.permessoSelezionato).subscribe(
+      (response: Permesso) => { //jfoiewfjwoiej
+        console.log(response);
+        this.getPermessiApprovatoreByStatus();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        this.getPermessiApprovatoreByStatus();
+      },
+    );
+
+      this.note="";
+
   }
 
 
 
-  public onRespingiPermesso():void {
+  public onRespingiPermesso(permesso: Permesso):void {
+    this.permessoSelezionato= permesso;
     const button = document.createElement('button');
     const container= document.getElementById('main-container');
     
