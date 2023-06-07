@@ -9,5 +9,5 @@ export interface Utente{
     codiceUtente: string;
     accountDipvvf: string;
     password: string;
-
+    qualifica: string;
 }
