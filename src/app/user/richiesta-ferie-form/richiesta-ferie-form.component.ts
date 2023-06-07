@@ -24,6 +24,7 @@ export class RichiestaFerieFormComponent implements OnInit {
   public totOre: string;
   public totGiorni: number;
   public message: string;
+  public totOreGiorni: string
 
 
 
@@ -37,6 +38,7 @@ export class RichiestaFerieFormComponent implements OnInit {
      this.dataFine= "";
      this.dataInizio="";
      this.message="";
+     this.totOreGiorni="";
 
   }
 
@@ -46,39 +48,85 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   }
 
-  public updateTotOre(){
-    if(this.oreInizio===null || this.oreFine===null ){
+  // public updateTotOre(){
+  //   if(this.oreInizio===null || this.oreFine===null ){
+  //     this.oreInizio = "";
+  //     this.oreFine = "";
+  //   }
+  //   if(this.oreInizio.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$") && this.oreFine.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")){
+  //     const [hours1, minutes1] = this.oreInizio.split(":");
+  //     const [hours2, minutes2] = this.oreFine.split(":");    //const oreInizioD: Date = new Date(this.oreInizio);
+  //     const oreInizioD = new Date();
+  //     oreInizioD.setHours(Number(hours1));
+  //     oreInizioD.setMinutes(Number(minutes1));
+  
+  //     const oreFineD = new Date();
+  //     oreFineD.setHours(Number(hours2));
+  //     oreFineD.setMinutes(Number(minutes2));
+  
+  //     const differenceInMilliseconds = Math.abs(oreFineD.getTime() - oreInizioD.getTime());
+  //     const differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60));
+  //     const differenceInHours = Math.floor(differenceInMinutes / 60);
+  //     const remainingMinutes = differenceInMinutes % 60;
+      
+  //     this.totOre= differenceInHours + " ore e " + remainingMinutes + " minuti";
+  //     // console.log(differenceInHours + "ore e " + remainingMinutes + " minuti");
+      
+  //   }else{
+  //     this.totOre= "";
+  //   }
+    
+  // }
+
+  public updateTotOre() {
+    if (this.oreInizio === null || this.oreFine === null) {
       this.oreInizio = "";
       this.oreFine = "";
     }
-    if(this.oreInizio.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$") && this.oreFine.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")){
+    if (
+      this.oreInizio.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$") &&
+      this.oreFine.match("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
+    ) {
       const [hours1, minutes1] = this.oreInizio.split(":");
-      const [hours2, minutes2] = this.oreFine.split(":");    //const oreInizioD: Date = new Date(this.oreInizio);
+      const [hours2, minutes2] = this.oreFine.split(":");
+      
       const oreInizioD = new Date();
       oreInizioD.setHours(Number(hours1));
       oreInizioD.setMinutes(Number(minutes1));
-  
+    
       const oreFineD = new Date();
       oreFineD.setHours(Number(hours2));
       oreFineD.setMinutes(Number(minutes2));
-  
+    
       const differenceInMilliseconds = Math.abs(oreFineD.getTime() - oreInizioD.getTime());
       const differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60));
       const differenceInHours = Math.floor(differenceInMinutes / 60);
       const remainingMinutes = differenceInMinutes % 60;
       
-      this.totOre= differenceInHours + " ore e " + remainingMinutes + " minuti";
-      // console.log(differenceInHours + "ore e " + remainingMinutes + " minuti");
-      
-    }else{
-      this.totOre= "";
+      this.totOre = differenceInHours + " ore e " + remainingMinutes + " minuti";
+      this.updateTotGiorni()
+      if (this.totGiorni > 0) {
+        const totalMinutes = (differenceInHours * 60) + remainingMinutes;
+        const multipliedMinutes = totalMinutes * this.totGiorni;
+        const multipliedHours = Math.floor(multipliedMinutes / 60);
+        const remainingMultipliedMinutes = multipliedMinutes % 60;
+        
+        this.totOreGiorni = multipliedHours + " ore e " + remainingMultipliedMinutes + " minuti";
+      } else {
+        this.totOreGiorni = "";
+      }
+    } else {
+      this.totOre = "";
+      this.totOreGiorni = "";
     }
-    
   }
 
   public updateTotGiorni(){
     console.log(this.dataFine);
 
+    if(this.dataInizio===null || this.dataFine===null ){
+      this.totGiorni= 0;
+    }
 
     // Extract year, month, and day from the date strings
     const [year1, month1, day1] = this.dataInizio.split("-").map(Number);
@@ -90,7 +138,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
 
     // Convert milliseconds to days
-    const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) +1;
     this.totGiorni= diffInDays;
     console.log(diffInDays);
   }
