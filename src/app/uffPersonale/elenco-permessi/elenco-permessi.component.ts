@@ -156,7 +156,7 @@ export class ElencoPermessiComponent implements OnInit{
   public cercaUtenteRichiedente(key: string): void{
     
     const risultati: Utente[]=[];
-    
+    console.log(key)
     for(const utente of this.utenti){
       if(utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
       || utente.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1

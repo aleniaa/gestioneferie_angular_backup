@@ -28,3 +28,10 @@ thead th {
 
 }
 
+
+.modal-text {
+  word-wrap: break-word; /* Enable text wrapping */
+  max-width: 100%;  /*Limit the maximum width of the text */
+
+}
+

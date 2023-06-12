@@ -1,8 +1,10 @@
+import { Qualifica } from './../../core/models/qualifica';
 import { Utente } from '../../core/models/utente';
 import { Component, OnInit } from '@angular/core';
 import { UtenteService } from '../../core/services/utente.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { QualificaService } from 'src/app/core/services/qualifica.service';
 
 @Component({
   selector: 'app-scheda-utenti',
@@ -17,13 +19,17 @@ export class SchedaUtentiComponent implements OnInit{
   public utenti: Utente[] = [];
   public modificaUtente!: Utente; //il punto esclamativo serve a non dover inizializzare la variabile per forza
   public deleteUtente!: Utente;
+  public qualifiche: Qualifica[] = [];
+  public qualificheTrovate: Qualifica[] = [];
+  public qualificaSelezionata!: Qualifica;
+  public infoQualifica: string;
 
-  constructor(private utenteService: UtenteService) { }
+  constructor(private utenteService: UtenteService, private qualificaService: QualificaService) { 
+  }
 
   ngOnInit()  {
-    
     this.getUtenti();
-
+    this.getQualifiche();
   }
 
   updateAccountDipvvf(){
@@ -39,6 +45,7 @@ export class SchedaUtentiComponent implements OnInit{
     this.utenteService.getUtenti().subscribe(
       (response: Utente[]) => {
         this.utenti = response;
+        
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -128,6 +135,7 @@ export class SchedaUtentiComponent implements OnInit{
   }
 
   public cercaUtenti(key: string): void{
+    
     const risultati: Utente[]=[];
     for(const utente of this.utenti){
       if(utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
@@ -150,6 +158,52 @@ export class SchedaUtentiComponent implements OnInit{
       
     } 
 
+  }
+
+  public getQualifiche(): void {
+    this.qualificaService.getQualifiche().subscribe(
+      (response: Qualifica[]) => {
+        this.qualifiche = response;
+        console.log(this.qualifiche)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  public cercaQualifica(key: string): void{
+    console.log(key)
+    const risultati: Qualifica[]=[];
+    
+    for(const qualifica of this.qualifiche){
+      
+      if(qualifica.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+      || qualifica.descrizione.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+      //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+      ){
+
+        risultati.push(qualifica);
+        
+      }
+    }
+    this.qualificheTrovate= risultati;
+    
+    
+    if(risultati.length===0 || !key) {
+      if(key===""){
+        this.qualificheTrovate= [];
+        this.qualificaSelezionata=null;
+        //this.utenteRichiedente= null;  così se l'utente cancella il richiedente alla prossima ricerca viene passato null
+      }
+      
+    }
+  }
+
+  public selezionaQualifica(qualificaSelezionata: Qualifica){
+    this.qualificaSelezionata= qualificaSelezionata;
+    this.infoQualifica= this.qualificaSelezionata.descrizione;
+    this.qualificheTrovate= [];
   }
 
 }

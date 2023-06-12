@@ -398,7 +398,7 @@
                 <label class="form-check-label" for="dalleOre"> Dalle ore: </label>
                 <input type="text" [(ngModel)]="oreInizio" (ngModelChange)="updateTotOre()" name="dalleOre"
                   class="form-control" id="dalleOre" title="Inserisci ore nel formato HH:mm"
-                  pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" required />
+                  pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"  />
               </div>
             </div>
             <div class="col">
@@ -406,7 +406,7 @@
                 <label class="form-check-label" for="alleOre"> alle ore </label>
                 <input type="text" [(ngModel)]="oreFine" (ngModelChange)="updateTotOre()" name="alleOre"
                   class="form-control" id="alleOre" title="Ore fine" title="Inserisci ore nel formato HH:mm"
-                  pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" required />
+                  pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"  />
               </div>
 
             </div>
@@ -481,8 +481,8 @@
 
         <div class="form-group">
           <label for="approvazione">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
-          <select ngModel name="idUtenteApprovazioneCapoturno" class="form-control" id="idUtenteApprovazioneCapoturno"
-            placeholder="Scegli capoturno" form="permessi" required>
+          <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
+            placeholder="Scegli capoturno" form="permessi" >
             <option *ngFor="let utenteApprovazione of utentiFerie" [ngValue]="utenteApprovazione.id">
               {{utenteApprovazione?.cognome + " " + utenteApprovazione?.nome}}</option>
           </select>

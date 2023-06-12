@@ -1,3 +1,4 @@
+import { Qualifica } from './qualifica';
 export interface Utente{
 
     id: number;
@@ -9,5 +10,6 @@ export interface Utente{
     codiceUtente: string;
     accountDipvvf: string;
     password: string;
-    qualifica: string;
+    qualifica: Qualifica;
+    id_qualifica: number;
 }
