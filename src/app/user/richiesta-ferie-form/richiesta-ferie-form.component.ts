@@ -25,6 +25,7 @@ export class RichiestaFerieFormComponent implements OnInit {
   public totGiorni: number;
   public message: string;
   public totOreGiorni: string
+  selectedOption: string;
 
 
 
@@ -43,7 +44,7 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   ngOnInit()  {
-    
+    this.selectedOption = 'undefined'; 
     this.getUtentiFerie();
 
   }
@@ -103,7 +104,7 @@ export class RichiestaFerieFormComponent implements OnInit {
       const differenceInHours = Math.floor(differenceInMinutes / 60);
       const remainingMinutes = differenceInMinutes % 60;
       
-      this.totOre = differenceInHours + " ore e " + remainingMinutes + " minuti";
+      this.totOre = differenceInHours + "h e " + remainingMinutes + " min";
       this.updateTotGiorni()
       if (this.totGiorni > 0) {
         const totalMinutes = (differenceInHours * 60) + remainingMinutes;
@@ -111,7 +112,7 @@ export class RichiestaFerieFormComponent implements OnInit {
         const multipliedHours = Math.floor(multipliedMinutes / 60);
         const remainingMultipliedMinutes = multipliedMinutes % 60;
         
-        this.totOreGiorni = multipliedHours + " ore e " + remainingMultipliedMinutes + " minuti";
+        this.totOreGiorni = multipliedHours + "h e " + remainingMultipliedMinutes + " min";
       } else {
         this.totOreGiorni = "";
       }
