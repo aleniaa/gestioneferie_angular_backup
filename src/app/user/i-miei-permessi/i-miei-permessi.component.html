@@ -41,7 +41,7 @@
                         <td>{{permesso?.dalleOre}}</td>
                         <td>{{permesso?.alleOre}}</td>
                         <td>{{permesso?.totOre}}</td>
-                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
+                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>{{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}</td>
                         <td><button class="btn btn-primary tooltips"
                             (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td>
                         <td><button (click)="selezionaPermessoDaCancellare(permesso)" class="btn btn-danger"

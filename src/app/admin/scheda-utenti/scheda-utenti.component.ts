@@ -45,6 +45,7 @@ export class SchedaUtentiComponent implements OnInit{
     this.utenteService.getUtenti().subscribe(
       (response: Utente[]) => {
         this.utenti = response;
+        console.log(response)
         
       },
       (error: HttpErrorResponse) => {

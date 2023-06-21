@@ -251,6 +251,7 @@ export class IMieiPermessiComponent {
     this.permessoService.getPermessiRichiedenteByStatus(0, idUtenteApp).subscribe(
       (response: Permesso[]) => {
         this.permessiPending = response;
+        console.log(response)
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

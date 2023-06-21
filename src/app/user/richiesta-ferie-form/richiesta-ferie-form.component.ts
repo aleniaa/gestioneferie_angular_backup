@@ -163,6 +163,7 @@ export class RichiestaFerieFormComponent implements OnInit {
         this.message=response;
         console.log(response);
         permessoForm.reset();
+        this.utenteLoggato = this.loginService.currentUserValue;
         
       
       },
