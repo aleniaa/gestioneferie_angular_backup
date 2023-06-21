@@ -124,40 +124,44 @@
 <div id="permesso_breve_form" class="container fadeIn" style="display: none;">
   <div class="row">
     <h2 style="padding-top: 5px;">PERMESSO BREVE (fino a 36 ore annue)</h2>
+    <h5>(Inserire le ore nel formato HH:mm, esempio 08:35)</h5>
     <form #permesso_breve="ngForm" (ngSubmit)="aggiungiPermesso(permesso_breve)" id="permesso_breve" ngNativeValidate>
       <input type="hidden" ngModel="{{utenteLoggato?.id}}" name="idUtenteRichiedente" class="form-control"
         id="idUtenteRichiedente">
 
       <input type="hidden" ngModel="Permesso breve" name="tipoPermesso" id="tipoPermesso">
-
+      <div class="form-group">
       <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <label for="dalleOre">Dalle ore (nel formato HH:mm, esempio 08:35): </label>
+        
+          <div class="col">
+
+            <label for="dalleOre">Dalle ore: </label>
             <input type="text" [(ngModel)]="oreInizio" (ngModelChange)="updateTotOre()" name="dalleOre"
               class="form-control" id="dalleOre" title="Inserisci ore nel formato HH:mm"
               pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" required />
+
           </div>
-        </div>
-        <div class="col">
-          <div class="form-group">
+          <div class="col">
+
             <label for="alleOre">alle ore: </label>
             <input type="text" [(ngModel)]="oreFine" (ngModelChange)="updateTotOre()" name="alleOre"
               class="form-control" id="alleOre" title="Ore fine" title="Inserisci ore nel formato HH:mm"
               pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" required />
           </div>
-        </div>
-        <div class="col">
-          <div class="form-group">
+
+          <div class="col">
+
             <label for="dataInizio">del giorno</label>
             <input type="date" ngModel name="dataInizio" class="form-control" id="dataInizio" title="Giorno" required />
           </div>
+
+          <div class="col">
+
+            <label for="totOre">Ore totali:</label>
+            <input id="totOre" [(ngModel)]="totOre" name="totOre" readonly />
+            <p><i>Da recuperare entro il mese successivo</i></p>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="totOre">Ore totali:</label>
-        <input id="totOre" [(ngModel)]="totOre" name="totOre" readonly />
-        <p><i>Da recuperare entro il mese successivo</i></p>
       </div>
 
       <div class="form-group">
@@ -389,38 +393,40 @@
       <div class="container">
         <div id="dettagli_form">
           <div class="row">
-            <input class="form-check-input" type="radio" name="orario" id="orario" value="orario" required [(ngModel)]="selectedOption" />
+            <input class="form-check-input" type="radio" name="orario" id="orario" value="orario" required
+              [(ngModel)]="selectedOption" />
             <label for="orario" class="custom-radio-button">Orario</label><br>
             <fieldset>
-              <div class="form-group"  [hidden]="selectedOption !== 'orario'">
+              <div class="form-group" [hidden]="selectedOption !== 'orario'">
                 <div class="row">
 
                   <div class="col">
                     <label class="form-check-label" for="dalleOre"> Dalle ore: </label>
                     <input type="text" [(ngModel)]="oreInizio" (ngModelChange)="updateTotOre()" id="dalleOre"
                       name="dalleOre" class="form-control" id="dalleOre" title="Inserisci ore nel formato HH:mm"
-                      pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" [required]="selectedOption === 'orario'"/>
+                      pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" [required]="selectedOption === 'orario'" />
                   </div>
                   <div class="col">
 
                     <label class="form-check-label" for="alleOre"> alle ore </label>
                     <input type="text" [(ngModel)]="oreFine" (ngModelChange)="updateTotOre()" name="alleOre"
                       class="form-control" id="alleOre" title="Ore fine" title="Inserisci ore nel formato HH:mm"
-                      pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" [required]="selectedOption === 'orario'"/>
+                      pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" [required]="selectedOption === 'orario'" />
 
                   </div>
                   <div class="col">
 
                     <label class="form-check-label" for="dataInizioOre"> dal giorno </label>
                     <input type="date" [(ngModel)]="dataInizio" (ngModelChange)="updateTotOre()" name="dataInizio"
-                      id="dataInizioOre" class="form-control" [required]="selectedOption === 'orario'"/>
+                      id="dataInizioOre" class="form-control" [required]="selectedOption === 'orario'" />
 
                   </div>
                   <div class="col">
 
                     <label class="form-check-label" for="dataFineOre"> al giorno </label>
                     <input type="date" [(ngModel)]="dataFine" (ngModelChange)="updateTotOre()" name="dataFine"
-                      [min]="dataInizio" id="dataFineOre" class="form-control" [required]="selectedOption === 'orario'"/>
+                      [min]="dataInizio" id="dataFineOre" class="form-control"
+                      [required]="selectedOption === 'orario'" />
 
 
                   </div>
@@ -438,7 +444,8 @@
           </div>
 
           <div class="row">
-            <input class="form-check-input" type="radio" name="giornaliero" id="giornaliero" value="giornaliero" [(ngModel)]="selectedOption"/>
+            <input class="form-check-input" type="radio" name="giornaliero" id="giornaliero" value="giornaliero"
+              [(ngModel)]="selectedOption" />
             <label for="giornaliero" class="custom-radio-button">Giornaliero</label><br>
 
             <fieldset>
@@ -451,7 +458,7 @@
 
                     <label class="form-check-label" for="dal_giorno"> dal giorno </label>
                     <input type="date" [(ngModel)]="dataInizio" (ngModelChange)="updateTotGiorni()" name="dataInizio"
-                      id="dal_giorno" class="form-control" [required]="selectedOption === 'giornaliero'"/>
+                      id="dal_giorno" class="form-control" [required]="selectedOption === 'giornaliero'" />
 
                   </div>
 
@@ -459,7 +466,8 @@
 
                     <label class="form-check-label" for="al_giorno"> al giorno </label>
                     <input type="date" [(ngModel)]="dataFine" (ngModelChange)="updateTotGiorni()" name="dataFine"
-                      [min]="dataInizio" id="al_giorno" class="form-control" [required]="selectedOption === 'giornaliero'"/>
+                      [min]="dataInizio" id="al_giorno" class="form-control"
+                      [required]="selectedOption === 'giornaliero'" />
 
                   </div>
 
