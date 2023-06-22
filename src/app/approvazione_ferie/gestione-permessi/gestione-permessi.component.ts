@@ -21,11 +21,11 @@ export class GestionePermessiComponent implements OnInit {
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
   public note: string;
-  public utenteCheHaRespintoPermesso: Utente;
 
   constructor(private permessoService: PermessoService, private loginService: LoginService) { 
     this.note="";
-    this.utenteLoggato = loginService.currentUserValue;
+    
+    console.log(this.utenteLoggato)
   }
  
   ngOnInit()  {
@@ -103,9 +103,17 @@ export class GestionePermessiComponent implements OnInit {
     )
   }
 
-  public getPermessiApprovatore(): void{
-    var values = JSON.parse(localStorage.getItem("currentUser"));
 
+  public svuotaPermessi():void{
+    this.permessiApprovati=[];
+    this.permessiPending=[];
+    this.permessiRespinti=[];
+
+  }
+
+  public getPermessiApprovatore(): void{
+    this.svuotaPermessi();
+    var values = JSON.parse(localStorage.getItem("currentUser"));
     var idUtenteApp = values.id; 
     console.log(idUtenteApp);
     this.permessoService.getPermessiApprovatore(idUtenteApp).subscribe(
@@ -135,11 +143,9 @@ export class GestionePermessiComponent implements OnInit {
             break
             case 4: // respinto da approvatore 1
               this.permessiRespinti.push(permessoTrovato);
-              this.utenteCheHaRespintoPermesso= permessoTrovato.utenteApprovazione
             break;
             case 5: // respinto da approvatore 2
               this.permessiRespinti.push(permessoTrovato);
-              this.utenteCheHaRespintoPermesso= permessoTrovato.utenteApprovazioneDue
             break;
             default: console.log("qualcosa non va");
           }
@@ -153,8 +159,10 @@ export class GestionePermessiComponent implements OnInit {
   }
 
   public approvaPermesso(permesso: Permesso): void{
-    
-      this.permessoService.approvaPermesso(permesso, this.utenteLoggato.id).subscribe(
+      var values = JSON.parse(localStorage.getItem("currentUser"));
+      var idUtenteApp = values.id; 
+      console.log(idUtenteApp)
+      this.permessoService.approvaPermesso(permesso, idUtenteApp).subscribe(
         (response: Permesso) => { //jfoiewfjwoiej
           console.log(response);
           //this.getPermessiApprovatoreByStatus();
