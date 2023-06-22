@@ -34,8 +34,8 @@ export class IMieiPermessiComponent {
     //this.getPermessi();
     //this.getPermessi();
     //this.getPermessiPending();
-    this.getPermessiRichiedenteByStatus();
-    //this.getUtenti();
+    //this.getPermessiRichiedenteByStatus();
+    this.getPermessiRichiedente();
   }
 
   public selezionaPermessoDaCancellare(permesso: Permesso): void {
@@ -213,7 +213,9 @@ export class IMieiPermessiComponent {
       (response: void) => { //jfoiewfjwoiej
         //console.log(response);
         //alert("Permesso cancellato");
-        this.getPermessiRichiedenteByStatus();
+        //this.getPermessiRichiedenteByStatus();
+        this.getPermessiRichiedente();
+
 
 
       },
@@ -273,6 +275,50 @@ export class IMieiPermessiComponent {
         alert(error.message);
       }
     )
+  }
+
+
+  public getPermessiRichiedente(): void {
+
+    //localStorage.getItem("currentUser")
+
+    //const utente: Utente = this.loginService.currentUserValue;
+
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    var idUtenteApp = values.id;
+
+    this.permessoService.getPermessiRichiedente(idUtenteApp).subscribe(
+      (response: Permesso[]) => {
+        for(const permessoTrovato of response){
+          switch(permessoTrovato.status){
+            case 0:
+ 
+              this.permessiPending.push(permessoTrovato);
+            break;
+            case 1: // permesso approvato attualmente solo dall'approvatore 1
+              this.permessiPending.push(permessoTrovato);
+            break;
+            case 2: // permesso approvato attualmente solo dall'approvatore 2
+              this.permessiPending.push(permessoTrovato);
+            break;
+            case 3: // permesso approvato da entrambi gli approvatori
+              this.permessiApprovati.push(permessoTrovato);
+            break
+            case 4: // respinto da approvatore 1
+              this.permessiRespinti.push(permessoTrovato);
+            break;
+            case 5: // respinto da approvatore 2
+              this.permessiRespinti.push(permessoTrovato);
+            break;
+            default: console.log("qualcosa non va");
+          }
+        }
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+
   }
 }
 

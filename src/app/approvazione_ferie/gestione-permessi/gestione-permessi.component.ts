@@ -68,7 +68,7 @@ export class GestionePermessiComponent implements OnInit {
   }
 
 
-  public getPermessiApprovatoreByStatus(): void{
+/*   public getPermessiApprovatoreByStatus(): void{
     //const utente: Utente = this.loginService.currentUserValue;
 
     //var values = JSON.parse(sessionStorage.getItem("currentUser"));
@@ -101,7 +101,7 @@ export class GestionePermessiComponent implements OnInit {
         alert(error.message);
       }
     )
-  }
+  } */
 
 
   public svuotaPermessi():void{
