@@ -16,13 +16,16 @@ export class GestionePermessiComponent implements OnInit {
 
   public permessi: Permesso[] = [];
   public permessiPending: Permesso[] = [];
+  public utenteLoggato: Utente;
   public permessiApprovati: Permesso[] = [];
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
   public note: string;
+  public utenteCheHaRespintoPermesso: Utente;
 
-  constructor(private permessoService: PermessoService, private utenteService: UtenteService, private loginService: LoginService) { 
+  constructor(private permessoService: PermessoService, private loginService: LoginService) { 
     this.note="";
+    this.utenteLoggato = loginService.currentUserValue;
   }
  
   ngOnInit()  {
@@ -32,7 +35,9 @@ export class GestionePermessiComponent implements OnInit {
     //this.getPermessiPending();
     //this.getPermessiByStatus();
     //this.getUtenti();
-    this.getPermessiApprovatoreByStatus();
+
+    //this.getPermessiApprovatoreByStatus();
+    this.getPermessiApprovatore();
   }
 
   public visualizzaNote(permesso: Permesso):void{
@@ -98,16 +103,68 @@ export class GestionePermessiComponent implements OnInit {
     )
   }
 
+  public getPermessiApprovatore(): void{
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+
+    var idUtenteApp = values.id; 
+    console.log(idUtenteApp);
+    this.permessoService.getPermessiApprovatore(idUtenteApp).subscribe(
+      (response: Permesso[]) => {
+        for(const permessoTrovato of response){
+          switch(permessoTrovato.status){
+            case 0:
+ 
+              this.permessiPending.push(permessoTrovato);
+            break;
+            case 1: // permesso approvato attualmente solo dall'approvatore 1
+              if(idUtenteApp===permessoTrovato.idUtenteApprovazione){ // è loggato l'approvatore 1 
+                this.permessiApprovati.push(permessoTrovato);
+              }else{
+                this.permessiPending.push(permessoTrovato);
+              }
+            break;
+            case 2: // permesso approvato attualmente solo dall'approvatore 2
+              if(idUtenteApp===permessoTrovato.idUtenteApprovazione){ // è loggato l'approvatore 1 
+                this.permessiPending.push(permessoTrovato);
+              }else{ // se è loggato l'approvatore 2 
+                this.permessiApprovati.push(permessoTrovato);
+              }
+            break;
+            case 3: // permesso approvato da entrambi gli approvatori
+              this.permessiApprovati.push(permessoTrovato);
+            break
+            case 4: // respinto da approvatore 1
+              this.permessiRespinti.push(permessoTrovato);
+              this.utenteCheHaRespintoPermesso= permessoTrovato.utenteApprovazione
+            break;
+            case 5: // respinto da approvatore 2
+              this.permessiRespinti.push(permessoTrovato);
+              this.utenteCheHaRespintoPermesso= permessoTrovato.utenteApprovazioneDue
+            break;
+            default: console.log("qualcosa non va");
+          }
+        }
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+
+  }
+
   public approvaPermesso(permesso: Permesso): void{
     
-      this.permessoService.approvaPermesso(permesso).subscribe(
+      this.permessoService.approvaPermesso(permesso, this.utenteLoggato.id).subscribe(
         (response: Permesso) => { //jfoiewfjwoiej
           console.log(response);
-          this.getPermessiApprovatoreByStatus();
+          //this.getPermessiApprovatoreByStatus();
+          this.getPermessiApprovatore();
         },
         (error: HttpErrorResponse) => {
           alert(error.message);
-          this.getPermessiApprovatoreByStatus();
+          //this.getPermessiApprovatoreByStatus();
+          this.getPermessiApprovatore();
+
         },
       );
     
@@ -118,14 +175,20 @@ export class GestionePermessiComponent implements OnInit {
     document.getElementById('respingiPermesso')?.click();
     console.log("le note sono:")
     console.log(this.note)
-    this.permessoService.respingiPermesso(this.note, this.permessoSelezionato).subscribe(
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    var idUtenteApp = values.id; 
+    this.permessoService.respingiPermesso(this.note, this.permessoSelezionato, idUtenteApp).subscribe(
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);
-        this.getPermessiApprovatoreByStatus();
+        //this.getPermessiApprovatoreByStatus();
+        this.getPermessiApprovatore();
+
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        this.getPermessiApprovatoreByStatus();
+        //this.getPermessiApprovatoreByStatus();
+        this.getPermessiApprovatore();
+
       },
     );
 

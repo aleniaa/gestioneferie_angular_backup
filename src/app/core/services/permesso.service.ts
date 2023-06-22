@@ -40,13 +40,16 @@ export class PermessoService {
     return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso);
   }
 
-  public approvaPermesso(permesso: Permesso): Observable<Permesso> {
-    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/approvaPermesso`, permesso);
+  public approvaPermesso(permesso: Permesso, idApprovatore:number ): Observable<Permesso> {
+    let params = new HttpParams()
+    .set('idApprovatore', idApprovatore);
+    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/approvaPermesso`, permesso,{params: params});
   } 
 
-  public respingiPermesso(note: string, permesso: Permesso): Observable<Permesso> {
+  public respingiPermesso(note: string, permesso: Permesso, idApprovatore: number): Observable<Permesso> {
     let params = new HttpParams()
-    .set('note', note);
+    .set('note', note)
+    .set('idApprovatore', idApprovatore);
     return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/respingiPermesso`, permesso,{params: params});
   }
 
@@ -66,6 +69,13 @@ export class PermessoService {
     let params = new HttpParams()
     .set('idApprovatore', idApprovatore);
     return this.http.get<any>(`${this.apiServerUrl}/permesso/statusApprovatore/${status}`,{params: params});
+  }
+
+  public getPermessiApprovatore(idApprovatore: number): Observable<Permesso[]>{
+    
+    let params = new HttpParams()
+    .set('idApprovatore', idApprovatore);
+    return this.http.get<any>(`${this.apiServerUrl}/permesso/permessiApprovatore`,{params: params});
   }
 
   public cancellaPermesso(idPermesso: number): Observable<void>{

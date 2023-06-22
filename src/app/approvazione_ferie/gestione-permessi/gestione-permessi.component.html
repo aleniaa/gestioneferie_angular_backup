@@ -152,6 +152,7 @@
                     <th scope="col">Alle ore</th>
                     <th scope="col">Ore totali</th>
                     <th scope="col">Respinto in data:</th>
+                    <th scope="col">Respinto da:</th>
                     <th scope="col">Note:</th>
 
 
@@ -159,7 +160,7 @@
                 </thead>
                 <tbody>
                   <tr *ngIf="permessiRespinti?.length == 0">
-                    <td colspan="10">Nessun permesso respinto</td>
+                    <td colspan="11">Nessun permesso respinto</td>
                   </tr>
                   <tr *ngFor="let permesso of permessiRespinti">
                     <th scope="row">{{permesso?.tipoPermesso}}</th>
@@ -171,7 +172,7 @@
                     <td>{{permesso?.alleOre}}</td>
                     <td>{{permesso?.totOre}}</td>
                     <td>{{permesso?.dataApprovazione}}</td>
-
+                    <td>{{utenteCheHaRespintoPermesso.cognome + " " + utenteCheHaRespintoPermesso.nome}}</td>
                     <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips" data-placement="top"
                         data-toggle="tooltip" data-original-title="visualizzaNote"><i class="fa fa-times"> Vedi
                           note</i></button></td>

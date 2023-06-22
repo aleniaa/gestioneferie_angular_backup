@@ -14,6 +14,7 @@ export interface Permesso{
     dalleOre: Time;
     alleOre: Time;
     totOre: number;
+    status: number;
     dataApprovazione: Date;
     idUtente: number;
     utenteRichiedente: Utente;
