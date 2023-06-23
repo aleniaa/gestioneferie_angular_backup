@@ -26,6 +26,7 @@ export class RichiestaFerieFormComponent implements OnInit {
   public message: string;
   public totOreGiorni: string
   selectedOption: string;
+  public idUtenteApp: number;
 
 
 
@@ -40,12 +41,16 @@ export class RichiestaFerieFormComponent implements OnInit {
      this.dataInizio="";
      this.message="";
      this.totOreGiorni="";
+    
 
   }
 
   ngOnInit()  {
     this.selectedOption = 'undefined'; 
     this.getUtentiFerie();
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    this.idUtenteApp = values.id;
+
 
   }
 
@@ -157,21 +162,27 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   public aggiungiPermesso(permessoForm: NgForm): void{
     console.log("utente loggato in ferie:");
-    console.log(this.utenteLoggato);
+    
+    
+    console.log(this.idUtenteApp);
     this.permessoService.aggiungiPermesso(permessoForm.value).subscribe(
       (response: string) => { 
         this.message=response;
         console.log(response);
         permessoForm.reset();
-        this.utenteLoggato = this.loginService.currentUserValue;
+        var values = JSON.parse(localStorage.getItem("currentUser"));
+        this.idUtenteApp = values.id;
         
       
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
         permessoForm.reset();
+        var values = JSON.parse(localStorage.getItem("currentUser"));
+        this.idUtenteApp = values.id;
       },
     );
+
 
   }
 

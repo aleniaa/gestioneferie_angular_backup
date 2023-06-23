@@ -71,12 +71,13 @@
 
 <div id="congedo_form" class="container fadeIn" style="display: none;">
 
-
+  <h1>{{idUtenteApp}} ciao</h1>
   <h2 style="padding-top: 5px;">CONGEDO ORDINARIO</h2>
   <form #congedo="ngForm" (ngSubmit)="aggiungiPermesso(congedo)" id="congedo" ngNativeValidate>
     <!-- (ngSubmit)="inviaPermesso(congedo)"  -->
-    <input type="hidden" [(ngModel)]="utenteLoggato.id" name="idUtenteRichiedente" class="form-control"
+    <input type="hidden" [(ngModel)]="idUtenteApp" name="idUtenteRichiedente" class="form-control"
       id="idUtenteRichiedente">
+      
     <input type="hidden" ngModel="Congedo Ordinario" ng-value="Congedo Ordinario" value="Congedo Ordinario"
       name="tipoPermesso" id="tipoPermesso" required>
     <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
