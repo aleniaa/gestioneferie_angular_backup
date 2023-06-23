@@ -241,8 +241,15 @@ export class IMieiPermessiComponent {
     button.click();
   }
 
-  public getPermessiRichiedenteByStatus(): void {
+  public svuotaPermessi():void{
+    this.permessiApprovati=[];
+    this.permessiPending=[];
+    this.permessiRespinti=[];
 
+  }
+
+  public getPermessiRichiedenteByStatus(): void {
+    
     //localStorage.getItem("currentUser")
 
     //const utente: Utente = this.loginService.currentUserValue;
@@ -283,7 +290,7 @@ export class IMieiPermessiComponent {
     //localStorage.getItem("currentUser")
 
     //const utente: Utente = this.loginService.currentUserValue;
-
+    this.svuotaPermessi();
     var values = JSON.parse(localStorage.getItem("currentUser"));
     var idUtenteApp = values.id;
 
