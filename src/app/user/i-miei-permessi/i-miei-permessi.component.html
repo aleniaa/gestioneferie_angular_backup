@@ -31,7 +31,7 @@
                     </thead>
                     <tbody>
                       <tr *ngIf="permessiPending?.length == 0">
-                        <td colspan="10">Nessun permesso da approvare</td>
+                        <td colspan="10">Nessun permesso richiesto in attesa di approvazione</td>
                       </tr>
                       <tr *ngFor="let permesso of permessiPending">
                         <th scope="row">{{permesso?.tipoPermesso}}</th>
