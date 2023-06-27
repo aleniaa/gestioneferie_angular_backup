@@ -69,6 +69,8 @@ export class SchedaUtentiComponent implements OnInit{
 
     if(mode === 'edit' ){
       this.modificaUtente = utente; //this vuol dire l'utente in questa classe
+      this.infoQualifica= utente.qualifica.descrizione;
+      this.qualificaSelezionata= utente.qualifica;
       button.setAttribute('data-target','#aggiornaUtenteModal');
 
     }
@@ -83,6 +85,19 @@ export class SchedaUtentiComponent implements OnInit{
     button.click();
 
 
+  }
+
+  public onCloseModal(): void{
+    console.log("onclosemodal")
+    this.modificaUtente= null;
+    this.infoQualifica="";
+    this.qualificheTrovate= [];
+    this.qualificaSelezionata=null;
+  }
+
+  public onCloseModalAdd(addForm: NgForm):void{
+    addForm.reset();
+    this.onCloseModal();
   }
 
   public onAggiungiUtente(addForm: NgForm): void{

@@ -41,9 +41,9 @@
                         <td>{{permesso?.dalleOre}}</td>
                         <td>{{permesso?.alleOre}}</td>
                         <td>{{permesso?.totOre}}</td>
-                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
+                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<ng-container *ngIf="permesso?.status===1"> &#9989;</ng-container> <br>
                           <ng-container *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
-                            {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
+                            {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}<ng-container *ngIf="permesso?.status===2"> &#9989;</ng-container>
                           </ng-container>
                         </td>
                         <td><button class="btn btn-primary tooltips"
@@ -159,7 +159,6 @@
                         <th scope="col">Dalle ore</th>
                         <th scope="col">Alle ore</th>
                         <th scope="col">Ore totali</th>
-                        <th scope="col">Respinto da</th>
                         <th scope="col">Respinto in data</th>
                         <th scope="col">Note:</th>
 
@@ -179,7 +178,6 @@
                         <td>{{permesso?.dalleOre}}</td>
                         <td>{{permesso?.alleOre}}</td>
                         <td>{{permesso?.totOre}}</td>
-                        <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
                         <td>{{permesso?.dataApprovazione}}</td>
                         <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips"
                             data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i
@@ -219,7 +217,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="modal-text">{{permessoSelezionato?.note}}</div>
+        <div class="modal-text" [innerHTML]="permessoSelezionato?.note"></div>
         <div class="modal-footer">
           <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
         </div>

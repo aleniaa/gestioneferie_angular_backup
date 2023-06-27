@@ -18,6 +18,7 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   public funzionari: Utente[] = [];
   public capiturno: Utente[] = [];
+  public utentiFerie: Utente[] = [];
   public utenteLoggato: Utente;
   public dataInizio: string;
   public dataFine: string;
@@ -130,17 +131,18 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.utenteService.getUtentiFerie().subscribe(
       (response: Utente[]) => {
 
-        for(const utenteFerie of response){
-          if(values.includes(utenteFerie.qualifica.nome as Capoturno)){
-            this.capiturno.push(utenteFerie);
-          }else{
-            this.funzionari.push(utenteFerie);
-          }
+        //se bisogna dividere gli utenti in funzionari e capiturno:
+        // for(const utenteFerie of response){
+        //   if(values.includes(utenteFerie.qualifica.nome as Capoturno)){
+        //     this.capiturno.push(utenteFerie);
+        //   }else{
+        //     this.funzionari.push(utenteFerie);
+        //   }
 
 
-        }
+        // }
 
-        //this.utentiFerie = response;
+        this.utentiFerie = response;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

@@ -71,7 +71,7 @@
 
 <div id="congedo_form" class="container fadeIn" style="display: none;">
 
-  <h1>{{idUtenteApp}} ciao</h1>
+  <!-- <h1>{{idUtenteApp}} ciao</h1> -->
   <h2 style="padding-top: 5px;">CONGEDO ORDINARIO</h2>
   <form #congedo="ngForm" (ngSubmit)="aggiungiPermesso(congedo)" id="congedo" ngNativeValidate>
     <!-- (ngSubmit)="inviaPermesso(congedo)"  -->
@@ -105,20 +105,22 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="approvazione">Da sottomettere per approvazione al funzionario:</label>
+      <label for="approvazione">Da sottomettere per approvazione al capoturno/funzionario:</label>
       <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
         placeholder="Scegli funzionario" form="congedo" required>
-        <option *ngFor="let funzionario of funzionari" [ngValue]="funzionario.id" >
-          {{funzionario?.cognome + " " + funzionario?.nome}}</option>
+        <!-- <option *ngFor="let funzionario of funzionari" [ngValue]="funzionario.id" >
+          {{funzionario?.cognome + " " + funzionario?.nome}}</option> -->
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+            {{approvatore?.cognome + " " + approvatore?.nome}}</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="approvazione">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
+      <label for="approvazione">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario:</label>
       <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
         placeholder="Scegli capoturno" form="permessi">
-        <option *ngFor="let capoturno of capiturno" [ngValue]="capoturno.id">
-          {{capoturno?.cognome + " " + capoturno?.nome}}</option>
-      </select>
+        <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+          {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+    </select>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
@@ -177,17 +179,17 @@
         <label for="approvazione">Da sottomettere per approvazione a:</label>
         <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
           placeholder="Scegli funzionario" form="permesso_breve" required>
-          <option *ngFor="let funzionario of funzionari" [ngValue]="funzionario.id" >
-            {{funzionario?.cognome + " " + funzionario?.nome}}</option>
-        </select>
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+            {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+      </select>
       </div>
       <div class="form-group">
         <label for="approvazione">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
         <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
           placeholder="Scegli capoturno" form="permessi">
-          <option *ngFor="let capoturno of capiturno" [ngValue]="capoturno.id">
-            {{capoturno?.cognome + " " + capoturno?.nome}}</option>
-        </select>
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+            {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+      </select>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
@@ -282,17 +284,17 @@
         <label for="approvazione">Da sottomettere per approvazione a:</label>
         <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
           placeholder="Scegli funzionario" form="recupero_ore" required>
-          <option *ngFor="let funzionario of funzionari" [ngValue]="funzionario.id" >
-            {{funzionario?.cognome + " " + funzionario?.nome}}</option>
-        </select>
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+            {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+      </select>
       </div>
       <div class="form-group">
         <label for="approvazione">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
         <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
           placeholder="Scegli capoturno" form="permessi">
-          <option *ngFor="let capoturno of capiturno" [ngValue]="capoturno.id">
-            {{capoturno?.cognome + " " + capoturno?.nome}}</option>
-        </select>
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+            {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+      </select>
       </div>
       
       <div class="modal-footer">
@@ -559,9 +561,9 @@
           <label for="idUtenteApprovazione1">Da sottomettere per approvazione al funzionario:</label>
           <select [(ngModel)]="selectedUtenteApprovazioneId" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione1"
             placeholder="Scegli funzionario" form="permessi"  required>
-            <option *ngFor="let funzionario of funzionari" [ngValue]="funzionario.id" >
-              {{funzionario?.cognome + " " + funzionario?.nome}}</option>
-          </select>
+            <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+              {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+        </select>
         </div>
       </div>
       <div class="col">
@@ -570,9 +572,9 @@
           <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
           <select [(ngModel)]="selectedUtenteApprovazioneDueId" name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
             placeholder="Scegli capoturno" form="permessi">
-            <option *ngFor="let capoturno of capiturno" [ngValue]="capoturno.id">
-              {{capoturno?.cognome + " " + capoturno?.nome}}</option>
-          </select>
+            <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+              {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+        </select>
         </div>
       </div>
       <div class="modal-footer">

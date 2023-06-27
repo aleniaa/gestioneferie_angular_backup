@@ -53,7 +53,8 @@
                      <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email
                         :<br>{{utente?.emailVigilfuoco}}</li>
                      <li class="list-group-item"><i
-                           class="fa fa float-right"></i>{{utente?.qualifica.descrizione}}</li>
+                           class="fa fa float-right"></i>Qualifica
+                           :<br>{{utente?.qualifica.descrizione}}</li>
                   </ul>
                   <div class="card-body">
                      <div class="float-right btn-group btn-group-sm">
@@ -79,7 +80,7 @@
       <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="aggiungiUtenteModalLabel">Aggiungi utente</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" (click)="onCloseModalAdd(addForm)" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">&times;</span>
             </button>
          </div>
@@ -124,7 +125,7 @@
                      <input type="hidden" ngModel="{{qualificaSelezionata?.id}}" name="id_qualifica" class="form-control" id="qualificaSelezionata" > 
 
                   <ul class="list-group" id="utentiTrovati">
-                     <li class="list-group-item" *ngFor="let qualifica of qualificheTrovate" value="{{qualifica}}">
+                     <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate" value="{{qualifica}}">
                         <a (click)="selezionaQualifica(qualifica)">{{qualifica?.nome+ " (" + qualifica?.descrizione+
                            ")"}}</a></li>
                   </ul>
@@ -147,8 +148,8 @@
                   </select>
                </div>
                <div class="modal-footer">
-                  <button type="button" id="add-employee-form" class="btn btn-secondary"
-                     data-dismiss="modal">Close</button>
+                  <button type="button" (click)="onCloseModalAdd(addForm)" id="add-employee-form" class="btn btn-secondary"
+                     data-dismiss="modal">Chiudi</button>
                   <button type="submit" class="btn btn-primary">Aggiungi Utente</button>
                   <!-- [disabled]="addForm.invalid" -->
                </div>
@@ -165,7 +166,7 @@
       <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="aggiornaUtenteModalLabel">Modifica utente</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" (click)="onCloseModal()" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">&times;</span>
             </button>
          </div>
@@ -183,11 +184,11 @@
                <input type="hidden" ngModel="{{modificaUtente?.codiceUtente}}" name="codiceUtente" class="form-control"
                   id="codiceUtenteEdit">
                <!-- <input type="hidden" ngModel="{{modificaUtente?.password}}" name="password" class="form-control" id="password"> -->
-               <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf"
-                  class="form-control" id="accountDipvvfEdit">
+               <!-- <input type="hidden" ngModel="{{modificaUtente?.accountDipvvf}}" name="accountDipvvf"
+                  class="form-control" id="accountDipvvfEdit"> -->
 
                <div class="form-group">
-                  <label for="phoneEdit">Cognome</label>
+                  <label for="cognomeEdit">Cognome</label>
                   <input type="text" ngModel="{{modificaUtente?.cognome}}" name="cognome" class="form-control"
                      id="cognomeEdit" placeholder="Cognome" pattern="[A-Za-z0-9]+" title="Inserisci un cognome valido"
                      required />
@@ -200,10 +201,27 @@
                      title="devi rispettare il formato nome.cognome@vigilfuoco.it" required />
                </div>
                <div class="form-group">
-                  <label for="phoneEdit">Telefono</label>
-                  <input type="text" ngModel="{{modificaUtente?.telefono}}" name="telefono" class="form-control"
-                     id="phoneEdit" placeholder="Phone">
+                  <label for="accountDipvvfEdit">Account Dipvvf:</label>
+                  <input type="text" [ngModel]="modificaUtente?.accountDipvvf" name="accountDipvvf" class="form-control" id="accountDipvvfEdit"
+                     placeholder="Account dipvvf" ngModel required />
+
                </div>
+
+               <div class="form-group menu-item">
+                  <label for="searchQualificaEdit">Qualifica:</label>
+                  <input type="text" (ngModelChange)="cercaQualifica(keyInputEdit.value)" #keyInputEdit="ngModel" 
+                     [(ngModel)]="infoQualifica" name="searchQualificaEdit" id="searchQualificaEdit" class="form-control mr-sm-2"
+                     placeholder="Cerca qualifica.." required>
+
+                     <input type="hidden" ngModel="{{qualificaSelezionata?.id}}" name="id_qualifica" class="form-control" id="qualificaSelezionataEdit" > 
+
+                  <ul class="list-group" id="qualificehTrovati">
+                     <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate" value="{{qualifica}}">
+                        <a (click)="selezionaQualifica(qualifica)">{{qualifica?.nome+ " (" + qualifica?.descrizione+
+                           ")"}}</a></li>
+                  </ul>
+               </div>
+
                <div class="form-group">
                   <label for="passwordEdit">Modifica password:</label>
                   <input type="password" ngModel="{{modificaUtente?.password}}" name="password" class="form-control"
@@ -220,7 +238,7 @@
                   </select>
                </div>
                <div class="modal-footer">
-                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                  <button data-dismiss="modal" class="btn btn-secondary" (click)="onCloseModal()">Close</button>
                   <button (click)="aggiornaUtente(editForm.value)" data-dismiss="modal" class="btn btn-primary">Salva
                      modifiche</button>
                </div>

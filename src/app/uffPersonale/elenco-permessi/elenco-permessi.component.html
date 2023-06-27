@@ -52,7 +52,7 @@
                 <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
               </ul>
               <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" > 
-
+              <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue" > 
             </div>
         </div>
 
@@ -121,7 +121,11 @@
                   <td>{{permesso?.dalleOre}}</td>
                   <td>{{permesso?.alleOre}}</td>
                   <td>{{permesso?.totOre}}</td>
-                  <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}</td>
+                  <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
+                    <ng-container *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
+                      {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
+                    </ng-container>
+                  </td>
                   <td>{{permesso?.dataApprovazione}}</td>
                   <td><button class="btn btn-primary tooltips" (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td> 
               
