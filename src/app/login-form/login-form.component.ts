@@ -23,14 +23,16 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private loginService: LoginService, private route: Router) {
     this.error = '';
+    this.username='';
+    this.password='';
    }
 
   ngOnInit(): void {
   }
 
 
-  public accediUtente(loginForm: NgForm){
-    this.loginService.accediUtente(loginForm.value)
+  public accediUtente(){
+    this.loginService.accediUtente(this.username,this.password)
     .pipe(first())
             .subscribe({
                 next: (data) => {
@@ -61,7 +63,7 @@ export class LoginFormComponent implements OnInit {
                 error: () => {
 
                   this.error = 'Username o password non validi';
-                  loginForm.reset();
+                  //loginForm.reset();
                   console.log(this.error);
                 }
             }

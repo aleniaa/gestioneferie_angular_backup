@@ -25,9 +25,12 @@ export class LoginService {
 
    }
 
-    public accediUtente(utente: Utente){
-
-    return this.http.post<any>(`${this.apiServerUrl}/login`, utente)
+    public accediUtente(username: string, password: string){
+      let params = new HttpParams()
+      .set('username', username)
+      .set('password', password); 
+    return this.http.post<any>(`${this.apiServerUrl}/login`,null, {params: params})  
+    //return this.http.post<any>(`${this.apiServerUrl}/login`, {username, password})
     .pipe(map(user => {
       if(user){
         localStorage.setItem('currentUser', JSON.stringify(user));

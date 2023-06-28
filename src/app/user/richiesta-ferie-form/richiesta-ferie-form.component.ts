@@ -45,6 +45,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.dataInizio = "";
     this.message = "";
     this.totOreGiorni = "";
+    this.totGiorni=0;
     
 
 
@@ -177,12 +178,21 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
 
-
+  public azzeraVariabili():void{
+    this.oreInizio = "";
+    this.oreFine = "";
+    this.totOre = "";
+    this.dataFine = "";
+    this.dataInizio = "";
+    this.message = "";
+    this.totOreGiorni = "";
+  }
 
 
 
   public toggleForm(form: string): void {
 
+    this.azzeraVariabili();
     var x = document.getElementById("ferie_form");
     var congedo = document.getElementById("congedo_form");
     var permesso_breve = document.getElementById("permesso_breve_form");
