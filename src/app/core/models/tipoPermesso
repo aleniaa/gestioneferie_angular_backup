@@ -1,4 +1,4 @@
-enum tipoPermesso {
+export enum tipoPermesso {
     concorsiEdEsami = "Concorsi ed Esami (8 gg/anno)",
     luttoFamiliare = "Lutto familiare (3 gg/evento)",
     graviInfermita="Gravi infermità 18 ore/anno",
@@ -22,3 +22,4 @@ enum tipoPermesso {
     allattamento=" Permessi orari retribuiti per allattamento",
     paternita="Congedo obbligatorio di paternità 10 gg /5 turni",
 }
+
