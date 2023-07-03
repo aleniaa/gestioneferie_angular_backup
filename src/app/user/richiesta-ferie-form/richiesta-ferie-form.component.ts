@@ -199,13 +199,13 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.azzeraVariabili();
     var x = document.getElementById("ferie_form");
     var congedo = document.getElementById("congedo_form");
-    var permesso_breve = document.getElementById("permesso_breve_form");
+    //var permesso_breve = document.getElementById("permesso_breve_form");
     var recupero_ore = document.getElementById("recupero_ore_form");
     var permessi = document.getElementById("permessi_form");
     var malattia = document.getElementById("malattia_container");
 
     if (form === 'congedo') {
-      permesso_breve.style.display = "none";
+      //permesso_breve.style.display = "none";
       recupero_ore.style.display = "none";
       permessi.style.display = "none";
       malattia.style.display = "none";
@@ -215,18 +215,18 @@ export class RichiestaFerieFormComponent implements OnInit {
 
     }
 
-    if (form === 'permesso_breve') {
-      recupero_ore.style.display = "none";
-      permessi.style.display = "none";
-      congedo.style.display = "none";
-      malattia.style.display = "none";
-      x.appendChild(permesso_breve);
-      permesso_breve.style.display = "block";
+    // if (form === 'permesso_breve') {
+    //   recupero_ore.style.display = "none";
+    //   permessi.style.display = "none";
+    //   congedo.style.display = "none";
+    //   malattia.style.display = "none";
+    //   x.appendChild(permesso_breve);
+    //   permesso_breve.style.display = "block";
 
-    }
+    // }
 
     if (form === 'recupero_ore') {
-      permesso_breve.style.display = "none";
+      //permesso_breve.style.display = "none";
       congedo.style.display = "none";
       permessi.style.display = "none";
       malattia.style.display = "none";
@@ -237,7 +237,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     }
 
     if (form === 'permessi') {
-      permesso_breve.style.display = "none";
+      //permesso_breve.style.display = "none";
       recupero_ore.style.display = "none";
       congedo.style.display = "none";
       malattia.style.display = "none";
@@ -247,7 +247,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     }
 
     if (form === 'malattia') {
-      permesso_breve.style.display = "none";
+      //permesso_breve.style.display = "none";
       recupero_ore.style.display = "none";
       congedo.style.display = "none";
       permessi.style.display = "none";

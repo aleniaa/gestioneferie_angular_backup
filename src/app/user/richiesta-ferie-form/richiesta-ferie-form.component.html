@@ -9,7 +9,7 @@
         </button>
         <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
           <li><a class="dropdown-item" (click)="toggleForm('congedo')">CONGEDO ORDINARIO</a></li>
-          <li><a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a></li>
+          <!-- <li><a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a></li> -->
           <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a></li>
           <li><a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a></li>
           <li><a class="dropdown-item" (click)="toggleForm('malattia')">MALATTIA</a></li>
@@ -86,13 +86,14 @@
 </div> -->
 
 
-<!-- <div class="container" id="ferie_form"> -->
+<!-- ---------------------------------- MALATTIA -------------------------- -->
 
 <div id="malattia_container" class="container fadeIn" style="display: none;">
 
 
   <!-- <h1>{{idUtenteApp}} ciao</h1> -->
-  <h2 style="padding-top: 5px;">MALATTIA</h2>
+  <h2 style="padding-top: 5px;">MALATTIA</h2><p><i>Da allegare certificato medico nella pagina "I miei permessi"</i> </p>
+  
   <form #malattia_form="ngForm" (ngSubmit)="aggiungiPermesso(malattia_form)" id="malattia_form" ngNativeValidate>
     <!-- (ngSubmit)="inviaPermesso(malattia)"  -->
     <input type="hidden" [(ngModel)]="idUtenteApp" name="idUtenteRichiedente" class="form-control"
@@ -152,6 +153,8 @@
     {{message}}
   </div>
 </div>
+
+<!-- _____________________________________________________ CONGEDO _____________________________________ -->
 
 <div id="congedo_form" class="container fadeIn" style="display: none;">
 
@@ -216,7 +219,7 @@
 </div>
 <!-- _________________ PERMESSO BREVE _______________ -->
 
-<div id="permesso_breve_form" class="container fadeIn" style="display: none;">
+<!-- <div id="permesso_breve_form" class="container fadeIn" style="display: none;">
   <div class="row">
     <h2 style="padding-top: 5px;">PERMESSO BREVE (fino a 36 ore annue)</h2>
     <h5>(Inserire le ore nel formato HH:mm, esempio 08:35)</h5>
@@ -276,14 +279,14 @@
         </select>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
+        <button type="submit" class="btn btn-primary">Invia</button> 
       </div>
     </form>
     <div class="alert alert-success" role="alert" *ngIf="message">
       {{message}}
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- ________________ RECUPERO ORE____________ -->
 
@@ -534,6 +537,11 @@
               value="Paternita" />
             <label class="form-check-label" for="paternita"> Congedo obbligatorio di paternità 10 gg /5
               turni</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" ngModel="permesso breve" name="tipoPermesso" id="permesso_breve"
+              value="Permesso breve" />
+            <label class="form-check-label" for="permesso_breve"> Permesso breve (fino a 36 ore annue)</label>
           </div>
         </div>
       </div>
