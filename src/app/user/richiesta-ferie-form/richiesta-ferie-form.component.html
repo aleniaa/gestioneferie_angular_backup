@@ -12,6 +12,7 @@
           <li><a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a></li>
           <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a></li>
           <li><a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a></li>
+          <li><a class="dropdown-item" (click)="toggleForm('malattia')">MALATTIA</a></li>
         </ul>
       </div>
     </div>
@@ -24,7 +25,7 @@
 </div>
 
 
-<div class="container fadeInDown" >
+<!-- <div class="container fadeInDown" >
   <h1>Richiesta Permessi</h1>
   <div class="row">
     <div class="col">
@@ -35,16 +36,32 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
           <li><a class="dropdown-item" (click)="toggleForm('congedo')">CONGEDO ORDINARIO</a></li>
-          <li><a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a></li>
+          
           <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a></li>
-          <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">Malattia</a></li>
-          <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">Malattia per causa di servizio</a></li>
+          <li>
+            <a class="dropdown-item" (click)="toggleForm('recupero_ore')">Malattia</a>
+            <ul class="dropdown-menu dropdown-submenu">
+              <li>
+                <a class="dropdown-item" href="#">Malattia</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Malattia per causa di servizio</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Malattia COVID-19</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Submenu item 5</a>
+              </li>
+            </ul>
+          </li>
+          
           <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a></li>
           <li>
             <a class="dropdown-item">ALTRI PERMESSI</a>
             <ul class="dropdown-menu dropdown-submenu">
               <li>
-                <a class="dropdown-item" href="#">Submenu item 1</a>
+                <a class="dropdown-item" href="#">Concorsi ed esami</a>
               </li>
               <li>
                 <a class="dropdown-item" href="#">Submenu item 2</a>
@@ -66,11 +83,75 @@
       
     </div>
   </div>
-</div>
+</div> -->
 
 
 <!-- <div class="container" id="ferie_form"> -->
 
+<div id="malattia_container" class="container fadeIn" style="display: none;">
+
+
+  <!-- <h1>{{idUtenteApp}} ciao</h1> -->
+  <h2 style="padding-top: 5px;">MALATTIA</h2>
+  <form #malattia_form="ngForm" (ngSubmit)="aggiungiPermesso(malattia_form)" id="malattia_form" ngNativeValidate>
+    <!-- (ngSubmit)="inviaPermesso(malattia)"  -->
+    <input type="hidden" [(ngModel)]="idUtenteApp" name="idUtenteRichiedente" class="form-control"
+      id="idUtenteRichiedente">
+
+    <input type="hidden" [(ngModel)]="tipo_malattia" name="tipoPermesso" id="tipoPermesso" required>
+    <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
+    <div class="form-check">
+      <input class="form-check-input" type="radio" [(ngModel)]="tipo_malattia" value="Malattia" name="tipoPermesso" id="malattia" (ngModelChange)="malattia_radioButtonChanged()"
+         required />
+      <label class="form-check-label" for="malattia"> Malattia</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" [(ngModel)]="tipo_malattia" value="Malattia per causa di servizio" name="tipoPermesso" (ngModelChange)="malattia_radioButtonChanged()" 
+        id="malattia_causa_servizio" />
+      <label class="form-check-label" for="malattia_causa_servizio"> Malattia per causa di servizio</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" [(ngModel)]="tipo_malattia" value="Terapia salvavita" name="tipoPermesso" (ngModelChange)="malattia_radioButtonChanged()"
+        id="terapia_salvavita"  />
+      <label class="form-check-label" for="terapia_salvavita"> Terapia salvavita</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" [(ngModel)]="tipo_malattia" value="Malattia COVID-19" name="tipoPermesso" id="malattia_covid" (ngModelChange)="malattia_radioButtonChanged()"
+        />
+      <label class="form-check-label" for="malattia_covid"> Malattia COVID-19 </label>
+    </div>
+
+    <div class="row">
+      <div class="col">
+
+        <div class="form-group">
+          <label for="dataInizio">Giorni di malattia dal </label>
+          <input type="date" [(ngModel)]="dataInizio" (ngModelChange)="updateTotGiorni()" name="dataInizio"
+            class="form-control" id="dataInizio" title="Data inizio ferie" required />
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="dataFine">al</label>
+          <input type="date" [(ngModel)]="dataFine" (ngModelChange)="updateTotGiorni()" name="dataFine"
+            class="form-control" id="dataFine" [min]="dataInizio" title="Data fine ferie" required />
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="totGiorni">Giorni totali:</label>
+          <input id="totGiorni" [(ngModel)]="totGiorni" name="totGiorni" class="form-control" readonly />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
+    </div>
+  </form>
+  <div class="alert alert-success" role="alert" *ngIf="message">
+    {{message}}
+  </div>
+</div>
 
 <div id="congedo_form" class="container fadeIn" style="display: none;">
 
@@ -80,7 +161,7 @@
     <!-- (ngSubmit)="inviaPermesso(congedo)"  -->
     <input type="hidden" [(ngModel)]="idUtenteApp" name="idUtenteRichiedente" class="form-control"
       id="idUtenteRichiedente">
-      
+
     <input type="hidden" ngModel="Congedo Ordinario" ng-value="Congedo Ordinario" value="Congedo Ordinario"
       name="tipoPermesso" id="tipoPermesso" required>
     <!-- il punto interrogativo serve a verificare se il dato esiste, se non si mette e non esiste da errore -->
@@ -113,17 +194,17 @@
         placeholder="Scegli funzionario" form="congedo" required>
         <!-- <option *ngFor="let funzionario of funzionari" [ngValue]="funzionario.id" >
           {{funzionario?.cognome + " " + funzionario?.nome}}</option> -->
-          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
-            {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+        <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
+          {{approvatore?.cognome + " " + approvatore?.nome}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="approvazione">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario:</label>
       <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
         placeholder="Scegli capoturno" form="permessi">
-        <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+        <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
           {{approvatore?.cognome + " " + approvatore?.nome}}</option>
-    </select>
+      </select>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
@@ -145,8 +226,8 @@
 
       <input type="hidden" ngModel="Permesso breve" name="tipoPermesso" id="tipoPermesso">
       <div class="form-group">
-      <div class="row">
-        
+        <div class="row">
+
           <div class="col">
 
             <label for="dalleOre">Dalle ore: </label>
@@ -182,17 +263,17 @@
         <label for="approvazione">Da sottomettere per approvazione a:</label>
         <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
           placeholder="Scegli funzionario" form="permesso_breve" required>
-          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
             {{approvatore?.cognome + " " + approvatore?.nome}}</option>
-      </select>
+        </select>
       </div>
       <div class="form-group">
         <label for="approvazione">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
         <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
           placeholder="Scegli capoturno" form="permessi">
-          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
             {{approvatore?.cognome + " " + approvatore?.nome}}</option>
-      </select>
+        </select>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
@@ -246,15 +327,15 @@
 
         <div class="col">
           <label class="form-check-label" for="dalleOre"> Dalle ore: </label>
-          <input type="text" [(ngModel)]="oreInizio" (ngModelChange)="updateTotOre()" id="dalleOre"
-            name="dalleOre" class="form-control" id="dalleOre" title="Inserisci ore nel formato HH:mm"
+          <input type="text" [(ngModel)]="oreInizio" (ngModelChange)="updateTotOre()" id="dalleOre" name="dalleOre"
+            class="form-control" id="dalleOre" title="Inserisci ore nel formato HH:mm"
             pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" required />
         </div>
         <div class="col">
 
           <label class="form-check-label" for="alleOre"> alle ore </label>
-          <input type="text" [(ngModel)]="oreFine" (ngModelChange)="updateTotOre()" name="alleOre"
-            class="form-control" id="alleOre" title="Ore fine" title="Inserisci ore nel formato HH:mm"
+          <input type="text" [(ngModel)]="oreFine" (ngModelChange)="updateTotOre()" name="alleOre" class="form-control"
+            id="alleOre" title="Ore fine" title="Inserisci ore nel formato HH:mm"
             pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" required />
 
         </div>
@@ -268,9 +349,8 @@
         <div class="col">
 
           <label class="form-check-label" for="dataFineOre"> al giorno </label>
-          <input type="date" [(ngModel)]="dataFine" (ngModelChange)="updateTotOre()" name="dataFine"
-            [min]="dataInizio" id="dataFineOre" class="form-control"
-            required />
+          <input type="date" [(ngModel)]="dataFine" (ngModelChange)="updateTotOre()" name="dataFine" [min]="dataInizio"
+            id="dataFineOre" class="form-control" required />
 
 
         </div>
@@ -287,19 +367,19 @@
         <label for="approvazione">Da sottomettere per approvazione a:</label>
         <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
           placeholder="Scegli funzionario" form="recupero_ore" required>
-          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
             {{approvatore?.cognome + " " + approvatore?.nome}}</option>
-      </select>
+        </select>
       </div>
       <div class="form-group">
         <label for="approvazione">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
         <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
           placeholder="Scegli capoturno" form="permessi">
-          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
             {{approvatore?.cognome + " " + approvatore?.nome}}</option>
-      </select>
+        </select>
       </div>
-      
+
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
       </div>
@@ -458,7 +538,7 @@
         </div>
       </div>
       <h5 style="text-align: center;"><b>E comunica che la fruizione del permesso, ove autorizzata, comporterà
-        l’assenza dal servizio per un intervallo di tempo:</b></h5>
+          l’assenza dal servizio per un intervallo di tempo:</b></h5>
 
       <!-- ------------------------------- -->
 
@@ -517,7 +597,7 @@
 
           <div class="row">
             <input class="form-check-input" type="radio" name="intervallo_tempo" id="giornaliero" value="giornaliero"
-              [(ngModel)]="selectedOption" required/>
+              [(ngModel)]="selectedOption" required />
             <label for="giornaliero" class="custom-radio-button">Giornaliero</label><br>
 
             <fieldset>
@@ -562,32 +642,33 @@
       <div class="col">
         <div class="form-group">
           <label for="idUtenteApprovazione1">Da sottomettere per approvazione al funzionario:</label>
-          <select [(ngModel)]="selectedUtenteApprovazioneId" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione1"
-            placeholder="Scegli funzionario" form="permessi"  required>
-            <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+          <select [(ngModel)]="selectedUtenteApprovazioneId" name="idUtenteApprovazione" class="form-control"
+            id="idUtenteApprovazione1" placeholder="Scegli funzionario" form="permessi" required>
+            <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
               {{approvatore?.cognome + " " + approvatore?.nome}}</option>
-        </select>
+          </select>
         </div>
       </div>
       <div class="col">
 
         <div class="form-group">
-          <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
-          <select [(ngModel)]="selectedUtenteApprovazioneDueId" name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
-            placeholder="Scegli capoturno" form="permessi">
-            <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id" >
+          <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione al capoturno (per personale
+            operativo):</label>
+          <select [(ngModel)]="selectedUtenteApprovazioneDueId" name="idUtenteApprovazioneDue" class="form-control"
+            id="idUtenteApprovazioneDue" placeholder="Scegli capoturno" form="permessi">
+            <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
               {{approvatore?.cognome + " " + approvatore?.nome}}</option>
-        </select>
+          </select>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" >Invia</button> <!-- [disabled]="addForm.invalid" -->
+        <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
       </div>
     </form>
     <!-- </div> -->
     <div class="alert alert-success" role="alert" *ngIf="message">
       {{message}}
     </div>
-    
+
   </div>
 </div>

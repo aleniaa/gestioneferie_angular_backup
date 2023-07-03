@@ -32,6 +32,7 @@ export class RichiestaFerieFormComponent implements OnInit {
   public idUtenteApp: number;
   public selectedUtenteApprovazioneId: Utente;
   public selectedUtenteApprovazioneDueId: Utente;
+  public tipo_malattia: string;
 
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) {
@@ -46,7 +47,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.message = "";
     this.totOreGiorni = "";
     this.totGiorni=0;
-    
+    this.tipo_malattia="Malattia"
 
 
   }
@@ -60,7 +61,10 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   }
 
+  malattia_radioButtonChanged(){
+    console.log(this.tipo_malattia); // or perform any other action with the selected value
 
+  }
 
   public updateTotOre() {
     if (this.oreInizio === null || this.oreFine === null) {
@@ -198,11 +202,13 @@ export class RichiestaFerieFormComponent implements OnInit {
     var permesso_breve = document.getElementById("permesso_breve_form");
     var recupero_ore = document.getElementById("recupero_ore_form");
     var permessi = document.getElementById("permessi_form");
+    var malattia = document.getElementById("malattia_container");
 
     if (form === 'congedo') {
       permesso_breve.style.display = "none";
       recupero_ore.style.display = "none";
       permessi.style.display = "none";
+      malattia.style.display = "none";
       x.appendChild(congedo);
       congedo.style.display = "block";
 
@@ -213,6 +219,7 @@ export class RichiestaFerieFormComponent implements OnInit {
       recupero_ore.style.display = "none";
       permessi.style.display = "none";
       congedo.style.display = "none";
+      malattia.style.display = "none";
       x.appendChild(permesso_breve);
       permesso_breve.style.display = "block";
 
@@ -222,6 +229,7 @@ export class RichiestaFerieFormComponent implements OnInit {
       permesso_breve.style.display = "none";
       congedo.style.display = "none";
       permessi.style.display = "none";
+      malattia.style.display = "none";
       x.appendChild(recupero_ore);
       recupero_ore.style.display = "block";
 
@@ -232,10 +240,22 @@ export class RichiestaFerieFormComponent implements OnInit {
       permesso_breve.style.display = "none";
       recupero_ore.style.display = "none";
       congedo.style.display = "none";
+      malattia.style.display = "none";
       x.appendChild(permessi);
       permessi.style.display = "block";
 
     }
+
+    if (form === 'malattia') {
+      permesso_breve.style.display = "none";
+      recupero_ore.style.display = "none";
+      congedo.style.display = "none";
+      permessi.style.display = "none";
+      x.appendChild(malattia);
+      malattia.style.display = "block";
+
+    }
+
   }
 
 }
