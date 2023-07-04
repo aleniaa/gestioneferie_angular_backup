@@ -33,7 +33,12 @@
             <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente" > 
 
         </div>
-
+        <div class="col"> 
+          <div class="form-group">
+              <label for="dataAssenza">Data assenza personale:</label>
+              <input type="date" [(ngModel)]="dataAssenza" name="dataAssenza" class="form-control" id="dataAssenza" title="Data Assenza ferie">
+          </div>
+        </div>
         
         <div class="col"> 
           <div class="form-group">
@@ -121,8 +126,13 @@
                   <td>{{permesso?.dalleOre}}</td>
                   <td>{{permesso?.alleOre}}</td>
                   <td>{{permesso?.totOre}}</td>
-                  <td>{{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
-                    <ng-container *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
+                  <td>
+                    <ng-container
+                      *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
+                      {{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
                       {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
                     </ng-container>
                   </td>

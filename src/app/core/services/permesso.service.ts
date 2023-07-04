@@ -36,8 +36,10 @@ export class PermessoService {
     return this.http.get<any>(`${this.apiServerUrl}/permesso/allCongedo`);
   }
 
-  public search(permesso: Permesso): Observable<Permesso[]>{
-    return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso);
+  public search(permesso: Permesso, dataAssenza: string): Observable<Permesso[]>{
+    let params = new HttpParams()
+    .set('dataAssenza', dataAssenza);
+    return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso,{params: params});
   }
 
   public approvaPermesso(permesso: Permesso, idApprovatore:number ): Observable<Permesso> {

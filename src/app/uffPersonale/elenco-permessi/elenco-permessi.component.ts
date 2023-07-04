@@ -28,6 +28,7 @@ export class ElencoPermessiComponent implements OnInit{
   public permessoSelezionato: Permesso;
   filenames: string[] = [];
   fileStatus = { status: '', requestType: '', percent: 0 };
+  public dataAssenza: Date =null;
 
 
   
@@ -125,8 +126,14 @@ export class ElencoPermessiComponent implements OnInit{
   }
 
   public search(searchForm: NgForm): void{
+    var dataAssenzaStringa = "";
+    if(this.dataAssenza){ // se non è null
+      dataAssenzaStringa= this.dataAssenza.toString();
+    }
+    console.log("data assenza stringa è:")
+    console.log(dataAssenzaStringa)
     console.log(searchForm.value);
-    this.permessoService.search(searchForm.value).subscribe(
+    this.permessoService.search(searchForm.value, dataAssenzaStringa).subscribe(
       (response: Permesso[]) => {
         this.permessi = response;
         //searchForm.resetForm();
