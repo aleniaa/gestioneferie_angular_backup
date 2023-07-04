@@ -38,8 +38,8 @@
                   <tr *ngFor="let permesso of permessiPending">
                     <th scope="row">{{permesso?.tipoPermesso}}</th>
                     <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
-                    <td>{{permesso?.dataInizio}}</td>
-                    <td>{{permesso?.dataFine}}</td>
+                    <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                    <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
                     <td>{{permesso?.totGiorni}}</td>
                     <td>{{permesso?.dalleOre}}</td>
                     <td>{{permesso?.alleOre}}</td>
@@ -108,13 +108,13 @@
                   <tr *ngFor="let permesso of permessiApprovati">
                     <th scope="row">{{permesso?.tipoPermesso}}</th>
                     <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
-                    <td>{{permesso?.dataInizio}}</td>
-                    <td>{{permesso?.dataFine}}</td>
+                    <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                    <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
                     <td>{{permesso?.totGiorni}}</td>
                     <td>{{permesso?.dalleOre}}</td>
                     <td>{{permesso?.alleOre}}</td>
                     <td>{{permesso?.totOre}}</td>
-                    <td>{{permesso?.dataApprovazione}}</td>
+                    <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
 
                   </tr>
                 </tbody>
@@ -164,13 +164,13 @@
                   <tr *ngFor="let permesso of permessiRespinti">
                     <th scope="row">{{permesso?.tipoPermesso}}</th>
                     <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
-                    <td>{{permesso?.dataInizio}}</td>
-                    <td>{{permesso?.dataFine}}</td>
+                    <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                    <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
                     <td>{{permesso?.totGiorni}}</td>
                     <td>{{permesso?.dalleOre}}</td>
                     <td>{{permesso?.alleOre}}</td>
                     <td>{{permesso?.totOre}}</td>
-                    <td>{{permesso?.dataApprovazione}}</td>
+                    <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
                     <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips" data-placement="top"
                         data-toggle="tooltip" data-original-title="visualizzaNote"><i class="fa fa-times"> Vedi
                           note</i></button></td>

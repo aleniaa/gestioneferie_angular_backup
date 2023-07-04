@@ -7,12 +7,14 @@ import { FileUploadService } from 'src/app/core/services/file-upload.service';
 import { PermessoService } from 'src/app/core/services/permesso.service';
 import { UtenteService } from 'src/app/core/services/utente.service';
 import { saveAs } from 'file-saver-es';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-elenco-permessi',
   templateUrl: './elenco-permessi.component.html',
-  styleUrls: ['./elenco-permessi.component.css']
+  styleUrls: ['./elenco-permessi.component.css'],
+  providers: [DatePipe],
 })
 export class ElencoPermessiComponent implements OnInit{
 

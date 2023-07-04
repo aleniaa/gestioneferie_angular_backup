@@ -12,9 +12,17 @@
               <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso"  form="searchForm" >
                 <option value="tutti i permessi">Tutti i permessi</option>  
                 <option value="congedo ordinario">Congedo Ordinario</option>
-                  <option value="permesso breve">Permesso breve</option>
+                  <!-- <option value="permesso breve">Permesso breve</option> -->
                   <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
                   <option value="altri permessi">Altri permessi</option>
+                  <optgroup label="Malattia">
+                    <option value="Malattia">Malattia</option>
+                    <option value="Malattia per causa di servizio">Malattia per causa di servizio</option>
+                    <option value="Terapia salvavita">Terapia salvavita</option>
+                    <option value="Malattia COVID-19">Malattia COVID-19</option>
+
+                  </optgroup>
+
                   
               </select>
           </div>
@@ -120,8 +128,8 @@
 
                   <th scope="row">{{permesso?.tipoPermesso}}</th>
                   <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
-                  <td>{{permesso?.dataInizio}}</td>
-                  <td>{{permesso?.dataFine}}</td>
+                  <td>{{permesso?.dataInizio  | date:'dd-MM-yyyy' }}</td>
+                  <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
                   <td>{{permesso?.totGiorni}}</td>
                   <td>{{permesso?.dalleOre}}</td>
                   <td>{{permesso?.alleOre}}</td>
@@ -136,7 +144,7 @@
                       {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
                     </ng-container>
                   </td>
-                  <td>{{permesso?.dataApprovazione}}</td>
+                  <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>
                   <td><button class="btn btn-primary tooltips" (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td> 
               
                 </tr>
