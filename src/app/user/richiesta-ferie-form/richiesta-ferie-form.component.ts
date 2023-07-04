@@ -27,6 +27,7 @@ export class RichiestaFerieFormComponent implements OnInit {
   public totOre: string;
   public totGiorni: number;
   public message: string;
+  public error: string;
   public totOreGiorni: string
   selectedOption: string;
   public idUtenteApp: number;
@@ -165,14 +166,16 @@ export class RichiestaFerieFormComponent implements OnInit {
         this.message = response;
         console.log(response);
         permessoForm.reset();
+        this.error="";
         var values = JSON.parse(localStorage.getItem("currentUser"));
         this.idUtenteApp = values.id;
 
 
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
-        permessoForm.reset();
+        //alert(error.message);
+        this.error = error.error;
+        //permessoForm.reset();
         var values = JSON.parse(localStorage.getItem("currentUser"));
         this.idUtenteApp = values.id;
       },
@@ -189,7 +192,10 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.dataFine = "";
     this.dataInizio = "";
     this.message = "";
+    this.error= "";
     this.totOreGiorni = "";
+    this.totGiorni=0;
+    
   }
 
 

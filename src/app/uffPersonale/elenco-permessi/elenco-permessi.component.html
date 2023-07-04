@@ -124,7 +124,7 @@
                 <tr *ngIf="permessi?.length == 0" >
                   <td colspan="11">Nessun permesso trovato</td>
                 </tr>
-                <tr *ngFor= "let permesso of permessi" >
+                <tr *ngFor= "let permesso of permessi" [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia')}"> <!-- "malattia è una classe del css" -->
 
                   <th scope="row">{{permesso?.tipoPermesso}}</th>
                   <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>

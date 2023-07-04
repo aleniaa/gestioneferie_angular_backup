@@ -7,6 +7,10 @@
     background: transparent no-repeat 3px 170px;
 } */
 
+.malattia {
+  background-color: rgb(241, 198, 198) !important;
+}
+
 .filename {
   white-space: nowrap;
   overflow: hidden;
