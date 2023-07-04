@@ -119,8 +119,9 @@ export class SchedaUtentiComponent implements OnInit{
         addForm.reset();
       },
       (error: HttpErrorResponse) => {
+        console.log(error)
         this.errorMsg=error.error;
-        //alert("La mail vigilfuoco o l'account Dipvvf sono già presenti nel database");
+        alert("La mail vigilfuoco o l'account Dipvvf sono già presenti nel database");
         //addForm.reset();
       },
     ); //addform.value restituisce una rappresentaione json dei dati inseriti nel form
