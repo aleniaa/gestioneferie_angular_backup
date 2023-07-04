@@ -23,8 +23,12 @@ export class SchedaUtentiComponent implements OnInit{
   public qualificheTrovate: Qualifica[] = [];
   public qualificaSelezionata!: Qualifica;
   public infoQualifica: string;
+  public errorMsg: string;
+  public message: string;
 
   constructor(private utenteService: UtenteService, private qualificaService: QualificaService) { 
+    this.message = "";
+  
   }
 
   ngOnInit()  {
@@ -105,18 +109,19 @@ export class SchedaUtentiComponent implements OnInit{
     console.log("il form di aggiungi utente è:");
     console.log(addForm.value);
 
-    document.getElementById('aggiungiUtenteModal')?.click();
+    //document.getElementById('aggiungiUtenteModal')?.click();
     this.utenteService.aggiungiUtente(addForm.value).subscribe(
-      (response: Utente) => { //jfoiewfjwoiej
-      //(response: String) => { //jfoiewfjwoiej
-
+      //(response: Utente) => { //jfoiewfjwoiej
+      (response: string) => { //jfoiewfjwoiej
+        this.message= response;
         console.log(response);
         this.getUtenti();
         addForm.reset();
       },
       (error: HttpErrorResponse) => {
-        alert("La mail vigilfuoco o l'account Dipvvf sono già presenti nel database");
-        addForm.reset();
+        this.errorMsg=error.error;
+        //alert("La mail vigilfuoco o l'account Dipvvf sono già presenti nel database");
+        //addForm.reset();
       },
     ); //addform.value restituisce una rappresentaione json dei dati inseriti nel form
   }

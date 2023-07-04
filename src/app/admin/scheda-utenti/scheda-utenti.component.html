@@ -52,9 +52,8 @@
                   <ul class="list-group list-group-flush">
                      <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email
                         :<br>{{utente?.emailVigilfuoco}}</li>
-                     <li class="list-group-item"><i
-                           class="fa fa float-right"></i>Qualifica
-                           :<br>{{utente?.qualifica.descrizione}}</li>
+                     <li class="list-group-item"><i class="fa fa float-right"></i>Qualifica
+                        :<br>{{utente?.qualifica.descrizione}}</li>
                   </ul>
                   <div class="card-body">
                      <div class="float-right btn-group btn-group-sm">
@@ -80,7 +79,8 @@
       <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="aggiungiUtenteModalLabel">Aggiungi utente</h5>
-            <button type="button" (click)="onCloseModalAdd(addForm)" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" (click)="onCloseModalAdd(addForm)" class="close" data-dismiss="modal"
+               aria-label="Close">
                <span aria-hidden="true">&times;</span>
             </button>
          </div>
@@ -118,16 +118,19 @@
 
                <div class="form-group menu-item">
                   <label for="searchQualifica">Qualifica:</label>
-                  <input type="text" (ngModelChange)="cercaQualifica(keyInput.value)" #keyInput="ngModel" 
-                     [(ngModel)]="infoQualifica" name="searchQualifica" id="searchQualifica" class="form-control mr-sm-2"
-                     placeholder="Cerca qualifica.." required>
+                  <input type="text" (ngModelChange)="cercaQualifica(keyInput.value)" #keyInput="ngModel"
+                     [(ngModel)]="infoQualifica" name="searchQualifica" id="searchQualifica"
+                     class="form-control mr-sm-2" placeholder="Cerca qualifica.." required>
 
-                     <input type="hidden" ngModel="{{qualificaSelezionata?.id}}" name="id_qualifica" class="form-control" id="qualificaSelezionata" > 
+                  <input type="hidden" ngModel="{{qualificaSelezionata?.id}}" name="id_qualifica" class="form-control"
+                     id="qualificaSelezionata">
 
                   <ul class="list-group" id="utentiTrovati">
-                     <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate" value="{{qualifica}}">
+                     <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate"
+                        value="{{qualifica}}">
                         <a (click)="selezionaQualifica(qualifica)">{{qualifica?.nome+ " (" + qualifica?.descrizione+
-                           ")"}}</a></li>
+                           ")"}}</a>
+                     </li>
                   </ul>
                </div>
 
@@ -147,15 +150,22 @@
                      <option value="PERSONALE">Ufficio personale</option>
                   </select>
                </div>
+               <div class="alert alert-success" role="alert" *ngIf="message">
+                  {{message}}
+               </div>
+               <div class="alert alert-danger" role="alert" *ngIf="errorMsg">
+                  {{errorMsg}}
+               </div>
                <div class="modal-footer">
-                  <button type="button" (click)="onCloseModalAdd(addForm)" id="add-employee-form" class="btn btn-secondary"
-                     data-dismiss="modal">Chiudi</button>
+                  <button type="button" (click)="onCloseModalAdd(addForm)" id="add-employee-form"
+                     class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
                   <button type="submit" class="btn btn-primary">Aggiungi Utente</button>
                   <!-- [disabled]="addForm.invalid" -->
                </div>
             </form>
          </div>
       </div>
+
    </div>
 </div>
 
@@ -202,23 +212,26 @@
                </div>
                <div class="form-group">
                   <label for="accountDipvvfEdit">Account Dipvvf:</label>
-                  <input type="text" [ngModel]="modificaUtente?.accountDipvvf" name="accountDipvvf" class="form-control" id="accountDipvvfEdit"
-                     placeholder="Account dipvvf" ngModel required />
+                  <input type="text" [ngModel]="modificaUtente?.accountDipvvf" name="accountDipvvf" class="form-control"
+                     id="accountDipvvfEdit" placeholder="Account dipvvf" ngModel required />
 
                </div>
 
                <div class="form-group menu-item">
                   <label for="searchQualificaEdit">Qualifica:</label>
-                  <input type="text" (ngModelChange)="cercaQualifica(keyInputEdit.value)" #keyInputEdit="ngModel" 
-                     [(ngModel)]="infoQualifica" name="searchQualificaEdit" id="searchQualificaEdit" class="form-control mr-sm-2"
-                     placeholder="Cerca qualifica.." required>
+                  <input type="text" (ngModelChange)="cercaQualifica(keyInputEdit.value)" #keyInputEdit="ngModel"
+                     [(ngModel)]="infoQualifica" name="searchQualificaEdit" id="searchQualificaEdit"
+                     class="form-control mr-sm-2" placeholder="Cerca qualifica.." required>
 
-                     <input type="hidden" ngModel="{{qualificaSelezionata?.id}}" name="id_qualifica" class="form-control" id="qualificaSelezionataEdit" > 
+                  <input type="hidden" ngModel="{{qualificaSelezionata?.id}}" name="id_qualifica" class="form-control"
+                     id="qualificaSelezionataEdit">
 
                   <ul class="list-group" id="qualificehTrovati">
-                     <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate" value="{{qualifica}}">
+                     <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate"
+                        value="{{qualifica}}">
                         <a (click)="selezionaQualifica(qualifica)">{{qualifica?.nome+ " (" + qualifica?.descrizione+
-                           ")"}}</a></li>
+                           ")"}}</a>
+                     </li>
                   </ul>
                </div>
 

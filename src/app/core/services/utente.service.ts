@@ -26,11 +26,16 @@ export class UtenteService {
     return this.http.get<any>(`${this.apiServerUrl}/utente/ferie`);
   }
 
-  public aggiungiUtente(utente: Utente): Observable<Utente>{
-  //public aggiungiUtente(utente: Utente): Observable<any>{
+/*   public aggiungiUtente(utente: Utente): Observable<Utente>{
     return this.http.post<Utente>(`${this.apiServerUrl}/utente/add`, utente);
 
-  }
+  } */
+
+  public aggiungiUtente(utente: Utente)/* : Observable<Utente> */{
+    //public aggiungiUtente(utente: Utente): Observable<any>{
+      return this.http.post<any>(`${this.apiServerUrl}/utente/add`, utente);
+  
+    }
 
   public aggiornaUtente(utente: Utente): Observable<Utente>{
     return this.http.put<Utente>(`${this.apiServerUrl}/utente/update`, utente);
