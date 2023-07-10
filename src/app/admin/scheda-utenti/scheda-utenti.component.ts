@@ -97,6 +97,8 @@ export class SchedaUtentiComponent implements OnInit{
     this.infoQualifica="";
     this.qualificheTrovate= [];
     this.qualificaSelezionata=null;
+    this.message=""
+    this.errorMsg=""
   }
 
   public onCloseModalAdd(addForm: NgForm):void{
@@ -109,6 +111,8 @@ export class SchedaUtentiComponent implements OnInit{
     console.log("il form di aggiungi utente è:");
     console.log(addForm.value);
 
+
+
     //document.getElementById('aggiungiUtenteModal')?.click();
     this.utenteService.aggiungiUtente(addForm.value).subscribe(
       //(response: Utente) => { //jfoiewfjwoiej
@@ -117,6 +121,7 @@ export class SchedaUtentiComponent implements OnInit{
         console.log(response);
         this.getUtenti();
         addForm.reset();
+        
       },
       (error: HttpErrorResponse) => {
         console.log(error)

@@ -8,11 +8,12 @@ import { LoginService } from 'src/app/login.service';
 import { saveAs } from 'file-saver-es';
 
 @Component({
-  selector: 'app-i-miei-permessi',
-  templateUrl: './i-miei-permessi.component.html',
-  styleUrls: ['./i-miei-permessi.component.css']
+  selector: 'app-tab',
+  templateUrl: './tab.component.html',
+  styleUrls: ['./tab.component.css']
 })
-export class IMieiPermessiComponent {
+export class TabComponent {
+
   public permessi: Permesso[] = [];
   public permessiPending: Permesso[] = [];
   public permessiApprovati: Permesso[] = [];
@@ -30,7 +31,7 @@ export class IMieiPermessiComponent {
   constructor(private permessoService: PermessoService, private fileUploadService: FileUploadService) {
     this.selectedFile = null;
   }
-
+  
   openTab(tabNumber: number) {
     this.activeTab = tabNumber;
   }
@@ -333,7 +334,5 @@ export class IMieiPermessiComponent {
     )
 
   }
+
 }
-
-
-

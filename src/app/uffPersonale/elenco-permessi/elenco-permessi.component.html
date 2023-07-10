@@ -62,7 +62,7 @@
               name="keyApp" id="searchNameApp"  class="form-control mr-sm-2" placeholder="Cerca utente..">
             
               <ul class="list-group" id="utentiTrovati">
-                <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
+                <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome + " (" + utente?.qualifica.nome + ")"}}</a></li>
               </ul>
               <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" > 
               <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue" > 

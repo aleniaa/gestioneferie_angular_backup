@@ -21,6 +21,7 @@ import { HomeFerieComponent } from './approvazione_ferie/home-ferie/home-ferie.c
 import { ErrorComponent } from './error/error.component';
 import { HomeUserComponent } from './user/home-user/home-user.component';
 import { SharedModule } from './shared/shared.module';
+import { TabComponent } from './tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SharedModule } from './shared/shared.module';
     //HomeAdminComponent,
     RichiestaFerieFormComponent,
     ErrorComponent,
+    TabComponent,
     //HomeUserComponent,
     //GestionePermessiComponent,
     //ElencoPermessiComponent,

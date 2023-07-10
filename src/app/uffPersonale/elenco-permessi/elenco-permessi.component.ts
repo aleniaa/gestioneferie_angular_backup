@@ -157,7 +157,7 @@ export class ElencoPermessiComponent implements OnInit{
 
   public selezionaUtenteApprovatore(utenteApprovatoreSelezionato: Utente): void {
     this.utenteApprovatore= utenteApprovatoreSelezionato;
-    this.infoApprovatore = utenteApprovatoreSelezionato.nome + " " + utenteApprovatoreSelezionato.cognome;
+    this.infoApprovatore = utenteApprovatoreSelezionato.nome + " " + utenteApprovatoreSelezionato.cognome+" (" + utenteApprovatoreSelezionato.qualifica.nome+")";
     this.utentiApprovatoriTrovati= [];
 
   }

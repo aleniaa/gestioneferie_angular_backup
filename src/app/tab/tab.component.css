@@ -2,7 +2,7 @@
 .table-scroll{
     position: absolute;
     overflow-y: scroll;
-    max-height: 600px;
+    max-height: 200px;
     border-radius: .5rem;
 }
 
@@ -45,24 +45,24 @@ thead th {
 }
 
 .tab-link {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: #f1f1f1;
-  color: #444;
-  border: none;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.tab-link.active {
-  background-color:#002d72;
-  border-top: 2px solid #fff;
-  border-left: 2px solid #fff;
-  border-right: 2px solid #fff;
-  color: #fff;
-}
-
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #f1f1f1;
+    color: #444;
+    border: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tab-link.active {
+    background-color:#002d72;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+    color: #fff;
+  }
+  
 
 

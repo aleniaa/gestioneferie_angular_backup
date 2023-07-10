@@ -53,7 +53,7 @@
                      <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email
                         :<br>{{utente?.emailVigilfuoco}}</li>
                      <li class="list-group-item"><i class="fa fa float-right"></i>Qualifica
-                        :<br>{{utente?.qualifica.descrizione}}</li>
+                        :<br>{{utente?.qualifica?.descrizione}}</li>
                   </ul>
                   <div class="card-body">
                      <div class="float-right btn-group btn-group-sm">
@@ -117,7 +117,7 @@
             </div>-->
 
                <div class="form-group menu-item">
-                  <label for="searchQualifica">Qualifica:</label>
+                  <label for="searchQualifica">Qualifica (seleziona dall'elenco):</label>
                   <input type="text" (ngModelChange)="cercaQualifica(keyInput.value)" #keyInput="ngModel"
                      [(ngModel)]="infoQualifica" name="searchQualifica" id="searchQualifica"
                      class="form-control mr-sm-2" placeholder="Cerca qualifica.." required>
