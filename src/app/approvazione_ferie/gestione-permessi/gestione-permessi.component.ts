@@ -21,11 +21,16 @@ export class GestionePermessiComponent implements OnInit {
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
   public note: string;
+  activeTab: number = 1;
 
   constructor(private permessoService: PermessoService, private loginService: LoginService) { 
     this.note="";
     
     console.log(this.utenteLoggato)
+  }
+
+  openTab(tabNumber: number) {
+    this.activeTab = tabNumber;
   }
  
   ngOnInit()  {

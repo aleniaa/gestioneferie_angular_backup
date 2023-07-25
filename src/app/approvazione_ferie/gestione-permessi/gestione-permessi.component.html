@@ -1,14 +1,13 @@
-<div class="container fadeInDown" id="formContent">
+<div class="container wrapper fadeInDown">
 
 
-  <h2>Gestione Permessi</h2>
+  <!-- <h2>Gestione Permessi</h2>
 
   <div class=" fadeIn first" >
     <h3>Permessi in attesa di approvazione :</h3>
 
     <div class="container" >
       <div class="row justify-content-center">
-        <!-- <div class="col"> -->
         <div class="card">
           <div class="card-body p-0">
             <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
@@ -50,7 +49,7 @@
                       <button type="button" (click)='approvaPermesso(permesso)'
                         class="btn btn-primary">Approva</button>
                     </td>
-                    <!-- <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td> -->
+                     <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td> 
 
 
                     <td><button (click)="onRespingiPermesso(permesso)" class="btn btn-secondary tooltips" data-placement="top"
@@ -69,7 +68,6 @@
             </div>
           </div>
         </div>
-        <!-- </div> -->
       </div>
     </div>
 
@@ -80,7 +78,6 @@
 
     <div class="container">
       <div class="row justify-content-center">
-        <!-- <div class="col"> -->
         <div class="card">
           <div class="card-body p-0">
             <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
@@ -124,7 +121,6 @@
             </div>
           </div>
         </div>
-        <!-- </div> -->
       </div>
     </div>
 
@@ -135,7 +131,6 @@
 
     <div class="container">
       <div class="row justify-content-center">
-        <!-- <div class="col"> -->
         <div class="card">
           <div class="card-body p-0">
             <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
@@ -185,12 +180,199 @@
             </div>
           </div>
         </div>
-        <!-- </div> -->
       </div>
     </div>
 
-  </section>
+  </section> -->
+  <div class="tab-container" id="main-container">
+    <div class="tab-links">
+      <button class="tab-link" [class.active]="activeTab === 1" (click)="openTab(1)">Permessi da approvare</button>
+      <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Permessi approvati</button>
+      <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button>
+    </div>
+    <div class="tab-content container2">
+      <div *ngIf="activeTab === 1">
+        <!-- <div class="container" > -->
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class="table-responsive bg-white table-scroll" data-mdb-perfect-scrollbar="true"
+                style="position: relative;">
 
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72; position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Richiedente</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+
+
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr *ngIf="permessiPending?.length == 0">
+                      <td colspan="10">Nessun permesso da approvare</td>
+                    </tr>
+                    <tr *ngFor="let permesso of permessiPending">
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+
+                      <td>
+
+                        <button type="button" (click)='approvaPermesso(permesso)'
+                          class="btn btn-primary">Approva</button>
+                      </td>
+                      <!-- <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td> -->
+
+
+                      <td><button (click)="onRespingiPermesso(permesso)" class="btn btn-secondary tooltips"
+                          data-placement="top" data-toggle="tooltip" data-original-title="Respingi"><i
+                            class="fa fa-times">
+                            Respingi</i></button></td>
+
+
+
+
+
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
+      <!-- </div> -->
+      <div *ngIf="activeTab === 2">
+        <!-- <div class="container"> -->
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72; position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Richiedente</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col">Approvato in data:</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngIf="permessiApprovati?.length == 0">
+                      <td colspan="10">Nessun permesso approvato</td>
+                    </tr>
+                    <tr *ngFor="let permesso of permessiApprovati">
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+                      <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
+      <!-- </div> -->
+      <div *ngIf="activeTab === 3">
+        <!-- <div class="container"> -->
+          <div class="row justify-content-center">
+            <!-- <div class="col"> -->
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                  style="position: relative;">
+
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #002d72;position: sticky;top: 0;">
+                      <tr>
+                        <th scope="col">Tipo permesso</th>
+                        <th scope="col">Richiedente</th>
+                        <th scope="col">Dal giorno</th>
+                        <th scope="col">Al giorno</th>
+                        <th scope="col">Giorni totali</th>
+                        <th scope="col">Dalle ore</th>
+                        <th scope="col">Alle ore</th>
+                        <th scope="col">Ore totali</th>
+                        <th scope="col">Respinto in data:</th>
+                        <th scope="col">Note:</th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngIf="permessiRespinti?.length == 0">
+                        <td colspan="11">Nessun permesso respinto</td>
+                      </tr>
+                      <tr *ngFor="let permesso of permessiRespinti">
+                        <th scope="row">{{permesso?.tipoPermesso}}</th>
+                        <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
+                        <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                        <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                        <td>{{permesso?.totGiorni}}</td>
+                        <td>{{permesso?.dalleOre}}</td>
+                        <td>{{permesso?.alleOre}}</td>
+                        <td>{{permesso?.totOre}}</td>
+                        <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
+                        <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips"
+                            data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i
+                              class="fa fa-times"> Vedi
+                              note</i></button></td>
+                      </tr>
+
+
+                    </tbody>
+                  </table>
+
+
+
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -223,43 +405,40 @@
 <!-- _____________________ MODAL RESPINGI PERMESSO ________________ -->
 
 
-<div class="modal fade" id="respingiPermesso" tabindex="-1" role="dialog"
-aria-labelledby="respingiPermessoModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="respingiPermessoModalLabel">Stai respingendo una richiesta di
-        permesso</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
+<div class="modal fade" id="respingiPermesso" tabindex="-1" role="dialog" aria-labelledby="respingiPermessoModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="respingiPermessoModalLabel">Stai respingendo una richiesta di
+          permesso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-      <form #confermaForm="ngForm" id="confermaForm"
-        (ngSubmit)="respingiPermesso()" ngNativeValidate>
+        <form #confermaForm="ngForm" id="confermaForm" (ngSubmit)="respingiPermesso()" ngNativeValidate>
 
-        <!-- <div *ngFor="let item of permessoSelezionato | keyvalue">
+          <!-- <div *ngFor="let item of permessoSelezionato | keyvalue">
           <input type="hidden" [ngModel]="item?.value" [name]="item?.key" class="form-control"
             id="{{item.key}}">
         </div> -->
 
 
-        <div class="form-group">
-          <label for="note">Inserisci il motivo per cui stai respingendo il permesso:</label>
-          <textarea [(ngModel)]="note" name="note" class="form-control" id="note" placeholder="Motivo"
-            title="Inserisci il motivo per cui stai respingendo il permesso" maxlength="200"
-            required></textarea>
-        </div>
+          <div class="form-group">
+            <label for="note">Inserisci il motivo per cui stai respingendo il permesso:</label>
+            <textarea [(ngModel)]="note" name="note" class="form-control" id="note" placeholder="Motivo"
+              title="Inserisci il motivo per cui stai respingendo il permesso" maxlength="200" required></textarea>
+          </div>
 
-        <div class="modal-footer">
-          <button type="button" id="annulla" class="btn btn-secondary"
-            data-dismiss="modal">Annulla</button>
-          <button type="submit" class="btn btn-primary">Respingi</button>
-        </div>
-      </form>
+          <div class="modal-footer">
+            <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+            <button type="submit" class="btn btn-primary">Respingi</button>
+          </div>
+        </form>
 
+      </div>
     </div>
   </div>
-</div>
 </div>

@@ -1,78 +1,26 @@
-/* table td,
-table th {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+.container{
+  background-color: #eee6db;
 }
 
-thead {
-    background-color: #002d72;
-    border-radius: 5px;
-}
-
-thead th {
-    color: #fff;
-  } */
-
-
-
-/* table td,
-table th {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-
-
-.card {
-  border-radius: .5rem;
-  padding: 0%;
-}
-
-/* .table-scroll {
-  border-radius: .5rem;
-  max-height: 200px;
+.container2{
+  padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   
-  /* overflow: auto; 
-} 
-
-.table-scroll table thead th {
-  font-size: 1rem;
 }
 
-tbody{
-  display: block;
-  overflow-y: scroll;
-  max-height: 200px;
-  width: 100%;
+.tab-container{
+  background-color: #ffffff;
 }
 
-thead {
-  top: 0;
-  position: sticky;
+.tab-links{
+  background-color: #eee6db;
 }
-
-.table-scroll tbody {
-    position: absolute;
-
-}
-
-.table-scroll tr {
-    width: 100%;
-    table-layout: fixed;
-    display: inline-table;
-}
-
-.table-scroll thead > tr > th {
-    border: none;
-    
-} */
 
 .table-scroll{
     position: absolute;
     overflow-y: scroll;
-    max-height: 200px;
+    max-height: 600px;
     border-radius: .5rem;
 }
 
@@ -89,4 +37,25 @@ thead th {
   word-wrap: break-word; /* Enable text wrapping */
   max-width: 100%;  /*Limit the maximum width of the text */
 
+}
+
+.tab-link {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color:#002d72;
+  color: #fff;
+  border: none;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-link.active {
+  background-color: #ffffff;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+  color: #444;
+  font-weight: bold;
 }
