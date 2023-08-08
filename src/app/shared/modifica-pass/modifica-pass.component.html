@@ -10,8 +10,10 @@
             </div>
             <div class="form-group">
                 <label for="newPass">Nuova password</label>
+                
                 <input type="password" [(ngModel)]="newPass" placeholder="Nuova password" name="newPass"
-                    class="form-control" id="newPass" title="Nuova password">
+                    class="form-control" id="newPass" title="Almeno 8 caratteri, una lettera, un numero e un carattere speciale" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
+                    <p><i>Almeno 8 caratteri, una lettera, un numero e un carattere speciale</i></p>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
