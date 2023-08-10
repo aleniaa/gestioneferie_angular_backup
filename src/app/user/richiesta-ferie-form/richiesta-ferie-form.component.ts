@@ -63,7 +63,8 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   malattia_radioButtonChanged(){
-    console.log(this.tipo_malattia); // or perform any other action with the selected value
+    
+    //console.log(this.tipo_malattia); // or perform any other action with the selected value
 
   }
 
@@ -111,10 +112,12 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   public updateTotGiorni() {
-    console.log(this.dataFine);
+    //console.log(this.dataFine);
 
     if (this.dataInizio === null || this.dataFine === null) {
-      this.totGiorni = 0;
+      
+      this.dataInizio= ""
+      this.dataFine=""
     }
 
     // Extract year, month, and day from the date strings
@@ -128,8 +131,9 @@ export class RichiestaFerieFormComponent implements OnInit {
 
     // Convert milliseconds to days
     const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
-    this.totGiorni = diffInDays;
-    console.log(diffInDays);
+    if(diffInDays)
+      this.totGiorni = diffInDays;
+    //console.log(diffInDays);
   }
 
   public getUtentiFerie(): void {
@@ -195,6 +199,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.error= "";
     this.totOreGiorni = "";
     this.totGiorni=0;
+    this.tipo_malattia="Malattia"
     
   }
 

@@ -19,6 +19,7 @@ export class IMieiPermessiComponent {
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
   public permessoDaCancellare: Permesso;
+  public malattia:Permesso[] = [];
   selectedFile: File[];
   allegato: File[];
   filenames: string[] = [];
@@ -254,41 +255,41 @@ export class IMieiPermessiComponent {
 
   }
 
-  public getPermessiRichiedenteByStatus(): void {
+  // public getPermessiRichiedenteByStatus(): void {
     
-    //localStorage.getItem("currentUser")
+  //   //localStorage.getItem("currentUser")
 
-    //const utente: Utente = this.loginService.currentUserValue;
+  //   //const utente: Utente = this.loginService.currentUserValue;
 
-    var values = JSON.parse(localStorage.getItem("currentUser"));
-    var idUtenteApp = values.id;
+  //   var values = JSON.parse(localStorage.getItem("currentUser"));
+  //   var idUtenteApp = values.id;
 
-    this.permessoService.getPermessiRichiedenteByStatus(0, idUtenteApp).subscribe(
-      (response: Permesso[]) => {
-        this.permessiPending = response;
-        console.log(response)
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-    this.permessoService.getPermessiRichiedenteByStatus(1, idUtenteApp).subscribe(
-      (response: Permesso[]) => {
-        this.permessiApprovati = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-    this.permessoService.getPermessiRichiedenteByStatus(2, idUtenteApp).subscribe(
-      (response: Permesso[]) => {
-        this.permessiRespinti = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  }
+  //   this.permessoService.getPermessiRichiedenteByStatus(0, idUtenteApp).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiPending = response;
+  //       console.log(response)
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+  //   this.permessoService.getPermessiRichiedenteByStatus(1, idUtenteApp).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiApprovati = response;
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+  //   this.permessoService.getPermessiRichiedenteByStatus(2, idUtenteApp).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiRespinti = response;
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+  // }
 
 
   public getPermessiRichiedente(): void {
@@ -315,7 +316,10 @@ export class IMieiPermessiComponent {
               this.permessiPending.push(permessoTrovato);
             break;
             case 3: // permesso approvato da entrambi gli approvatori
-              this.permessiApprovati.push(permessoTrovato);
+              if(permessoTrovato.tipoPermesso.includes("Malattia"))
+                this.malattia.push(permessoTrovato);
+              else
+                this.permessiApprovati.push(permessoTrovato);
             break
             case 4: // respinto da approvatore 1
               this.permessiRespinti.push(permessoTrovato);
