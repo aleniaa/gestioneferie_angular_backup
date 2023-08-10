@@ -564,7 +564,7 @@
 
 <!-- Visualizza allegati modal -->
 
-<div class="modal fade" id="visualizzaAllegatiModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+<div class="modal fade" id="visualizzaAllegatiModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" 
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -602,10 +602,10 @@
           <input type="file" (change)="onFileSelected($event)" accept="image/*, application/pdf" name="files" multiple
             class="form-control" id="fileInput">
         </form><br>
-        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!
+        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Devi selezionare dei file prima!
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Chiudi</button>
 
           <button (click)="onUpload()" class="btn btn-primary tooltips">Upload</button>
 

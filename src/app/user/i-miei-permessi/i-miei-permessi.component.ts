@@ -67,6 +67,10 @@ export class IMieiPermessiComponent {
     }
   }
 
+  // resetModalVariable():void{
+  //   document.getElementById("selectFileAlert").style.display = "none";
+    
+  // }
 
 
   onVisualizzaAllegati(permesso: Permesso): void {
@@ -92,7 +96,7 @@ export class IMieiPermessiComponent {
         console.log(error);
       }
     );
-
+    document.getElementById("selectFileAlert").style.display = "none";
     this.filenames = [];
   }
 
