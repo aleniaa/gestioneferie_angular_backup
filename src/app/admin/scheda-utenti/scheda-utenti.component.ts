@@ -5,6 +5,7 @@ import { UtenteService } from '../../core/services/utente.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { QualificaService } from 'src/app/core/services/qualifica.service';
+import * as qualifichejson from 'src/assets/json/elenco_qualifiche_final.json';
 
 @Component({
   selector: 'app-scheda-utenti',
@@ -49,7 +50,7 @@ export class SchedaUtentiComponent implements OnInit{
     this.utenteService.getUtenti().subscribe(
       (response: Utente[]) => {
         this.utenti = response;
-        console.log(response)
+        //console.log(response)
         
       },
       (error: HttpErrorResponse) => {
@@ -191,7 +192,7 @@ export class SchedaUtentiComponent implements OnInit{
     this.qualificaService.getQualifiche().subscribe(
       (response: Qualifica[]) => {
         this.qualifiche = response;
-        console.log(this.qualifiche)
+        //console.log(this.qualifiche)
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -201,8 +202,9 @@ export class SchedaUtentiComponent implements OnInit{
 
   public cercaQualifica(key: string): void{
     console.log(key)
+    console.log(qualifichejson)
     const risultati: Qualifica[]=[];
-    
+    //if(key.match(qualifichejson.entries))
     for(const qualifica of this.qualifiche){
       
       if(qualifica.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1

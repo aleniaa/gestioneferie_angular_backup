@@ -1,0 +1,1202 @@
+[
+  {
+    "nome": "NSP",
+    "descrizione": "NON SPECIFICATO"
+  },
+  {
+    "nome": "VIG",
+    "descrizione": "VIGILE DEL FUOCO"
+  },
+  {
+    "nome": "VE",
+    "descrizione": "VIGILE DEL FUOCO ESPERTO"
+  },
+  {
+    "nome": "VESC",
+    "descrizione": "VIGILE DEL FUOCO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "VC",
+    "descrizione": "VIGILE DEL FUOCO COORDINATORE"
+  },
+  {
+    "nome": "VCSC",
+    "descrizione": "VIGILE DEL FUOCO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "VIGP",
+    "descrizione": "ALLIEVO VIGILE DEL FUOCO IN PROVA"
+  },
+  {
+    "nome": "CS",
+    "descrizione": "CAPO SQUADRA"
+  },
+  {
+    "nome": "CQE",
+    "descrizione": "CAPO SQUADRA ESPERTO"
+  },
+  {
+    "nome": "CR",
+    "descrizione": "CAPO REPARTO"
+  },
+  {
+    "nome": "CRSC",
+    "descrizione": "CAPO REPARTO SCATTO CONVENZIONALE \"ESPERTO\""
+  },
+  {
+    "nome": "VD",
+    "descrizione": "VICE DIRETTORE"
+  },
+  {
+    "nome": "DVD26A",
+    "descrizione": "DIRETTORE VICEDIRIGENTE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "DVD16A",
+    "descrizione": "DIRETTORE VICEDIRIGENTE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DVD",
+    "descrizione": "DIRETTORE VICEDIRIGENTE"
+  },
+  {
+    "nome": "D",
+    "descrizione": "DIRETTORE"
+  },
+  {
+    "nome": "PD",
+    "descrizione": "PRIMO DIRIGENTE"
+  },
+  {
+    "nome": "PD26A",
+    "descrizione": "PRIMO DIRIGENTE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "DGEN",
+    "descrizione": "DIRIGENTE GENERALE"
+  },
+  {
+    "nome": "DSUP",
+    "descrizione": "DIRIGENTE SUPERIORE"
+  },
+  {
+    "nome": "DMV26A",
+    "descrizione": "DIRETTORE MEDICO VICEDIRIGENTE SCATTO 26 ANNI RE"
+  },
+  {
+    "nome": "DMV16A",
+    "descrizione": "DIRETTORE MEDICO VICEDIRIGENTE SCATTO 16 ANNI RE"
+  },
+  {
+    "nome": "DMV",
+    "descrizione": "DIRETTORE MEDICO VICEDIRIGENTE RE"
+  },
+  {
+    "nome": "VDM",
+    "descrizione": "VICE DIRETTORE MEDICO RE"
+  },
+  {
+    "nome": "DM",
+    "descrizione": "DIRETTORE MEDICO RE"
+  },
+  {
+    "nome": "DSUPM",
+    "descrizione": "DIRIGENTE SUPERIORE MEDICO RE"
+  },
+  {
+    "nome": "PDM26A",
+    "descrizione": "PRIMO DIRIGENTE MEDICO SCATTO 26 ANNI RE"
+  },
+  {
+    "nome": "PDM",
+    "descrizione": "PRIMO DIRIGENTE MEDICO RE"
+  },
+  {
+    "nome": "DGVD16ARE",
+    "descrizione": "DIRETTORE GINNICO-SPORTIVO VICEDIRIGENTE SCATTO 16 ANNI RE"
+  },
+  {
+    "nome": "DGVD",
+    "descrizione": "DIRETTORE GINNICO-SPORTIVO VICEDIRIGENTE"
+  },
+  {
+    "nome": "DGVD26ARE",
+    "descrizione": "DIRETTORE GINNICO-SPORTIVO VICEDIRIGENTE SCATTO 26 ANNI RE"
+  },
+  {
+    "nome": "DGVD26A",
+    "descrizione": "DIRETTORE GINNICO-SPORTIVO VICEDIRIGENTE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "DGVD16A",
+    "descrizione": "DIRETTORE GINNICO-SPORTIVO VICEDIRIGENTE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DG",
+    "descrizione": "DIRETTORE GINNICO-SPORTIVO"
+  },
+  {
+    "nome": "DGVDRE",
+    "descrizione": "DIRETTORE GINNICO-SPORTIVO VICEDIRIGENTE RE"
+  },
+  {
+    "nome": "DGRE",
+    "descrizione": "DIRETTORE GINNICO-SPORTIVO RE"
+  },
+  {
+    "nome": "VDGRE",
+    "descrizione": "VICE DIRETTORE GINNICO-SPORTIVO RE"
+  },
+  {
+    "nome": "VDG",
+    "descrizione": "VICE DIRETTORE GINNICO-SPORTIVO"
+  },
+  {
+    "nome": "PDG26ARE",
+    "descrizione": "PRIMO DIRIGENTE GINNICO-SPORTIVO SCATTO 26 ANNI RE"
+  },
+  {
+    "nome": "DSUPGRE",
+    "descrizione": "DIRIGENTE SUPERIORE GINNICO-SPORTIVO RE"
+  },
+  {
+    "nome": "PDG",
+    "descrizione": "PRIMO DIRIGENTE GINNICO-SPORTIVO"
+  },
+  {
+    "nome": "PDG26A",
+    "descrizione": "PRIMO DIRIGENTE GINNICO-SPORTIVO SCATTO 26 ANNI"
+  },
+  {
+    "nome": "DSUPGS",
+    "descrizione": "DIRIGENTE SUPERIORE GINNICO-SPORTIVO"
+  },
+  {
+    "nome": "PDGRE",
+    "descrizione": "PRIMO DIRIGENTE GINNICO-SPORTIVO RE"
+  },
+  {
+    "nome": "MDC",
+    "descrizione": "MEDICO COMPETENTE"
+  },
+  {
+    "nome": "MIC",
+    "descrizione": "MEDICO INCARICATO E COMPETENTE"
+  },
+  {
+    "nome": "MDA",
+    "descrizione": "MEDICO AUTORIZZATO"
+  },
+  {
+    "nome": "MSC",
+    "descrizione": "MEDICO SANITARIO DEL COMANDO"
+  },
+  {
+    "nome": "EST",
+    "descrizione": "CONSULENTE ESTERNO"
+  },
+  {
+    "nome": "VV",
+    "descrizione": "VIGILE DEL FUOCO VOLONTARIO"
+  },
+  {
+    "nome": "CSV",
+    "descrizione": "CAPO SQUADRA VOLONTARIO"
+  },
+  {
+    "nome": "CRV",
+    "descrizione": "CAPO REPARTO VOLONTARIO"
+  },
+  {
+    "nome": "FTAV",
+    "descrizione": "FUNZ. TECNICO ANTINCENDI VOL."
+  },
+  {
+    "nome": "AVIG",
+    "descrizione": "ALLIEVO VIGILE DEL FUOCO"
+  },
+  {
+    "nome": "VIG AIB",
+    "descrizione": "VIGILE DEL FUOCO AIB"
+  },
+  {
+    "nome": "VE AIB",
+    "descrizione": "VIGILE DEL FUOCO ESPERTO AIB"
+  },
+  {
+    "nome": "VCSC AIB",
+    "descrizione": "VIGILE DEL FUOCO COORDINATORE AIB SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "VC AIB",
+    "descrizione": "VIGILE DEL FUOCO COORDINATORE AIB"
+  },
+  {
+    "nome": "VESC AIB",
+    "descrizione": "VIGILE DEL FUOCO ESPERTO AIB SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "CR AIB",
+    "descrizione": "CAPO REPARTO AIB"
+  },
+  {
+    "nome": "CQE AIB",
+    "descrizione": "CAPO SQUADRA ESPERTO AIB"
+  },
+  {
+    "nome": "CS AIB",
+    "descrizione": "CAPO SQUADRA AIB"
+  },
+  {
+    "nome": "CRESC AIB",
+    "descrizione": "CAPO REPARTO AIB SCATTO CONVENZIONALE \"ESPERTO\""
+  },
+  {
+    "nome": "DA AIB",
+    "descrizione": "DIRETTORE AIB"
+  },
+  {
+    "nome": "DVD AIB",
+    "descrizione": "DIRETTORE VICEDIRIGENTE AIB"
+  },
+  {
+    "nome": "DVD16A AIB",
+    "descrizione": "DIRETTORE VICEDIRIGENTE AIB SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DVD26A AIB",
+    "descrizione": "DIRETTORE VICEDIRIGENTE AIB SCATTO 26 ANNI"
+  },
+  {
+    "nome": "VD AIB",
+    "descrizione": "VICE DIRETTORE AIB"
+  },
+  {
+    "nome": "DSUP AIB",
+    "descrizione": "DIRIGENTE SUPERIORE AIB"
+  },
+  {
+    "nome": "PD AIB",
+    "descrizione": "PRIMO DIRIGENTE AIB"
+  },
+  {
+    "nome": "PD26A AIB",
+    "descrizione": "PRIMO DIRIGENTE AIB SCATTO 26 ANNI"
+  },
+  {
+    "nome": "FAMDC",
+    "descrizione": "FUNZIONARIO AMM-CONT DIRETTORE COMANDATO"
+  },
+  {
+    "nome": "CACEC",
+    "descrizione": "COLLABORATORE AMM-CONT ESP COMANDATO"
+  },
+  {
+    "nome": "OEC",
+    "descrizione": "OPERATORE ESPERTO COMANDATO"
+  },
+  {
+    "nome": "ACC",
+    "descrizione": "ASSISTENTE CAPO COMANDATO"
+  },
+  {
+    "nome": "VCACC",
+    "descrizione": "VICE COLLABORATORE AMM-CONT COMANDATO"
+  },
+  {
+    "nome": "CACC",
+    "descrizione": "COLL AMMINISTRATIVO-CONTABILE COMANDATO"
+  },
+  {
+    "nome": "ILGC",
+    "descrizione": "ISPETTORE LOGISTICO-GESTIONALE COMANDATO"
+  },
+  {
+    "nome": "OC",
+    "descrizione": "OPERATORE COMANDATO"
+  },
+  {
+    "nome": "DLGC",
+    "descrizione": "DIRETTORE LOGISTICO-GESTIONALE COMANDATO"
+  },
+  {
+    "nome": "DIC",
+    "descrizione": "DIRETTORE INFORMATICO COMANDATO"
+  },
+  {
+    "nome": "IAE",
+    "descrizione": "ISPETTORE ANTINCENDI ESPERTO"
+  },
+  {
+    "nome": "IA",
+    "descrizione": "ISPETTORE ANTINCENDI"
+  },
+  {
+    "nome": "IAESC",
+    "descrizione": "ISPETTORE ANTINCENDI ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "IACSC",
+    "descrizione": "ISPETTORE ANTINCENDI COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "IAC",
+    "descrizione": "ISPETTORE ANTINCENDI COORDINATORE"
+  },
+  {
+    "nome": "PAVF",
+    "descrizione": "PILOTA DI AEROMOBILE VIGILE DEL FUOCO"
+  },
+  {
+    "nome": "PAVFE",
+    "descrizione": "PILOTA DI AEROMOBILE VIGILE DEL FUOCO ESPERTO"
+  },
+  {
+    "nome": "PAVFESC",
+    "descrizione": "PILOTA DI AEROMOBILE VIGILE DEL FUOCO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "PAVFC",
+    "descrizione": "PILOTA DI AEROMOBILE VIGILE DEL FUOCO COORDINATORE"
+  },
+  {
+    "nome": "PAVFCSC",
+    "descrizione": "PILOTA DI AEROMOBILE VIGILE DEL FUOCO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "PACS",
+    "descrizione": "PILOTA DI AEROMOBILE CAPO SQUADRA"
+  },
+  {
+    "nome": "PAICSC",
+    "descrizione": "PILOTA DI AEROMOBILE ISPETTORE COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "PACR",
+    "descrizione": "PILOTA DI AEROMOBILE CAPO REPARTO"
+  },
+  {
+    "nome": "PACRSC",
+    "descrizione": "PILOTA DI AEROMOBILE CAPO REPARTO SCATTO CONVENZIONALE \"ESPERTO\""
+  },
+  {
+    "nome": "PAI",
+    "descrizione": "PILOTA DI AEROMOBILE ISPETTORE"
+  },
+  {
+    "nome": "PAIE",
+    "descrizione": "PILOTA DI AEROMOBILE ISPETTORE ESPERTO"
+  },
+  {
+    "nome": "PAIC",
+    "descrizione": "PILOTA DI AEROMOBILE ISPETTORE COORDINATORE"
+  },
+  {
+    "nome": "PAISC",
+    "descrizione": "PILOTA DI AEROMOBILE ISPETTORE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "PACSE",
+    "descrizione": "PILOTA DI AEROMOBILE CAPO SQUADRA ESPERTO"
+  },
+  {
+    "nome": "SAVF",
+    "descrizione": "SPECIALISTA DI AEROMOBILE VIGILE DEL FUOCO"
+  },
+  {
+    "nome": "SAVFE",
+    "descrizione": "SPECIALISTA DI AEROMOBILE VIGILE DEL FUOCO ESPERTO"
+  },
+  {
+    "nome": "SAVFESC",
+    "descrizione": "SPECIALISTA DI AEROMOBILE VIGILE DEL FUOCO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "SAVFC",
+    "descrizione": "SPECIALISTA DI AEROMOBILE VIGILE DEL FUOCO COORDINATORE"
+  },
+  {
+    "nome": "SAVFCSC",
+    "descrizione": "SPECIALISTA DI AEROMOBILE VIGILE DEL FUOCO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "SACS",
+    "descrizione": "SPECIALISTA DI AEROMOBILE CAPO SQUADRA"
+  },
+  {
+    "nome": "SACSE",
+    "descrizione": "SPECIALISTA DI AEROMOBILE CAPO SQUADRA ESPERTO"
+  },
+  {
+    "nome": "SACR",
+    "descrizione": "SPECIALISTA DI AEROMOBILE CAPO REPARTO"
+  },
+  {
+    "nome": "SACRSC",
+    "descrizione": "SPECIALISTA DI AEROMOBILE CAPO REPARTO SCATTO CONVENZIONALE \"ESPERTO\""
+  },
+  {
+    "nome": "SAI",
+    "descrizione": "SPECIALISTA DI AEROMOBILE ISPETTORE"
+  },
+  {
+    "nome": "SAIE",
+    "descrizione": "SPECIALISTA DI AEROMOBILE ISPETTORE ESPERTO"
+  },
+  {
+    "nome": "SAISC",
+    "descrizione": "SPECIALISTA DI AEROMOBILE ISPETTORE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "SAIC",
+    "descrizione": "SPECIALISTA DI AEROMOBILE ISPETTORE COORDINATORE"
+  },
+  {
+    "nome": "SAICSC",
+    "descrizione": "SPECIALISTA DI AEROMOBILE ISPETTORE COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "EVF",
+    "descrizione": "ELISOCCORRITORE VIGILE DEL FUOCO"
+  },
+  {
+    "nome": "EVFE",
+    "descrizione": "ELISOCCORRITORE VIGILE DEL FUOCO ESPERTO"
+  },
+  {
+    "nome": "EVFESC",
+    "descrizione": "ELISOCCORRITORE VIGILE DEL FUOCO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "EVFC",
+    "descrizione": "ELISOCCORRITORE VIGILE DEL FUOCO COORDINATORE"
+  },
+  {
+    "nome": "EVFCSC",
+    "descrizione": "ELISOCCORRITORE VIGILE DEL FUOCO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "ECS",
+    "descrizione": "ELISOCCORRITORE CAPO SQUADRA"
+  },
+  {
+    "nome": "ECSE",
+    "descrizione": "ELISOCCORRITORE CAPO SQUADRA ESPERTO"
+  },
+  {
+    "nome": "ECR",
+    "descrizione": "ELISOCCORRITORE CAPO REPARTO"
+  },
+  {
+    "nome": "ECRSC",
+    "descrizione": "ELISOCCORRITORE CAPO REPARTO SCATTO CONVENZIONALE \"ESPERTO\""
+  },
+  {
+    "nome": "EI",
+    "descrizione": "ELISOCCORRITORE ISPETTORE"
+  },
+  {
+    "nome": "EIE",
+    "descrizione": "ELISOCCORRITORE ISPETTORE ESPERTO"
+  },
+  {
+    "nome": "EISC",
+    "descrizione": "ELISOCCORRITORE ISPETTORE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "EIC",
+    "descrizione": "ELISOCCORRITORE ISPETTORE COORDINATORE"
+  },
+  {
+    "nome": "EICSC",
+    "descrizione": "ELISOCCORRITORE ISPETTORE COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "NCVF",
+    "descrizione": "NAUTICO DI COPERTA VIGILE DEL FUOCO"
+  },
+  {
+    "nome": "NCVFE",
+    "descrizione": "NAUTICO DI COPERTA VIGILE DEL FUOCO ESPERTO"
+  },
+  {
+    "nome": "NCVFESC",
+    "descrizione": "NAUTICO DI COPERTA VIGILE DEL FUOCO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "NCVFC",
+    "descrizione": "NAUTICO DI COPERTA VIGILE DEL FUOCO COORDINATORE"
+  },
+  {
+    "nome": "NCVFCSC",
+    "descrizione": "NAUTICO DI COPERTA VIGILE DEL FUOCO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "NCCS",
+    "descrizione": "NAUTICO DI COPERTA CAPO SQUADRA"
+  },
+  {
+    "nome": "NCCSE",
+    "descrizione": "NAUTICO DI COPERTA CAPO SQUADRA ESPERTO"
+  },
+  {
+    "nome": "NCCR",
+    "descrizione": "NAUTICO DI COPERTA CAPO REPARTO"
+  },
+  {
+    "nome": "NCCRSC",
+    "descrizione": "NAUTICO DI COPERTA CAPO REPARTO SCATTO CONVENZIONALE \"ESPERTO\""
+  },
+  {
+    "nome": "NCI",
+    "descrizione": "NAUTICO DI COPERTA ISPETTORE"
+  },
+  {
+    "nome": "NCIE",
+    "descrizione": "NAUTICO DI COPERTA ISPETTORE ESPERTO"
+  },
+  {
+    "nome": "NCISC",
+    "descrizione": "NAUTICO DI COPERTA ISPETTORE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "NCIC",
+    "descrizione": "NAUTICO DI COPERTA ISPETTORE COORDINATORE"
+  },
+  {
+    "nome": "NCICSC",
+    "descrizione": "NAUTICO DI COPERTA ISPETTORE COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "NMVF",
+    "descrizione": "NAUTICO DI MACCHINA VIGILE DEL FUOCO"
+  },
+  {
+    "nome": "NMVFE",
+    "descrizione": "NAUTICO DI MACCHINA VIGILE DEL FUOCO ESPERTO"
+  },
+  {
+    "nome": "NMVFESC",
+    "descrizione": "NAUTICO DI MACCHINA VIGILE DEL FUOCO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "NMVFC",
+    "descrizione": "NAUTICO DI MACCHINA VIGILE DEL FUOCO COORDINATORE"
+  },
+  {
+    "nome": "NMVFCSC",
+    "descrizione": "NAUTICO DI MACCHINA VIGILE DEL FUOCO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "NMCS",
+    "descrizione": "NAUTICO DI MACCHINA CAPO SQUADRA"
+  },
+  {
+    "nome": "NMCSE",
+    "descrizione": "NAUTICO DI MACCHINA CAPO SQUADRA ESPERTO"
+  },
+  {
+    "nome": "NMCR",
+    "descrizione": "NAUTICO DI MACCHINA CAPO REPARTO"
+  },
+  {
+    "nome": "NMCRSC",
+    "descrizione": "NAUTICO DI MACCHINA CAPO REPARTO SCATTO CONVENZIONALE \"ESPERTO\""
+  },
+  {
+    "nome": "NMI",
+    "descrizione": "NAUTICO DI MACCHINA ISPETTORE"
+  },
+  {
+    "nome": "NMIE",
+    "descrizione": "NAUTICO DI MACCHINA ISPETTORE ESPERTO"
+  },
+  {
+    "nome": "NMISC",
+    "descrizione": "NAUTICO DI MACCHINA ISPETTORE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "NMIC",
+    "descrizione": "NAUTICO DI MACCHINA ISPETTORE COORDINATORE"
+  },
+  {
+    "nome": "NMICSC",
+    "descrizione": "NAUTICO DI MACCHINA ISPETTORE COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "SVF",
+    "descrizione": "SOMMOZZATORE VIGILE DEL FUOCO"
+  },
+  {
+    "nome": "SVFE",
+    "descrizione": "SOMMOZZATORE VIGILE DEL FUOCO ESPERTO"
+  },
+  {
+    "nome": "SVFESC",
+    "descrizione": "SOMMOZZATORE VIGILE DEL FUOCO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "SVFC",
+    "descrizione": "SOMMOZZATORE VIGILE DEL FUOCO COORDINATORE"
+  },
+  {
+    "nome": "SVFCSC",
+    "descrizione": "SOMMOZZATORE VIGILE DEL FUOCO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "SCS",
+    "descrizione": "SOMMOZZATORE CAPO SQUADRA"
+  },
+  {
+    "nome": "SCSE",
+    "descrizione": "SOMMOZZATORE CAPO SQUADRA ESPERTO"
+  },
+  {
+    "nome": "SCR",
+    "descrizione": "SOMMOZZATORE CAPO REPARTO"
+  },
+  {
+    "nome": "SCRSC",
+    "descrizione": "SOMMOZZATORE CAPO REPARTO SCATTO CONVENZIONALE \"ESPERTO\""
+  },
+  {
+    "nome": "SI",
+    "descrizione": "SOMMOZZATORE ISPETTORE"
+  },
+  {
+    "nome": "SIE",
+    "descrizione": "SOMMOZZATORE ISPETTORE ESPERTO"
+  },
+  {
+    "nome": "SISC",
+    "descrizione": "SOMMOZZATORE ISPETTORE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "SIC",
+    "descrizione": "SOMMOZZATORE ISPETTORE COORDINATORE"
+  },
+  {
+    "nome": "SICSC",
+    "descrizione": "SOMMOZZATORE ISPETTORE COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "OPER",
+    "descrizione": "OPERATORE"
+  },
+  {
+    "nome": "OPERE",
+    "descrizione": "OPERATORE ESPERTO"
+  },
+  {
+    "nome": "OPERESC",
+    "descrizione": "OPERATORE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "A",
+    "descrizione": "ASSISTENTE"
+  },
+  {
+    "nome": "ASC",
+    "descrizione": "ASSISTENTE SCATTO CONVENZIONALE \"CAPO\""
+  },
+  {
+    "nome": "ILG",
+    "descrizione": "ISPETTORE LOGISTICO-GESTIONALE"
+  },
+  {
+    "nome": "ILGE",
+    "descrizione": "ISPETTORE LOGISTICO-GESTIONALE ESPERTO"
+  },
+  {
+    "nome": "ILGESC",
+    "descrizione": "ISPETTORE LOGISTICO-GESTIONALE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "ILGEC",
+    "descrizione": "ISPETTORE LOGISTICO-GESTIONALE COORDINATORE"
+  },
+  {
+    "nome": "ILGCSC",
+    "descrizione": "ISPETTORE LOGISTICO-GESTIONALE COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "II",
+    "descrizione": "ISPETTORE INFORMATICO"
+  },
+  {
+    "nome": "IIE",
+    "descrizione": "ISPETTORE INFORMATICO ESPERTO"
+  },
+  {
+    "nome": "IIESC",
+    "descrizione": "ISPETTORE INFORMATICO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "IIC",
+    "descrizione": "ISPETTORE INFORMATICO COORDINATORE"
+  },
+  {
+    "nome": "SDTIC",
+    "descrizione": "ISPETTORE INFORMATICO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "ITS",
+    "descrizione": "ISPETTORE TECNICO-SCIENTIFICO"
+  },
+  {
+    "nome": "ITSE",
+    "descrizione": "ISPETTORE TECNICO-SCIENTIFICO ESPERTO"
+  },
+  {
+    "nome": "ITSESC",
+    "descrizione": "ISPETTORE TECNICO-SCIENTIFICO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "ITSC",
+    "descrizione": "ISPETTORE TECNICO-SCIENTIFICO COORDINATORE"
+  },
+  {
+    "nome": "ITSCSC",
+    "descrizione": "ISPETTORE TECNICO-SCIENTIFICO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "ISAN",
+    "descrizione": "ISPETTORE SANITARIO"
+  },
+  {
+    "nome": "ISANE",
+    "descrizione": "ISPETTORE SANITARIO ESPERTO"
+  },
+  {
+    "nome": "ISANESC",
+    "descrizione": "ISPETTORE SANITARIO ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "ISANC",
+    "descrizione": "ISPETTORE SANITARIO COORDINATORE"
+  },
+  {
+    "nome": "ISCANSC",
+    "descrizione": "ISPETTORE SANITARIO COORDINATORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "O",
+    "descrizione": "ORCHESTRALE"
+  },
+  {
+    "nome": "OE",
+    "descrizione": "ORCHESTRALE ESPERTO"
+  },
+  {
+    "nome": "OESC",
+    "descrizione": "ORCHESTRALE ESPERTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "OS",
+    "descrizione": "ORCHESTRALE SUPERIORE"
+  },
+  {
+    "nome": "OSSC",
+    "descrizione": "ORCHESTRALE SUPERIORE SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "MD",
+    "descrizione": "MAESTRO DIRETTORE"
+  },
+  {
+    "nome": "MD1SC",
+    "descrizione": "MAESTRO DIRETTORE PRIMO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "MD2SC",
+    "descrizione": "MAESTRO DIRETTORE SECONDO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "MD3SC",
+    "descrizione": "MAESTRO DIRETTORE TERZO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "MD4SC",
+    "descrizione": "MAESTRO DIRETTORE QUARTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "AT",
+    "descrizione": "ATLETA"
+  },
+  {
+    "nome": "AT1SC",
+    "descrizione": "ATLETA PRIMO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "AT2SC",
+    "descrizione": "ATLETA SECONDO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "AT3SC",
+    "descrizione": "ATLETA TERZO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "AT4SC",
+    "descrizione": "ATLETA QUARTO SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "VDLG",
+    "descrizione": "VICE DIRETTORE LOGISTICO-GESTIONALE"
+  },
+  {
+    "nome": "DLG",
+    "descrizione": "DIRETTORE LOGISTICO-GESTIONALE"
+  },
+  {
+    "nome": "DLGVD",
+    "descrizione": "DIRETTORE LOGISTICO-GESTIONALE VICE DIRIGENTE"
+  },
+  {
+    "nome": "DLGVD16",
+    "descrizione": "DIRETTORE LOGISTICO-GESTIONALE VICEDIRIGENTE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DLGVD26",
+    "descrizione": "DIRETTORE LOGISTICO-GESTIONALE VICEDIRIGENTE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "PDLG",
+    "descrizione": "PRIMO DIRIGENTE LOGISTICO-GESTIONALE"
+  },
+  {
+    "nome": "PDLG26A",
+    "descrizione": "PRIMO DIRIGENTE LOGISTICO-GESTIONALE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "VDI",
+    "descrizione": "VICE DIRETTORE INFORMATICO"
+  },
+  {
+    "nome": "DI",
+    "descrizione": "DIRETTORE INFORMATICO"
+  },
+  {
+    "nome": "DIVD",
+    "descrizione": "DIRETTORE INFORMATICO VICE DIRIGENTE"
+  },
+  {
+    "nome": "DIVD16",
+    "descrizione": "DIRETTORE INFORMATICO VICEDIRIGENTE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DIVD26",
+    "descrizione": "DIRETTORE INFORMATICO VICEDIRIGENTE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "PDI",
+    "descrizione": "PRIMO DIRIGENTE INFORMATICO"
+  },
+  {
+    "nome": "PDI26A",
+    "descrizione": "PRIMO DIRIGENTE INFORMATICO SCATTO 26 ANNI"
+  },
+  {
+    "nome": "VDTS",
+    "descrizione": "VICE DIRETTORE TECNICO-SCIENTIFICO"
+  },
+  {
+    "nome": "DTS",
+    "descrizione": "DIRETTORE TECNICO-SCIENTIFICO"
+  },
+  {
+    "nome": "DTSVD",
+    "descrizione": "DIRETTORE TECNICO-SCIENTIFICO VICE DIRIGENTE"
+  },
+  {
+    "nome": "DTSVD16A",
+    "descrizione": "DIRETTORE TECNICO-SCIENTIFICO VICEDIRIGENTE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DTSVD26A",
+    "descrizione": "DIRETTORE TECNICO-SCIENTIFICO VICEDIRIGENTE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "VDSAN",
+    "descrizione": "VICE DIRETTORE SANITARIO"
+  },
+  {
+    "nome": "DSAN",
+    "descrizione": "DIRETTORE SANITARIO"
+  },
+  {
+    "nome": "DSANVD",
+    "descrizione": "DIRETTORE SANITARIO VICE DIRIGENTE"
+  },
+  {
+    "nome": "DSANVD16A",
+    "descrizione": "DIRETTORE SANITARIO VICEDIRIGENTE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DSANVD26A",
+    "descrizione": "DIRETTORE SANITARIO VICEDIRIGENTE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "PDSAN",
+    "descrizione": "PRIMO DIRIGENTE SANITARIO"
+  },
+  {
+    "nome": "PDSAN26A",
+    "descrizione": "PRIMO DIRIGENTE SANITARIO SCATTO 26 ANNI"
+  },
+  {
+    "nome": "DSUPSAN",
+    "descrizione": "DIRIGENTE SUPERIORE SANITARIO"
+  },
+  {
+    "nome": "VDA",
+    "descrizione": "VICE DIRETTORE AGGIUNTO"
+  },
+  {
+    "nome": "DA",
+    "descrizione": "DIRETTORE AGGIUNTO"
+  },
+  {
+    "nome": "IA AIB",
+    "descrizione": "ISPETTORE ANTINCENDI AIB"
+  },
+  {
+    "nome": "IAE AIB",
+    "descrizione": "ISPETTORE ANTINCENDI ESPERTO AIB"
+  },
+  {
+    "nome": "IAESC AIB",
+    "descrizione": "ISPETTORE ANTINCENDI ESPERTO AIB SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "IAC AIB",
+    "descrizione": "ISPETTORE ANTINCENDI COORDINATORE AIB"
+  },
+  {
+    "nome": "IACSC AIB",
+    "descrizione": "ISPETTORE ANTINCENDI COORDINATORE AIB SCATTO CONVENZIONALE"
+  },
+  {
+    "nome": "VDSA AIB",
+    "descrizione": "VICE DIRETTORE SPECIALE ANTINCENDI AIB"
+  },
+  {
+    "nome": "DSA AIB",
+    "descrizione": "DIRETTORE SPECIALE ANTINCENDI AIB"
+  },
+  {
+    "nome": "DCSA AIB",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE ANTINCENDI AIB"
+  },
+  {
+    "nome": "DCSAAIB16A",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE ANTINCENDI AIB SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DCSAAIB26A",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE ANTINCENDI AIB SCATTO 26 ANNI"
+  },
+  {
+    "nome": "VDS",
+    "descrizione": "VICE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "DS",
+    "descrizione": "DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "DCS",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE"
+  },
+  {
+    "nome": "DCS16A",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DCS26A",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "PAVDS",
+    "descrizione": "PILOTA DI AEROMOBILE VICE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "PADS",
+    "descrizione": "PILOTA DI AEROMOBILE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "PADCS",
+    "descrizione": "PILOTA DI AEROMOBILE DIRETTORE COORDINATORE SPECIALE"
+  },
+  {
+    "nome": "PADCS16A",
+    "descrizione": "PILOTA DI AEROMOBILE DIRETTORE COORDINATORE SPECIALE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "PADCS26A",
+    "descrizione": "PILOTA DI AEROMOBILE DIRETTORE COORDINATORE SPECIALE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "SAVDS",
+    "descrizione": "SPECIALISTA DI AEROMOBILE VICE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "SADS",
+    "descrizione": "SPECIALISTA DI AEROMOBILE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "SADSVD",
+    "descrizione": "SPECIALISTA DI AEROMOBILE DIRETTORE COORDINATORE SPECIALE"
+  },
+  {
+    "nome": "SADS16A",
+    "descrizione": "SPECIALISTA DI AEROMOBILE DIRETTORE COORDINATORE SPECIALE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "SADS26A",
+    "descrizione": "SPECIALISTA DI AEROMOBILE DIRETTORE COORDINATORE SPECIALE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "EVDS",
+    "descrizione": "ELISOCCORRITORE VICE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "EDS",
+    "descrizione": "ELISOCCORRITORE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "EDCS",
+    "descrizione": "ELISOCCORRITORE DIRETTORE COORDINATORE SPECIALE"
+  },
+  {
+    "nome": "EDS16A",
+    "descrizione": "ELISOCCORRITORE DIRETTORE COORDINATORE SPECIALE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "EDS26A",
+    "descrizione": "ELISOCCORRITORE DIRETTORE COORDINATORE SPECIALE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "NAVDS",
+    "descrizione": "NAUTICO DI COPERTA VICE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "NADS",
+    "descrizione": "NAUTICO DI COPERTA DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "NADCS",
+    "descrizione": "NAUTICO DI COPERTA DIRETTORE COORDINATORE SPECIALE"
+  },
+  {
+    "nome": "NADS16A",
+    "descrizione": "NAUTICO DI COPERTA DIRETTORE COORDINATORE SPECIALE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "NADS26A",
+    "descrizione": "NAUTICO DI COPERTA DIRETTORE COORDINATORE SPECIALE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "NMVDS",
+    "descrizione": "NAUTICO DI MACCHINA VICE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "NMDS",
+    "descrizione": "NAUTICO DI MACCHINA DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "NMDCS",
+    "descrizione": "NAUTICO DI MACCHINA DIRETTORE COORDINATORE SPECIALE"
+  },
+  {
+    "nome": "NMDS16A",
+    "descrizione": "NAUTICO DI MACCHINA DIRETTORE COORDINATORE SPECIALE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "NMDS26A",
+    "descrizione": "NAUTICO DI MACCHINA DIRETTORE COORDINATORE SPECIALE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "SVDS",
+    "descrizione": "SOMMOZZATORE VICE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "SDS",
+    "descrizione": "SOMMOZZATORE DIRETTORE SPECIALE"
+  },
+  {
+    "nome": "SDCS",
+    "descrizione": "SOMMOZZATORE DIRETTORE COORDINATORE SPECIALE"
+  },
+  {
+    "nome": "SDS16A",
+    "descrizione": "SOMMOZZATORE DIRETTORE COORDINATORE SPECIALE SCATTO 16 ANNI"
+  },
+  {
+    "nome": "SDS26A",
+    "descrizione": "SOMMOZZATORE DIRETTORE COORDINATORE SPECIALE SCATTO 26 ANNI"
+  },
+  {
+    "nome": "VDSLG",
+    "descrizione": "VICE DIRETTORE SPECIALE LOGISTICO-GESTIONALE RE"
+  },
+  {
+    "nome": "DSLG",
+    "descrizione": "DIRETTORE SPECIALE LOGISTICO-GESTIONALE RE"
+  },
+  {
+    "nome": "DCSLG",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE LOGISTICO-GESTIONALE RE"
+  },
+  {
+    "nome": "DCSLG16A",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE LOGISTICO-GESTIONALE SCATTO 16 ANNI RE"
+  },
+  {
+    "nome": "DCSLG26A",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE LOGISTICO-GESTIONALE SCATTO 26 ANNI RE"
+  },
+  {
+    "nome": "VDSI",
+    "descrizione": "VICE DIRETTORE SPECIALE INFORMATICO RE"
+  },
+  {
+    "nome": "DSI",
+    "descrizione": "DIRETTORE SPECIALE INFORMATICO RE"
+  },
+  {
+    "nome": "DCSI",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE INFORMATICO RE"
+  },
+  {
+    "nome": "DCSI16A",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE INFORMATICO SCATTO 16 ANNI RE"
+  },
+  {
+    "nome": "DCSI26A",
+    "descrizione": "DIRETTORE COORDINATORE SPECIALE INFORMATICO SCATTO 26 ANNI RE"
+  },
+  {
+    "nome": "DC",
+    "descrizione": "DIRETTORE COORDINATORE AGGIUNTO"
+  },
+  {
+    "nome": "DC16A",
+    "descrizione": "DIRETTORE COORDINATORE AGGIUNTO SCATTO 16 ANNI"
+  },
+  {
+    "nome": "DC26A",
+    "descrizione": "DIRETTORE COORDINATORE AGGIUNTO SCATTO 26 ANNI"
+  },
+  {
+    "nome": "DVDC",
+    "descrizione": "DIRETTORE VICE DIRIGENTE COMANDATO"
+  },
+  {
+    "nome": "CSC",
+    "descrizione": "CAPO SQUADRA ESPERTO COMANDATO"
+  },
+  {
+    "nome": "VVA",
+    "descrizione": "VIGILE AUSILIARIO DI LEVA"
+  }
+]

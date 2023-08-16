@@ -273,7 +273,7 @@
             </button>
          </div>
          <div class="modal-body">
-            <p>Sicuro di voler cancellare l'utente {{deleteUtente?.nome}}? </p>
+            <p>Sicuro di voler cancellare l'utente {{deleteUtente?.nome + " "+ deleteUtente?.cognome}}? </p>
             <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                <button (click)="cancellaUtente(deleteUtente?.id)" class="btn btn-danger"
