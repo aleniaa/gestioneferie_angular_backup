@@ -47,7 +47,7 @@ export class IMieiPermessiComponent {
 
   public selezionaPermessoDaCancellare(permesso: Permesso): void {
     this.permessoDaCancellare = permesso;
-    console.log("sono dentro seleziona permesso");
+    //console.log("sono dentro seleziona permesso");
     const button = document.createElement('button');
     const container = document.getElementById('main-container');
 
@@ -89,7 +89,7 @@ export class IMieiPermessiComponent {
 
     this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
       event => {
-        console.log(event);
+        //console.log(event);
         this.resportProgress(event);
       },
       (error: HttpErrorResponse) => {
@@ -103,7 +103,7 @@ export class IMieiPermessiComponent {
   getUploadedFile() {
     this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
       event => {
-        console.log(event);
+        //console.log(event);
         this.resportProgress(event);
 
       },
@@ -125,7 +125,7 @@ export class IMieiPermessiComponent {
       }
       this.fileUploadService.uploadFile(formData, this.permessoSelezionato).subscribe(
         event => {
-          console.log(event);
+          //console.log(event);
           this.resportProgress(event);
           this.selectedFile = null;
 
@@ -150,7 +150,7 @@ export class IMieiPermessiComponent {
   onDownloadFile(filename: string): void {
     this.fileUploadService.download(filename, this.permessoSelezionato.id).subscribe(
       event => {
-        console.log(event);
+        //console.log(event);
         this.resportProgress(event);
       },
       (error: HttpErrorResponse) => {
@@ -182,7 +182,7 @@ export class IMieiPermessiComponent {
         this.updateStatus(httpEvent.loaded, httpEvent.total!, 'Downloading... ');
         break;
       case HttpEventType.ResponseHeader:
-        console.log('Header returned', httpEvent);
+        //console.log('Header returned', httpEvent);
         break;
       case HttpEventType.Response:
         if (httpEvent.body instanceof Array) {
@@ -190,7 +190,7 @@ export class IMieiPermessiComponent {
           for (const filename of httpEvent.body) {
             this.filenames.unshift(filename);
           }
-          console.log('Ho appena aggiunto un file a filenames');
+          //console.log('Ho appena aggiunto un file a filenames');
         } else {
           saveAs(new File([httpEvent.body!], httpEvent.headers.get('Content-Disposition').split(';')[1].trim().substring(9)!,
             { type: `${httpEvent.headers.get('Content-Type')};charset=utf-8` }));
@@ -199,7 +199,7 @@ export class IMieiPermessiComponent {
         this.fileStatus.status = 'done';
         break;
       default:
-        console.log(httpEvent);
+        //console.log(httpEvent);
         break;
 
     }
@@ -239,7 +239,7 @@ export class IMieiPermessiComponent {
   public visualizzaNote(permesso: Permesso): void {
     this.permessoSelezionato = permesso;
 
-    console.log("sono dentro visulizza note");
+    //console.log("sono dentro visulizza note");
     const button = document.createElement('button');
     const container = document.getElementById('main-container');
 
@@ -331,7 +331,7 @@ export class IMieiPermessiComponent {
             case 5: // respinto da approvatore 2
               this.permessiRespinti.push(permessoTrovato);
             break;
-            default: console.log("qualcosa non va");
+            default: //console.log("qualcosa non va");
           }
         }
       },

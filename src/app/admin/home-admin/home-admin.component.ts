@@ -32,7 +32,7 @@ export class HomeAdminComponent implements OnInit {
 
   checkPassword(){
     const utente: Utente = this.loginService.currentUserValue;
-    console.log(utente.password);
+    //console.log(utente.password);
     this.loginService.checkPassword(utente.password, utente.id).subscribe(
       (response: any) => { //jfoiewfjwoiej
         this.message=response.message;

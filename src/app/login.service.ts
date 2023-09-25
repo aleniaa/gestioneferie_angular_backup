@@ -37,10 +37,10 @@ export class LoginService {
         //sessionStorage.setItem('currentUser', JSON.stringify(user));
 
         this.currentUserSubject.next(user);
-        console.log("login service success");
-        console.log(this.currentUserSubject.value);
+        //console.log("login service success");
+        //console.log(this.currentUserSubject.value);
       }else{
-        console.log("login fallito");
+        //console.log("login fallito");
       }
 
       return user;
