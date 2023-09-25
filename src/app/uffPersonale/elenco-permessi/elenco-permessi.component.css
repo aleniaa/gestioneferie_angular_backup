@@ -11,6 +11,16 @@
   background-color: rgb(241, 198, 198) !important;
 }
 
+.congedo {
+  background-color: rgb(231, 252, 212) !important;
+}
+
+.recupero_ore{
+  background-color: rgb(201, 237, 248) !important;
+
+
+}
+
 .filename {
   white-space: nowrap;
   overflow: hidden;

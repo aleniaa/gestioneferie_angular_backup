@@ -31,11 +31,11 @@ export class HomePersonaleComponent {
 
   checkPassword(){
     const utente: Utente = this.loginService.currentUserValue;
-    console.log(utente.password);
+    //console.log(utente.password);
     this.loginService.checkPassword(utente.password, utente.id).subscribe(
       (response: any) => { //jfoiewfjwoiej
         this.message=response.message;
-        console.log(this.message)
+        //console.log(this.message)
         if(this.message==="Password da cambiare"){
           alert("La tua password è quella di default, verrai reindirizzato alla pagina per modificarla.")
           this.route.navigate(['/personale/modificaPass']);

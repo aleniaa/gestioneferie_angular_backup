@@ -44,8 +44,8 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) {
     this.utenteLoggato = loginService.currentUserValue;
-    console.log("utente loggato in ferie:");
-    console.log(this.utenteLoggato);
+    //console.log("utente loggato in ferie:");
+    //console.log(this.utenteLoggato);
     this.oreInizio = "";
     this.oreFine = "";
     this.totOre = "";
@@ -205,10 +205,10 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   public aggiungiPermesso(permessoForm: NgForm): void {
-    console.log("utente loggato in ferie:");
+    //console.log("utente loggato in ferie:");
 
 
-    console.log(this.idUtenteLoggato);
+    //console.log(this.idUtenteLoggato);
     this.permessoService.aggiungiPermesso(permessoForm.value, this.idUtenteLoggato).subscribe(
       (response: string) => {
         this.message = response;

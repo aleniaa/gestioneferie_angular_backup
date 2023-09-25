@@ -46,6 +46,15 @@ export class FileUploadService {
       });
     }
 
+    // display(filename: string, idPermesso:number): Observable<Blob> {
+    //   let params = new HttpParams()
+    // .set('idPermesso', idPermesso);
+    //   return this.http.get(`${this.apiServerUrl}/upload/show/${filename}`, {
+    //     params,
+    //     responseType: 'blob'
+    //   });
+    // }
+
     deleteAllFile(filename: string, idPermesso:number): Observable<void>{
       let params = new HttpParams()
       .set('idPermesso', idPermesso);

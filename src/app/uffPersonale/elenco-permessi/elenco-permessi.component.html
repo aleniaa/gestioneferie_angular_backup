@@ -124,7 +124,10 @@
                 <tr *ngIf="permessi?.length == 0" >
                   <td colspan="11">Nessun permesso trovato</td>
                 </tr>
-                <tr *ngFor= "let permesso of permessi" [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia')}"> <!-- "malattia è una classe del css" -->
+                <tr *ngFor= "let permesso of permessi" 
+                  [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
+                              'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),
+                              'recupero_ore': permesso.tipoPermesso.includes('Recupero ore eccedenti')}"> <!-- "malattia è una classe del css" -->
 
                   <th scope="row">{{permesso?.tipoPermesso}}</th>
                   <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
@@ -181,6 +184,7 @@
             <div *ngFor="let filename of filenames" class="list-group" style="padding-bottom: 5px;">
               <div class="list-group-item list-group-item-success">
                 <div class="filename">{{ filename }} </div>
+                <!-- <a (click)="onDisplayFile(filename)" class="float-right downloadAndEliminalink" #visualizzaFileButton >Visualizza</a> -->
               <a (click)="onDownloadFile(filename)" class="float-right downloadAndEliminalink" #downloadFileButton >Download</a>
               <!-- <a (click)="onDisplayFile(filename)" class="float-right downloadAndEliminalink">Mostra</a> -->
 
