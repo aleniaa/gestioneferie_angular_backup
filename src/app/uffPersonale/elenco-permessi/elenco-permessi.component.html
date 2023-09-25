@@ -31,7 +31,7 @@
           <div class="form-group menu-item">
             <label for="key">Utente richiedente:</label>
               <input type="text" (ngModelChange)="cercaUtenteRichiedente(key.value)" #key="ngModel" [(ngModel)]="infoRichiedente" 
-              name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente..">
+              name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente.." autocomplete="off">
             
               <ul class="list-group" id="utentiTrovati">
                 <li class="list-group-item" *ngFor= "let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
@@ -59,7 +59,7 @@
           <div class="form-group menu-item">
             <label for="keyApp">Utente che ha approvato il permesso:</label>
               <input type="text" (ngModelChange)="cercaUtenteApprovatore(keyApp.value)" #keyApp="ngModel" [(ngModel)]="infoApprovatore"  
-              name="keyApp" id="searchNameApp"  class="form-control mr-sm-2" placeholder="Cerca utente..">
+              name="keyApp" id="searchNameApp"  class="form-control mr-sm-2" placeholder="Cerca utente.." autocomplete="off">
             
               <ul class="list-group" id="utentiTrovati">
                 <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome + " (" + utente?.qualifica.nome + ")"}}</a></li>

@@ -45,7 +45,8 @@ import { TabComponent } from './tab/tab.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    
   ],
   providers: [
     UtenteService, //potrei anche commentarlo perchè in utenteservice c'è @injectable provided in root

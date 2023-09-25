@@ -23,8 +23,16 @@ export class PermessoService {
 
   // }
 
-  public aggiungiPermesso(permesso: Permesso){
-    return this.http.post<any>(`${this.apiServerUrl}/permesso/add`, permesso, {responseType: 'text' as 'json'});
+  // public aggiungiPermesso(permesso: Permesso){
+    
+  //   return this.http.post<any>(`${this.apiServerUrl}/permesso/add`, permesso, {responseType: 'text' as 'json'});
+
+  // }
+
+  public aggiungiPermesso(permesso: Permesso, idUtenteLoggato: number){
+    let params = new HttpParams()
+    .set('idUtenteLoggato', idUtenteLoggato);
+    return this.http.post<any>(`${this.apiServerUrl}/permesso/add`, permesso, {params: params, responseType: 'text' as 'json'});
 
   }
 

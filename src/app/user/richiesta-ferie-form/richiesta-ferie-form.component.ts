@@ -30,11 +30,17 @@ export class RichiestaFerieFormComponent implements OnInit {
   public error: string;
   public totOreGiorni: string
   selectedOption: string;
-  public idUtenteApp: number;
+  public idUtenteLoggato: number;
   public selectedUtenteApprovazioneId: Utente;
   public selectedUtenteApprovazioneDueId: Utente;
   public tipo_malattia: string;
-
+  public utentiFerieTrovati: Utente[];
+  public utenteFerie: Utente;
+  public utenteFerieSelezionato: Utente;
+  public infoUtenteFerie: string;
+  public tipoPermesso: string;
+  public currentForm: string;
+  
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) {
     this.utenteLoggato = loginService.currentUserValue;
@@ -57,7 +63,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.selectedOption = 'undefined';
     this.getUtentiFerie();
     var values = JSON.parse(localStorage.getItem("currentUser"));
-    this.idUtenteApp = values.id;
+    this.idUtenteLoggato = values.id;
 
 
   }
@@ -110,6 +116,44 @@ export class RichiestaFerieFormComponent implements OnInit {
       this.totOreGiorni = "";
     }
   }
+
+  public cercaApprovatoreFerie(key: string): void{
+    //console.log(key)
+    const risultati: Utente[]=[];
+    //if(key.match(qualifichejson.entries))
+    
+      for(const utenteFerie of this.utentiFerie){
+        if(key)
+          if(utenteFerie.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+          || utenteFerie.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+          //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+          ){
+
+            risultati.push(utenteFerie);
+            
+          }
+      }
+      this.utentiFerieTrovati= risultati;
+      
+      
+      if(risultati.length===0 || !key) {
+        if(key===""){
+          this.utentiFerieTrovati= [];
+          this.utentiFerieTrovati=null;
+          //this.utente Richiedente= null;  così se l'utente cancella il richiedente alla prossima ricerca viene passato null
+        }
+        
+      }
+  }
+
+  public selezionaUtenteFerie(utenteFerieSelezionato: Utente){
+    this.utenteFerieSelezionato= utenteFerieSelezionato;
+    this.infoUtenteFerie= this.utenteFerieSelezionato.nome+ " " + this.utenteFerieSelezionato.cognome;
+    this.utentiFerieTrovati= [];
+  }
+
+
+
 
   public updateTotGiorni() {
     //console.log(this.dataFine);
@@ -164,24 +208,27 @@ export class RichiestaFerieFormComponent implements OnInit {
     console.log("utente loggato in ferie:");
 
 
-    console.log(this.idUtenteApp);
-    this.permessoService.aggiungiPermesso(permessoForm.value).subscribe(
+    console.log(this.idUtenteLoggato);
+    this.permessoService.aggiungiPermesso(permessoForm.value, this.idUtenteLoggato).subscribe(
       (response: string) => {
         this.message = response;
-        console.log(response);
+        //console.log(response);
         permessoForm.reset();
+        //this.azzeraVariabili()
         this.error="";
         var values = JSON.parse(localStorage.getItem("currentUser"));
-        this.idUtenteApp = values.id;
+        this.idUtenteLoggato = values.id;
+        this.tipoPermesso= this.currentForm
 
 
       },
       (error: HttpErrorResponse) => {
         //alert(error.message);
         this.error = error.error;
+        //this.message = "";
         //permessoForm.reset();
         var values = JSON.parse(localStorage.getItem("currentUser"));
-        this.idUtenteApp = values.id;
+        this.idUtenteLoggato = values.id;
       },
     );
 
@@ -206,7 +253,7 @@ export class RichiestaFerieFormComponent implements OnInit {
 
 
   public toggleForm(form: string): void {
-
+    this.currentForm= form;
     this.azzeraVariabili();
     var x = document.getElementById("ferie_form");
     var congedo = document.getElementById("congedo_form");
@@ -222,6 +269,7 @@ export class RichiestaFerieFormComponent implements OnInit {
       malattia.style.display = "none";
       x.appendChild(congedo);
       congedo.style.display = "block";
+      this.tipoPermesso= "Congedo Ordinario"
 
 
     }
@@ -243,7 +291,7 @@ export class RichiestaFerieFormComponent implements OnInit {
       malattia.style.display = "none";
       x.appendChild(recupero_ore);
       recupero_ore.style.display = "block";
-
+      this.tipoPermesso= "Recupero ore eccedenti"
 
     }
 
