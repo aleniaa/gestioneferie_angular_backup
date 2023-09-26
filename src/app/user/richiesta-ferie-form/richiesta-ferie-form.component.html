@@ -195,8 +195,8 @@
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="searchutenteFerie">Da sottomettere per approvazione al capoturno/funzionario:</label>
+    <div class="form-group menu-item">
+      <label for="searchutenteFerie">Da sottomettere per approvazione al capoturno/funzionario (selezionare dal menu a tendina):</label>
       <!-- <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
         placeholder="Scegli funzionario" form="congedo" required>
 
@@ -207,7 +207,7 @@
         [(ngModel)]="infoUtenteFerie" name="searchutenteFerie" id="searchutenteFerie" class="form-control mr-sm-2"
         placeholder="Cerca utente.." required autocomplete="off">
       <ul class="list-group" id="utentiTrovati">
-        <li class="list-group-item qualificheTrovate" *ngFor="let utenteFerie of utentiFerieTrovati"
+        <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
           value="{{utenteFerie}}">
           <a (click)="selezionaUtenteFerie(utenteFerie)">{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
         </li>
@@ -217,7 +217,7 @@
         id="idUtenteApprovazione">
 
     </div>
-    <div class="form-group">
+    <div class="form-group menu-item">
       <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
         (opzionale):</label>
       <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
@@ -361,15 +361,24 @@
 
         </div>
       </div>
-      <div class="form-group">
-        <label for="idUtenteApprovazione">Da sottomettere per approvazione al capoturno/funzionario:</label>
-        <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
-          placeholder="Scegli funzionario" form="recupero_ore" required>
-          <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
-            {{approvatore?.cognome + " " + approvatore?.nome}}</option>
-        </select>
+      <div class="form-group menu-item">
+        <label for="idUtenteApprovazione">Da sottomettere per approvazione al capoturno/funzionario (selezionare dal menu a tendina):</label>
+
+        <input type="text" (ngModelChange)="cercaApprovatoreFerie(keyInput2.value)" #keyInput2="ngModel"
+        [(ngModel)]="infoUtenteFerie" name="searchutenteFerie" id="searchutenteFerie" class="form-control mr-sm-2"
+        placeholder="Cerca utente.." required autocomplete="off">
+      <ul class="list-group" id="utentiTrovati">
+        <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
+          value="{{utenteFerie}}">
+          <a (click)="selezionaUtenteFerie(utenteFerie)">{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
+        </li>
+      </ul>
+
+      <input type="hidden" ngModel="{{utenteFerieSelezionato?.id}}" name="idUtenteApprovazione" class="form-control"
+        id="idUtenteApprovazione">
+
       </div>
-      <div class="form-group">
+      <div class="form-group menu-item">
         <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
           (opzionale):</label>
         <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
@@ -641,7 +650,7 @@
 
       <h4><b>SI ALLEGA/SEGUIRA' DOCUMENTAZIONE GIUSTIFICATIVA (da allegare nella sezione "I miei permessi")</b></h4>
       <div class="col">
-        <div class="form-group">
+        <div class="form-group menu-item">
           <label for="idUtenteApprovazione">Da sottomettere per approvazione al capoturno/funzionario:</label>
           <select [(ngModel)]="selectedUtenteApprovazioneId" name="idUtenteApprovazione" class="form-control"
             id="idUtenteApprovazione" placeholder="Scegli funzionario" form="permessi" required>
@@ -652,7 +661,7 @@
       </div>
       <div class="col">
 
-        <div class="form-group">
+        <div class="form-group menu-item">
           <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
             (opzionale):</label>
           <select [(ngModel)]="selectedUtenteApprovazioneDueId" name="idUtenteApprovazioneDue" class="form-control"

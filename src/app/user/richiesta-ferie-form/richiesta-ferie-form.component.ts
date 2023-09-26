@@ -247,6 +247,8 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.totOreGiorni = "";
     this.totGiorni=0;
     this.tipo_malattia="Malattia"
+    this.utenteFerie= null
+    this.infoUtenteFerie=""
     
   }
 

@@ -93,7 +93,7 @@ export class SchedaUtentiComponent implements OnInit{
   }
 
   public onCloseModal(): void{
-    console.log("onclosemodal")
+    //console.log("onclosemodal")
     this.modificaUtente= null;
     this.infoQualifica="";
     this.qualificheTrovate= [];
@@ -109,8 +109,8 @@ export class SchedaUtentiComponent implements OnInit{
 
   public onAggiungiUtente(addForm: NgForm): void{
 
-    console.log("il form di aggiungi utente è:");
-    console.log(addForm.value);
+    //console.log("il form di aggiungi utente è:");
+    //console.log(addForm.value);
 
 
 
@@ -119,13 +119,13 @@ export class SchedaUtentiComponent implements OnInit{
       //(response: Utente) => { //jfoiewfjwoiej
       (response: string) => { //jfoiewfjwoiej
         this.message= response;
-        console.log(response);
+        //console.log(response);
         this.getUtenti();
         addForm.reset();
         
       },
       (error: HttpErrorResponse) => {
-        console.log(error)
+        //console.log(error)
         this.errorMsg=error.error;
         alert("La mail vigilfuoco o l'account Dipvvf sono già presenti nel database");
         //addForm.reset();
@@ -136,8 +136,8 @@ export class SchedaUtentiComponent implements OnInit{
 
 
   public aggiornaUtente(utente: Utente): void{
-    console.log("utente di aggiorna utente: ");
-    console.log(utente);
+    //console.log("utente di aggiorna utente: ");
+    //console.log(utente);
     
     this.utenteService.aggiornaUtente(utente).subscribe(
       (response: Utente) => { //jfoiewfjwoiej
@@ -166,12 +166,13 @@ export class SchedaUtentiComponent implements OnInit{
     
     const risultati: Utente[]=[];
     for(const utente of this.utenti){
-      if(utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
-      || utente.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
-      //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
-      ){
-        risultati.push(utente);
-      }
+      if(key)
+        if(utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        || utente.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        ){
+          risultati.push(utente);
+        }
     }
 
     this.utenti= risultati;
@@ -206,15 +207,15 @@ export class SchedaUtentiComponent implements OnInit{
     const risultati: Qualifica[]=[];
     //if(key.match(qualifichejson.entries))
     for(const qualifica of this.qualifiche){
-      
-      if(qualifica.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
-      || qualifica.descrizione.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
-      //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
-      ){
+      if(key)
+        if(qualifica.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        || qualifica.descrizione.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
+        ){
 
-        risultati.push(qualifica);
-        
-      }
+          risultati.push(qualifica);
+          
+        }
     }
     this.qualificheTrovate= risultati;
     

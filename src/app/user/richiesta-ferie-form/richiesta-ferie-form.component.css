@@ -97,6 +97,30 @@ input[type=button], input[type=submit], input[type=reset]  {
     -ms-transform: scale(0.95);
     transform: scale(0.95);
   }
+
+  .utentiFerieTrovati:hover {
+    cursor: pointer; /* Set cursor to pointer (hand) */
+    background-color: #39ace7;
+  }
+
+  .menu-item {
+    float: left;
+    position: relative; /* <-- added declaration */
+
+  }
+
+  .menu-item ul {
+    margin-top: 5px;
+    list-style-type: none;
+  
+  
+    z-index: 10000;
+    position: absolute;  /* <-- added declarations */
+    left: 0; top: 100%;  /*     here               */
+    width: 100%;         /*     and here...        */
+  
+    transition: height 1s ease;
+  }
   
 /*   input[type=text], input[type=select] {
     background-color: #f6f6f6;

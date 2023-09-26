@@ -58,6 +58,7 @@ ul li:hover {
     padding: 2px;
     text-decoration: none;
     color: #535a60;
+    cursor: pointer;
   }
   
   a:hover {
