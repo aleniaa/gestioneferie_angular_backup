@@ -32,6 +32,10 @@ export class PermessoService {
   public aggiungiPermesso(permesso: Permesso, idUtenteLoggato: number){
     let params = new HttpParams()
     .set('idUtenteLoggato', idUtenteLoggato);
+
+    console.log("id utente loggato dentro il peremsso service angular:")
+    console.log(idUtenteLoggato.toString());
+
     return this.http.post<any>(`${this.apiServerUrl}/permesso/add`, permesso, {params: params, responseType: 'text' as 'json'});
 
   }

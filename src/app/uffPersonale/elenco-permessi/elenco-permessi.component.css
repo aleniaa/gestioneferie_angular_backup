@@ -66,9 +66,9 @@ ul li:hover {
     cursor: pointer;
   }
 
-  .menu-item {
+/*   .menu-item {
     float: left;
-    position: relative; /* <-- added declaration */
+    position: relative; 
 
 }
 
@@ -78,9 +78,9 @@ ul li:hover {
 
 
   z-index: 10000;
-  position: absolute;  /* <-- added declarations */
-  left: 0; top: 100%;  /*     here               */
-  width: 100%;         /*     and here...        */
+  position: absolute;  
+  left: 0; top: 100%;  
+  width: 100%;       
 
   transition: height 1s ease;
-}
+} */

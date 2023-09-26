@@ -205,10 +205,10 @@ export class RichiestaFerieFormComponent implements OnInit {
   }
 
   public aggiungiPermesso(permessoForm: NgForm): void {
-    //console.log("utente loggato in ferie:");
+    console.log("utente loggato in aggiungi permesso richiesta ferie form component:");
 
 
-    //console.log(this.idUtenteLoggato);
+    console.log(this.idUtenteLoggato);
     this.permessoService.aggiungiPermesso(permessoForm.value, this.idUtenteLoggato).subscribe(
       (response: string) => {
         this.message = response;

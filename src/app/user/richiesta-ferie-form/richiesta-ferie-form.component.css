@@ -103,9 +103,9 @@ input[type=button], input[type=submit], input[type=reset]  {
     background-color: #39ace7;
   }
 
-  .menu-item {
+/*   .menu-item {
     float: left;
-    position: relative; /* <-- added declaration */
+    position: relative; 
 
   }
 
@@ -115,12 +115,12 @@ input[type=button], input[type=submit], input[type=reset]  {
   
   
     z-index: 10000;
-    position: absolute;  /* <-- added declarations */
-    left: 0; top: 100%;  /*     here               */
-    width: 100%;         /*     and here...        */
+    position: absolute;  
+    left: 0; top: 100%;  
+    width: 100%;         
   
     transition: height 1s ease;
-  }
+  } */
   
 /*   input[type=text], input[type=select] {
     background-color: #f6f6f6;
