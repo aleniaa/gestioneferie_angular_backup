@@ -256,6 +256,7 @@ export class IMieiPermessiComponent {
     this.permessiApprovati=[];
     this.permessiPending=[];
     this.permessiRespinti=[];
+    this.malattia=[];
 
   }
 
