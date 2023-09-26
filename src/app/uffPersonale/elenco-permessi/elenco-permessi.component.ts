@@ -203,6 +203,7 @@ export class ElencoPermessiComponent implements OnInit {
       if (key === "") {
         this.utentiRichiedentiTrovati = [];
         this.utenteRichiedente = null; // così se l'utente cancella il richiedente alla prossima ricerca viene passato null
+        
       }
 
     }
@@ -229,7 +230,7 @@ export class ElencoPermessiComponent implements OnInit {
       if (key === "") {
 
         this.utentiApprovatoriTrovati = [];
-
+        
         this.utenteApprovatore = null;
 
       }
