@@ -26,6 +26,7 @@ export class SchedaUtentiComponent implements OnInit{
   public infoQualifica: string;
   public errorMsg: string;
   public message: string;
+  password: string | null = null;
 
   constructor(private utenteService: UtenteService, private qualificaService: QualificaService) { 
     this.message = "";
@@ -100,6 +101,7 @@ export class SchedaUtentiComponent implements OnInit{
     this.qualificaSelezionata=null;
     this.message=""
     this.errorMsg=""
+    this.password= null;
   }
 
   public onCloseModalAdd(addForm: NgForm):void{
@@ -148,6 +150,8 @@ export class SchedaUtentiComponent implements OnInit{
         alert(error.message);
       },
     ); //addform.value è una rappresentaione json dei dati inseriti nel form
+
+    this.onCloseModal();
   }
 
   public cancellaUtente(utenteId: number): void{
