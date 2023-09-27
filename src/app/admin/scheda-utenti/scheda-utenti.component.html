@@ -90,25 +90,25 @@
                   <label for="nome">Nome</label>
                   <input type="text" [(ngModel)]="nomeUtente" (ngModelChange)="updateAccountDipvvf()" name="nome"
                      class="form-control" id="nome" placeholder="Nome" pattern="[A-Za-z0-9]+"
-                     title="Inserisci un nome valido" required />
+                     title="Inserisci un nome valido" required autocomplete="off"/>
                </div>
                <div class="form-group">
                   <label for="cognome">Cognome</label>
                   <input type="text" [(ngModel)]="cognomeUtente" name="cognome" (ngModelChange)="updateAccountDipvvf()"
                      class="form-control" id="cognome" placeholder="Cognome" pattern="[A-Za-z0-9]+"
-                     title="Inserisci un cognome valido" required />
+                     title="Inserisci un cognome valido" required autocomplete="off"/>
                </div>
                <div class="form-group">
                   <label for="accountDipvvf">accountDipvvf </label>
                   <input type="text" [(ngModel)]="accountDipvvf" (ngModelChange)="updateEmailVigilfuoco()"
-                     name="accountDipvvf" class="form-control" id="accountDipvvf" />
+                     name="accountDipvvf" class="form-control" id="accountDipvvf" autocomplete="off"/>
                </div>
                <div class="form-group">
                   <label for="emailVigilfuoco">Email Vigilfuoco</label>
                   <input type="text" [(ngModel)]="emailVigilfuoco" name="emailVigilfuoco" class="form-control"
                      id="emailVigilfuoco" placeholder="nome.cognome@vigilfuoco.it"
                      pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it"
-                     title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required />
+                     title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required autocomplete="off"/>
                </div>
 
                <!-- <div class="form-group">
@@ -120,10 +120,10 @@
                   <label for="searchQualifica">Qualifica (seleziona dall'elenco):</label>
                   <input type="text" (ngModelChange)="cercaQualifica(keyInput.value)" #keyInput="ngModel"
                      [(ngModel)]="infoQualifica" name="searchQualifica" id="searchQualifica"
-                     class="form-control mr-sm-2" placeholder="Cerca qualifica.." required>
+                     class="form-control mr-sm-2" placeholder="Cerca qualifica.." required autocomplete="off">
 
                   <input type="hidden" ngModel="{{qualificaSelezionata?.id}}" name="id_qualifica" class="form-control"
-                     id="qualificaSelezionata">
+                     id="qualificaSelezionata" >
 
                   <ul class="list-group" id="utentiTrovati">
                      <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate"
@@ -138,7 +138,7 @@
                   <label for="password">Password</label>
                   <input type="text" ngModel name="password" class="form-control" id="password"
                      placeholder="Inserisci password temporanea" pattern="[A-Za-z0-9]+"
-                     title="Inserisci una password valida" required>
+                     title="Inserisci una password valida" required autocomplete="off">
                </div>
                <div class="form-group">
                   <label for="ruolo">Ruolo</label>
@@ -237,8 +237,8 @@
 
                <div class="form-group">
                   <label for="passwordEdit">Modifica password:</label>
-                  <input type="password" ngModel="{{modificaUtente?.password}}" name="password" class="form-control"
-                     id="passwordEdit" placeholder="inserisci nuova password">
+                  <input type="password" ngModel name="password" class="form-control"
+                     id="passwordEdit" placeholder="inserisci nuova password" autocomplete="off">
                </div>
                <div class="form-group">
                   <label for="ruoloEdit">Ruolo</label>
