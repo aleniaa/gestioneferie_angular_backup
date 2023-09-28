@@ -5,7 +5,7 @@ import { UtenteService } from '../../core/services/utente.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { QualificaService } from 'src/app/core/services/qualifica.service';
-import * as qualifichejson from 'src/assets/json/elenco_qualifiche_final.json';
+// import * as qualifichejson from 'src/assets/json/elenco_qualifiche_final.json';
 
 @Component({
   selector: 'app-scheda-utenti',
@@ -27,6 +27,7 @@ export class SchedaUtentiComponent implements OnInit{
   public errorMsg: string;
   public message: string;
   password: string | null = null;
+  public utentiTrovati: Utente[];
 
   constructor(private utenteService: UtenteService, private qualificaService: QualificaService) { 
     this.message = "";
@@ -75,7 +76,7 @@ export class SchedaUtentiComponent implements OnInit{
 
     if(mode === 'edit' ){
       this.modificaUtente = utente; //this vuol dire l'utente in questa classe
-      this.infoQualifica= utente.qualifica.descrizione;
+      this.infoQualifica= utente.qualifica?.descrizione;
       this.qualificaSelezionata= utente.qualifica;
       button.setAttribute('data-target','#aggiornaUtenteModal');
 
@@ -143,7 +144,7 @@ export class SchedaUtentiComponent implements OnInit{
     
     this.utenteService.aggiornaUtente(utente).subscribe(
       (response: Utente) => { //jfoiewfjwoiej
-        console.log(response);
+        //console.log(response);
         this.getUtenti();
       },
       (error: HttpErrorResponse) => {
@@ -168,6 +169,7 @@ export class SchedaUtentiComponent implements OnInit{
 
   public cercaUtenti(key: string): void{
     
+    console.log(key)
     const risultati: Utente[]=[];
     for(const utente of this.utenti){
       if(key)
@@ -179,7 +181,7 @@ export class SchedaUtentiComponent implements OnInit{
         }
     }
 
-    this.utenti= risultati;
+    this.utentiTrovati= risultati;
 /*      if((risultati.length===0 || !key) && key===""){
       this.getUtenti();
     }  */
@@ -191,23 +193,26 @@ export class SchedaUtentiComponent implements OnInit{
       
     } 
 
+    
   }
 
   public getQualifiche(): void {
     this.qualificaService.getQualifiche().subscribe(
       (response: Qualifica[]) => {
         this.qualifiche = response;
+        
         //console.log(this.qualifiche)
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )
+    
   }
 
   public cercaQualifica(key: string): void{
     console.log(key)
-    console.log(qualifichejson)
+    //console.log(qualifichejson)
     const risultati: Qualifica[]=[];
     //if(key.match(qualifichejson.entries))
     for(const qualifica of this.qualifiche){
