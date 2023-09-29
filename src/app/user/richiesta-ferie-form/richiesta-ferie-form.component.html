@@ -217,7 +217,7 @@
         <!-- <ng-container *ngIf="utentiFerieTrovati.length > 0; else noUtentiFound"> -->
         <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
           value="{{utenteFerie}}" (click)="selezionaUtenteFerie(utenteFerie)">
-          <a >{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
+          <a>{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
         </li>
         <!-- </ng-container> -->
         <div class="list-group-item" *ngIf="(key_messaggio !== '' && utentiFerieTrovati.length === 0)">
@@ -225,8 +225,7 @@
         </div>
       </ul>
 
-      <input type="hidden" ngModel="{{utenteFerieSelezionato?.id}}" name="idUtenteApprovazione" class="form-control"
-        >
+      <input type="hidden" ngModel="{{utenteFerieSelezionato?.id}}" name="idUtenteApprovazione" class="form-control">
 
     </div>
     <div class="form-group menu-item">
@@ -386,7 +385,7 @@
         <ul class="list-group" id="utentiTrovati">
           <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
             value="{{utenteFerie}}" (click)="selezionaUtenteFerie(utenteFerie)">
-            <a >{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
+            <a>{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
           </li>
           <div class="list-group-item" *ngIf="(key_messaggio !== '' && utentiFerieTrovati.length === 0)">
             <i>Nessun utente trovato</i>
@@ -394,14 +393,15 @@
         </ul>
 
 
-        
+
 
         <input type="hidden" ngModel="{{utenteFerieSelezionato?.id}}" name="idUtenteApprovazione" class="form-control"
           id="idUtenteApprovazione">
 
       </div>
       <div class="form-group menu-item">
-        <label for="idUtenteApprovazioneDueRecupero">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
+        <label for="idUtenteApprovazioneDueRecupero">Da sottomettere per approvazione ad un ulteriore
+          capoturno/funzionario
           (opzionale):</label>
         <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueRecupero"
           placeholder="Scegli capoturno" form="permessi">
@@ -468,8 +468,7 @@
             <input class="form-check-input" type="radio" ngModel="malattiaDLGS" name="tipoPermesso" id="malattiaDLGS"
               value="Cure e terapie DLGS n.119" />
             <label class="form-check-label" for="malattiaDLGS"> Malattia cure/terapie D.Lgs. n.119 del 18/07/2011
-              (30
-              gg./anno)</label>
+              (30 gg./anno)</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" ngModel="malattia_visite" name="tipoPermesso"
@@ -659,7 +658,7 @@
                   <div class="col">
 
 
-                    <label class="form-check-label" for="totGiorni"> per un totale di: </label>
+                    <label class="form-check-label" for="totGiorni"> per un totale di giorni: </label>
                     <input id="totGiorni" [(ngModel)]="totGiorni" name="totGiorni" readonly />
 
                   </div>
@@ -672,8 +671,8 @@
 
 
       <h4><b>SI ALLEGA/SEGUIRA' DOCUMENTAZIONE GIUSTIFICATIVA (da allegare nella sezione "I miei permessi")</b></h4>
-      
-      
+
+
       <div class="col">
         <div class="form-group menu-item">
           <label for="idUtenteApprovazioneAltri">Da sottomettere per approvazione al capoturno/funzionario:</label>
@@ -683,7 +682,7 @@
               {{approvatore?.cognome + " " + approvatore?.nome}}</option>
           </select>
 
-          
+
 
         </div>
       </div>
@@ -692,7 +691,8 @@
       <div class="col">
 
         <div class="form-group menu-item">
-          <label for="idUtenteApprovazioneDueAltriPermessi">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
+          <label for="idUtenteApprovazioneDueAltriPermessi">Da sottomettere per approvazione ad un ulteriore
+            capoturno/funzionario
             (opzionale):</label>
           <select [(ngModel)]="selectedUtenteApprovazioneDueId" name="idUtenteApprovazioneDue" class="form-control"
             id="idUtenteApprovazioneDueAltriPermessi" placeholder="Scegli capoturno" form="permessi">
@@ -701,7 +701,7 @@
               {{approvatore?.cognome + " " + approvatore?.nome}}</option>
           </select>
 
-          
+
         </div>
       </div>
       <div class="modal-footer">
