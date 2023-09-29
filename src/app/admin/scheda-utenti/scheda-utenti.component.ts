@@ -28,9 +28,11 @@ export class SchedaUtentiComponent implements OnInit{
   public message: string;
   password: string | null = null;
   public utentiTrovati: Utente[];
+  public key_messaggio: string;
 
   constructor(private utenteService: UtenteService, private qualificaService: QualificaService) { 
     this.message = "";
+    this.key_messaggio= ""
   
   }
 
@@ -168,7 +170,7 @@ export class SchedaUtentiComponent implements OnInit{
   }
 
   public cercaUtenti(key: string): void{
-    
+    this.key_messaggio=key;
     console.log(key)
     const risultati: Utente[]=[];
     for(const utente of this.utenti){

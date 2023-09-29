@@ -1,5 +1,5 @@
 <div class="container fadeInDown">
-  <h1>Richiesta Permessi</h1>
+  <h1>Richiedi Permessi</h1>
   <div class="row">
     <div class="col">
       <div class="dropdown">
@@ -195,8 +195,14 @@
         </div>
       </div>
     </div>
+
+
+
+
+
     <div class="form-group menu-item">
-      <label for="searchutenteFerie">Da sottomettere per approvazione al capoturno/funzionario (selezionare dal menu a tendina):</label>
+      <label for="searchutenteFerie">Da sottomettere per approvazione al capoturno/funzionario (selezionare dal menu a
+        tendina):</label>
       <!-- <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
         placeholder="Scegli funzionario" form="congedo" required>
 
@@ -206,27 +212,36 @@
       <input type="text" (ngModelChange)="cercaApprovatoreFerie(keyInput.value)" #keyInput="ngModel"
         [(ngModel)]="infoUtenteFerie" name="searchutenteFerie" id="searchutenteFerie" class="form-control mr-sm-2"
         placeholder="Cerca utente.." required autocomplete="off">
+
       <ul class="list-group" id="utentiTrovati">
+        <!-- <ng-container *ngIf="utentiFerieTrovati.length > 0; else noUtentiFound"> -->
         <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
           value="{{utenteFerie}}">
           <a (click)="selezionaUtenteFerie(utenteFerie)">{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
         </li>
+        <!-- </ng-container> -->
+        <div class="list-group-item" *ngIf="(key_messaggio !== '' && utentiFerieTrovati.length === 0)">
+          <i>Nessun utente trovato</i>
+        </div>
       </ul>
 
       <input type="hidden" ngModel="{{utenteFerieSelezionato?.id}}" name="idUtenteApprovazione" class="form-control"
-        id="idUtenteApprovazione">
+        >
 
     </div>
     <div class="form-group menu-item">
-      <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
+      <label for="idUtenteApprovazioneDueCongedo">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
         (opzionale):</label>
-      <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
+      <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueCongedo"
         placeholder="Scegli capoturno" form="permessi">
+
         <option [ngValue]="">{{" "}}</option>
         <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
           {{approvatore?.cognome + " " + approvatore?.nome}}</option>
       </select>
     </div>
+
+
 
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
@@ -362,27 +377,35 @@
         </div>
       </div>
       <div class="form-group menu-item">
-        <label for="idUtenteApprovazione">Da sottomettere per approvazione al capoturno/funzionario (selezionare dal menu a tendina):</label>
+        <label for="searchutenteFerie">Da sottomettere per approvazione al capoturno/funzionario (selezionare dal
+          menu a tendina):</label>
 
         <input type="text" (ngModelChange)="cercaApprovatoreFerie(keyInput2.value)" #keyInput2="ngModel"
-        [(ngModel)]="infoUtenteFerie" name="searchutenteFerie" id="searchutenteFerie" class="form-control mr-sm-2"
-        placeholder="Cerca utente.." required autocomplete="off">
-      <ul class="list-group" id="utentiTrovati">
-        <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
-          value="{{utenteFerie}}">
-          <a (click)="selezionaUtenteFerie(utenteFerie)">{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
-        </li>
-      </ul>
+          [(ngModel)]="infoUtenteFerie" name="searchutenteFerie" id="searchutenteFerie" class="form-control mr-sm-2"
+          placeholder="Cerca utente.." required autocomplete="off">
+        <ul class="list-group" id="utentiTrovati">
+          <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
+            value="{{utenteFerie}}">
+            <a (click)="selezionaUtenteFerie(utenteFerie)">{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
+          </li>
+          <div class="list-group-item" *ngIf="(key_messaggio !== '' && utentiFerieTrovati.length === 0)">
+            <i>Nessun utente trovato</i>
+          </div>
+        </ul>
 
-      <input type="hidden" ngModel="{{utenteFerieSelezionato?.id}}" name="idUtenteApprovazione" class="form-control"
-        id="idUtenteApprovazione">
+
+        
+
+        <input type="hidden" ngModel="{{utenteFerieSelezionato?.id}}" name="idUtenteApprovazione" class="form-control"
+          id="idUtenteApprovazione">
 
       </div>
       <div class="form-group menu-item">
-        <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
+        <label for="idUtenteApprovazioneDueRecupero">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
           (opzionale):</label>
-        <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
+        <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueRecupero"
           placeholder="Scegli capoturno" form="permessi">
+          <option [ngValue]="">{{" "}}</option>
           <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
             {{approvatore?.cognome + " " + approvatore?.nome}}</option>
         </select>
@@ -443,14 +466,14 @@
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" ngModel="malattiaDLGS" name="tipoPermesso" id="malattiaDLGS"
-              value="Malattia DLGS n.119" />
+              value="Cure e terapie DLGS n.119" />
             <label class="form-check-label" for="malattiaDLGS"> Malattia cure/terapie D.Lgs. n.119 del 18/07/2011
               (30
               gg./anno)</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" ngModel="malattia_visite" name="tipoPermesso"
-              id="malattia_visite" value="Malattia visite" />
+              id="malattia_visite" value="Visite e terapie" />
             <label class="form-check-label" for="malattia_visite"> Malattia per visite, terapie, prestazioni
               specialistiche ed esami
               diagnostici (18 h /anno)</label>
@@ -458,7 +481,7 @@
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" ngModel="sangue" name="tipoPermesso" id="sangue"
-              value="Donazione sangue" />
+              value="Donazione di sangue" />
             <label class="form-check-label" for="sangue"> Donazione Sangue (24 ore dalla donazione)</label>
           </div>
           <div class="form-check">
@@ -528,7 +551,7 @@
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" ngModel="malattia_figlio" name="tipoPermesso"
-              id="malattia_figlio" value="Malattia figlio" />
+              id="malattia_figlio" value="Infermità figlio" />
             <label class="form-check-label" for="malattia_figlio"> Congedo per malattia figlio/a</label>
             <p><i>(obbligatoria certificazione malattia figlio/a)</i></p>
           </div>
@@ -567,8 +590,8 @@
 
                   <div class="col">
                     <label class="form-check-label" for="dalleOre"> Dalle ore: </label>
-                    <input type="text" [(ngModel)]="oreInizio" (ngModelChange)="updateTotOre()"
-                      name="dalleOre" class="form-control" id="dalleOre" title="Inserisci ore nel formato HH:mm"
+                    <input type="text" [(ngModel)]="oreInizio" (ngModelChange)="updateTotOre()" name="dalleOre"
+                      class="form-control" id="dalleOre" title="Inserisci ore nel formato HH:mm"
                       pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" [required]="selectedOption === 'orario'" />
                   </div>
                   <div class="col">
@@ -649,26 +672,36 @@
 
 
       <h4><b>SI ALLEGA/SEGUIRA' DOCUMENTAZIONE GIUSTIFICATIVA (da allegare nella sezione "I miei permessi")</b></h4>
+      
+      
       <div class="col">
         <div class="form-group menu-item">
-          <label for="idUtenteApprovazione">Da sottomettere per approvazione al capoturno/funzionario:</label>
+          <label for="idUtenteApprovazioneAltri">Da sottomettere per approvazione al capoturno/funzionario:</label>
           <select [(ngModel)]="selectedUtenteApprovazioneId" name="idUtenteApprovazione" class="form-control"
-            id="idUtenteApprovazione" placeholder="Scegli funzionario" form="permessi" required>
+            id="idUtenteApprovazioneAltri" placeholder="Scegli funzionario" form="permessi" required>
             <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
               {{approvatore?.cognome + " " + approvatore?.nome}}</option>
           </select>
+
+          
+
         </div>
       </div>
+
+
       <div class="col">
 
         <div class="form-group menu-item">
-          <label for="idUtenteApprovazioneDue">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
+          <label for="idUtenteApprovazioneDueAltriPermessi">Da sottomettere per approvazione ad un ulteriore capoturno/funzionario
             (opzionale):</label>
           <select [(ngModel)]="selectedUtenteApprovazioneDueId" name="idUtenteApprovazioneDue" class="form-control"
-            id="idUtenteApprovazioneDue" placeholder="Scegli capoturno" form="permessi">
+            id="idUtenteApprovazioneDueAltriPermessi" placeholder="Scegli capoturno" form="permessi">
+            <option [ngValue]="">{{" "}}</option>
             <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
               {{approvatore?.cognome + " " + approvatore?.nome}}</option>
           </select>
+
+          
         </div>
       </div>
       <div class="modal-footer">

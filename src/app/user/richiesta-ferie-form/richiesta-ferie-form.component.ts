@@ -34,12 +34,13 @@ export class RichiestaFerieFormComponent implements OnInit {
   public selectedUtenteApprovazioneId: Utente;
   public selectedUtenteApprovazioneDueId: Utente;
   public tipo_malattia: string;
-  public utentiFerieTrovati: Utente[];
+  public utentiFerieTrovati: Utente[]= [];
   public utenteFerie: Utente;
   public utenteFerieSelezionato: Utente;
   public infoUtenteFerie: string;
   public tipoPermesso: string;
   public currentForm: string;
+  public key_messaggio: string ;
   
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) {
@@ -55,7 +56,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.totOreGiorni = "";
     this.totGiorni=0;
     this.tipo_malattia="Malattia"
-
+    this.key_messaggio= ""
 
   }
 
@@ -120,6 +121,8 @@ export class RichiestaFerieFormComponent implements OnInit {
   public cercaApprovatoreFerie(key: string): void{
     //console.log(key)
     const risultati: Utente[]=[];
+    this.key_messaggio=key;
+    
     //if(key.match(qualifichejson.entries))
     
       for(const utenteFerie of this.utentiFerie){
@@ -134,12 +137,14 @@ export class RichiestaFerieFormComponent implements OnInit {
           }
       }
       this.utentiFerieTrovati= risultati;
-      
+      // console.log(this.utentiFerieTrovati)
+      // console.log(key)
       
       if(risultati.length===0 || !key) {
         if(key===""){
           this.utentiFerieTrovati= [];
-          this.utentiFerieTrovati=null;
+          this.infoUtenteFerie=''
+          //this.utentiFerieTrovati=null;
           //this.utente Richiedente= null;  così se l'utente cancella il richiedente alla prossima ricerca viene passato null
         }
         
@@ -150,6 +155,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.utenteFerieSelezionato= utenteFerieSelezionato;
     this.infoUtenteFerie= this.utenteFerieSelezionato.nome+ " " + this.utenteFerieSelezionato.cognome;
     this.utentiFerieTrovati= [];
+    this.key_messaggio=''
   }
 
 
@@ -219,6 +225,7 @@ export class RichiestaFerieFormComponent implements OnInit {
         var values = JSON.parse(localStorage.getItem("currentUser"));
         this.idUtenteLoggato = values.id;
         this.tipoPermesso= this.currentForm
+        this.key_messaggio=""
 
 
       },
@@ -249,6 +256,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.tipo_malattia="Malattia"
     this.utenteFerie= null
     this.infoUtenteFerie=""
+    this.key_messaggio=""
     
   }
 
