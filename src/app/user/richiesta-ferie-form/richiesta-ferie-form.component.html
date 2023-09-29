@@ -216,8 +216,8 @@
       <ul class="list-group" id="utentiTrovati">
         <!-- <ng-container *ngIf="utentiFerieTrovati.length > 0; else noUtentiFound"> -->
         <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
-          value="{{utenteFerie}}">
-          <a (click)="selezionaUtenteFerie(utenteFerie)">{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
+          value="{{utenteFerie}}" (click)="selezionaUtenteFerie(utenteFerie)">
+          <a >{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
         </li>
         <!-- </ng-container> -->
         <div class="list-group-item" *ngIf="(key_messaggio !== '' && utentiFerieTrovati.length === 0)">
@@ -385,8 +385,8 @@
           placeholder="Cerca utente.." required autocomplete="off">
         <ul class="list-group" id="utentiTrovati">
           <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
-            value="{{utenteFerie}}">
-            <a (click)="selezionaUtenteFerie(utenteFerie)">{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
+            value="{{utenteFerie}}" (click)="selezionaUtenteFerie(utenteFerie)">
+            <a >{{utenteFerie?.nome+ " "+ utenteFerie?.cognome}}</a>
           </li>
           <div class="list-group-item" *ngIf="(key_messaggio !== '' && utentiFerieTrovati.length === 0)">
             <i>Nessun utente trovato</i>

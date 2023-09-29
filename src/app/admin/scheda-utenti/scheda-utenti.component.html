@@ -54,6 +54,8 @@
                         :<br>{{utente?.emailVigilfuoco}}</li>
                      <li class="list-group-item"><i class="fa fa float-right"></i>Qualifica
                         :<br>{{utente?.qualifica?.descrizione}}</li>
+                     <li class="list-group-item"><i class="fa fa float-right"></i>Ruolo
+                        :<br>{{utente?.ruolo}}</li>
                   </ul>
                   <div class="card-body">
                      <div class="float-right btn-group btn-group-sm">
@@ -90,25 +92,25 @@
                   <label for="nome">Nome</label>
                   <input type="text" [(ngModel)]="nomeUtente" (ngModelChange)="updateAccountDipvvf()" name="nome"
                      class="form-control" id="nome" placeholder="Nome" pattern="[A-Za-z0-9]+"
-                     title="Inserisci un nome valido" required autocomplete="off"/>
+                     title="Inserisci un nome valido" required autocomplete="off" />
                </div>
                <div class="form-group">
                   <label for="cognome">Cognome</label>
                   <input type="text" [(ngModel)]="cognomeUtente" name="cognome" (ngModelChange)="updateAccountDipvvf()"
                      class="form-control" id="cognome" placeholder="Cognome" pattern="[A-Za-z0-9]+"
-                     title="Inserisci un cognome valido" required autocomplete="off"/>
+                     title="Inserisci un cognome valido" required autocomplete="off" />
                </div>
                <div class="form-group">
                   <label for="accountDipvvf">accountDipvvf </label>
                   <input type="text" [(ngModel)]="accountDipvvf" (ngModelChange)="updateEmailVigilfuoco()"
-                     name="accountDipvvf" class="form-control" id="accountDipvvf" autocomplete="off"/>
+                     name="accountDipvvf" class="form-control" id="accountDipvvf" autocomplete="off" />
                </div>
                <div class="form-group">
                   <label for="emailVigilfuoco">Email Vigilfuoco</label>
                   <input type="text" [(ngModel)]="emailVigilfuoco" name="emailVigilfuoco" class="form-control"
                      id="emailVigilfuoco" placeholder="nome.cognome@vigilfuoco.it"
                      pattern="[A-Za-z0-9]+\.[A-Za-z0-9]+@vigilfuoco\.it"
-                     title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required autocomplete="off"/>
+                     title="Devi rispettare il formato nome.cognome@vigilfuoco.it" required autocomplete="off" />
                </div>
 
                <!-- <div class="form-group">
@@ -123,12 +125,12 @@
                      class="form-control mr-sm-2" placeholder="Cerca qualifica.." required autocomplete="off">
 
                   <input type="hidden" ngModel="{{qualificaSelezionata?.id}}" name="id_qualifica" class="form-control"
-                     id="qualificaSelezionata" >
+                     id="qualificaSelezionata">
 
                   <ul class="list-group" id="utentiTrovati">
                      <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate"
-                        value="{{qualifica}}">
-                        <a (click)="selezionaQualifica(qualifica)">{{qualifica?.nome+ " (" + qualifica?.descrizione+
+                        value="{{qualifica}}" (click)="selezionaQualifica(qualifica)">
+                        <a >{{qualifica?.nome+ " (" + qualifica?.descrizione+
                            ")"}}</a>
                      </li>
                   </ul>
@@ -228,8 +230,8 @@
 
                   <ul class="list-group" id="qualificehTrovati">
                      <li class="list-group-item qualificheTrovate" *ngFor="let qualifica of qualificheTrovate"
-                        value="{{qualifica}}">
-                        <a (click)="selezionaQualifica(qualifica)">{{qualifica?.nome+ " (" + qualifica?.descrizione+
+                        value="{{qualifica}}" (click)="selezionaQualifica(qualifica)">
+                        <a >{{qualifica?.nome+ " (" + qualifica?.descrizione+
                            ")"}}</a>
                      </li>
                   </ul>
@@ -237,8 +239,9 @@
 
                <div class="form-group">
                   <label for="passwordEdit">Modifica password:</label>
-                  <input type="password" [(ngModel)]="password" name="password" class="form-control"
-                     id="passwordEdit" placeholder="inserisci nuova password" autocomplete="off" (ngModelChange)="password = $event.trim() === '' ? null : $event">
+                  <input type="password" [(ngModel)]="password" name="password" class="form-control" id="passwordEdit"
+                     placeholder="inserisci nuova password" autocomplete="off"
+                     (ngModelChange)="password = $event.trim() === '' ? null : $event">
                </div>
                <div class="form-group">
                   <label for="ruoloEdit">Ruolo</label>
