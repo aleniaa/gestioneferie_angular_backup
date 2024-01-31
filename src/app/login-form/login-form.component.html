@@ -15,8 +15,8 @@
     <!-- Login Form -->
     <form #loginForm="ngForm" (ngSubmit)="accediUtente()">
       <input type="text"   [(ngModel)]="username" id="accountDipvvf" class="fadeIn second" name="accountDipvvf" placeholder="Username"  >
-      <input type="password"  [(ngModel)]="password" id="password" class="fadeIn third" name="password" placeholder="Password" >
-      <div class="alert alert-danger" role="alert" *ngIf="error">
+      <input type="password"  [(ngModel)]="password" id="password" class="fadeIn third" name="password" placeholder="Password" (input)="passwordTyped = true">
+      <div class="alert alert-danger" role="alert" *ngIf="error && !passwordTyped">
         {{error}}
       </div>
       <input type="submit" class="fadeIn fourth" value="Accedi">

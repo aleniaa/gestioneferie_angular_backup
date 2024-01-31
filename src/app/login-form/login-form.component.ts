@@ -16,7 +16,8 @@ export class LoginFormComponent implements OnInit {
 
   public username: string;
   public password: string;
-  
+  passwordTyped: boolean = false;
+
   public utente: Utente;
   
   error: string;
@@ -64,6 +65,8 @@ export class LoginFormComponent implements OnInit {
 
                   this.error = 'Username o password non validi';
                   //loginForm.reset();
+                  this.password=""
+                  this.passwordTyped= false
                   console.log(this.error);
                 }
             }
