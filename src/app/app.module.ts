@@ -22,6 +22,7 @@ import { ErrorComponent } from './error/error.component';
 import { HomeUserComponent } from './user/home-user/home-user.component';
 import { SharedModule } from './shared/shared.module';
 import { TabComponent } from './tab/tab.component';
+import { ReportPermessiComponent } from './uffPersonale/report-permessi/report-permessi.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TabComponent } from './tab/tab.component';
     RichiestaFerieFormComponent,
     ErrorComponent,
     TabComponent,
+    ReportPermessiComponent,
     //HomeUserComponent,
     //GestionePermessiComponent,
     //ElencoPermessiComponent,

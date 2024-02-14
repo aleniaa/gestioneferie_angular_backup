@@ -71,6 +71,33 @@ export class ElencoPermessiComponent implements OnInit {
     this.filenames = [];
   }
 
+  onConfermaPermesso(permesso: Permesso): void {
+    this.permessoSelezionato = permesso;
+    const button = document.createElement('button');
+    const container = document.getElementById('main-container');
+
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#visualizzaAllegatiModal');
+    container?.appendChild(button);
+
+    button.click();
+
+
+    // this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
+    //   event => {
+    //     //console.log(event);
+    //     this.resportProgress(event);
+    //   },
+    //   (error: HttpErrorResponse) => {
+    //     console.log(error);
+    //   }
+    // );
+
+    // this.filenames = [];
+  }
+
   // onDisplayFile(filename: string): void {
   //   // Assuming 'filename' is the URL of the file to be displayed
 

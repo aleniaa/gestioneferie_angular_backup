@@ -115,6 +115,7 @@
                   <th scope="col">Approvato da</th>
                   <th scope="col">Approvato in data:</th>
                   <th scope="col">Allegati:</th>
+                  <th scope="col">Confermato:</th>
 
                 </tr>
               </thead>
@@ -122,7 +123,7 @@
               <tbody>
                 
                 <tr *ngIf="permessi?.length == 0" >
-                  <td colspan="11">Nessun permesso trovato</td>
+                  <td colspan="12">Nessun permesso trovato</td>
                 </tr>
                 <tr *ngFor= "let permesso of permessi" 
                   [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
@@ -149,6 +150,7 @@
                   </td>
                   <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>
                   <td><button class="btn btn-primary tooltips" (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td> 
+                  <td><button class="btn btn-primary tooltips" (click)="onConfermaPermesso(permesso)">Conferma</button></td> 
               
                 </tr>
               
