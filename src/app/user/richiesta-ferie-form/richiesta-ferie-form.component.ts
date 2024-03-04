@@ -213,7 +213,8 @@ export class RichiestaFerieFormComponent implements OnInit {
   public aggiungiPermesso(permessoForm: NgForm): void {
     console.log("utente loggato in aggiungi permesso richiesta ferie form component:");
 
-
+    this.error="";
+    this.message = "";
     console.log(this.idUtenteLoggato);
     this.permessoService.aggiungiPermesso(permessoForm.value, this.idUtenteLoggato).subscribe(
       (response: string) => {
@@ -221,7 +222,7 @@ export class RichiestaFerieFormComponent implements OnInit {
         //console.log(response);
         permessoForm.reset();
         //this.azzeraVariabili()
-        this.error="";
+        //this.error="";
         var values = JSON.parse(localStorage.getItem("currentUser"));
         this.idUtenteLoggato = values.id;
         this.tipoPermesso= this.currentForm
@@ -232,6 +233,7 @@ export class RichiestaFerieFormComponent implements OnInit {
       (error: HttpErrorResponse) => {
         //alert(error.message);
         this.error = error.error;
+        console.log(this.error)
         //this.message = "";
         //permessoForm.reset();
         var values = JSON.parse(localStorage.getItem("currentUser"));

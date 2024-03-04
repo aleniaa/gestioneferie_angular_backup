@@ -42,7 +42,10 @@ export class GestionePermessiComponent implements OnInit {
     //this.getUtenti();
 
     //this.getPermessiApprovatoreByStatus();
-    this.getPermessiApprovatore();
+    
+    
+    //this.getPermessiApprovatore();
+    this.getPermessiApprovatore2();
   }
 
   public visualizzaNote(permesso: Permesso):void{
@@ -163,6 +166,47 @@ export class GestionePermessiComponent implements OnInit {
 
   }
 
+  public getPermessiApprovatore2(): void{
+    this.svuotaPermessi();
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    var idUtenteApp = values.id; 
+    console.log(idUtenteApp);
+    this.permessoService.getPermessiApprovatore(idUtenteApp).subscribe(
+      (response: Permesso[]) => {
+        for(const permessoTrovato of response){
+          switch(permessoTrovato.status){
+            case 0:
+ 
+              this.permessiPending.push(permessoTrovato);
+            break;
+            case 1: // permesso approvato attualmente solo dall'approvatore 1
+              if(idUtenteApp===permessoTrovato.idUtenteApprovazione){ // è loggato l'approvatore 1 
+                this.permessiApprovati.push(permessoTrovato);
+              }
+              
+            break;
+            case 2: // permesso approvato attualmente solo dall'approvatore 2
+              if(idUtenteApp===permessoTrovato.idUtenteApprovazione){ // è loggato l'approvatore 1 
+                this.permessiPending.push(permessoTrovato);
+              }
+            break;
+            case 4: // respinto da approvatore 1
+              this.permessiRespinti.push(permessoTrovato);
+            break;
+            case 5: // respinto da approvatore 2
+              this.permessiRespinti.push(permessoTrovato);
+            break;
+            default: console.log("qualcosa non va");
+          }
+        }
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+
+  }
+
   public approvaPermesso(permesso: Permesso): void{
       var values = JSON.parse(localStorage.getItem("currentUser"));
       var idUtenteApp = values.id; 
@@ -183,6 +227,26 @@ export class GestionePermessiComponent implements OnInit {
     
     
   }
+
+//   public aggiornaPermesso(permesso: Permesso, statusPermesso: number): void{
+//     var values = JSON.parse(localStorage.getItem("currentUser"));
+//     var idUtenteApp = values.id; 
+//     console.log(idUtenteApp)
+//     this.permessoService.aggiornaPermesso(permesso, idUtenteApp, statusPermesso).subscribe(
+//       (response: Permesso) => { //jfoiewfjwoiej
+//         console.log(response);
+//         //this.getPermessiApprovatoreByStatus();
+//         this.getPermessiApprovatore();
+//       },
+//       (error: HttpErrorResponse) => {
+//         alert(error.message);
+//         //this.getPermessiApprovatoreByStatus();
+//         this.getPermessiApprovatore();
+
+//       },
+//     );
+  
+// }
 
   public respingiPermesso(){
     document.getElementById('respingiPermesso')?.click();
