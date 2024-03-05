@@ -362,10 +362,10 @@ export class IMieiPermessiComponent {
               this.permessiPending.push(permessoTrovato);
             break;
             case 1: // permesso approvato attualmente solo dall'approvatore 1
-              this.permessiApprovati.push(permessoTrovato);
+              this.permessiPending.push(permessoTrovato);
             break;
             case 2: // permesso approvato attualmente solo dall'approvatore 2
-              this.permessiApprovati.push(permessoTrovato);
+              this.permessiPending.push(permessoTrovato);
             break;
             case 3: // permesso approvato da entrambi gli approvatori
               if(permessoTrovato.tipoPermesso.includes("Malattia"))

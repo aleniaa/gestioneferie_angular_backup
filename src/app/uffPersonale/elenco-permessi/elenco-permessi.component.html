@@ -1,72 +1,82 @@
-
-
 <div class="container fadeInDown">
   <h2>Ricerca permessi per:</h2>
   <div class="col">
-      
-    <form #searchForm="ngForm" (ngSubmit)="search(searchForm)" id="searchForm" ngNativeValidate> <!-- (ngSubmit)="search(searchForm)" -->
-      <div class="row" >
+
+    <form #searchForm="ngForm" (ngSubmit)="searchConfermareOConfermati(searchForm)" id="searchForm" ngNativeValidate>
+      <!-- (ngSubmit)="search(searchForm)" -->
+      <div class="row">
         <div class="col">
           <div class="form-group">
-              <label for="tipoPermesso">Tipo di permesso:</label>
-              <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso"  form="searchForm" >
-                <option value="tutti i permessi">Tutti i permessi</option>  
-                <option value="congedo ordinario">Congedo Ordinario</option>
-                  <!-- <option value="permesso breve">Permesso breve</option> -->
-                  <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
-                  <option value="altri permessi">Altri permessi</option>
-                  <optgroup label="Malattia">
-                    <option value="Malattia">Malattia</option>
-                    <option value="Malattia per causa di servizio">Malattia per causa di servizio</option>
-                    <option value="Terapia salvavita">Terapia salvavita</option>
-                    <option value="Malattia COVID-19">Malattia COVID-19</option>
+            <label for="tipoPermesso">Tipo di permesso:</label>
+            <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso"
+              placeholder="Seleziona tipo permesso" form="searchForm">
+              <option value="tutti i permessi">Tutti i permessi</option>
+              <option value="congedo ordinario">Congedo Ordinario</option>
+              <!-- <option value="permesso breve">Permesso breve</option> -->
+              <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
+              <option value="altri permessi">Altri permessi</option>
+              <optgroup label="Malattia">
+                <option value="Malattia">Malattia</option>
+                <option value="Malattia per causa di servizio">Malattia per causa di servizio</option>
+                <option value="Terapia salvavita">Terapia salvavita</option>
+                <option value="Malattia COVID-19">Malattia COVID-19</option>
 
-                  </optgroup>
+              </optgroup>
 
-                  
-              </select>
+
+            </select>
           </div>
         </div>
         <div class="col">
           <div class="form-group menu-item">
             <label for="key">Utente richiedente:</label>
-              <input type="text" (ngModelChange)="cercaUtenteRichiedente(key.value)" #key="ngModel" [(ngModel)]="infoRichiedente" 
-              name="key" id="searchName"  class="form-control mr-sm-2" placeholder="Cerca utente.." autocomplete="off">
-            
-              <ul class="list-group" id="utentiTrovati">
-                <li class="list-group-item" *ngFor= "let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
-              </ul>
-            </div>
+            <input type="text" (ngModelChange)="cercaUtenteRichiedente(key.value)" #key="ngModel"
+              [(ngModel)]="infoRichiedente" name="key" id="searchName" class="form-control mr-sm-2"
+              placeholder="Cerca utente.." autocomplete="off">
 
-            <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtenteRichiedente" class="form-control" id="idUtenteRichiedente" > 
+            <ul class="list-group" id="utentiTrovati">
+              <li class="list-group-item" *ngFor="let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a
+                  (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
+            </ul>
+          </div>
+
+          <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtenteRichiedente" class="form-control"
+            id="idUtenteRichiedente">
 
         </div>
-        <div class="col"> 
+        <div class="col">
           <div class="form-group">
-              <label for="dataAssenza">Data assenza personale:</label>
-              <input type="date" [(ngModel)]="dataAssenza" name="dataAssenza" class="form-control" id="dataAssenza" title="Data Assenza ferie">
+            <label for="dataAssenza">Data assenza personale:</label>
+            <input type="date" [(ngModel)]="dataAssenza" name="dataAssenza" class="form-control" id="dataAssenza"
+              title="Data Assenza ferie">
           </div>
         </div>
-        
-        <div class="col"> 
+
+        <div class="col">
           <div class="form-group">
-              <label for="dataApprovazione">Data approvazione permesso:</label>
-              <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie">
+            <label for="dataApprovazione">Data approvazione permesso:</label>
+            <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione"
+              title="Data Approvazione ferie">
           </div>
         </div>
 
         <div class="col">
           <div class="form-group menu-item">
             <label for="keyApp">Utente che ha approvato il permesso:</label>
-              <input type="text" (ngModelChange)="cercaUtenteApprovatore(keyApp.value)" #keyApp="ngModel" [(ngModel)]="infoApprovatore"  
-              name="keyApp" id="searchNameApp"  class="form-control mr-sm-2" placeholder="Cerca utente.." autocomplete="off">
-            
-              <ul class="list-group" id="utentiTrovati">
-                <li class="list-group-item" *ngFor= "let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome + " (" + utente?.qualifica.nome + ")"}}</a></li>
-              </ul>
-              <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione" > 
-              <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue" > 
-            </div>
+            <input type="text" (ngModelChange)="cercaUtenteApprovatore(keyApp.value)" #keyApp="ngModel"
+              [(ngModel)]="infoApprovatore" name="keyApp" id="searchNameApp" class="form-control mr-sm-2"
+              placeholder="Cerca utente.." autocomplete="off">
+
+            <ul class="list-group" id="utentiTrovati">
+              <li class="list-group-item" *ngFor="let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a
+                  (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome + " (" +
+                  utente?.qualifica.nome + ")"}}</a></li>
+            </ul>
+            <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazione" class="form-control"
+              id="idUtenteApprovazione">
+            <input type="hidden" ngModel="{{utenteApprovatore?.id}}" name="idUtenteApprovazioneDue" class="form-control"
+              id="idUtenteApprovazioneDue">
+          </div>
         </div>
 
       </div>
@@ -75,122 +85,207 @@
       <div class="row">
         <div class="col-10">
           <div class="form-group">
-            
-            <button type="submit"  class="btn btn-primary"  >Cerca</button>
-            
+
+            <button type="submit" class="btn btn-primary">Cerca</button>
+
           </div>
         </div>
         <div class="col">
           <div class="form-group">
-            
-            
+
+
             <input type="reset" class="btn btn-secondary" value="Resetta tutti i campi">
           </div>
 
         </div>
       </div>
-        
-      
+
+
     </form>
   </div>
-  
-  <section class="" id="main-container">
-  <div class="row justify-content-center">
-    <!-- <div class="col"> -->
-      <div class="card">
-        <div class="card-body p-0">
-          <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
-            
-            <table class="table table-striped mb-0">
-              <thead style="background-color: #002d72;position: sticky;top: 0;">
-                <tr>
-                  <th scope="col">Tipo permesso</th>
-                  <th scope="col">Richiedente</th>
-                  <th scope="col">Dal giorno</th>
-                  <th scope="col">Al giorno</th>
-                  <th scope="col">Giorni totali</th>
-                  <th scope="col">Dalle ore</th>
-                  <th scope="col">Alle ore</th>
-                  <th scope="col">Ore totali</th>
-                  <th scope="col">Approvato da</th>
-                  <th scope="col">Approvato in data:</th>
-                  <th scope="col">Allegati:</th>
-                  <th scope="col">Confermato:</th>
 
-                </tr>
-              </thead>
+  <section class="tab-container" id="main-container">
+    <div class="tab-links">
+      <button class="tab-link" [class.active]="activeTab === 1" (click)="openTab(1)">Permessi da confermare</button>
+      <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Permessi confermati</button>
+      <!-- <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button> -->
+    </div>
+    <div class="tab-content container2">
+      <div *ngIf="activeTab === 1">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
 
-              <tbody>
-                
-                <tr *ngIf="permessi?.length == 0" >
-                  <td colspan="12">Nessun permesso trovato</td>
-                </tr>
-                <tr *ngFor= "let permesso of permessi" 
-                  [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
-                              'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),
-                              'recupero_ore': permesso.tipoPermesso.includes('Recupero ore eccedenti')}"> <!-- "malattia è una classe del css" -->
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72;position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Richiedente</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col">Approvato da</th>
+                      <th scope="col">Approvato in data:</th>
+                      <th scope="col">Allegati:</th>
+                      <th scope="col">Confermato:</th>
 
-                  <th scope="row">{{permesso?.tipoPermesso}}</th>
-                  <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
-                  <td>{{permesso?.dataInizio  | date:'dd-MM-yyyy' }}</td>
-                  <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
-                  <td>{{permesso?.totGiorni}}</td>
-                  <td>{{permesso?.dalleOre}}</td>
-                  <td>{{permesso?.alleOre}}</td>
-                  <td>{{permesso?.totOre}}</td>
-                  <td>
-                    <ng-container
-                      *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
-                      {{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
-                    </ng-container>
-                    <ng-container
-                      *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
-                      {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
-                    </ng-container>
-                  </td>
-                  <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>
-                  <td><button class="btn btn-primary tooltips" (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td> 
-                  <td><button class="btn btn-primary tooltips" (click)="onConfermaPermesso(permesso)">Conferma</button></td> 
-              
-                </tr>
-              
-              </tbody>
-            </table>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                    <tr *ngIf="permessiDaConfermare?.length == 0">
+                      <td colspan="12">Nessun permesso da confermare trovato</td>
+                    </tr>
+                    <tr *ngFor="let permesso of permessiDaConfermare" [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
+                                  'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),
+                                  'recupero_ore': permesso.tipoPermesso.includes('Recupero ore eccedenti')}">
+                      <!-- "malattia è una classe del css" -->
+
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy' }}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+                      <td>
+                        <ng-container
+                          *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
+                          {{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
+                        </ng-container>
+                        <ng-container
+                          *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
+                        </ng-container>
+                      </td>
+                      <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>
+                      <td><button class="btn btn-primary tooltips"
+                          (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td>
+                      <td><button class="btn btn-success tooltips"
+                          (click)="onConfermaPermessoButton(permesso)">Conferma</button>
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
 
 
+              </div>
+            </div>
           </div>
+          <!-- </div> -->
         </div>
       </div>
-    <!-- </div> -->
-  </div>
+      <div *ngIf="activeTab === 2">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72;position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Richiedente</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col">Approvato da</th>
+                      <th scope="col">Approvato in data:</th>
+                      <th scope="col">Allegati:</th>
+                      <th scope="col">Confermato:</th>
+
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                    <tr *ngIf="permessiConfermati?.length == 0">
+                      <td colspan="12">Nessun permesso confermato trovato</td>
+                    </tr>
+                    <tr *ngFor="let permesso of permessiConfermati" [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
+                                  'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),
+                                  'recupero_ore': permesso.tipoPermesso.includes('Recupero ore eccedenti')}">
+                      <!-- "malattia è una classe del css" -->
+
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy' }}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+                      <td>
+                        <ng-container
+                          *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
+                          {{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
+                        </ng-container>
+                        <ng-container
+                          *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
+                        </ng-container>
+                      </td>
+                      <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>
+                      <td><button class="btn btn-primary tooltips"
+                          (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td>
+
+
+                    </tr>
+
+                  </tbody>
+                </table>
+
+
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 
-            <!-- Visualizza allegati modal -->
+<!-- Visualizza allegati modal -->
 
-  <div class="modal fade" id="visualizzaAllegatiModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="deleteModelLabel">Allegati</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
+<div class="modal fade" id="visualizzaAllegatiModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModelLabel">Allegati</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-         <div class="modal-body">
-          
-          <h3>Allegati:</h3>
-          <ng-container *ngIf="filenames?.length > 0; else noFiles">
-          <div *ngIf="filenames?.length > 0" class="js-upload-finished" >
+      <div class="modal-body">
+
+        <h3>Allegati:</h3>
+        <ng-container *ngIf="filenames?.length > 0; else noFiles">
+          <div *ngIf="filenames?.length > 0" class="js-upload-finished">
             <div *ngFor="let filename of filenames" class="list-group" style="padding-bottom: 5px;">
               <div class="list-group-item list-group-item-success">
                 <div class="filename">{{ filename }} </div>
                 <!-- <a (click)="onDisplayFile(filename)" class="float-right downloadAndEliminalink" #visualizzaFileButton >Visualizza</a> -->
-              <a (click)="onDownloadFile(filename)" class="float-right downloadAndEliminalink" #downloadFileButton >Download</a>
-              <!-- <a (click)="onDisplayFile(filename)" class="float-right downloadAndEliminalink">Mostra</a> -->
+                <a (click)="onDownloadFile(filename)" class="float-right downloadAndEliminalink"
+                  #downloadFileButton>Download</a>
+                <!-- <a (click)="onDisplayFile(filename)" class="float-right downloadAndEliminalink">Mostra</a> -->
 
-                
+
               </div>
             </div>
           </div>
@@ -200,21 +295,53 @@
           <div class="alert alert-dark" role="alert">Nessun allegato presente.</div>
         </ng-template>
 
-            <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!</div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                             
-            </div>
-         </div>
+        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
 
-
+        </div>
       </div>
-   </div> 
- </div> 
-  
 
 
+    </div>
+  </div>
+</div>
+
+<!--  Conferma permesso modal -->
+
+<div class="modal fade" id="confermaPermessoModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModelLabel">Allegati</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <h4>Sicuro di voler confermare il permesso </h4><br>
+        <div>
+          <h3>{{ permessoSelezionato?.tipoPermesso }} di {{permessoSelezionato?.utenteRichiedente?.nome}}
+            {{permessoSelezionato?.utenteRichiedente?.cognome}}
+            del {{ permessoSelezionato?.dataInizio }} ?
+          </h3>
+        </div>
 
 
+        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal"
+            (click)="confermaPermesso(permessoSelezionato)">Conferma</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+
+        </div>
+      </div>
 
 
+    </div>
+  </div>
+</div>

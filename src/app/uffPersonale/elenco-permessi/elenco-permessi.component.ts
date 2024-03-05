@@ -20,6 +20,8 @@ export class ElencoPermessiComponent implements OnInit {
 
 
   public permessi: Permesso[] = [];
+  public permessiDaConfermare: Permesso[] = [];
+  public permessiConfermati: Permesso[] = [];
   public utenti: Utente[] = [];
   public utentiRichiedentiTrovati: Utente[] = [];
   public utentiApprovatoriTrovati: Utente[] = [];
@@ -31,6 +33,7 @@ export class ElencoPermessiComponent implements OnInit {
   filenames: string[] = [];
   fileStatus = { status: '', requestType: '', percent: 0 };
   public dataAssenza: Date = null;
+  activeTab: number = 1;
 
 
 
@@ -43,6 +46,11 @@ export class ElencoPermessiComponent implements OnInit {
     //this.getPermessiCongedo();
     this.getUtenti();
   }
+
+  openTab(tabNumber: number) {
+    this.activeTab = tabNumber;
+  }
+
 
   onVisualizzaAllegati(permesso: Permesso): void {
     this.permessoSelezionato = permesso;
@@ -71,7 +79,7 @@ export class ElencoPermessiComponent implements OnInit {
     this.filenames = [];
   }
 
-  onConfermaPermesso(permesso: Permesso): void {
+  onConfermaPermessoButton(permesso: Permesso): void {
     this.permessoSelezionato = permesso;
     const button = document.createElement('button');
     const container = document.getElementById('main-container');
@@ -79,45 +87,36 @@ export class ElencoPermessiComponent implements OnInit {
     button.type = 'button';
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
-    button.setAttribute('data-target', '#visualizzaAllegatiModal');
+    button.setAttribute('data-target', '#confermaPermessoModal');
     container?.appendChild(button);
 
     button.click();
 
-
-    // this.fileUploadService.getFiles(this.permessoSelezionato.id).subscribe(
-    //   event => {
-    //     //console.log(event);
-    //     this.resportProgress(event);
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     console.log(error);
-    //   }
-    // );
-
-    // this.filenames = [];
   }
 
-  // onDisplayFile(filename: string): void {
-  //   // Assuming 'filename' is the URL of the file to be displayed
+  public confermaPermesso(permesso: Permesso): void{
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    var idUtenteApp = values.id; 
+    console.log(idUtenteApp)
+    this.permessoService.approvaPermessoPersonale(permesso).subscribe(
+      (response: Permesso) => { //jfoiewfjwoiej
+        console.log(response);
+        //this.getPermessiApprovatoreByStatus();
+        if (this.activeTab==1)
+          this.getPermessiDaConfermare();
+        else
+          this.getPermessiConfermati();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        //this.getPermessiApprovatoreByStatus();
+        this.getPermessiDaConfermare();
 
-  //   this.fileUploadService.display(filename, this.permessoSelezionato.id).subscribe(
-  //     (blob: Blob) => {
-  //       // Create a URL for the blob data
-  //       const blobUrl = window.URL.createObjectURL(blob);
-
-  //       // Open the file in a new tab
-  //       window.open(blobUrl, '_blank');
-
-  //       // Release the URL object to free resources
-  //       window.URL.revokeObjectURL(blobUrl);
-  //     },
-  //     (error) => {
-  //       console.error('Error displaying file:', error);
-  //       // Handle error appropriately
-  //     }
-  //   );
-  // }
+      },
+    );
+  
+  
+}
 
   
 
@@ -174,17 +173,65 @@ export class ElencoPermessiComponent implements OnInit {
     this.fileStatus.percent = Math.round(100 * loaded / total);
   }
 
-  public search(searchForm: NgForm): void {
+        //questo è il search originale senza i confermati e i da confermare, cambiare anche nell'html in caso
+  // public search(searchForm: NgForm): void {
+  //   var dataAssenzaStringa = "";
+  //   if (this.dataAssenza) { // se non è null
+  //     dataAssenzaStringa = this.dataAssenza.toString();
+  //   }
+  //   // console.log("data assenza stringa è:")
+  //   // console.log(dataAssenzaStringa)
+  //   // console.log(searchForm.value);
+  //   this.permessoService.search(searchForm.value, dataAssenzaStringa).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessi = response;
+  //       //searchForm.resetForm();
+
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+
+  // }
+
+  public searchConfermareOConfermati(searchForm: NgForm): void {
+    this.permessiConfermati=[]
+    this.permessiDaConfermare=[]
     var dataAssenzaStringa = "";
     if (this.dataAssenza) { // se non è null
       dataAssenzaStringa = this.dataAssenza.toString();
     }
-    // console.log("data assenza stringa è:")
+    console.log("data assenza stringa è:")
     // console.log(dataAssenzaStringa)
     // console.log(searchForm.value);
-    this.permessoService.search(searchForm.value, dataAssenzaStringa).subscribe(
+    var status= 1;
+    if(this.activeTab==2)
+      status=2
+
+    this.permessoService.search(searchForm.value, dataAssenzaStringa, status).subscribe(
       (response: Permesso[]) => {
-        this.permessi = response;
+        console.log(response)
+        for(const permessoTrovato of response){
+          console.log(permessoTrovato)
+          switch(permessoTrovato.status){
+            case 1:
+               this.permessiDaConfermare.push(permessoTrovato);
+            break;
+
+            case 2: // permesso approvato attualmente solo dall'approvatore 1
+            this.permessiDaConfermare.push(permessoTrovato);
+            break;
+            case 6: // permesso approvato attualmente solo dall'approvatore 1
+            this.permessiConfermati.push(permessoTrovato);
+            break;
+            case 8: // permesso approvato attualmente solo dall'approvatore 1
+            this.permessiConfermati.push(permessoTrovato);
+            break;            
+          }
+
+        }
+        //this.permessi = response;
         //searchForm.resetForm();
 
       },
@@ -285,6 +332,56 @@ export class ElencoPermessiComponent implements OnInit {
         alert(error.message);
       }
     )
+  }
+
+  public getPermessiDaConfermare(): void {
+    var permessiDaConfermare1: Permesso[] = [];
+    var permessiDaConfermare2: Permesso[] = [];
+    this.permessoService.getPermessiByStatus(1).subscribe(
+      (response: Permesso[]) => {
+        permessiDaConfermare1 = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+
+    this.permessoService.getPermessiByStatus(2).subscribe(
+      (response: Permesso[]) => {
+        permessiDaConfermare2 = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+
+    this.permessiDaConfermare = permessiDaConfermare1.concat(permessiDaConfermare2)
+  }
+
+  public getPermessiConfermati(): void {
+    var permessiConfermati1: Permesso[] = [];
+    var permessiConfermati2: Permesso[] = [];
+    this.permessoService.getPermessiByStatus(6).subscribe(
+      (response: Permesso[]) => {
+
+        permessiConfermati1 = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+
+    this.permessoService.getPermessiByStatus(8).subscribe(
+      (response: Permesso[]) => {
+        permessiConfermati2 = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+    
+    this.permessiConfermati = permessiConfermati1.concat(permessiConfermati2)
+    
   }
 
   public getPermessiCongedo(): void {

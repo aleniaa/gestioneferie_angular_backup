@@ -266,7 +266,27 @@
                         <td>{{permesso?.alleOre}}</td>
                         <td>{{permesso?.totOre}}</td>
                         <td>
+
                           <ng-container
+                            *ngIf="permesso?.status===0">
+                            {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || '' }}<br>
+                            {{ permesso?.utenteApprovazioneDue?.cognome || '' }} {{ permesso?.utenteApprovazioneDue?.nome || '' }}
+                          </ng-container>
+
+                          <ng-container
+                            *ngIf="permesso?.status===1">
+                            {{permesso?.utenteApprovazione?.cognome + " " + permesso?.utenteApprovazione?.nome}} &#9989;<br>
+                            In attesa di conferma dall'ufficio personale
+                          </ng-container>
+
+                          <ng-container
+                            *ngIf="permesso?.status===2">
+                            {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}} &#9989;<br>
+                            In attesa di conferma dall'ufficio personale
+                          </ng-container>
+
+
+                          <!-- <ng-container
                             *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
                             {{permesso?.utenteApprovazione.cognome + " " +
                             permesso?.utenteApprovazione.nome}}<ng-container *ngIf="permesso?.status===1">
@@ -277,7 +297,7 @@
                             {{permesso?.utenteApprovazioneDue?.cognome + " " +
                             permesso?.utenteApprovazioneDue?.nome}}<ng-container *ngIf="permesso?.status===2">
                               &#9989;</ng-container>
-                          </ng-container>
+                          </ng-container> -->
 
                         <td><button class="btn btn-primary tooltips"
                             (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
@@ -300,9 +320,9 @@
 
         <!-- </div> -->
       </div>
-      <div *ngIf="activeTab === 2">
+      <div *ngIf="activeTab === 2"> <!-- PERMESSI APPROVATI -->
         
-
+        
         <!-- <div class="container"> -->
           <div class="row justify-content-center">
             <!-- <div class="col"> -->
@@ -379,10 +399,13 @@
 
 
                 </div>
+
+                
               </div>
             </div>
             <!-- </div> -->
           </div>
+          
         <!-- </div> -->
       </div>
       <div *ngIf="activeTab === 3">

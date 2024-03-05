@@ -44,13 +44,17 @@ export class PermessoService {
     return this.http.get<any>(`${this.apiServerUrl}/permesso/all`);
   }
 
+
   public getAllPermessiCongedo(): Observable<Permesso[]>{
     return this.http.get<any>(`${this.apiServerUrl}/permesso/allCongedo`);
   }
 
-  public search(permesso: Permesso, dataAssenza: string): Observable<Permesso[]>{
+  //public search(permesso: Permesso, dataAssenza: string): Observable<Permesso[]>{
+    public search(permesso: Permesso, dataAssenza: string, status :number): Observable<Permesso[]>{
+
     let params = new HttpParams()
-    .set('dataAssenza', dataAssenza);
+    .set('dataAssenza', dataAssenza)
+    .set('status', status);
     return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso,{params: params});
   }
 
@@ -69,7 +73,7 @@ export class PermessoService {
 
   public approvaPermessoPersonale(permesso: Permesso ): Observable<Permesso> {
 
-    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/approvaPermesso`, permesso);
+    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/confermaPermessoPersonale`, permesso);
   } 
 
 
@@ -104,6 +108,7 @@ export class PermessoService {
     .set('idApprovatore', idApprovatore);
     return this.http.get<any>(`${this.apiServerUrl}/permesso/statusApprovatore/${status}`,{params: params});
   }
+  
 
   public getPermessiApprovatore(idApprovatore: number): Observable<Permesso[]>{
     
