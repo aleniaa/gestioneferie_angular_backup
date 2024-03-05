@@ -205,11 +205,13 @@ export class ElencoPermessiComponent implements OnInit {
     console.log("data assenza stringa è:")
     // console.log(dataAssenzaStringa)
     // console.log(searchForm.value);
-    var status= 1;
-    if(this.activeTab==2)
-      status=2
+    // var status= 1;
+    // if(this.activeTab==2)
+    //   status=2
 
-    this.permessoService.search(searchForm.value, dataAssenzaStringa, status).subscribe(
+    //this.permessoService.search(searchForm.value, dataAssenzaStringa, status).subscribe(
+    this.permessoService.search(searchForm.value, dataAssenzaStringa).subscribe(
+      
       (response: Permesso[]) => {
         console.log(response)
         for(const permessoTrovato of response){
@@ -220,13 +222,13 @@ export class ElencoPermessiComponent implements OnInit {
             break;
 
             case 2: // permesso approvato attualmente solo dall'approvatore 1
-            this.permessiDaConfermare.push(permessoTrovato);
+              this.permessiDaConfermare.push(permessoTrovato);
             break;
             case 6: // permesso approvato attualmente solo dall'approvatore 1
-            this.permessiConfermati.push(permessoTrovato);
+              this.permessiConfermati.push(permessoTrovato);
             break;
             case 8: // permesso approvato attualmente solo dall'approvatore 1
-            this.permessiConfermati.push(permessoTrovato);
+              this.permessiConfermati.push(permessoTrovato);
             break;            
           }
 

@@ -49,12 +49,12 @@ export class PermessoService {
     return this.http.get<any>(`${this.apiServerUrl}/permesso/allCongedo`);
   }
 
-  //public search(permesso: Permesso, dataAssenza: string): Observable<Permesso[]>{
-    public search(permesso: Permesso, dataAssenza: string, status :number): Observable<Permesso[]>{
+  public search(permesso: Permesso, dataAssenza: string): Observable<Permesso[]>{
+  //public search(permesso: Permesso, dataAssenza: string, status :number): Observable<Permesso[]>{
 
     let params = new HttpParams()
     .set('dataAssenza', dataAssenza)
-    .set('status', status);
+    //.set('status', status);
     return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso,{params: params});
   }
 
