@@ -1,4 +1,3 @@
-
 <div class="container wrapper fadeInDown">
   <h1>I miei permessi</h1>
   <!-- <h2>I miei permessi</h2>
@@ -225,68 +224,73 @@
     </div>
     <div class="tab-content container2">
       <div *ngIf="activeTab === 1">
-        
+
 
         <!-- <div class="container2"> -->
-          <div class="row justify-content-center">
-            <!-- <div class="col"> -->
-            <div class="card">
-              <div class="card-body p-0">
-                <div class="table-responsive bg-white table-scroll" data-mdb-perfect-scrollbar="true"
-                  style="position: relative;">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class="table-responsive bg-white table-scroll" data-mdb-perfect-scrollbar="true"
+                style="position: relative;">
 
-                  <table class="table table-striped mb-0">
-                    <thead style="background-color: #002d72; position: sticky;top: 0;">
-                      <tr>
-                        <th scope="col">Tipo permesso</th>
-                        <th scope="col">Dal giorno</th>
-                        <th scope="col">Al giorno</th>
-                        <th scope="col">Giorni totali</th>
-                        <th scope="col">Dalle ore</th>
-                        <th scope="col">Alle ore</th>
-                        <th scope="col">Ore totali</th>
-                        <th scope="col">In revisione da</th>
-                        <th scope="col">Allegati:</th>
-                        <th scope="col"></th>
-
-
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngIf="permessiPending?.length == 0">
-                        <td colspan="10">Nessun permesso richiesto in attesa di approvazione
-                        </td>
-                      </tr>
-                      <tr *ngFor="let permesso of permessiPending">
-                        <th scope="row">{{permesso?.tipoPermesso}}</th>
-                        <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.totGiorni}}</td>
-                        <td>{{permesso?.dalleOre}}</td>
-                        <td>{{permesso?.alleOre}}</td>
-                        <td>{{permesso?.totOre}}</td>
-                        <td>
-
-                          <ng-container
-                            *ngIf="permesso?.status===0">
-                            {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || '' }}<br>
-                            {{ permesso?.utenteApprovazioneDue?.cognome || '' }} {{ permesso?.utenteApprovazioneDue?.nome || '' }}
-                          </ng-container>
-
-                          <ng-container
-                            *ngIf="permesso?.status===1">
-                            {{permesso?.utenteApprovazione?.cognome + " " + permesso?.utenteApprovazione?.nome}} &#9989;<br>
-                            In attesa di conferma dall'ufficio personale
-                          </ng-container>
-
-                          <ng-container
-                            *ngIf="permesso?.status===2">
-                            {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}} &#9989;<br>
-                            In attesa di conferma dall'ufficio personale
-                          </ng-container>
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72; position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col">In revisione da</th>
+                      <th scope="col">Allegati:</th>
+                      <th scope="col"></th>
 
 
-                          <!-- <ng-container
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngIf="permessiPending?.length == 0">
+                      <td colspan="10">Nessun permesso in attesa di approvazione
+                      </td>
+                    </tr>
+                    <tr *ngFor="let permesso of permessiPending">
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+                      <td>
+
+                        <ng-container *ngIf="permesso?.status===0">
+                          {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || ''
+                          }}<br>
+                          {{ permesso?.utenteApprovazioneDue?.cognome || '' }} {{ permesso?.utenteApprovazioneDue?.nome
+                          || '' }}
+                        </ng-container>
+
+                        <ng-container *ngIf="permesso?.status===1">
+                          {{permesso?.utenteApprovazione?.cognome + " " + permesso?.utenteApprovazione?.nome}}
+                          &#9989;<br>
+                          In attesa di conferma dall'ufficio personale
+                        </ng-container>
+
+                        <ng-container *ngIf="permesso?.status===2">
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
+                          &#9989;<br>
+                          In attesa di conferma dall'ufficio personale
+                        </ng-container>
+
+                        <ng-container *ngIf="permesso?.status===3">
+                          In attesa di conferma dall'ufficio personale
+                        </ng-container>
+
+
+                        <!-- <ng-container
                             *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
                             {{permesso?.utenteApprovazione.cognome + " " +
                             permesso?.utenteApprovazione.nome}}<ng-container *ngIf="permesso?.status===1">
@@ -299,70 +303,70 @@
                               &#9989;</ng-container>
                           </ng-container> -->
 
-                        <td><button class="btn btn-primary tooltips"
-                            (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
-                        </td>
-                        <td><button (click)="selezionaPermessoDaCancellare(permesso)" class="btn btn-danger"
-                            data-placement="top" data-toggle="tooltip" data-original-title="eliminaPermesso"><i
-                              class="fa fa-times">Elimina</i></button></td>
+                      <td><button class="btn btn-primary tooltips"
+                          (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
+                      </td>
+                      <td><button (click)="selezionaPermessoDaCancellare(permesso)" class="btn btn-danger"
+                          data-placement="top" data-toggle="tooltip" data-original-title="eliminaPermesso"><i
+                            class="fa fa-times">Elimina</i></button></td>
 
 
-                      </tr>
-                    </tbody>
-                  </table>
+                    </tr>
+                  </tbody>
+                </table>
 
 
-                </div>
               </div>
             </div>
-            <!-- </div> -->
           </div>
+          <!-- </div> -->
+        </div>
 
         <!-- </div> -->
       </div>
       <div *ngIf="activeTab === 2"> <!-- PERMESSI APPROVATI -->
-        
-        
+
+
         <!-- <div class="container"> -->
-          <div class="row justify-content-center">
-            <!-- <div class="col"> -->
-            <div class="card">
-              <div class="card-body p-0">
-                <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
 
-                  <table class="table table-striped mb-0">
-                    <thead style="background-color: #002d72; position: sticky;top: 0;">
-                      <tr>
-                        <th scope="col">Tipo permesso</th>
-                        <th scope="col">Dal giorno</th>
-                        <th scope="col">Al giorno</th>
-                        <th scope="col">Giorni totali</th>
-                        <th scope="col">Dalle ore</th>
-                        <th scope="col">Alle ore</th>
-                        <th scope="col">Ore totali</th>
-                        <th scope="col">Approvato da</th>
-                        <th scope="col">Approvato in data</th>
-                        <th scope="col">Allegati:</th>
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72; position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col">Approvato da</th>
+                      <th scope="col">Approvato in data</th>
+                      <th scope="col">Allegati:</th>
 
 
 
-                      </tr>
-                    </thead>
+                    </tr>
+                  </thead>
 
-                    <tbody>
-                      <tr *ngIf="permessiApprovati?.length == 0">
-                        <td colspan="10">Nessun permesso approvato</td>
-                      </tr>
-                      <tr *ngFor="let permesso of permessiApprovati">
-                        <th scope="row">{{permesso?.tipoPermesso}}</th>
-                        <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.totGiorni}}</td>
-                        <td>{{permesso?.dalleOre}}</td>
-                        <td>{{permesso?.alleOre}}</td>
-                        <td>{{permesso?.totOre}}</td>
-                        <td>
-                          <!-- <ng-container
+                  <tbody>
+                    <tr *ngIf="permessiApprovati?.length == 0">
+                      <td colspan="10">Nessun permesso approvato</td>
+                    </tr>
+                    <tr *ngFor="let permesso of permessiApprovati">
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+                      <td>
+                        <!-- <ng-container
                             *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
                             {{permesso?.utenteApprovazione.cognome + " " +
                             permesso?.utenteApprovazione.nome}}<br>
@@ -372,164 +376,164 @@
                             {{permesso?.utenteApprovazioneDue?.cognome + " " +
                             permesso?.utenteApprovazioneDue?.nome}}
                           </ng-container> -->
-                            
-                          <ng-container
-                            *ngIf="permesso?.status == 1; else approvatore2">
-                            {{permesso?.utenteApprovazione.cognome + " " +
-                            permesso?.utenteApprovazione.nome}}<br>
-                          </ng-container>
-                          <ng-template #approvatore2>
-                            {{permesso?.utenteApprovazioneDue.cognome + " " +
-                            permesso?.utenteApprovazioneDue.nome}}<br>
-                          </ng-template>
 
-                        </td>
-                        <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
-                        <td><button class="btn btn-primary tooltips"
-                            (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
-                        </td>
+                        <ng-container *ngIf="permesso?.status == 1; else approvatore2">
+                          {{permesso?.utenteApprovazione?.cognome + " " +
+                          permesso?.utenteApprovazione?.nome}}<br>
+                          Ufficio Personale
+                        </ng-container>
+                        <ng-template #approvatore2>
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " +
+                          permesso?.utenteApprovazioneDue?.nome}}<br>
+                          Ufficio Personale
+                        </ng-template>
 
-
-
+                      </td>
+                      <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
+                      <td><button class="btn btn-primary tooltips"
+                          (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
+                      </td>
 
 
-                      </tr>
-                    </tbody>
-                  </table>
 
 
-                </div>
 
-                
+                    </tr>
+                  </tbody>
+                </table>
+
+
               </div>
+
+
             </div>
-            <!-- </div> -->
           </div>
-          
+          <!-- </div> -->
+        </div>
+
         <!-- </div> -->
       </div>
       <div *ngIf="activeTab === 3">
-        
+
 
         <!-- <div class="container"> -->
-          <div class="row justify-content-center">
-            <!-- <div class="col"> -->
-            <div class="card">
-              <div class="card-body p-0">
-                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
-                  style="position: relative;">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
 
-                  <table class="table table-striped mb-0">
-                    <thead style="background-color: #002d72;position: sticky;top: 0;">
-                      <tr>
-                        <th scope="col">Tipo permesso</th>
-                        <th scope="col">Dal giorno</th>
-                        <th scope="col">Al giorno</th>
-                        <th scope="col">Giorni totali</th>
-                        <th scope="col">Dalle ore</th>
-                        <th scope="col">Alle ore</th>
-                        <th scope="col">Ore totali</th>
-                        <th scope="col">Respinto in data</th>
-                        <th scope="col">Note:</th>
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72;position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col">Respinto in data</th>
+                      <th scope="col">Note:</th>
 
 
-                      </tr>
-                    </thead>
+                    </tr>
+                  </thead>
 
-                    <tbody>
-                      <tr *ngIf="permessiRespinti?.length == 0">
-                        <td colspan="10">Nessun permesso respinto</td>
-                      </tr>
-                      <tr *ngFor="let permesso of permessiRespinti">
-                        <th scope="row">{{permesso?.tipoPermesso}}</th>
-                        <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.totGiorni}}</td>
-                        <td>{{permesso?.dalleOre}}</td>
-                        <td>{{permesso?.alleOre}}</td>
-                        <td>{{permesso?.totOre}}</td>
-                        <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
-                        <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips"
-                            data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i
-                              class="fa fa-times"> Vedi
-                              note</i></button></td>
-                      </tr>
-
+                  <tbody>
+                    <tr *ngIf="permessiRespinti?.length == 0">
+                      <td colspan="10">Nessun permesso respinto</td>
+                    </tr>
+                    <tr *ngFor="let permesso of permessiRespinti">
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+                      <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
+                      <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips"
+                          data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i
+                            class="fa fa-times"> Vedi
+                            note</i></button></td>
+                    </tr>
 
 
 
 
-                    </tbody>
-                  </table>
+
+                  </tbody>
+                </table>
 
 
-                </div>
               </div>
             </div>
-            <!-- </div> -->
           </div>
+          <!-- </div> -->
+        </div>
         <!-- </div> -->
       </div>
-      
+
       <div *ngIf="activeTab === 4">
-        
+
 
         <!-- <div class="container"> -->
-          <div class="row justify-content-center">
-            <!-- <div class="col"> -->
-            <div class="card">
-              <div class="card-body p-0">
-                <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class=" table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
 
-                  <table class="table table-striped mb-0">
-                    <thead style="background-color: #002d72; position: sticky;top: 0;">
-                      <tr>
-                        <th scope="col">Tipo permesso</th>
-                        <th scope="col">Dal giorno</th>
-                        <th scope="col">Al giorno</th>
-                        <th scope="col">Giorni totali</th>
-                        <th scope="col">Dalle ore</th>
-                        <th scope="col">Alle ore</th>
-                        <th scope="col">Ore totali</th>
-                        <th scope="col">Approvato da</th>
-                        <th scope="col">Approvato in data</th>
-                        <th scope="col">Allegati:</th>
-                        <th scope="col"></th>
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72; position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col">Approvato da</th>
+                      <th scope="col">Approvato in data</th>
+                      <th scope="col">Allegati:</th>
+                      <th scope="col"></th>
 
 
 
-                      </tr>
-                    </thead>
+                    </tr>
+                  </thead>
 
-                    <tbody>
-                      <tr *ngIf="malattia?.length == 0">
-                        <td colspan="11">Nessuna malattia richiesta</td>
-                      </tr>
-                      <tr *ngFor="let permesso of malattia">
-                        <th scope="row">{{permesso?.tipoPermesso}}</th>
-                        <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.totGiorni}}</td>
-                        <td>{{permesso?.dalleOre}}</td>
-                        <td>{{permesso?.alleOre}}</td>
-                        <td>{{permesso?.totOre}}</td>
-                        <td>
-                          <ng-container
-                            *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
-                            {{permesso?.utenteApprovazione.cognome + " " +
-                            permesso?.utenteApprovazione.nome}}<br>
-                          </ng-container>
-                          <ng-container
-                            *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
-                            {{permesso?.utenteApprovazioneDue?.cognome + " " +
-                            permesso?.utenteApprovazioneDue?.nome}}
-                          </ng-container>
-                        </td>
-                        <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
-                        <td><button class="btn btn-primary tooltips"
-                            (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
-                        </td>
-                        <td><button (click)="selezionaPermessoDaCancellare(permesso)" class="btn btn-danger"
+                  <tbody>
+                    <tr *ngIf="malattia?.length == 0">
+                      <td colspan="11">Nessuna malattia richiesta approvata</td>
+                    </tr>
+                    <tr *ngFor="let permesso of malattia">
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+                      <td>
+                        <ng-container
+                          *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
+                          {{permesso?.utenteApprovazione.cognome + " " +
+                          permesso?.utenteApprovazione.nome}}<br>
+                        </ng-container>
+                        <ng-container
+                          *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " +
+                          permesso?.utenteApprovazioneDue?.nome}}
+                        </ng-container>
+                      </td>
+                      <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
+                      <td><button class="btn btn-primary tooltips"
+                          (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
+                      </td>
+                      <td><button (click)="selezionaPermessoDaCancellare(permesso)" class="btn btn-danger"
                           data-placement="top" data-toggle="tooltip" data-original-title="eliminaPermesso"><i
                             class="fa fa-times">Elimina</i></button></td>
 
@@ -537,16 +541,16 @@
 
 
 
-                      </tr>
-                    </tbody>
-                  </table>
+                    </tr>
+                  </tbody>
+                </table>
 
 
-                </div>
               </div>
             </div>
-            <!-- </div> -->
           </div>
+          <!-- </div> -->
+        </div>
         <!-- </div> -->
       </div>
     </div>
@@ -591,7 +595,7 @@
       </div>
       <div class="modal-body">
         <p>Sicuro di voler cancellare il permesso {{permessoDaCancellare?.tipoPermesso}} dal
-          {{permessoDaCancellare?.dataInizio}} al  {{permessoDaCancellare?.dataFine}} ? </p>
+          {{permessoDaCancellare?.dataInizio}} al {{permessoDaCancellare?.dataFine}} ? </p>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
           <button (click)="cancellaPermesso(permessoDaCancellare)" class="btn btn-danger"
@@ -605,7 +609,7 @@
 
 <!-- Visualizza allegati modal -->
 
-<div class="modal fade" id="visualizzaAllegatiModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" 
+<div class="modal fade" id="visualizzaAllegatiModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -643,10 +647,11 @@
           <input type="file" (change)="onFileSelected($event)" accept="image/*, application/pdf" name="files" multiple
             class="form-control" id="fileInput">
         </form><br>
-        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Devi selezionare dei file prima!
+        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Devi selezionare dei
+          file prima!
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Chiudi</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
 
           <button (click)="onUpload()" class="btn btn-primary tooltips">Upload</button>
 

@@ -1,11 +1,68 @@
-/* .listaUtenti ul li a{
-    padding: 5px 30px 5px 10px;
-    display: block;
+.container{
+  background-color: #eee6db;
 }
 
-.listaUtenti ul li a:hover {
-    background: transparent no-repeat 3px 170px;
-} */
+#main-container{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.container_searchForm{
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  
+}
+
+.container2{
+  padding: 50px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-radius: 20px;
+  border-top-right-radius: 10px;
+  
+}
+
+.tab-container{
+  background-color: #ffffff;
+}
+
+.tab-links{
+  background-color: #eee6db;
+}
+
+.tab-link {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color:#ebebeb;
+  color: #000000;
+  border: none;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: -15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-link.active {
+  background-color: #ffffff;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+  color: #000000;
+  font-weight: bold;
+}
+
+.modal-text {
+  word-wrap: break-word; /* Enable text wrapping */
+  max-width: 100%;  /*Limit the maximum width of the text */
+
+}
 
 .malattia {
   background-color: rgb(241, 198, 198) !important;
@@ -80,21 +137,3 @@ ul li:hover {
     cursor: pointer;
   }
 
-/*   .menu-item {
-    float: left;
-    position: relative; 
-
-}
-
-.menu-item ul {
-  margin-top: 5px;
-  list-style-type: none;
-
-
-  z-index: 10000;
-  position: absolute;  
-  left: 0; top: 100%;  
-  width: 100%;       
-
-  transition: height 1s ease;
-} */

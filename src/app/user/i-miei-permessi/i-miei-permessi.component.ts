@@ -343,7 +343,7 @@ export class IMieiPermessiComponent {
 
   }
 
-  //questa funzione è se va bene che anche solo 1 dei due approvatori approvi il permesso
+  //questa funzione è se basta che anche solo 1 dei due approvatori approvi il permesso
   public getPermessiRichiedente2(): void {
 
     //localStorage.getItem("currentUser")
@@ -361,17 +361,17 @@ export class IMieiPermessiComponent {
  
               this.permessiPending.push(permessoTrovato);
             break;
-            case 1: // permesso approvato attualmente solo dall'approvatore 1
+            case 1: // permesso approvato dall'approvatore 1
               this.permessiPending.push(permessoTrovato);
             break;
-            case 2: // permesso approvato attualmente solo dall'approvatore 2
+            case 2: // permesso approvato dall'approvatore 2
               this.permessiPending.push(permessoTrovato);
             break;
-            case 3: // permesso approvato da entrambi gli approvatori
-              if(permessoTrovato.tipoPermesso.includes("Malattia"))
-                this.malattia.push(permessoTrovato);
-              else
-                this.permessiApprovati.push(permessoTrovato);
+            case 3: // usato per malattia che deve essere approvato da personale
+              // if(permessoTrovato.tipoPermesso.includes("Malattia"))
+              //   this.malattia.push(permessoTrovato);
+              // else
+                this.permessiPending.push(permessoTrovato);
             break
             case 4: // respinto da approvatore 1
               this.permessiRespinti.push(permessoTrovato);
@@ -379,12 +379,15 @@ export class IMieiPermessiComponent {
             case 5: // respinto da approvatore 2
               this.permessiRespinti.push(permessoTrovato);
             break;
-            case 6: // approvato da uff personale
+            case 6: // approvato da uff personale + approvatore 1
               this.permessiApprovati.push(permessoTrovato);
             break;
             case 7: // respinto da uff personale
               this.permessiRespinti.push(permessoTrovato);
-            break;            
+            break;    
+            case 8: // approvato da uff personale + approvatore 2
+              this.permessiApprovati.push(permessoTrovato);
+            break;                    
             default: //console.log("qualcosa non va");
           }
         }

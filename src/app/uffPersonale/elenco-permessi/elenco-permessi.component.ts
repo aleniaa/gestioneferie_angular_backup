@@ -45,6 +45,8 @@ export class ElencoPermessiComponent implements OnInit {
     //this.getPermessi();
     //this.getPermessiCongedo();
     this.getUtenti();
+    this.getPermessiDaConfermare()
+    this.getPermessiConfermati()
   }
 
   openTab(tabNumber: number) {
@@ -94,18 +96,18 @@ export class ElencoPermessiComponent implements OnInit {
 
   }
 
-  public confermaPermesso(permesso: Permesso): void{
+  public confermaPermesso(permesso: Permesso): void {
     var values = JSON.parse(localStorage.getItem("currentUser"));
-    var idUtenteApp = values.id; 
+    var idUtenteApp = values.id;
     console.log(idUtenteApp)
     this.permessoService.approvaPermessoPersonale(permesso).subscribe(
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);
         //this.getPermessiApprovatoreByStatus();
-        if (this.activeTab==1)
-          this.getPermessiDaConfermare();
-        else
-          this.getPermessiConfermati();
+
+        this.getPermessiDaConfermare();
+
+        this.getPermessiConfermati();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -114,11 +116,11 @@ export class ElencoPermessiComponent implements OnInit {
 
       },
     );
-  
-  
-}
 
-  
+
+  }
+
+
 
   // define a function to download files
   onDownloadFile(filename: string): void {
@@ -173,7 +175,7 @@ export class ElencoPermessiComponent implements OnInit {
     this.fileStatus.percent = Math.round(100 * loaded / total);
   }
 
-        //questo è il search originale senza i confermati e i da confermare, cambiare anche nell'html in caso
+  //questo è il search originale senza i confermati e i da confermare, cambiare anche nell'html in caso
   // public search(searchForm: NgForm): void {
   //   var dataAssenzaStringa = "";
   //   if (this.dataAssenza) { // se non è null
@@ -196,13 +198,14 @@ export class ElencoPermessiComponent implements OnInit {
   // }
 
   public searchConfermareOConfermati(searchForm: NgForm): void {
-    this.permessiConfermati=[]
-    this.permessiDaConfermare=[]
+    this.permessiConfermati = []
+    this.permessiDaConfermare = []
     var dataAssenzaStringa = "";
     if (this.dataAssenza) { // se non è null
       dataAssenzaStringa = this.dataAssenza.toString();
     }
     console.log("data assenza stringa è:")
+    this.permessiDaConfermare = []
     // console.log(dataAssenzaStringa)
     // console.log(searchForm.value);
     // var status= 1;
@@ -211,25 +214,28 @@ export class ElencoPermessiComponent implements OnInit {
 
     //this.permessoService.search(searchForm.value, dataAssenzaStringa, status).subscribe(
     this.permessoService.search(searchForm.value, dataAssenzaStringa).subscribe(
-      
+
       (response: Permesso[]) => {
-        console.log(response)
-        for(const permessoTrovato of response){
-          console.log(permessoTrovato)
-          switch(permessoTrovato.status){
+        //console.log(response)
+        for (const permessoTrovato of response) {
+          //console.log(permessoTrovato)
+          switch (permessoTrovato.status) {
             case 1:
-               this.permessiDaConfermare.push(permessoTrovato);
-            break;
+              this.permessiDaConfermare.push(permessoTrovato);
+              break;
 
             case 2: // permesso approvato attualmente solo dall'approvatore 1
               this.permessiDaConfermare.push(permessoTrovato);
-            break;
+              break;
+            case 3: // malattia
+              this.permessiDaConfermare.push(permessoTrovato);
+              break;
             case 6: // permesso approvato attualmente solo dall'approvatore 1
               this.permessiConfermati.push(permessoTrovato);
-            break;
+              break;
             case 8: // permesso approvato attualmente solo dall'approvatore 1
               this.permessiConfermati.push(permessoTrovato);
-            break;            
+              break;
           }
 
         }
@@ -263,7 +269,7 @@ export class ElencoPermessiComponent implements OnInit {
     const risultati: Utente[] = [];
     //console.log(key)
     for (const utente of this.utenti) {
-      if(key)
+      if (key)
         if (utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !== -1
           || utente.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !== -1
           //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
@@ -272,14 +278,14 @@ export class ElencoPermessiComponent implements OnInit {
           risultati.push(utente);
 
         }
-      }
+    }
     this.utentiRichiedentiTrovati = risultati;
 
     if (risultati.length === 0 || !key) {
       if (key === "") {
         this.utentiRichiedentiTrovati = [];
         this.utenteRichiedente = null; // così se l'utente cancella il richiedente alla prossima ricerca viene passato null
-        
+
       }
 
     }
@@ -288,7 +294,7 @@ export class ElencoPermessiComponent implements OnInit {
   public cercaUtenteApprovatore(key: string): void {
     const risultatiApprovatori: Utente[] = [];
     for (const utente of this.utenti) {
-      if(key)
+      if (key)
         if (utente.nome.toLocaleLowerCase().indexOf(key.toLowerCase()) !== -1
           || utente.cognome.toLocaleLowerCase().indexOf(key.toLowerCase()) !== -1
           //|| utente.telefono.toLocaleLowerCase().indexOf(key.toLowerCase()) !==-1
@@ -306,7 +312,7 @@ export class ElencoPermessiComponent implements OnInit {
       if (key === "") {
 
         this.utentiApprovatoriTrovati = [];
-        
+
         this.utenteApprovatore = null;
 
       }
@@ -337,36 +343,49 @@ export class ElencoPermessiComponent implements OnInit {
   }
 
   public getPermessiDaConfermare(): void {
-    var permessiDaConfermare1: Permesso[] = [];
-    var permessiDaConfermare2: Permesso[] = [];
+
+    //permessi approvati da approvatore 1
+
     this.permessoService.getPermessiByStatus(1).subscribe(
       (response: Permesso[]) => {
-        permessiDaConfermare1 = response;
+        this.permessiDaConfermare = response;
+        console.log(this.permessiDaConfermare)
+
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )
-
+    //permessi approvati da approvatore 2
     this.permessoService.getPermessiByStatus(2).subscribe(
       (response: Permesso[]) => {
-        permessiDaConfermare2 = response;
+        this.permessiDaConfermare = this.permessiDaConfermare.concat(response);
+        console.log(this.permessiDaConfermare)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+    //malattia
+    this.permessoService.getPermessiByStatus(3).subscribe(
+      (response: Permesso[]) => {
+        this.permessiDaConfermare = this.permessiDaConfermare.concat(response);
+        console.log(this.permessiDaConfermare)
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )
 
-    this.permessiDaConfermare = permessiDaConfermare1.concat(permessiDaConfermare2)
   }
 
   public getPermessiConfermati(): void {
-    var permessiConfermati1: Permesso[] = [];
-    var permessiConfermati2: Permesso[] = [];
+
     this.permessoService.getPermessiByStatus(6).subscribe(
       (response: Permesso[]) => {
 
-        permessiConfermati1 = response;
+        this.permessiConfermati = response;
+        //console.log(this.permessiConfermati) 
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -375,15 +394,16 @@ export class ElencoPermessiComponent implements OnInit {
 
     this.permessoService.getPermessiByStatus(8).subscribe(
       (response: Permesso[]) => {
-        permessiConfermati2 = response;
+        this.permessiConfermati = this.permessiConfermati.concat(response)
+        //console.log(this.permessiConfermati) 
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )
-    
-    this.permessiConfermati = permessiConfermati1.concat(permessiConfermati2)
-    
+
+
+
   }
 
   public getPermessiCongedo(): void {
