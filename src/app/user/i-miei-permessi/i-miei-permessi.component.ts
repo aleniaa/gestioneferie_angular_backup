@@ -351,7 +351,7 @@ export class IMieiPermessiComponent {
 
   // }
 
-  //questa funzione è se basta che anche solo 1 dei due approvatori approvi il permesso
+    //questa funzione è se basta che anche solo 1 dei due approvatori approvi il permesso (APPROCCIO VECCHIO)
   public getPermessiRichiedente2(): void {
 
     //localStorage.getItem("currentUser")

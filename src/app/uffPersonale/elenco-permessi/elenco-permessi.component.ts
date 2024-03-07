@@ -406,33 +406,52 @@ export class ElencoPermessiComponent implements OnInit {
 
 
   }
+        //VECCHIO
+  // public getPermessiConfermati(): void {
+
+  //   this.permessoService.getPermessiByStatus(6).subscribe(
+  //     (response: Permesso[]) => {
+
+  //       this.permessiConfermati = response;
+  //       //console.log(this.permessiConfermati) 
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+
+  //   this.permessoService.getPermessiByStatus(8).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiConfermati = this.permessiConfermati.concat(response)
+  //       //console.log(this.permessiConfermati) 
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+
+  // }
 
   public getPermessiConfermati(): void {
-
-    this.permessoService.getPermessiByStatus(6).subscribe(
-      (response: Permesso[]) => {
-
-        this.permessiConfermati = response;
-        //console.log(this.permessiConfermati) 
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-
-    this.permessoService.getPermessiByStatus(8).subscribe(
-      (response: Permesso[]) => {
-        this.permessiConfermati = this.permessiConfermati.concat(response)
-        //console.log(this.permessiConfermati) 
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-
-
-
+    forkJoin([
+      this.permessoService.getPermessiByStatus(6),
+      this.permessoService.getPermessiByStatus(8)
+    ])
+      .pipe(
+        catchError(error => {
+          // Handle the error here
+          console.error('Error fetching confirmed permissions:', error);
+          // You can display an error message to the user
+          // You can retry the requests
+          return throwError(error); // Re-throw the error to propagate it further
+        })
+      )
+      .subscribe(permissions => {
+        // Combine fetched permissions
+        this.permessiConfermati = permissions.reduce((acc, curr) => acc.concat(curr), []);
+      });
   }
+  
 
   public getPermessiCongedo(): void {
     this.permessoService.getAllPermessiCongedo().subscribe(
