@@ -117,8 +117,11 @@ export class PermessoService {
     return this.http.get<any>(`${this.apiServerUrl}/permesso/permessiApprovatore`,{params: params});
   }
 
-  public cancellaPermesso(idPermesso: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiServerUrl}/permesso/delete/${idPermesso}`);
-  }
+  // public cancellaPermesso(idPermesso: number): Observable<void>{
+  //   return this.http.delete<void>(`${this.apiServerUrl}/permesso/delete/${idPermesso}`);
+  // }
 
+  public cancellaPermesso(idPermesso: number){
+    return this.http.delete<any>(`${this.apiServerUrl}/permesso/delete/${idPermesso}`, {responseType: 'text' as 'json'});
+  }
 }

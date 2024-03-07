@@ -31,6 +31,8 @@ export class GestionePermessiComponent implements OnInit {
 
   openTab(tabNumber: number) {
     this.activeTab = tabNumber;
+    this.getPermessiApprovatore2();
+
   }
 
   ngOnInit() {

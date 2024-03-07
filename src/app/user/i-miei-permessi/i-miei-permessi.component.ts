@@ -19,12 +19,14 @@ export class IMieiPermessiComponent {
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
   public permessoDaCancellare: Permesso;
-  public malattia:Permesso[] = [];
+  public malattia: Permesso[] = [];
   selectedFile: File[];
   allegato: File[];
   filenames: string[] = [];
   fileStatus = { status: '', requestType: '', percent: 0 };
   @ViewChild('fileForm') fileInputRef!: ElementRef<HTMLInputElement>;
+  public message: string;
+  public error: string;
 
   activeTab: number = 1;
 
@@ -34,6 +36,10 @@ export class IMieiPermessiComponent {
 
   openTab(tabNumber: number) {
     this.activeTab = tabNumber;
+    this.getPermessiRichiedente2;
+    this.error = ""
+    this.message = ""
+
   }
 
   ngOnInit() {
@@ -69,7 +75,7 @@ export class IMieiPermessiComponent {
 
   // resetModalVariable():void{
   //   document.getElementById("selectFileAlert").style.display = "none";
-    
+
   // }
 
 
@@ -221,7 +227,8 @@ export class IMieiPermessiComponent {
 
   public cancellaPermesso(permesso: Permesso): void {
     this.permessoService.cancellaPermesso(permesso.id).subscribe(
-      (response: void) => { //jfoiewfjwoiej
+      (response: string) => { //jfoiewfjwoiej
+        this.message = response;
         //console.log(response);
         //alert("Permesso cancellato");
         //this.getPermessiRichiedenteByStatus();
@@ -231,7 +238,8 @@ export class IMieiPermessiComponent {
 
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.error = error.error;
+        //alert(error.message);
       },
     );
   }
@@ -252,16 +260,16 @@ export class IMieiPermessiComponent {
     button.click();
   }
 
-  public svuotaPermessi():void{
-    this.permessiApprovati=[];
-    this.permessiPending=[];
-    this.permessiRespinti=[];
-    this.malattia=[];
+  public svuotaPermessi(): void {
+    this.permessiApprovati = [];
+    this.permessiPending = [];
+    this.permessiRespinti = [];
+    this.malattia = [];
 
   }
 
   // public getPermessiRichiedenteByStatus(): void {
-    
+
   //   //localStorage.getItem("currentUser")
 
   //   //const utente: Utente = this.loginService.currentUserValue;
@@ -296,7 +304,7 @@ export class IMieiPermessiComponent {
   //   )
   // }
 
-// questa funzione è se devono approvare i permessi entrambi gli approvatori
+  // questa funzione è se devono approvare i permessi entrambi gli approvatori
   public getPermessiRichiedente(): void {
 
     //localStorage.getItem("currentUser")
@@ -308,30 +316,30 @@ export class IMieiPermessiComponent {
 
     this.permessoService.getPermessiRichiedente(idUtenteApp).subscribe(
       (response: Permesso[]) => {
-        for(const permessoTrovato of response){
-          switch(permessoTrovato.status){
+        for (const permessoTrovato of response) {
+          switch (permessoTrovato.status) {
             case 0:
- 
+
               this.permessiPending.push(permessoTrovato);
-            break;
+              break;
             case 1: // permesso approvato attualmente solo dall'approvatore 1
               this.permessiPending.push(permessoTrovato);
-            break;
+              break;
             case 2: // permesso approvato attualmente solo dall'approvatore 2
               this.permessiPending.push(permessoTrovato);
-            break;
+              break;
             case 3: // permesso approvato da entrambi gli approvatori
-              if(permessoTrovato.tipoPermesso.includes("Malattia"))
+              if (permessoTrovato.tipoPermesso.includes("Malattia"))
                 this.malattia.push(permessoTrovato);
               else
                 this.permessiApprovati.push(permessoTrovato);
-            break
+              break
             case 4: // respinto da approvatore 1
               this.permessiRespinti.push(permessoTrovato);
-            break;
+              break;
             case 5: // respinto da approvatore 2
               this.permessiRespinti.push(permessoTrovato);
-            break;
+              break;
             default: //console.log("qualcosa non va");
           }
         }
@@ -355,39 +363,44 @@ export class IMieiPermessiComponent {
 
     this.permessoService.getPermessiRichiedente(idUtenteApp).subscribe(
       (response: Permesso[]) => {
-        for(const permessoTrovato of response){
-          switch(permessoTrovato.status){
+        for (const permessoTrovato of response) {
+          switch (permessoTrovato.status) {
             case 0:
- 
+
               this.permessiPending.push(permessoTrovato);
-            break;
+              break;
             case 1: // permesso approvato dall'approvatore 1
               this.permessiPending.push(permessoTrovato);
-            break;
+              break;
             case 2: // permesso approvato dall'approvatore 2
               this.permessiPending.push(permessoTrovato);
-            break;
+              break;
             case 3: // usato per malattia che deve essere approvato da personale
               // if(permessoTrovato.tipoPermesso.includes("Malattia"))
               //   this.malattia.push(permessoTrovato);
               // else
-                this.permessiPending.push(permessoTrovato);
-            break
+              this.permessiPending.push(permessoTrovato);
+              break
             case 4: // respinto da approvatore 1
               this.permessiRespinti.push(permessoTrovato);
-            break;
+              break;
             case 5: // respinto da approvatore 2
               this.permessiRespinti.push(permessoTrovato);
-            break;
-            case 6: // approvato da uff personale + approvatore 1
-              this.permessiApprovati.push(permessoTrovato);
-            break;
+              break;
+            case 6: // approvato da uff personale + approvatore 1 o malattia approvata
+              if (permessoTrovato.tipoPermesso.includes("Malattia")) {
+                this.malattia.push(permessoTrovato);
+              } else {
+                this.permessiApprovati.push(permessoTrovato);
+              }
+
+              break;
             case 7: // respinto da uff personale
               this.permessiRespinti.push(permessoTrovato);
-            break;    
+              break;
             case 8: // approvato da uff personale + approvatore 2
               this.permessiApprovati.push(permessoTrovato);
-            break;                    
+              break;
             default: //console.log("qualcosa non va");
           }
         }

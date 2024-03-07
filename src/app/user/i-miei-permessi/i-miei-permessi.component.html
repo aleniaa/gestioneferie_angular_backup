@@ -377,16 +377,18 @@
                             permesso?.utenteApprovazioneDue?.nome}}
                           </ng-container> -->
 
-                        <ng-container *ngIf="permesso?.status == 1; else approvatore2">
+                        <ng-container *ngIf="permesso?.status == 6 && (!permesso?.tipoPermesso?.includes('Malattia'));">
                           {{permesso?.utenteApprovazione?.cognome + " " +
                           permesso?.utenteApprovazione?.nome}}<br>
                           Ufficio Personale
                         </ng-container>
-                        <ng-template #approvatore2>
+
+
+                        <ng-container *ngIf="permesso?.status == 8;">
                           {{permesso?.utenteApprovazioneDue?.cognome + " " +
                           permesso?.utenteApprovazioneDue?.nome}}<br>
                           Ufficio Personale
-                        </ng-template>
+                        </ng-container>
 
                       </td>
                       <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
@@ -518,15 +520,9 @@
                       <td>{{permesso?.alleOre}}</td>
                       <td>{{permesso?.totOre}}</td>
                       <td>
-                        <ng-container
-                          *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
-                          {{permesso?.utenteApprovazione.cognome + " " +
-                          permesso?.utenteApprovazione.nome}}<br>
-                        </ng-container>
-                        <ng-container
-                          *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
-                          {{permesso?.utenteApprovazioneDue?.cognome + " " +
-                          permesso?.utenteApprovazioneDue?.nome}}
+                        <ng-container *ngIf="permesso?.status == 6 && permesso?.tipoPermesso?.includes('Malattia');">
+
+                          Ufficio Personale<br>
                         </ng-container>
                       </td>
                       <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
@@ -553,6 +549,15 @@
         </div>
         <!-- </div> -->
       </div>
+      <div class="avvisi">
+        <div class="alert alert-success" role="alert" *ngIf="message">
+          {{message}}
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="error">
+          {{error}}
+        </div>
+      </div>
+
     </div>
   </div>
 

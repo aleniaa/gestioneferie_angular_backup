@@ -220,20 +220,20 @@ export class ElencoPermessiComponent implements OnInit {
         for (const permessoTrovato of response) {
           //console.log(permessoTrovato)
           switch (permessoTrovato.status) {
-            case 1:
+            case 1: // permesso approvato dall'approvatore 1
               this.permessiDaConfermare.push(permessoTrovato);
               break;
 
-            case 2: // permesso approvato attualmente solo dall'approvatore 1
+            case 2: // permesso approvato dall'approvatore 2
               this.permessiDaConfermare.push(permessoTrovato);
               break;
             case 3: // malattia
               this.permessiDaConfermare.push(permessoTrovato);
               break;
-            case 6: // permesso approvato attualmente solo dall'approvatore 1
+            case 6: // permesso approvato dall'approvatore 1 + Uffpersonale
               this.permessiConfermati.push(permessoTrovato);
               break;
-            case 8: // permesso approvato attualmente solo dall'approvatore 1
+            case 8: // permesso approvato dall'approvatore 2 + Uffpersonale
               this.permessiConfermati.push(permessoTrovato);
               break;
           }
