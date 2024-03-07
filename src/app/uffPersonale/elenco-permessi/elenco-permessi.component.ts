@@ -8,6 +8,7 @@ import { PermessoService } from 'src/app/core/services/permesso.service';
 import { UtenteService } from 'src/app/core/services/utente.service';
 import { saveAs } from 'file-saver-es';
 import { DatePipe } from '@angular/common';
+import { catchError, forkJoin, throwError } from 'rxjs';
 
 
 @Component({
@@ -51,6 +52,9 @@ export class ElencoPermessiComponent implements OnInit {
 
   openTab(tabNumber: number) {
     this.activeTab = tabNumber;
+    this.getPermessiDaConfermare();
+
+    this.getPermessiConfermati();
   }
 
 
@@ -341,41 +345,65 @@ export class ElencoPermessiComponent implements OnInit {
       }
     )
   }
+      // funzionante originale
+  // public getPermessiDaConfermare(): void {
+
+  //   //permessi approvati da approvatore 1
+
+  //   this.permessoService.getPermessiByStatus(1).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiDaConfermare = response;
+  //       console.log(this.permessiDaConfermare)
+
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+  //   //permessi approvati da approvatore 2
+  //   this.permessoService.getPermessiByStatus(2).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiDaConfermare = this.permessiDaConfermare.concat(response);
+  //       console.log(this.permessiDaConfermare)
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+  //   //malattia
+  //   this.permessoService.getPermessiByStatus(3).subscribe(
+  //     (response: Permesso[]) => {
+  //       this.permessiDaConfermare = this.permessiDaConfermare.concat(response);
+  //       console.log(this.permessiDaConfermare)
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
+
+  // }
 
   public getPermessiDaConfermare(): void {
 
-    //permessi approvati da approvatore 1
+    forkJoin([
+      this.permessoService.getPermessiByStatus(1),
+      this.permessoService.getPermessiByStatus(2),
+      this.permessoService.getPermessiByStatus(3)
+    ])
+      .pipe(
+        catchError(error => {
+          // Handle the error here
+          console.error('Error fetching permissions:', error);
+          // You can display an error message to the user
+          // You can retry the requests
+          return throwError(error); // Re-throw the error to propagate it further
+        })
+      ) 
+      .subscribe(permissions => {
+        // permissions will be an array containing individual Permesso objects
+        this.permessiDaConfermare = permissions.reduce((acc, curr) => acc.concat(curr), []);
+      });
 
-    this.permessoService.getPermessiByStatus(1).subscribe(
-      (response: Permesso[]) => {
-        this.permessiDaConfermare = response;
-        console.log(this.permessiDaConfermare)
-
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-    //permessi approvati da approvatore 2
-    this.permessoService.getPermessiByStatus(2).subscribe(
-      (response: Permesso[]) => {
-        this.permessiDaConfermare = this.permessiDaConfermare.concat(response);
-        console.log(this.permessiDaConfermare)
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-    //malattia
-    this.permessoService.getPermessiByStatus(3).subscribe(
-      (response: Permesso[]) => {
-        this.permessiDaConfermare = this.permessiDaConfermare.concat(response);
-        console.log(this.permessiDaConfermare)
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
 
   }
 

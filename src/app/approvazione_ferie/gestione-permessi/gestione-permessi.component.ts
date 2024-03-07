@@ -121,52 +121,53 @@ export class GestionePermessiComponent implements OnInit {
 
   }
 
-  public getPermessiApprovatore(): void {
-    this.svuotaPermessi();
-    var values = JSON.parse(localStorage.getItem("currentUser"));
-    var idUtenteApp = values.id;
-    console.log(idUtenteApp);
-    this.permessoService.getPermessiApprovatore(idUtenteApp).subscribe(
-      (response: Permesso[]) => {
-        for (const permessoTrovato of response) {
-          switch (permessoTrovato.status) {
-            case 0:
+        // questa funzione è nel caso in cui entrambi gli approvatori devono approvare il permesso per passare al personale
+  // public getPermessiApprovatore(): void {
+  //   this.svuotaPermessi();
+  //   var values = JSON.parse(localStorage.getItem("currentUser"));
+  //   var idUtenteApp = values.id;
+  //   console.log(idUtenteApp);
+  //   this.permessoService.getPermessiApprovatore(idUtenteApp).subscribe(
+  //     (response: Permesso[]) => {
+  //       for (const permessoTrovato of response) {
+  //         switch (permessoTrovato.status) {
+  //           case 0:
 
-              this.permessiPending.push(permessoTrovato);
-              break;
-            case 1: // permesso approvato attualmente solo dall'approvatore 1
-              if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
-                this.permessiApprovati.push(permessoTrovato);
-              } else {
-                this.permessiPending.push(permessoTrovato);
-              }
-              break;
-            case 2: // permesso approvato attualmente solo dall'approvatore 2
-              if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
-                this.permessiPending.push(permessoTrovato);
-              } else { // se è loggato l'approvatore 2 
-                this.permessiApprovati.push(permessoTrovato);
-              }
-              break;
-            case 3: // permesso approvato da entrambi gli approvatori
-              this.permessiApprovati.push(permessoTrovato);
-              break
-            case 4: // respinto da approvatore 1
-              this.permessiRespinti.push(permessoTrovato);
-              break;
-            case 5: // respinto da approvatore 2
-              this.permessiRespinti.push(permessoTrovato);
-              break;
-            default: console.log("qualcosa non va");
-          }
-        }
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
+  //             this.permessiPending.push(permessoTrovato);
+  //             break;
+  //           case 1: // permesso approvato attualmente solo dall'approvatore 1
+  //             if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
+  //               this.permessiApprovati.push(permessoTrovato);
+  //             } else {
+  //               this.permessiPending.push(permessoTrovato);
+  //             }
+  //             break;
+  //           case 2: // permesso approvato attualmente solo dall'approvatore 2
+  //             if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
+  //               this.permessiPending.push(permessoTrovato);
+  //             } else { // se è loggato l'approvatore 2 
+  //               this.permessiApprovati.push(permessoTrovato);
+  //             }
+  //             break;
+  //           case 3: // permesso approvato da entrambi gli approvatori
+  //             this.permessiApprovati.push(permessoTrovato);
+  //             break
+  //           case 4: // respinto da approvatore 1
+  //             this.permessiRespinti.push(permessoTrovato);
+  //             break;
+  //           case 5: // respinto da approvatore 2
+  //             this.permessiRespinti.push(permessoTrovato);
+  //             break;
+  //           default: console.log("qualcosa non va");
+  //         }
+  //       }
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
 
-  }
+  // }
 
   public getPermessiApprovatore2(): void {
     this.svuotaPermessi();
@@ -177,17 +178,17 @@ export class GestionePermessiComponent implements OnInit {
       (response: Permesso[]) => {
         for (const permessoTrovato of response) {
           switch (permessoTrovato.status) {
-            case 0:
+            case 0: //permesso ancora non approvato da nessuno
 
               this.permessiPending.push(permessoTrovato);
               break;
-            case 1: // permesso approvato attualmente solo dall'approvatore 1
+            case 1: // permesso approvato  dall'approvatore 1
               if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
                 this.permessiApprovati.push(permessoTrovato);
               }
 
               break;
-            case 2: // permesso approvato attualmente solo dall'approvatore 2
+            case 2: // permesso approvato dall'approvatore 2
               if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
                 this.permessiApprovati.push(permessoTrovato);
               }
@@ -208,7 +209,7 @@ export class GestionePermessiComponent implements OnInit {
               }
               break;
             case 8: // permesso approvato dall'approvatore 2 e uff personale
-              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue ) { // è loggato l'approvatore 1 
+              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue ) { // è loggato l'approvatore 2 
                 this.permessiApprovati.push(permessoTrovato);
               }
               break;
@@ -231,12 +232,12 @@ export class GestionePermessiComponent implements OnInit {
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);
         //this.getPermessiApprovatoreByStatus();
-        this.getPermessiApprovatore();
+        this.getPermessiApprovatore2();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
         //this.getPermessiApprovatoreByStatus();
-        this.getPermessiApprovatore();
+        this.getPermessiApprovatore2();
 
       },
     );
@@ -274,13 +275,13 @@ export class GestionePermessiComponent implements OnInit {
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);
         //this.getPermessiApprovatoreByStatus();
-        this.getPermessiApprovatore();
+        this.getPermessiApprovatore2();
 
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
         //this.getPermessiApprovatoreByStatus();
-        this.getPermessiApprovatore();
+        this.getPermessiApprovatore2();
 
       },
     );

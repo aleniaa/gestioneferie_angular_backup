@@ -36,7 +36,7 @@ export class IMieiPermessiComponent {
 
   openTab(tabNumber: number) {
     this.activeTab = tabNumber;
-    this.getPermessiRichiedente2;
+    this.getPermessiRichiedente2();
     this.error = ""
     this.message = ""
 
@@ -232,7 +232,7 @@ export class IMieiPermessiComponent {
         //console.log(response);
         //alert("Permesso cancellato");
         //this.getPermessiRichiedenteByStatus();
-        this.getPermessiRichiedente();
+        this.getPermessiRichiedente2();
 
 
 
@@ -304,52 +304,52 @@ export class IMieiPermessiComponent {
   //   )
   // }
 
-  // questa funzione è se devono approvare i permessi entrambi gli approvatori
-  public getPermessiRichiedente(): void {
+        // questa funzione è se devono approvare i permessi entrambi gli approvatori
+  // public getPermessiRichiedente(): void {
 
-    //localStorage.getItem("currentUser")
+  //   //localStorage.getItem("currentUser")
 
-    //const utente: Utente = this.loginService.currentUserValue;
-    this.svuotaPermessi();
-    var values = JSON.parse(localStorage.getItem("currentUser"));
-    var idUtenteApp = values.id;
+  //   //const utente: Utente = this.loginService.currentUserValue;
+  //   this.svuotaPermessi();
+  //   var values = JSON.parse(localStorage.getItem("currentUser"));
+  //   var idUtenteApp = values.id;
 
-    this.permessoService.getPermessiRichiedente(idUtenteApp).subscribe(
-      (response: Permesso[]) => {
-        for (const permessoTrovato of response) {
-          switch (permessoTrovato.status) {
-            case 0:
+  //   this.permessoService.getPermessiRichiedente(idUtenteApp).subscribe(
+  //     (response: Permesso[]) => {
+  //       for (const permessoTrovato of response) {
+  //         switch (permessoTrovato.status) {
+  //           case 0:
 
-              this.permessiPending.push(permessoTrovato);
-              break;
-            case 1: // permesso approvato attualmente solo dall'approvatore 1
-              this.permessiPending.push(permessoTrovato);
-              break;
-            case 2: // permesso approvato attualmente solo dall'approvatore 2
-              this.permessiPending.push(permessoTrovato);
-              break;
-            case 3: // permesso approvato da entrambi gli approvatori
-              if (permessoTrovato.tipoPermesso.includes("Malattia"))
-                this.malattia.push(permessoTrovato);
-              else
-                this.permessiApprovati.push(permessoTrovato);
-              break
-            case 4: // respinto da approvatore 1
-              this.permessiRespinti.push(permessoTrovato);
-              break;
-            case 5: // respinto da approvatore 2
-              this.permessiRespinti.push(permessoTrovato);
-              break;
-            default: //console.log("qualcosa non va");
-          }
-        }
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
+  //             this.permessiPending.push(permessoTrovato);
+  //             break;
+  //           case 1: // permesso approvato attualmente solo dall'approvatore 1
+  //             this.permessiPending.push(permessoTrovato);
+  //             break;
+  //           case 2: // permesso approvato attualmente solo dall'approvatore 2
+  //             this.permessiPending.push(permessoTrovato);
+  //             break;
+  //           case 3: // permesso approvato da entrambi gli approvatori
+  //             if (permessoTrovato.tipoPermesso.includes("Malattia"))
+  //               this.malattia.push(permessoTrovato);
+  //             else
+  //               this.permessiApprovati.push(permessoTrovato);
+  //             break
+  //           case 4: // respinto da approvatore 1
+  //             this.permessiRespinti.push(permessoTrovato);
+  //             break;
+  //           case 5: // respinto da approvatore 2
+  //             this.permessiRespinti.push(permessoTrovato);
+  //             break;
+  //           default: //console.log("qualcosa non va");
+  //         }
+  //       }
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   )
 
-  }
+  // }
 
   //questa funzione è se basta che anche solo 1 dei due approvatori approvi il permesso
   public getPermessiRichiedente2(): void {
