@@ -58,6 +58,23 @@ export class PermessoService {
     return this.http.post<any>(`${this.apiServerUrl}/permesso/search`, permesso,{params: params});
   }
 
+  public searchPermessoNew(dataAssenza: string, tipoPermesso: string,  utenteRichiedente: number, dataApprovazione: string, utenteApprovatore: number ): Observable<Permesso[]>{
+  
+    console.log(tipoPermesso)
+    console.log(dataAssenza)
+    console.log(utenteRichiedente)
+    console.log(dataApprovazione)
+    console.log(utenteApprovatore)
+
+    let params = new HttpParams()
+    .set('dataAssenza', dataAssenza)
+    .set('tipoPermesso', tipoPermesso)
+    .set('utenteRichiedente', utenteRichiedente)
+    .set('dataApprovazione', dataApprovazione)
+    .set('utenteApprovatore', utenteApprovatore);
+    return this.http.post<any>(`${this.apiServerUrl}/permesso/searchNew`,{params: params});
+    }
+
   public approvaPermesso(permesso: Permesso, idApprovatore:number ): Observable<Permesso> {
     let params = new HttpParams()
     .set('idApprovatore', idApprovatore);

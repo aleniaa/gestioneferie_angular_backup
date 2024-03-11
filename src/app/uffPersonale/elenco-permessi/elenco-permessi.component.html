@@ -3,19 +3,30 @@
     <h2>Ricerca permessi per:</h2>
     <div class="col">
 
-      <form #searchForm="ngForm" (ngSubmit)="searchConfermareOConfermati(searchForm)" id="searchForm" ngNativeValidate>
+      <!-- <form #searchForm="ngForm" (ngSubmit)="searchConfermareOConfermati(searchForm)" id="searchForm" ngNativeValidate> -->
+      <form #searchForm="ngForm" (ngSubmit)="searchConfermareOConfermatiNew()" id="searchForm" ngNativeValidate>
+
         <!-- (ngSubmit)="search(searchForm)" -->
         <div class="row">
           <div class="col">
             <div class="form-group">
               <label for="tipoPermesso">Tipo di permesso:</label>
-              <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso"
-                placeholder="Seleziona tipo permesso" form="searchForm">
+              <select [(ngModel)]="tipoPermesso" name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm">
+              <!-- <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm"> -->
+
                 <option value="tutti i permessi">Tutti i permessi</option>
                 <option value="congedo ordinario">Congedo Ordinario</option>
                 <!-- <option value="permesso breve">Permesso breve</option> -->
                 <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
-                <option value="altri permessi">Altri permessi</option>
+                <!-- <option value="altri permessi">Altri permessi</option> -->
+                <option #otherPermission value="altri permessi">Altri permessi</option>
+                <div *ngIf="showAdditionalPermissions">
+                  <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm">
+                    <option *ngFor="let permission of altriPermessi" [value]="permission.value">
+                      {{ permission.label }}
+                    </option>
+                  </select>
+                </div>
                 <optgroup label="Malattia">
                   <option value="Malattia">Malattia</option>
                   <option value="Malattia per causa di servizio">Malattia per causa di servizio</option>
@@ -56,8 +67,9 @@
           <div class="col">
             <div class="form-group">
               <label for="dataApprovazione">Data approvazione permesso:</label>
-              <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione"
-                title="Data Approvazione ferie">
+              <input type="date" [(ngModel)]="dataApprovazione" name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie">
+              <!-- <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie"> -->
+
             </div>
           </div>
 

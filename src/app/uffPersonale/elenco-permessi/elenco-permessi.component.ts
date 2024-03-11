@@ -34,8 +34,37 @@ export class ElencoPermessiComponent implements OnInit {
   filenames: string[] = [];
   fileStatus = { status: '', requestType: '', percent: 0 };
   public dataAssenza: Date = null;
+  public dataApprovazione: Date = null;
+  public tipoPermesso: string = null;
   activeTab: number = 1;
 
+  altriPermessi: { value: string, label: string }[] = [
+    { value: 'concorsiEdEsami', label: 'Concorsi ed Esami (8 gg/anno)' },
+    { value: 'luttoFamiliare', label: 'Lutto familiare (3 gg/evento)' },
+    { value: 'graviInfermita', label: 'Gravi infermità 18 ore/anno' },
+    { value: 'matrimonio', label: 'Matrimonio (15 gg consecutivi)' },
+    { value: 'sport', label: 'Attività ginnico-sportiva' },
+    { value: 'motiviPersonali', label: 'Motivi personali o familiari (18 oee/anno)' },
+    { value: 'malattiaDLGS', label: 'Malattia cure/terapie D.Lgs. n.119 del 18/07/2011 (30 gg./anno)' },
+    { value: 'malattia_visite', label: 'Malattia per visite, terapie, prestazioni specialistiche ed esami diagnostici (18 h /anno)' },
+    { value: 'sangue', label: 'Donazione Sangue (24 ore dalla donazione)' },
+    { value: 'studio', label: 'Motivi di studio (max 150 ore/anno)' },
+    { value: 'Testimonianze', label: 'Testimonianze per motivi di servizio (illimitate)' },
+    { value: 'sindacale', label: 'Permesso sindacale' },
+    { value: 'cariche_elettive', label: 'Cariche elettive' },
+    { value: 'elezioni', label: 'Permesso per elezioni/referendum (Assenze per Funzioni Elettorali – 18 ore/evento - Obbligatoria documentazione giustificativa)' },
+    { value: 'assistenza_disabili', label: 'Assistenza disabili' },
+    { value: 'permessi_individuali', label: 'Permessi individuali' },
+    { value: 'prolungamento_congedo_parentale', label: 'Prolungamento del congedo parentale L.104/92 (Circ. n. 139 17/07/2015)' },
+    { value: 'congedo_parentale', label: 'Congedo parentale (obbligatoria autocertificazione del coniuge)' },
+    { value: 'riposi_giornalieri', label: 'Riposi giornalieri (obbligatoria documentazione relativa al coniuge)' },
+    { value: 'malattia_figlio', label: 'Congedo per malattia figlio/a (obbligatoria certificazione malattia figlio/a)' },
+    { value: 'allattamento', label: 'Permessi orari retribuiti per allattamento' },
+    { value: 'paternita', label: 'Congedo obbligatorio di paternità 10 gg /5 turni' },
+    { value: 'permesso_breve', label: 'Permesso breve (fino a 36 ore annue)' }
+  ];
+  showAdditionalPermissions = false; // Initially hidden
+  selectedPermission: string; // To store the selected additional permission
 
 
 
@@ -52,9 +81,9 @@ export class ElencoPermessiComponent implements OnInit {
 
   openTab(tabNumber: number) {
     this.activeTab = tabNumber;
-    this.getPermessiDaConfermare();
+    // this.getPermessiDaConfermare();
 
-    this.getPermessiConfermati();
+    // this.getPermessiConfermati();
   }
 
 
@@ -201,6 +230,9 @@ export class ElencoPermessiComponent implements OnInit {
 
   // }
 
+  //------------------ NON MODIFICARE ----------------
+
+
   public searchConfermareOConfermati(searchForm: NgForm): void {
     this.permessiConfermati = []
     this.permessiDaConfermare = []
@@ -218,6 +250,79 @@ export class ElencoPermessiComponent implements OnInit {
 
     //this.permessoService.search(searchForm.value, dataAssenzaStringa, status).subscribe(
     this.permessoService.search(searchForm.value, dataAssenzaStringa).subscribe(
+
+      (response: Permesso[]) => {
+        //console.log(response)
+        for (const permessoTrovato of response) {
+          //console.log(permessoTrovato)
+          switch (permessoTrovato.status) {
+            case 1: // permesso approvato dall'approvatore 1
+              this.permessiDaConfermare.push(permessoTrovato);
+              break;
+
+            case 2: // permesso approvato dall'approvatore 2
+              this.permessiDaConfermare.push(permessoTrovato);
+              break;
+            case 3: // malattia
+              this.permessiDaConfermare.push(permessoTrovato);
+              break;
+            case 6: // permesso approvato dall'approvatore 1 + Uffpersonale
+              this.permessiConfermati.push(permessoTrovato);
+              break;
+            case 8: // permesso approvato dall'approvatore 2 + Uffpersonale
+              this.permessiConfermati.push(permessoTrovato);
+              break;
+          }
+
+        }
+        //this.permessi = response;
+        //searchForm.resetForm();
+
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+
+  }
+
+  //------------------ NON MODIFICARE ----------------
+
+
+  public searchConfermareOConfermatiNew(): void {
+    this.permessiConfermati = []
+    this.permessiDaConfermare = []
+    var dataAssenzaStringa = "";
+    var dataApprovazioneStringa = "";
+    var idUtenteRichiedente= null
+    var idUtenteApprovatore = null
+
+    if (this.dataAssenza) { // se non è null
+      dataAssenzaStringa = this.dataAssenza.toString();
+    }
+    if (this.dataApprovazione) { // se non è null
+      dataApprovazioneStringa = this.dataApprovazione.toString();
+    }
+    console.log("data assenza stringa è:")
+
+    if(this.utenteRichiedente){
+      idUtenteRichiedente= this.utenteRichiedente.id
+    }
+
+    if(this.utenteApprovatore){
+      idUtenteApprovatore= this.utenteApprovatore.id
+    }
+
+    // if(this.tipoPermesso){
+    //   var tipoPermesso= this.tipoPermesso
+    // }
+
+    // idUtenteRichiedente= this.utenteRichiedente.id
+    // idUtenteApprovatore= this.utenteApprovatore.id
+    
+    dataAssenzaStringa= "ciao"
+
+    this.permessoService.searchPermessoNew(this.tipoPermesso, dataAssenzaStringa, idUtenteRichiedente, dataApprovazioneStringa, idUtenteApprovatore ).subscribe(
 
       (response: Permesso[]) => {
         //console.log(response)
