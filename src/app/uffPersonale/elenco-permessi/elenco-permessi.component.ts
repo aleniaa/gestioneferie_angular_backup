@@ -38,33 +38,48 @@ export class ElencoPermessiComponent implements OnInit {
   public tipoPermesso: string = "tutti i permessi";
   activeTab: number = 1;
 
+  permessiOrdinari: { value: string, label: string }[] = [
+    { value: 'tutti i permessi', label: 'Tutti i permessi' },
+    { value: 'congedo ordinario', label: 'Congedo ordinario' },
+    { value: 'recupero ore eccedenti', label: 'Recupero ore eccedenti' },
+    //{ value: 'altri permessi', label: 'Altri permessi' },
+  ]
+
+  malattie: { value: string, label: string }[] = [
+    { value: 'Malattia', label: 'Malattia' },
+    { value: 'Malattia per causa di servizio', label: 'Malattia per causa di servizio' },
+    { value: 'Terapia salvavita', label: 'Terapia salvavita' },
+    { value: 'Malattia COVID-19', label: 'Malattia COVID-19' },
+  ]
+
   altriPermessi: { value: string, label: string }[] = [
-    { value: 'concorsiEdEsami', label: 'Concorsi ed Esami (8 gg/anno)' },
-    { value: 'luttoFamiliare', label: 'Lutto familiare (3 gg/evento)' },
-    { value: 'graviInfermita', label: 'Gravi infermità 18 ore/anno' },
-    { value: 'matrimonio', label: 'Matrimonio (15 gg consecutivi)' },
-    { value: 'sport', label: 'Attività ginnico-sportiva' },
-    { value: 'motiviPersonali', label: 'Motivi personali o familiari (18 oee/anno)' },
-    { value: 'malattiaDLGS', label: 'Malattia cure/terapie D.Lgs. n.119 del 18/07/2011 (30 gg./anno)' },
-    { value: 'malattia_visite', label: 'Malattia per visite, terapie, prestazioni specialistiche ed esami diagnostici (18 h /anno)' },
-    { value: 'sangue', label: 'Donazione Sangue (24 ore dalla donazione)' },
-    { value: 'studio', label: 'Motivi di studio (max 150 ore/anno)' },
+    { value: 'Concorsi ed Esami', label: 'Concorsi ed Esami (8 gg/anno)' },
+    { value: 'Lutto Familiare', label: 'Lutto familiare (3 gg/evento)' },
+    { value: 'Gravi Infermita', label: 'Gravi infermità 18 ore/anno' },
+    { value: 'Matrimonio', label: 'Matrimonio (15 gg consecutivi)' },
+    { value: 'Sport', label: 'Attività ginnico-sportiva' },
+    { value: 'Motivi Personali', label: 'Motivi personali o familiari (18 oee/anno)' },
+    { value: 'Cure e terapie DLGS n.119', label: 'Malattia cure/terapie D.Lgs. n.119 del 18/07/2011 (30 gg./anno)' },
+    { value: 'Visite e terapie', label: 'Malattia per visite, terapie, prestazioni specialistiche ed esami diagnostici (18 h /anno)' },
+    { value: 'Donazione di sangue', label: 'Donazione Sangue (24 ore dalla donazione)' },
+    { value: 'Studio', label: 'Motivi di studio (max 150 ore/anno)' },
     { value: 'Testimonianze', label: 'Testimonianze per motivi di servizio (illimitate)' },
-    { value: 'sindacale', label: 'Permesso sindacale' },
-    { value: 'cariche_elettive', label: 'Cariche elettive' },
-    { value: 'elezioni', label: 'Permesso per elezioni/referendum (Assenze per Funzioni Elettorali – 18 ore/evento - Obbligatoria documentazione giustificativa)' },
-    { value: 'assistenza_disabili', label: 'Assistenza disabili' },
-    { value: 'permessi_individuali', label: 'Permessi individuali' },
-    { value: 'prolungamento_congedo_parentale', label: 'Prolungamento del congedo parentale L.104/92 (Circ. n. 139 17/07/2015)' },
-    { value: 'congedo_parentale', label: 'Congedo parentale (obbligatoria autocertificazione del coniuge)' },
-    { value: 'riposi_giornalieri', label: 'Riposi giornalieri (obbligatoria documentazione relativa al coniuge)' },
-    { value: 'malattia_figlio', label: 'Congedo per malattia figlio/a (obbligatoria certificazione malattia figlio/a)' },
-    { value: 'allattamento', label: 'Permessi orari retribuiti per allattamento' },
-    { value: 'paternita', label: 'Congedo obbligatorio di paternità 10 gg /5 turni' },
-    { value: 'permesso_breve', label: 'Permesso breve (fino a 36 ore annue)' }
+    { value: 'Permesso Sindacale', label: 'Permesso sindacale' },
+    { value: 'Cariche elettive', label: 'Cariche elettive' },
+    { value: 'Permesso elezioni', label: 'Permesso per elezioni/referendum (Assenze per Funzioni Elettorali – 18 ore/evento - Obbligatoria documentazione giustificativa)' },
+    { value: 'Assistenza disabili', label: 'Assistenza disabili' },
+    { value: 'Permessi individuali', label: 'Permessi individuali' },
+    { value: 'Prolungamento congedo parentale', label: 'Prolungamento del congedo parentale L.104/92 (Circ. n. 139 17/07/2015)' },
+    { value: 'Congedo parentale', label: 'Congedo parentale (obbligatoria autocertificazione del coniuge)' },
+    { value: 'Riposi giornalieri', label: 'Riposi giornalieri (obbligatoria documentazione relativa al coniuge)' },
+    { value: 'Infermità figlio', label: 'Congedo per malattia figlio/a (obbligatoria certificazione malattia figlio/a)' },
+    { value: 'Allattamento', label: 'Permessi orari retribuiti per allattamento' },
+    { value: 'Paternita', label: 'Congedo obbligatorio di paternità 10 gg /5 turni' },
+    { value: 'Permesso breve', label: 'Permesso breve (fino a 36 ore annue)' }
   ];
   showAdditionalPermissions = false; // Initially hidden
   selectedPermission: string; // To store the selected additional permission
+  selectedOption: string="";
 
 
 
@@ -78,6 +93,13 @@ export class ElencoPermessiComponent implements OnInit {
     this.getPermessiDaConfermare()
     this.getPermessiConfermati()
   }
+
+  selectSubmenuItem(item:string){
+    this.tipoPermesso=item
+    console.log(this.selectedOption)
+  }
+
+
 
   openTab(tabNumber: number) {
     this.activeTab = tabNumber;

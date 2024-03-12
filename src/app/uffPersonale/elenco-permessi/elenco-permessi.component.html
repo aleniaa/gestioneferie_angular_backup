@@ -11,8 +11,9 @@
           <div class="col">
             <div class="form-group">
               <label for="tipoPermesso">Tipo di permesso:</label>
-              <select [(ngModel)]="tipoPermesso" name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm">
-              <!-- <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm"> -->
+              <select [(ngModel)]="tipoPermesso" name="tipoPermesso" class="form-control" id="tipoPermesso"
+                placeholder="Seleziona tipo permesso" form="searchForm">
+                <!-- <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm"> -->
 
                 <option value="tutti i permessi">Tutti i permessi</option>
                 <option value="congedo ordinario">Congedo Ordinario</option>
@@ -21,7 +22,8 @@
                 <!-- <option value="altri permessi">Altri permessi</option> -->
                 <option #otherPermission value="altri permessi">Altri permessi</option>
                 <div *ngIf="showAdditionalPermissions">
-                  <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm">
+                  <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso"
+                    placeholder="Seleziona tipo permesso" form="searchForm">
                     <option *ngFor="let permission of altriPermessi" [value]="permission.value">
                       {{ permission.label }}
                     </option>
@@ -37,6 +39,33 @@
 
 
               </select>
+
+              <div class="dropdown">
+
+                <a (click)="selectSubmenuItem(permessoOrdinario.value)"
+                  *ngFor="let permessoOrdinario of permessiOrdinari">{{permessoOrdinario.label}}</a>
+                <div class="dn-altripermessi">
+                  <a class="subnavbtn">Altri permessi <i class="fa fa-caret-down"></i></a>
+                  <div class="dropdown-content" style="overflow-y: auto; max-height: 200px;">
+                    <a (click)="selectSubmenuItem(permission.value)"
+                      *ngFor="let permission of altriPermessi">{{permission.label}}</a>
+                  </div>
+                </div>
+                <div class="dn-malattia">
+                  <a class="subnavbtn">Malattia <i class="fa fa-caret-down"></i></a>
+                  <div class="dropdown-content" style="overflow-y: auto; max-height: 200px;">
+                    <a (click)="selectSubmenuItem(malattia.value)"
+                      *ngFor="let malattia of malattie">{{malattia.label}}</a>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+
+
             </div>
           </div>
           <div class="col">
@@ -67,7 +96,8 @@
           <div class="col">
             <div class="form-group">
               <label for="dataApprovazione">Data approvazione permesso:</label>
-              <input type="date" [(ngModel)]="dataApprovazione" name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie">
+              <input type="date" [(ngModel)]="dataApprovazione" name="dataApprovazione" class="form-control"
+                id="dataApprovazione" title="Data Approvazione ferie">
               <!-- <input type="date" ngModel name="dataApprovazione" class="form-control" id="dataApprovazione" title="Data Approvazione ferie"> -->
 
             </div>
@@ -189,7 +219,7 @@
 
                         <ng-container *ngIf="permesso?.status===2">
                           {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}<br>
-                          
+
                         </ng-container>
                       </td>
                       <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>
