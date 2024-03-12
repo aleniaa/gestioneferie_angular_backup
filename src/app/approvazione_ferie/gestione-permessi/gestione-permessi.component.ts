@@ -189,7 +189,7 @@ export class GestionePermessiComponent implements OnInit {
 
               break;
             case 2: // permesso approvato dall'approvatore 2
-              if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
+              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) { // è loggato l'approvatore 2 
                 this.permessiApprovati.push(permessoTrovato);
               }
               break;

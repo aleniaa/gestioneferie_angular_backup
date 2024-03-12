@@ -41,7 +41,7 @@
           </div>
           <div class="col">
             <div class="form-group menu-item">
-              <label for="key">Utente richiedente:</label>
+              <label for="searchName">Utente richiedente:</label>
               <input type="text" (ngModelChange)="cercaUtenteRichiedente(key.value)" #key="ngModel"
                 [(ngModel)]="infoRichiedente" name="key" id="searchName" class="form-control mr-sm-2"
                 placeholder="Cerca utente.." autocomplete="off">
@@ -75,7 +75,7 @@
 
           <div class="col">
             <div class="form-group menu-item">
-              <label for="keyApp">Utente che ha approvato il permesso:</label>
+              <label for="searchNameApp">Utente che ha approvato il permesso:</label>
               <input type="text" (ngModelChange)="cercaUtenteApprovatore(keyApp.value)" #keyApp="ngModel"
                 [(ngModel)]="infoApprovatore" name="keyApp" id="searchNameApp" class="form-control mr-sm-2"
                 placeholder="Cerca utente.." autocomplete="off">
@@ -107,7 +107,8 @@
             <div class="form-group">
 
 
-              <input type="reset" class="btn btn-secondary" value="Resetta tutti i campi">
+              <!-- <input type="reset" class="btn btn-secondary" value="Resetta tutti i campi"> -->
+
             </div>
 
           </div>
@@ -115,6 +116,8 @@
 
 
       </form>
+      <button class="btn btn-secondary" (click)="resettaCampiSearchForm()">Resetta tutti i campi</button>
+
     </div>
   </div>
 
@@ -170,13 +173,23 @@
                       <td>{{permesso?.alleOre}}</td>
                       <td>{{permesso?.totOre}}</td>
                       <td>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
                           {{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
                         </ng-container>
                         <ng-container
                           *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
                           {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
+                        </ng-container> -->
+
+                        <ng-container *ngIf="permesso?.status===1">
+                          {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || ''
+                          }}<br>
+                        </ng-container>
+
+                        <ng-container *ngIf="permesso?.status===2">
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}<br>
+                          
                         </ng-container>
                       </td>
                       <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>

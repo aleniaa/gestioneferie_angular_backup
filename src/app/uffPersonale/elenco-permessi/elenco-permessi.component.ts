@@ -35,7 +35,7 @@ export class ElencoPermessiComponent implements OnInit {
   fileStatus = { status: '', requestType: '', percent: 0 };
   public dataAssenza: Date = null;
   public dataApprovazione: Date = null;
-  public tipoPermesso: string = null;
+  public tipoPermesso: string = "tutti i permessi";
   activeTab: number = 1;
 
   altriPermessi: { value: string, label: string }[] = [
@@ -86,6 +86,13 @@ export class ElencoPermessiComponent implements OnInit {
     // this.getPermessiConfermati();
   }
 
+  resettaCampiSearchForm(){
+    this.tipoPermesso="tutti i permessi"
+    this.utenteRichiedente= null
+    this.utenteApprovatore= null
+    this.dataApprovazione= null
+    this.dataAssenza=null
+  }
 
   onVisualizzaAllegati(permesso: Permesso): void {
     this.permessoSelezionato = permesso;
@@ -294,9 +301,8 @@ export class ElencoPermessiComponent implements OnInit {
     this.permessiDaConfermare = []
     var dataAssenzaStringa = "";
     var dataApprovazioneStringa = "";
-    var idUtenteRichiedente= null
-    var idUtenteApprovatore = null
-
+    var idUtenteRichiedente = -1
+    var idUtenteApprovatore= -1
     if (this.dataAssenza) { // se non è null
       dataAssenzaStringa = this.dataAssenza.toString();
     }
@@ -320,9 +326,12 @@ export class ElencoPermessiComponent implements OnInit {
     // idUtenteRichiedente= this.utenteRichiedente.id
     // idUtenteApprovatore= this.utenteApprovatore.id
     
-    dataAssenzaStringa= "ciao"
+    // dataAssenzaStringa= "ciao"
+    // idUtenteRichiedente= 123345
+    // idUtenteApprovatore =786878
 
-    this.permessoService.searchPermessoNew(this.tipoPermesso, dataAssenzaStringa, idUtenteRichiedente, dataApprovazioneStringa, idUtenteApprovatore ).subscribe(
+    //this.permessoService.searchProva(searchForm.value,dataAssenzaStringa).subscribe(
+    this.permessoService.searchPermessoNew( dataAssenzaStringa, this.tipoPermesso, idUtenteRichiedente, dataApprovazioneStringa, idUtenteApprovatore ).subscribe(
 
       (response: Permesso[]) => {
         //console.log(response)
