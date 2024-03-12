@@ -77,9 +77,7 @@ export class ElencoPermessiComponent implements OnInit {
     { value: 'Paternita', label: 'Congedo obbligatorio di paternità 10 gg /5 turni' },
     { value: 'Permesso breve', label: 'Permesso breve (fino a 36 ore annue)' }
   ];
-  showAdditionalPermissions = false; // Initially hidden
-  selectedPermission: string; // To store the selected additional permission
-  selectedOption: string="";
+
 
 
 
@@ -96,7 +94,6 @@ export class ElencoPermessiComponent implements OnInit {
 
   selectSubmenuItem(item:string){
     this.tipoPermesso=item
-    console.log(this.selectedOption)
   }
 
 

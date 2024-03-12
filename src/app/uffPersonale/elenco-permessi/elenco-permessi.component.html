@@ -20,15 +20,6 @@
                 <!-- <option value="permesso breve">Permesso breve</option> -->
                 <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
                 <!-- <option value="altri permessi">Altri permessi</option> -->
-                <option #otherPermission value="altri permessi">Altri permessi</option>
-                <div *ngIf="showAdditionalPermissions">
-                  <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso"
-                    placeholder="Seleziona tipo permesso" form="searchForm">
-                    <option *ngFor="let permission of altriPermessi" [value]="permission.value">
-                      {{ permission.label }}
-                    </option>
-                  </select>
-                </div>
                 <optgroup label="Malattia">
                   <option value="Malattia">Malattia</option>
                   <option value="Malattia per causa di servizio">Malattia per causa di servizio</option>
@@ -75,7 +66,7 @@
                 [(ngModel)]="infoRichiedente" name="key" id="searchName" class="form-control mr-sm-2"
                 placeholder="Cerca utente.." autocomplete="off">
 
-              <ul class="list-group" id="utentiTrovati">
+              <ul class="list-group" id="utentiTrovati" style="overflow-y: auto; max-height: 200px;">
                 <li class="list-group-item" *ngFor="let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a
                     (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
               </ul>
@@ -110,7 +101,7 @@
                 [(ngModel)]="infoApprovatore" name="keyApp" id="searchNameApp" class="form-control mr-sm-2"
                 placeholder="Cerca utente.." autocomplete="off">
 
-              <ul class="list-group" id="utentiTrovati">
+              <ul class="list-group" id="utentiTrovati" style="overflow-y: auto; max-height: 200px;">
                 <li class="list-group-item" *ngFor="let utente of utentiApprovatoriTrovati" value="{{utente?.id}}"><a
                     (click)="selezionaUtenteApprovatore(utente)">{{utente?.cognome+ " " + utente?.nome + " (" +
                     utente?.qualifica.nome + ")"}}</a></li>
