@@ -10,7 +10,9 @@ body, figure, h1, h2, h3, h4, h5, h6, p, ol, ul, dl, li, dt, dd, blockquote, pre
   
   /* Global Styles */
    body {
-    background-color: #eee6db;
+    /* background-color: #eee6db; */
+    background-color: #ffffff;
+
     color: #333333;
     margin-bottom: 30px;
     padding: 0;
