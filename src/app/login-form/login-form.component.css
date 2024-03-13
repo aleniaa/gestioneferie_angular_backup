@@ -262,7 +262,7 @@ html {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #ce4736;
+    background-color: rgb(114, 0, 0);
     content: "";
     transition: width 0.2s;
   }

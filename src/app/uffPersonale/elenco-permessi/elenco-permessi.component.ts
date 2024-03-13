@@ -23,6 +23,8 @@ export class ElencoPermessiComponent implements OnInit {
   public permessi: Permesso[] = [];
   public permessiDaConfermare: Permesso[] = [];
   public permessiConfermati: Permesso[] = [];
+  public permessiRespinti: Permesso[] = [];
+
   public utenti: Utente[] = [];
   public utentiRichiedentiTrovati: Utente[] = [];
   public utentiApprovatoriTrovati: Utente[] = [];
