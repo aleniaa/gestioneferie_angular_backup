@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label for="tipoPermesso">Tipo di permesso selezionato:</label>
+              <label>Tipo di permesso selezionato:</label>
 
               <!-- <select [(ngModel)]="tipoPermesso" name="tipoPermesso" class="form-control" id="tipoPermesso"
                 placeholder="Seleziona tipo permesso" form="searchForm">
@@ -174,7 +174,7 @@
                       <th scope="col">Approvato da</th>
                       <th scope="col">Approvato in data:</th>
                       <th scope="col">Allegati:</th>
-                      <th scope="col">Confermato:</th>
+                      <th scope="col">Azioni:</th>
 
                     </tr>
                   </thead>
@@ -184,7 +184,7 @@
                     <tr *ngIf="permessiDaConfermare?.length == 0">
                       <td colspan="12">Nessun permesso da confermare trovato</td>
                     </tr>
-                    <tr *ngFor="let permesso of permessiDaConfermare" [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
+                    <tr *ngFor="let permesso of permessiDaConfermare" [ngClass]="{'permesso_malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
                                   'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),
                                   'recupero_ore': permesso.tipoPermesso.includes('Recupero ore eccedenti')}">
                       <!-- "malattia è una classe del css" -->
@@ -216,13 +216,18 @@
                           {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}<br>
 
                         </ng-container>
+
                       </td>
                       <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>
                       <td><button class="btn btn-primary tooltips"
                           (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td>
-                      <td><button class="btn btn-success tooltips"
+                      <td>
+                        <button class="btn btn-success tooltips"
                           (click)="onConfermaPermessoButton(permesso)">Conferma</button>
+                        <button class="btn btn-danger tooltips"
+                          (click)="onRespingiPermessoButton(permesso)">Respingi</button>
                       </td>
+
 
                     </tr>
 
@@ -384,20 +389,63 @@
       </div>
 
       <div class="modal-body">
-        <h4>Sicuro di voler confermare il permesso </h4><br>
+        <h4>Cosa vuoi fare con il permesso </h4><br>
         <div>
-          <h3>{{ permessoSelezionato?.tipoPermesso }} di {{permessoSelezionato?.utenteRichiedente?.nome}}
+          <h3>"{{ permessoSelezionato?.tipoPermesso }}" di {{permessoSelezionato?.utenteRichiedente?.nome}}
             {{permessoSelezionato?.utenteRichiedente?.cognome}}
             del {{ permessoSelezionato?.dataInizio }} ?
           </h3>
         </div>
-
+        <h4 style="color: red;">Attenzione: l'azione non è reversibile. </h4>
 
         <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal"
+          <button type="button" class="btn btn-success" data-dismiss="modal"
             (click)="confermaPermesso(permessoSelezionato)">Conferma</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!--  Respingi permesso modal -->
+
+<div class="modal fade" id="respingiPermessoModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModelLabel">Respingi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <h4>Vuoi respingere il permesso </h4><br>
+        <div>
+          <h3>"{{ permessoSelezionato?.tipoPermesso }}" di {{permessoSelezionato?.utenteRichiedente?.nome}}
+            {{permessoSelezionato?.utenteRichiedente?.cognome}}
+            del {{ permessoSelezionato?.dataInizio }} ?
+          </h3>
+        </div>
+        <div class="form-group">
+          <label for="note">Inserisci il motivo per cui stai respingendo il permesso:</label>
+          <textarea [(ngModel)]="note" name="note" class="form-control" id="note" placeholder="Motivo"
+            title="Inserisci il motivo per cui stai respingendo il permesso" maxlength="200" required></textarea>
+        </div>
+        <h4 style="color: red;">Attenzione: l'azione non è reversibile. </h4>
+
+        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"
+            (click)="respingiPermesso()">Respingi</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
 
         </div>

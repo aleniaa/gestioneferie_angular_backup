@@ -37,6 +37,7 @@ export class ElencoPermessiComponent implements OnInit {
   public dataApprovazione: Date = null;
   public tipoPermesso: string = "tutti i permessi";
   activeTab: number = 1;
+  public note: string = "";
 
   permessiOrdinari: { value: string, label: string }[] = [
     { value: 'tutti i permessi', label: 'Tutti i permessi' },
@@ -95,9 +96,9 @@ export class ElencoPermessiComponent implements OnInit {
 
   ordinaAltripermessi() {
     this.sortedAltriPermessi = this.altriPermessi.sort((a, b) => {
-    const aLabel = a.label.toLowerCase();
-    const bLabel = b.label.toLowerCase();
-    return aLabel < bLabel ? -1 : aLabel > bLabel ? 1 : 0;
+      const aLabel = a.label.toLowerCase();
+      const bLabel = b.label.toLowerCase();
+      return aLabel < bLabel ? -1 : aLabel > bLabel ? 1 : 0;
     });
   }
 
@@ -167,6 +168,21 @@ export class ElencoPermessiComponent implements OnInit {
 
   }
 
+  onRespingiPermessoButton(permesso: Permesso): void {
+    this.permessoSelezionato = permesso;
+    const button = document.createElement('button');
+    const container = document.getElementById('main-container');
+
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#respingiPermessoModal');
+    container?.appendChild(button);
+
+    button.click();
+
+  }
+
   public confermaPermesso(permesso: Permesso): void {
     var values = JSON.parse(localStorage.getItem("currentUser"));
     var idUtenteApp = values.id;
@@ -185,9 +201,40 @@ export class ElencoPermessiComponent implements OnInit {
         //this.getPermessiApprovatoreByStatus();
         this.getPermessiDaConfermare();
 
+        this.getPermessiConfermati();
       },
     );
 
+
+  }
+
+  public respingiPermesso() {
+    document.getElementById('respingiPermesso')?.click();
+    console.log("le note sono:")
+    console.log(this.note)
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    var idUtenteApp = values.id;
+    this.permessoService.respingiPermessoPersonale(this.note, this.permessoSelezionato, idUtenteApp).subscribe(
+      (response: Permesso) => { //jfoiewfjwoiej
+        console.log(response);
+        //this.getPermessiApprovatoreByStatus();
+        //this.getPermessiApprovatore2();
+        this.getPermessiDaConfermare();
+
+        this.getPermessiConfermati();
+
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        //this.getPermessiApprovatoreByStatus();
+        //this.getPermessiApprovatore2();
+        this.getPermessiDaConfermare();
+
+        this.getPermessiConfermati();
+      },
+    );
+
+    this.note = "";
 
   }
 
@@ -547,6 +594,7 @@ export class ElencoPermessiComponent implements OnInit {
       .subscribe(permissions => {
         // permissions will be an array containing individual Permesso objects
         this.permessiDaConfermare = permissions.reduce((acc, curr) => acc.concat(curr), []);
+        console.log( this.permessiDaConfermare)
       });
 
 

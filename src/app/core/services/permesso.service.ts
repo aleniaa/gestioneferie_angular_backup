@@ -114,6 +114,14 @@ export class PermessoService {
     return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/respingiPermesso`, permesso, { params: params });
   }
 
+  
+  public respingiPermessoPersonale(note: string, permesso: Permesso, idApprovatore: number): Observable<Permesso> {
+    let params = new HttpParams()
+      .set('note', note)
+      .set('idApprovatore', idApprovatore);
+    return this.http.put<Permesso>(`${this.apiServerUrl}/permesso/respingiPermessoPersonale`, permesso, { params: params });
+  }
+
   public getPermessiByStatus(status: number): Observable<Permesso[]> {
     return this.http.get<any>(`${this.apiServerUrl}/permesso/status/${status}`);
   }
