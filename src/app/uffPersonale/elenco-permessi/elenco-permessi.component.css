@@ -1,5 +1,7 @@
 .container{
   background-color: #eee6db;
+    /* background-color: rgb(114, 0, 0); */
+
 }
 
 #main-container{
@@ -156,6 +158,31 @@ ul li:hover {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
+
+  .altri-permessi {
+    display: none;
+    position: absolute;
+    /* New styles for right positioning */
+    bottom: 0;
+    left: 100%; /* Initial position to the right of the link */
+    background-color: #f1f1f1;
+    min-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .malattia {
+    display: none;
+    position: absolute;
+    /* New styles for right positioning */
+    bottom: 0;
+    left: 100%; /* Initial position to the right of the link */
+    background-color: #f1f1f1;
+    min-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
   
   .dropdown-content a {
     color: black;
@@ -169,7 +196,8 @@ ul li:hover {
   }
   
   /* Show dropdown on hover and position it correctly */
-  .dn-altripermessi:hover .dropdown-content {
+  .dn-altripermessi:hover .altri-permessi {
+    
     display: block;
     /* Adjust left margin to align content with the link */
     right: -100%;  /* Move the content to the left by its own width */
@@ -179,9 +207,22 @@ ul li:hover {
     background-color: #ddd;
   }
 
-  .dn-malattia:hover .dropdown-content {
+  .dn-malattia:hover .malattia {
     display: block;
     /* Adjust left margin to align content with the link */
     right: -100%;  /* Move the content to the left by its own width */
   }
+
+  .dropbtn {
+    width: 300px;
+    background-color: #ffffff;
+    color: white;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .show {display: block;}
   

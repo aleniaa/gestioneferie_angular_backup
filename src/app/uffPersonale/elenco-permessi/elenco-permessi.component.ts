@@ -53,32 +53,32 @@ export class ElencoPermessiComponent implements OnInit {
   ]
 
   altriPermessi: { value: string, label: string }[] = [
-    { value: 'Concorsi ed Esami', label: 'Concorsi ed Esami (8 gg/anno)' },
-    { value: 'Lutto Familiare', label: 'Lutto familiare (3 gg/evento)' },
-    { value: 'Gravi Infermita', label: 'Gravi infermità 18 ore/anno' },
-    { value: 'Matrimonio', label: 'Matrimonio (15 gg consecutivi)' },
+    { value: 'Concorsi ed Esami', label: 'Concorsi ed Esami' },
+    { value: 'Lutto Familiare', label: 'Lutto familiare' },
+    { value: 'Gravi Infermita', label: 'Gravi infermità' },
+    { value: 'Matrimonio', label: 'Matrimonio' },
     { value: 'Sport', label: 'Attività ginnico-sportiva' },
-    { value: 'Motivi Personali', label: 'Motivi personali o familiari (18 oee/anno)' },
-    { value: 'Cure e terapie DLGS n.119', label: 'Malattia cure/terapie D.Lgs. n.119 del 18/07/2011 (30 gg./anno)' },
-    { value: 'Visite e terapie', label: 'Malattia per visite, terapie, prestazioni specialistiche ed esami diagnostici (18 h /anno)' },
-    { value: 'Donazione di sangue', label: 'Donazione Sangue (24 ore dalla donazione)' },
-    { value: 'Studio', label: 'Motivi di studio (max 150 ore/anno)' },
-    { value: 'Testimonianze', label: 'Testimonianze per motivi di servizio (illimitate)' },
+    { value: 'Motivi Personali', label: 'Motivi personali o familiari' },
+    { value: 'Cure e terapie DLGS n.119', label: 'Malattia cure/terapie D.Lgs. n.119 del 18/07/2011' },
+    { value: 'Visite e terapie', label: 'Malattia per visite, terapie, prestazioni specialistiche ed esami diagnostici' },
+    { value: 'Donazione di sangue', label: 'Donazione Sangue' },
+    { value: 'Studio', label: 'Motivi di studio ' },
+    { value: 'Testimonianze', label: 'Testimonianze per motivi di servizio' },
     { value: 'Permesso Sindacale', label: 'Permesso sindacale' },
     { value: 'Cariche elettive', label: 'Cariche elettive' },
-    { value: 'Permesso elezioni', label: 'Permesso per elezioni/referendum (Assenze per Funzioni Elettorali – 18 ore/evento - Obbligatoria documentazione giustificativa)' },
+    { value: 'Permesso elezioni', label: 'Permesso per elezioni/referendum ' },
     { value: 'Assistenza disabili', label: 'Assistenza disabili' },
     { value: 'Permessi individuali', label: 'Permessi individuali' },
     { value: 'Prolungamento congedo parentale', label: 'Prolungamento del congedo parentale L.104/92 (Circ. n. 139 17/07/2015)' },
-    { value: 'Congedo parentale', label: 'Congedo parentale (obbligatoria autocertificazione del coniuge)' },
-    { value: 'Riposi giornalieri', label: 'Riposi giornalieri (obbligatoria documentazione relativa al coniuge)' },
-    { value: 'Infermità figlio', label: 'Congedo per malattia figlio/a (obbligatoria certificazione malattia figlio/a)' },
+    { value: 'Congedo parentale', label: 'Congedo parentale' },
+    { value: 'Riposi giornalieri', label: 'Riposi giornalieri' },
+    { value: 'Infermità figlio', label: 'Congedo per malattia figlio/a' },
     { value: 'Allattamento', label: 'Permessi orari retribuiti per allattamento' },
-    { value: 'Paternita', label: 'Congedo obbligatorio di paternità 10 gg /5 turni' },
-    { value: 'Permesso breve', label: 'Permesso breve (fino a 36 ore annue)' }
+    { value: 'Paternita', label: 'Congedo obbligatorio di paternità' },
+    { value: 'Permesso breve', label: 'Permesso breve' }
   ];
 
-
+  sortedAltriPermessi: { value: string, label: string }[] = []
 
 
   constructor(private permessoService: PermessoService, private utenteService: UtenteService, private fileUploadService: FileUploadService) { }
@@ -90,13 +90,25 @@ export class ElencoPermessiComponent implements OnInit {
     this.getUtenti();
     this.getPermessiDaConfermare()
     this.getPermessiConfermati()
+    this.ordinaAltripermessi()
   }
 
-  selectSubmenuItem(item:string){
-    this.tipoPermesso=item
+  ordinaAltripermessi() {
+    this.sortedAltriPermessi = this.altriPermessi.sort((a, b) => {
+    const aLabel = a.label.toLowerCase();
+    const bLabel = b.label.toLowerCase();
+    return aLabel < bLabel ? -1 : aLabel > bLabel ? 1 : 0;
+    });
   }
 
+  selectSubmenuItem(item: string) {
+    this.tipoPermesso = item
+    this.showPermessi()
+  }
 
+  showPermessi() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
 
   openTab(tabNumber: number) {
     this.activeTab = tabNumber;
@@ -105,12 +117,12 @@ export class ElencoPermessiComponent implements OnInit {
     // this.getPermessiConfermati();
   }
 
-  resettaCampiSearchForm(){
-    this.tipoPermesso="tutti i permessi"
-    this.utenteRichiedente= null
-    this.utenteApprovatore= null
-    this.dataApprovazione= null
-    this.dataAssenza=null
+  resettaCampiSearchForm() {
+    this.tipoPermesso = "tutti i permessi"
+    this.utenteRichiedente = null
+    this.utenteApprovatore = null
+    this.dataApprovazione = null
+    this.dataAssenza = null
   }
 
   onVisualizzaAllegati(permesso: Permesso): void {
@@ -321,7 +333,7 @@ export class ElencoPermessiComponent implements OnInit {
     var dataAssenzaStringa = "";
     var dataApprovazioneStringa = "";
     var idUtenteRichiedente = -1
-    var idUtenteApprovatore= -1
+    var idUtenteApprovatore = -1
     if (this.dataAssenza) { // se non è null
       dataAssenzaStringa = this.dataAssenza.toString();
     }
@@ -330,12 +342,12 @@ export class ElencoPermessiComponent implements OnInit {
     }
     console.log("data assenza stringa è:")
 
-    if(this.utenteRichiedente){
-      idUtenteRichiedente= this.utenteRichiedente.id
+    if (this.utenteRichiedente) {
+      idUtenteRichiedente = this.utenteRichiedente.id
     }
 
-    if(this.utenteApprovatore){
-      idUtenteApprovatore= this.utenteApprovatore.id
+    if (this.utenteApprovatore) {
+      idUtenteApprovatore = this.utenteApprovatore.id
     }
 
     // if(this.tipoPermesso){
@@ -344,13 +356,13 @@ export class ElencoPermessiComponent implements OnInit {
 
     // idUtenteRichiedente= this.utenteRichiedente.id
     // idUtenteApprovatore= this.utenteApprovatore.id
-    
+
     // dataAssenzaStringa= "ciao"
     // idUtenteRichiedente= 123345
     // idUtenteApprovatore =786878
 
     //this.permessoService.searchProva(searchForm.value,dataAssenzaStringa).subscribe(
-    this.permessoService.searchPermessoNew( dataAssenzaStringa, this.tipoPermesso, idUtenteRichiedente, dataApprovazioneStringa, idUtenteApprovatore ).subscribe(
+    this.permessoService.searchPermessoNew(dataAssenzaStringa, this.tipoPermesso, idUtenteRichiedente, dataApprovazioneStringa, idUtenteApprovatore).subscribe(
 
       (response: Permesso[]) => {
         //console.log(response)
@@ -478,7 +490,7 @@ export class ElencoPermessiComponent implements OnInit {
       }
     )
   }
-      // funzionante originale
+  // funzionante originale
   // public getPermessiDaConfermare(): void {
 
   //   //permessi approvati da approvatore 1
@@ -517,7 +529,7 @@ export class ElencoPermessiComponent implements OnInit {
   // }
 
   public getPermessiDaConfermare(): void {
-
+    this.resettaCampiSearchForm()
     forkJoin([
       this.permessoService.getPermessiByStatus(1),
       this.permessoService.getPermessiByStatus(2),
@@ -531,7 +543,7 @@ export class ElencoPermessiComponent implements OnInit {
           // You can retry the requests
           return throwError(error); // Re-throw the error to propagate it further
         })
-      ) 
+      )
       .subscribe(permissions => {
         // permissions will be an array containing individual Permesso objects
         this.permessiDaConfermare = permissions.reduce((acc, curr) => acc.concat(curr), []);
@@ -539,7 +551,7 @@ export class ElencoPermessiComponent implements OnInit {
 
 
   }
-        //VECCHIO
+  //VECCHIO
   // public getPermessiConfermati(): void {
 
   //   this.permessoService.getPermessiByStatus(6).subscribe(
@@ -566,6 +578,8 @@ export class ElencoPermessiComponent implements OnInit {
   // }
 
   public getPermessiConfermati(): void {
+    this.resettaCampiSearchForm()
+
     forkJoin([
       this.permessoService.getPermessiByStatus(6),
       this.permessoService.getPermessiByStatus(8)
@@ -584,7 +598,7 @@ export class ElencoPermessiComponent implements OnInit {
         this.permessiConfermati = permissions.reduce((acc, curr) => acc.concat(curr), []);
       });
   }
-  
+
 
   public getPermessiCongedo(): void {
     this.permessoService.getAllPermessiCongedo().subscribe(

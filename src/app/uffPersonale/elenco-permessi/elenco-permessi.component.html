@@ -10,16 +10,17 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label for="tipoPermesso">Tipo di permesso:</label>
-              <select [(ngModel)]="tipoPermesso" name="tipoPermesso" class="form-control" id="tipoPermesso"
+              <label for="tipoPermesso">Tipo di permesso selezionato:</label>
+
+              <!-- <select [(ngModel)]="tipoPermesso" name="tipoPermesso" class="form-control" id="tipoPermesso"
                 placeholder="Seleziona tipo permesso" form="searchForm">
-                <!-- <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm"> -->
+                    da commentare <select ngModel name="tipoPermesso" class="form-control" id="tipoPermesso" placeholder="Seleziona tipo permesso" form="searchForm"> da commentare se si decommenta tutta questa parte
 
                 <option value="tutti i permessi">Tutti i permessi</option>
                 <option value="congedo ordinario">Congedo Ordinario</option>
-                <!-- <option value="permesso breve">Permesso breve</option> -->
+                    da commentare <option value="permesso breve">Permesso breve</option> da commentare se si decommenta tutta questa parte
                 <option value="recupero ore eccedenti">Recupero ore eccedenti</option>
-                <!-- <option value="altri permessi">Altri permessi</option> -->
+                    da commentare <option value="altri permessi">Altri permessi</option> da commentare se si decommenta tutta questa parte
                 <optgroup label="Malattia">
                   <option value="Malattia">Malattia</option>
                   <option value="Malattia per causa di servizio">Malattia per causa di servizio</option>
@@ -29,27 +30,30 @@
                 </optgroup>
 
 
-              </select>
+              </select> -->
 
-              <div class="dropdown">
 
-                <a (click)="selectSubmenuItem(permessoOrdinario.value)"
-                  *ngFor="let permessoOrdinario of permessiOrdinari">{{permessoOrdinario.label}}</a>
-                <div class="dn-altripermessi">
-                  <a class="subnavbtn">Altri permessi <i class="fa fa-caret-down"></i></a>
-                  <div class="dropdown-content" style="overflow-y: auto; max-height: 200px;">
-                    <a (click)="selectSubmenuItem(permission.value)"
-                      *ngFor="let permission of altriPermessi">{{permission.label}}</a>
+
+              <div class="dropdown" id="tipoPermesso">
+                <a (click)="showPermessi()" class="dropbtn">{{tipoPermesso}}</a>
+                <div id="myDropdown" class="dropdown-content">
+                  <a (click)="selectSubmenuItem(permessoOrdinario.value)"
+                    *ngFor="let permessoOrdinario of permessiOrdinari">{{permessoOrdinario.label}}</a>
+                  <div class="dn-altripermessi">
+                    <a>Altri permessi &#9658;<i class="fa fa-caret-down"></i></a>
+                    <div class="altri-permessi" style="overflow-y: auto; max-height: 200px;">
+                      <a (click)="selectSubmenuItem(permission.value)"
+                        *ngFor="let permission of sortedAltriPermessi">{{permission.label}}</a>
+                    </div>
+                  </div>
+                  <div class="dn-malattia">
+                    <a>Malattia &#9658;<i class="fa fa-caret-down"></i></a>
+                    <div class="malattia" style="overflow-y: auto; max-height: 200px;">
+                      <a (click)="selectSubmenuItem(malattia.value)"
+                        *ngFor="let malattia of malattie">{{malattia.label}}</a>
+                    </div>
                   </div>
                 </div>
-                <div class="dn-malattia">
-                  <a class="subnavbtn">Malattia <i class="fa fa-caret-down"></i></a>
-                  <div class="dropdown-content" style="overflow-y: auto; max-height: 200px;">
-                    <a (click)="selectSubmenuItem(malattia.value)"
-                      *ngFor="let malattia of malattie">{{malattia.label}}</a>
-                  </div>
-                </div>
-
               </div>
 
 

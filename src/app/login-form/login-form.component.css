@@ -8,8 +8,25 @@ html {
   body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+
   }
   
+  .container{
+    background-color: rgb(114, 0, 0);
+    color: aliceblue;
+
+  }
+
+  .content{
+    padding:10px;
+    margin-bottom: 30px;
+    background-color: rgb(255, 255, 255);
+    max-width:1600;
+    height:auto;
+    border-radius:30px;
+
+  }
+
   a {
     color: #92badd;
     display:inline-block;
@@ -26,8 +43,7 @@ html {
     margin: 40px 8px 10px 8px; 
     color: #cccccc;
   }
-  
-  
+
   
   /* STRUCTURE */
   
