@@ -179,8 +179,8 @@ export class GestionePermessiComponent implements OnInit {
         for (const permessoTrovato of response) {
           switch (permessoTrovato.status) {
             case 0: //permesso ancora non approvato da nessuno
-              if(!(permessoTrovato.tipoPermesso.includes("malattia") || permessoTrovato.tipoPermesso.includes("salvavita")))
-                this.permessiPending.push(permessoTrovato);
+
+              this.permessiPending.push(permessoTrovato);
               break;
             case 1: // permesso approvato  dall'approvatore 1
               if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
@@ -198,10 +198,12 @@ export class GestionePermessiComponent implements OnInit {
               //non fare nulla
               break;
             case 4: // respinto da approvatore 1
+            if (idUtenteApp === permessoTrovato.idUtenteApprovazione) // è loggato l'approvatore 2 
               this.permessiRespinti.push(permessoTrovato);
               break;
             case 5: // respinto da approvatore 2
-              this.permessiRespinti.push(permessoTrovato);
+              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) // è loggato l'approvatore 2 
+                this.permessiRespinti.push(permessoTrovato);
               break;
             case 6: // approvato da approvatore 1  e uff personale
               if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 
