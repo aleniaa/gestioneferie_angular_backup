@@ -341,10 +341,11 @@
                       <th scope="col">Dalle ore</th>
                       <th scope="col">Alle ore</th>
                       <th scope="col">Ore totali</th>
-                      <th scope="col">Approvato da</th>
-                      <th scope="col">Approvato in data:</th>
+                      <!-- <th scope="col">Approvato da</th> -->
+                      <th scope="col">Respinto in data:</th>
                       <th scope="col">Allegati:</th>
-                      <th scope="col">Azioni:</th>
+                      <th scope="col">Note:</th>
+
 
                     </tr>
                   </thead>
@@ -367,35 +368,14 @@
                       <td>{{permesso?.dalleOre}}</td>
                       <td>{{permesso?.alleOre}}</td>
                       <td>{{permesso?.totOre}}</td>
-                      <td>
-                        <!-- <ng-container
-                          *ngIf="permesso?.utenteApprovazione?.cognome || permesso?.utenteApprovazione?.nome">
-                          {{permesso?.utenteApprovazione.cognome + " " + permesso?.utenteApprovazione.nome}}<br>
-                        </ng-container>
-                        <ng-container
-                          *ngIf="permesso?.utenteApprovazioneDue?.cognome || permesso?.utenteApprovazioneDue?.nome">
-                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
-                        </ng-container> -->
-
-                        <ng-container *ngIf="permesso?.status===1">
-                          {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || ''
-                          }}<br>
-                        </ng-container>
-
-                        <ng-container *ngIf="permesso?.status===2">
-                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}<br>
-
-                        </ng-container>
-
-                      </td>
                       <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy' }}</td>
                       <td><button class="btn btn-primary tooltips"
-                          (click)="onVisualizzaAllegati(permesso)">Visualizza</button></td>
-                      <td>
-                        <button class="btn btn-success tooltips"
-                          (click)="onConfermaPermessoButton(permesso)">Conferma</button>
-                        <button class="btn btn-danger tooltips"
-                          (click)="onRespingiPermessoButton(permesso)">Respingi</button>
+                          (click)="onVisualizzaAllegati(permesso)">Visualizza</button>
+                      </td>
+                      <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips"
+                          data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i
+                            class="fa fa-times"> Vedi
+                            note</i></button>
                       </td>
 
 
@@ -541,6 +521,28 @@
       </div>
 
 
+    </div>
+  </div>
+</div>
+
+<!-- ____________ NOTE MODAL______________ -->
+
+<div class="modal fade" id="vediNote" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="noteModalLabel">Note rilasciate:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-text" [innerHTML]="permessoSelezionato?.note"></div>
+        <div class="modal-footer">
+          <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

@@ -376,10 +376,9 @@ export class IMieiPermessiComponent {
               this.permessiPending.push(permessoTrovato);
               break;
             case 3: // usato per malattia che deve essere approvato da personale
-              // if(permessoTrovato.tipoPermesso.includes("Malattia"))
-              //   this.malattia.push(permessoTrovato);
-              // else
+
               this.permessiPending.push(permessoTrovato);
+
               break
             case 4: // respinto da approvatore 1
               this.permessiRespinti.push(permessoTrovato);
@@ -388,18 +387,25 @@ export class IMieiPermessiComponent {
               this.permessiRespinti.push(permessoTrovato);
               break;
             case 6: // approvato da uff personale + approvatore 1 o malattia approvata
-              if (permessoTrovato.tipoPermesso.includes("Malattia")) {
-                this.malattia.push(permessoTrovato);
-              } else {
-                this.permessiApprovati.push(permessoTrovato);
-              }
+
+              this.permessiApprovati.push(permessoTrovato);
+              
 
               break;
-            case 7: // respinto da uff personale
+            case 7: // respinto da uff personale + app 1
               this.permessiRespinti.push(permessoTrovato);
               break;
             case 8: // approvato da uff personale + approvatore 2
               this.permessiApprovati.push(permessoTrovato);
+              break;
+            case 9: // respinto da uff personale + app 1
+              this.permessiRespinti.push(permessoTrovato);
+              break;
+            case 30: // respinto malattia uff personale 
+              this.permessiRespinti.push(permessoTrovato);
+              break;
+            case 31: // approvata malattia uff personale 
+              this.malattia.push(permessoTrovato);
               break;
             default: //console.log("qualcosa non va");
           }

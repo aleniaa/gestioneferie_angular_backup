@@ -179,8 +179,8 @@ export class GestionePermessiComponent implements OnInit {
         for (const permessoTrovato of response) {
           switch (permessoTrovato.status) {
             case 0: //permesso ancora non approvato da nessuno
-
-              this.permessiPending.push(permessoTrovato);
+              if(!(permessoTrovato.tipoPermesso.includes("malattia") || permessoTrovato.tipoPermesso.includes("salvavita")))
+                this.permessiPending.push(permessoTrovato);
               break;
             case 1: // permesso approvato  dall'approvatore 1
               if (idUtenteApp === permessoTrovato.idUtenteApprovazione) { // è loggato l'approvatore 1 

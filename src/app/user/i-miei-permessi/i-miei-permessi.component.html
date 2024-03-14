@@ -219,7 +219,7 @@
         approvazione</button>
       <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Permessi approvati</button>
       <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button>
-      <button class="tab-link" [class.active]="activeTab === 4" (click)="openTab(4)">Malattia</button>
+      <button class="tab-link" [class.active]="activeTab === 4" (click)="openTab(4)">Malattia approvata</button>
 
     </div>
     <div class="tab-content container2">
@@ -377,7 +377,7 @@
                             permesso?.utenteApprovazioneDue?.nome}}
                           </ng-container> -->
 
-                        <ng-container *ngIf="permesso?.status == 6 && (!permesso?.tipoPermesso?.includes('Malattia'));">
+                        <ng-container *ngIf="permesso?.status == 6;">
                           {{permesso?.utenteApprovazione?.cognome + " " +
                           permesso?.utenteApprovazione?.nome}}<br>
                           Ufficio Personale
@@ -389,6 +389,8 @@
                           permesso?.utenteApprovazioneDue?.nome}}<br>
                           Ufficio Personale
                         </ng-container>
+
+
 
                       </td>
                       <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
@@ -415,7 +417,7 @@
 
         <!-- </div> -->
       </div>
-      <div *ngIf="activeTab === 3">
+      <div *ngIf="activeTab === 3"> <!-- PERMESSI RESPINTI -->
 
 
         <!-- <div class="container"> -->
@@ -477,7 +479,7 @@
         <!-- </div> -->
       </div>
 
-      <div *ngIf="activeTab === 4">
+      <div *ngIf="activeTab === 4"> <!-- MALATTIA -->
 
 
         <!-- <div class="container"> -->
@@ -520,9 +522,9 @@
                       <td>{{permesso?.alleOre}}</td>
                       <td>{{permesso?.totOre}}</td>
                       <td>
-                        <ng-container *ngIf="permesso?.status == 6 && permesso?.tipoPermesso?.includes('Malattia');">
 
-                          Ufficio Personale<br>
+                        <ng-container *ngIf="permesso?.status == 31;"> <!-- malattia respinta da uff personale -->
+                          Ufficio Personale
                         </ng-container>
                       </td>
                       <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>

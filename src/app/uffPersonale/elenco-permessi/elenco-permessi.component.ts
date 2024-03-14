@@ -88,11 +88,9 @@ export class ElencoPermessiComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.getPermessi();
-    //this.getPermessiCongedo();
+
     this.getUtenti();
-    this.getPermessiDaConfermare()
-    this.getPermessiConfermati()
+    this.getPermessi()
     this.ordinaAltripermessi()
   }
 
@@ -194,16 +192,12 @@ export class ElencoPermessiComponent implements OnInit {
         console.log(response);
         //this.getPermessiApprovatoreByStatus();
 
-        this.getPermessiDaConfermare();
-
-        this.getPermessiConfermati();
+        this.getPermessi()
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
         //this.getPermessiApprovatoreByStatus();
-        this.getPermessiDaConfermare();
-
-        this.getPermessiConfermati();
+        this.getPermessi()
       },
     );
 
@@ -221,18 +215,14 @@ export class ElencoPermessiComponent implements OnInit {
         console.log(response);
         //this.getPermessiApprovatoreByStatus();
         //this.getPermessiApprovatore2();
-        this.getPermessiDaConfermare();
-
-        this.getPermessiConfermati();
+        this.getPermessi()
 
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
         //this.getPermessiApprovatoreByStatus();
         //this.getPermessiApprovatore2();
-        this.getPermessiDaConfermare();
-
-        this.getPermessiConfermati();
+        this.getPermessi()
       },
     );
 
@@ -375,10 +365,14 @@ export class ElencoPermessiComponent implements OnInit {
 
   //------------------ NON MODIFICARE ----------------
 
-
-  public searchConfermareOConfermatiNew(): void {
+  public svuotaPermessi(){
     this.permessiConfermati = []
     this.permessiDaConfermare = []
+    this.permessiRespinti= []
+  }
+
+  public searchConfermareOConfermatiNew(): void {
+    this.svuotaPermessi()
     var dataAssenzaStringa = "";
     var dataApprovazioneStringa = "";
     var idUtenteRichiedente = -1
@@ -530,15 +524,20 @@ export class ElencoPermessiComponent implements OnInit {
   }
 
   public getPermessi(): void {
-    this.permessoService.getAllPermessi().subscribe(
-      (response: Permesso[]) => {
-        this.permessi = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
+    this.getPermessiDaConfermare()
+    this.getPermessiConfermati()
+    this.getPermessiRespinti()
+    // this.permessoService.getAllPermessi().subscribe(
+    //   (response: Permesso[]) => {
+    //     this.permessi = response;
+    //   },
+    //   (error: HttpErrorResponse) => {
+    //     alert(error.message);
+    //   }
+    // )
   }
+
+
   // funzionante originale
   // public getPermessiDaConfermare(): void {
 
@@ -601,6 +600,32 @@ export class ElencoPermessiComponent implements OnInit {
 
 
   }
+
+  public getPermessiRespinti(): void {
+    this.resettaCampiSearchForm()
+    forkJoin([
+      this.permessoService.getPermessiByStatus(7), //respinto da personale ma approvato da app 1
+      this.permessoService.getPermessiByStatus(9), //respinto da personale ma approvato da app 2
+      this.permessoService.getPermessiByStatus(30) //malattia respinta da personale
+    ])
+      .pipe(
+        catchError(error => {
+          // Handle the error here
+          console.error('Error fetching permissions:', error);
+          // You can display an error message to the user
+          // You can retry the requests
+          return throwError(error); // Re-throw the error to propagate it further
+        })
+      )
+      .subscribe(permissions => {
+        // permissions will be an array containing individual Permesso objects
+        this.permessiRespinti = permissions.reduce((acc, curr) => acc.concat(curr), []);
+        //console.log( this.permessiDaConfermare)
+      });
+
+
+  }
+
   //VECCHIO
   // public getPermessiConfermati(): void {
 
@@ -659,5 +684,21 @@ export class ElencoPermessiComponent implements OnInit {
         alert(error.message);
       }
     )
+  }
+
+  public visualizzaNote(permesso: Permesso): void {
+    this.permessoSelezionato = permesso;
+
+    //console.log("sono dentro visulizza note");
+    const button = document.createElement('button');
+    const container = document.getElementById('main-container');
+
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#vediNote');
+    container?.appendChild(button);
+
+    button.click();
   }
 }
