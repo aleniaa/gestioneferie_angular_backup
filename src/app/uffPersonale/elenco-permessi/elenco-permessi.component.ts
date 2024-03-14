@@ -365,10 +365,10 @@ export class ElencoPermessiComponent implements OnInit {
 
   //------------------ NON MODIFICARE ----------------
 
-  public svuotaPermessi(){
+  public svuotaPermessi() {
     this.permessiConfermati = []
     this.permessiDaConfermare = []
-    this.permessiRespinti= []
+    this.permessiRespinti = []
   }
 
   public searchConfermareOConfermatiNew(): void {
@@ -425,9 +425,21 @@ export class ElencoPermessiComponent implements OnInit {
             case 6: // permesso approvato dall'approvatore 1 + Uffpersonale
               this.permessiConfermati.push(permessoTrovato);
               break;
+            case 7: // permesso respinto da personale ma approvato dall'approvatore 1
+              this.permessiRespinti.push(permessoTrovato);
+              break;
             case 8: // permesso approvato dall'approvatore 2 + Uffpersonale
               this.permessiConfermati.push(permessoTrovato);
               break;
+            case 9: // permesso respinto da personale ma approvato dall'approvatore 2
+              this.permessiRespinti.push(permessoTrovato);
+              break; 
+            case 30: // malattia respinta da personale
+              this.permessiRespinti.push(permessoTrovato);
+              break;  
+            case 31: // malattia approvata da personale
+              this.permessiConfermati.push(permessoTrovato);
+              break;                               
           }
 
         }
@@ -595,7 +607,7 @@ export class ElencoPermessiComponent implements OnInit {
       .subscribe(permissions => {
         // permissions will be an array containing individual Permesso objects
         this.permessiDaConfermare = permissions.reduce((acc, curr) => acc.concat(curr), []);
-        console.log( this.permessiDaConfermare)
+        console.log(this.permessiDaConfermare)
       });
 
 
@@ -657,7 +669,8 @@ export class ElencoPermessiComponent implements OnInit {
 
     forkJoin([
       this.permessoService.getPermessiByStatus(6),
-      this.permessoService.getPermessiByStatus(8)
+      this.permessoService.getPermessiByStatus(8),
+      this.permessoService.getPermessiByStatus(31)
     ])
       .pipe(
         catchError(error => {

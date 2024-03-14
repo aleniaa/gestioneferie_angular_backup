@@ -272,7 +272,7 @@
                     <tr *ngIf="permessiConfermati?.length == 0">
                       <td colspan="12">Nessun permesso confermato trovato</td>
                     </tr>
-                    <tr *ngFor="let permesso of permessiConfermati" [ngClass]="{'malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
+                    <tr *ngFor="let permesso of permessiConfermati" [ngClass]="{'permesso_malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
                                   'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),
                                   'recupero_ore': permesso.tipoPermesso.includes('Recupero ore eccedenti')}">
                       <!-- "malattia è una classe del css" -->
@@ -303,6 +303,10 @@
                         <ng-container *ngIf="permesso?.status===8">
                           {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
                           &#9989;<br>
+                          Ufficio Personale &#9989;
+                        </ng-container>
+                        
+                        <ng-container *ngIf="permesso?.status===31">
                           Ufficio Personale &#9989;
                         </ng-container>
                       </td>
