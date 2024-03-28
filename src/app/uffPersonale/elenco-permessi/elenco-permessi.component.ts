@@ -101,7 +101,7 @@ export class ElencoPermessiComponent implements OnInit {
   exportTableToExcel() {
     let table: HTMLTableElement;
     let fileName: string;
-
+    console.log(this.activeTab)
     switch (this.activeTab) {
       case 1:
         table = this.table1.nativeElement;
@@ -124,6 +124,8 @@ export class ElencoPermessiComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, fileName);
   }
+
+  
 
 
   ordinaAltripermessi() {

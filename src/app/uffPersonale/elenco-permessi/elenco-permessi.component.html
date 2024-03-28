@@ -152,16 +152,19 @@
       <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Permessi confermati</button>
       <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button>
       <!-- <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button> -->
-      <button (click)="exportTableToExcel()">Scarica excel</button>
     </div>
     <div class="tab-content container2">
+      <button class="btn btn-primary" (click)="exportTableToExcel()" style="margin-bottom: 10px;">Scarica excel di questa tabella</button>
+
       <div *ngIf="activeTab === 1">
+
         <div class="row justify-content-center">
           <!-- <div class="col"> -->
           <div class="card">
+
             <div class="card-body p-0">
               <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
-
+                
                 <table class="table table-striped mb-0" #table1>
                   <thead style="background-color: #002d72;position: sticky;top: 0;">
                     <tr>
@@ -250,7 +253,7 @@
             <div class="card-body p-0">
               <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
 
-                <table class="table table-striped mb-0">
+                <table class="table table-striped mb-0" #table2>
                   <thead style="background-color: #002d72;position: sticky;top: 0;">
                     <tr>
                       <th scope="col">Tipo permesso</th>
@@ -335,7 +338,7 @@
             <div class="card-body p-0">
               <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
 
-                <table class="table table-striped mb-0">
+                <table class="table table-striped mb-0" #table3>
                   <thead style="background-color: #002d72;position: sticky;top: 0;">
                     <tr>
                       <th scope="col">Tipo permesso</th>
