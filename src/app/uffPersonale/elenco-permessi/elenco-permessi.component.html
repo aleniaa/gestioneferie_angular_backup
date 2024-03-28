@@ -34,9 +34,9 @@
 
 
 
-              <div class="dropdown" id="tipoPermesso">
+              <div class="dropdown" id="tipoPermesso" >
                 <a (click)="showPermessi()" class="dropbtn">{{tipoPermesso}}</a>
-                <div id="myDropdown" class="dropdown-content">
+                <div id="myDropdown" class="dropdown-content" >
                   <a (click)="selectSubmenuItem(permessoOrdinario.value)"
                     *ngFor="let permessoOrdinario of permessiOrdinari">{{permessoOrdinario.label}}</a>
                   <div class="dn-altripermessi">
@@ -152,6 +152,7 @@
       <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Permessi confermati</button>
       <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button>
       <!-- <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button> -->
+      <button (click)="exportTableToExcel()">Scarica excel</button>
     </div>
     <div class="tab-content container2">
       <div *ngIf="activeTab === 1">
@@ -161,7 +162,7 @@
             <div class="card-body p-0">
               <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
 
-                <table class="table table-striped mb-0">
+                <table class="table table-striped mb-0" #table1>
                   <thead style="background-color: #002d72;position: sticky;top: 0;">
                     <tr>
                       <th scope="col">Tipo permesso</th>
@@ -357,7 +358,7 @@
                   <tbody>
 
                     <tr *ngIf="permessiRespinti?.length == 0">
-                      <td colspan="12">Nessun respinto trovato</td>
+                      <td colspan="12">Nessun permesso respinto trovato</td>
                     </tr>
                     <tr *ngFor="let permesso of permessiRespinti" [ngClass]="{'permesso_malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
                                   'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),

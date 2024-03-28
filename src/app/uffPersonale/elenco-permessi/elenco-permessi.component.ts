@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Permesso } from 'src/app/core/models/permesso';
 import { Utente } from 'src/app/core/models/utente';
@@ -9,6 +9,7 @@ import { UtenteService } from 'src/app/core/services/utente.service';
 import { saveAs } from 'file-saver-es';
 import { DatePipe } from '@angular/common';
 import { catchError, forkJoin, throwError } from 'rxjs';
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -82,6 +83,9 @@ export class ElencoPermessiComponent implements OnInit {
   ];
 
   sortedAltriPermessi: { value: string, label: string }[] = []
+  @ViewChild('table1') table1: ElementRef; // Reference for table in tab 1
+  @ViewChild('table2') table2: ElementRef; // Reference for table in tab 2
+  @ViewChild('table3') table3: ElementRef; 
 
 
   constructor(private permessoService: PermessoService, private utenteService: UtenteService, private fileUploadService: FileUploadService) { }
@@ -93,6 +97,34 @@ export class ElencoPermessiComponent implements OnInit {
     this.getPermessi()
     this.ordinaAltripermessi()
   }
+
+  exportTableToExcel() {
+    let table: HTMLTableElement;
+    let fileName: string;
+
+    switch (this.activeTab) {
+      case 1:
+        table = this.table1.nativeElement;
+        fileName = 'permessi_da_confermare.xlsx';
+        break;
+      case 2:
+        table = this.table2.nativeElement;
+        fileName = 'permessi_confermati.xlsx';
+        break;
+      case 3:
+        table = this.table3.nativeElement;
+        fileName = 'permessi_respinti.xlsx';
+        break;
+      default:
+        return;
+    }
+
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(table);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, fileName);
+  }
+
 
   ordinaAltripermessi() {
     this.sortedAltriPermessi = this.altriPermessi.sort((a, b) => {

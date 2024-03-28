@@ -142,6 +142,11 @@ ul li:hover {
 
   /* aggiunto dopo */
 
+  
+  .dropdown-trigger:hover .dropdown-content {
+    display: block;
+  }
+
   .dropdown {
     position: relative;
     display: inline-block;
@@ -191,9 +196,9 @@ ul li:hover {
     display: block;
   }
   
-  .dropdown-content a:hover {
+  /* .dropdown-content a:hover {
     background-color: #ddd;
-  }
+  } */
   
   /* Show dropdown on hover and position it correctly */
   .dn-altripermessi:hover .altri-permessi {
@@ -213,6 +218,7 @@ ul li:hover {
     right: -100%;  /* Move the content to the left by its own width */
   }
 
+  
   .dropbtn {
     width: 300px;
     background-color: #ffffff;
@@ -225,4 +231,6 @@ ul li:hover {
   }
 
   .show {display: block;}
+  
+
   
