@@ -30,8 +30,8 @@ export class LoginService {
       let params = new HttpParams()
       .set('username', username)
       .set('password', password); 
-    return this.http.post<any>(`${this.apiServerUrl}/login`,null, {params: params})  
-    //return this.http.post<any>(`${this.apiServerUrl}/login/loginDipvvf`,null, {params: params})  
+    //return this.http.post<any>(`${this.apiServerUrl}/login`,null, {params: params})  
+    return this.http.post<any>(`${this.apiServerUrl}/login/loginDipvvf`,null, {params: params})  
     .pipe(map(user => {
       if(user){
         localStorage.setItem('currentUser', JSON.stringify(user));

@@ -220,7 +220,7 @@
         [(ngModel)]="infoUtenteFerie" name="searchutenteFerie" id="searchutenteFerie" class="form-control mr-sm-2"
         placeholder="Cerca utente.." required autocomplete="off">
 
-      <ul class="list-group" id="utentiTrovati">
+      <ul class="list-group" id="utentiTrovati" style="overflow-y: auto; max-height: 200px;">
         <!-- <ng-container *ngIf="utentiFerieTrovati.length > 0; else noUtentiFound"> -->
         <li class="list-group-item utentiFerieTrovati" *ngFor="let utenteFerie of utentiFerieTrovati"
           value="{{utenteFerie}}" (click)="selezionaUtenteFerie(utenteFerie)">

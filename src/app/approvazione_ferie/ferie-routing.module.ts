@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: 'gestionePermessi', component: GestionePermessiComponent },
       { path: 'richiediPermessi', component: RichiestaFerieFormComponent },
       { path: 'iMieiPermessi', component: IMieiPermessiComponent },
-      { path: 'modificaPass', component: ModificaPassComponent },
+      //{ path: 'modificaPass', component: ModificaPassComponent },
 
 
     ]

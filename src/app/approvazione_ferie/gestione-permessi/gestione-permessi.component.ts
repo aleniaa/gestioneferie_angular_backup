@@ -16,7 +16,7 @@ export class GestionePermessiComponent implements OnInit {
 
   public permessi: Permesso[] = [];
   public permessiPending: Permesso[] = [];
-  public utenteLoggato: Utente;
+  //public utenteLoggato: Utente;
   public permessiApprovati: Permesso[] = [];
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
@@ -26,7 +26,7 @@ export class GestionePermessiComponent implements OnInit {
   constructor(private permessoService: PermessoService, private loginService: LoginService) {
     this.note = "";
 
-    console.log(this.utenteLoggato)
+    //console.log(this.utenteLoggato)
   }
 
   openTab(tabNumber: number) {
@@ -121,7 +121,7 @@ export class GestionePermessiComponent implements OnInit {
 
   }
 
-        // questa funzione è nel caso in cui entrambi gli approvatori devono approvare il permesso per passare al personale
+  // questa funzione è nel caso in cui entrambi gli approvatori devono approvare il permesso per passare al personale
   // public getPermessiApprovatore(): void {
   //   this.svuotaPermessi();
   //   var values = JSON.parse(localStorage.getItem("currentUser"));
@@ -173,7 +173,7 @@ export class GestionePermessiComponent implements OnInit {
     this.svuotaPermessi();
     var values = JSON.parse(localStorage.getItem("currentUser"));
     var idUtenteApp = values.id;
-    console.log(idUtenteApp);
+    //console.log(idUtenteApp);
     this.permessoService.getPermessiApprovatore(idUtenteApp).subscribe(
       (response: Permesso[]) => {
         for (const permessoTrovato of response) {
@@ -198,8 +198,8 @@ export class GestionePermessiComponent implements OnInit {
               //non fare nulla
               break;
             case 4: // respinto da approvatore 1
-            if (idUtenteApp === permessoTrovato.idUtenteApprovazione) // è loggato l'approvatore 2 
-              this.permessiRespinti.push(permessoTrovato);
+              if (idUtenteApp === permessoTrovato.idUtenteApprovazione) // è loggato l'approvatore 2 
+                this.permessiRespinti.push(permessoTrovato);
               break;
             case 5: // respinto da approvatore 2
               if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) // è loggato l'approvatore 2 
@@ -210,10 +210,15 @@ export class GestionePermessiComponent implements OnInit {
                 this.permessiApprovati.push(permessoTrovato);
               }
               break;
+            case 7: // approvato da approvatore 1  e uff personale
+              break;
             case 8: // permesso approvato dall'approvatore 2 e uff personale
-              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue ) { // è loggato l'approvatore 2 
+              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) { // è loggato l'approvatore 2 
                 this.permessiApprovati.push(permessoTrovato);
               }
+              break;
+            case 9: // approvato da approvatore 1  e uff personale
+
               break;
             default: console.log("qualcosa non va");
           }

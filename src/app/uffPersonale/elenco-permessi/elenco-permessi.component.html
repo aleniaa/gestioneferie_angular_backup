@@ -1,5 +1,5 @@
 <div class="container fadeInDown">
-  <div class="container_searchForm">
+  <div class="container_searchForm ">
     <h2>Ricerca permessi per:</h2>
     <div class="col">
 
@@ -33,10 +33,10 @@
               </select> -->
 
 
-
-              <div class="dropdown" id="tipoPermesso" >
+              <!-- 
+              <div class="dropdown" id="tipoPermesso">
                 <a (click)="showPermessi()" class="dropbtn">{{tipoPermesso}}</a>
-                <div id="myDropdown" class="dropdown-content" >
+                <div id="myDropdown" class="dropdown-content">
                   <a (click)="selectSubmenuItem(permessoOrdinario.value)"
                     *ngFor="let permessoOrdinario of permessiOrdinari">{{permessoOrdinario.label}}</a>
                   <div class="dn-altripermessi">
@@ -51,6 +51,30 @@
                     <div class="malattia" style="overflow-y: auto; max-height: 200px;">
                       <a (click)="selectSubmenuItem(malattia.value)"
                         *ngFor="let malattia of malattie">{{malattia.label}}</a>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <div class="dropdown" id="tipoPermesso">
+                <div class="select-wrapper">
+                  <span class="selected-option">{{ tipoPermesso }}</span>
+                  <div id="myDropdown" class="dropdown-content">
+                    <a (click)="selectSubmenuItem(permessoOrdinario.value)"
+                      *ngFor="let permessoOrdinario of permessiOrdinari">{{permessoOrdinario.label}}</a>
+                    <div class="dn-altripermessi">
+                      <a>Altri permessi &#9658;<i class="fa fa-caret-down"></i></a>
+                      <div class="altri-permessi" style="overflow-y: auto; max-height: 200px;">
+                        <a (click)="selectSubmenuItem(permission.value)"
+                          *ngFor="let permission of sortedAltriPermessi">{{permission.label}}</a>
+                      </div>
+                    </div>
+                    <div class="dn-malattia">
+                      <a>Malattia &#9658;<i class="fa fa-caret-down"></i></a>
+                      <div class="malattia" style="overflow-y: auto; max-height: 200px;">
+                        <a (click)="selectSubmenuItem(malattia.value)"
+                          *ngFor="let malattia of malattie">{{malattia.label}}</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -69,11 +93,13 @@
               <input type="text" (ngModelChange)="cercaUtenteRichiedente(key.value)" #key="ngModel"
                 [(ngModel)]="infoRichiedente" name="key" id="searchName" class="form-control mr-sm-2"
                 placeholder="Cerca utente.." autocomplete="off">
-
-              <ul class="list-group" id="utentiTrovati" style="overflow-y: auto; max-height: 200px;">
-                <li class="list-group-item" *ngFor="let utente of utentiRichiedentiTrovati" value="{{utente?.id}}"><a
-                    (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " + utente?.nome}}</a></li>
-              </ul>
+              <div class="lista">
+                <ul class="list-group" style="overflow-y: auto; max-height: 200px; z-index: 1;">
+                  <li class="list-group-item" id="utentiTrovati" *ngFor="let utente of utentiRichiedentiTrovati"
+                    value="{{utente?.id}}"><a (click)="selezionaUtenteRichiedente(utente)">{{utente?.cognome+ " " +
+                      utente?.nome}}</a></li>
+                </ul>
+              </div>
             </div>
 
             <input type="hidden" ngModel="{{utenteRichiedente?.id}}" name="idUtenteRichiedente" class="form-control"
@@ -154,7 +180,8 @@
       <!-- <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button> -->
     </div>
     <div class="tab-content container2">
-      <button class="btn btn-primary" (click)="exportTableToExcel()" style="margin-bottom: 10px;">Scarica excel di questa tabella</button>
+      <button class="btn btn-primary" (click)="exportTableToExcel()" style="margin-bottom: 10px;">Scarica excel di
+        questa tabella</button>
 
       <div *ngIf="activeTab === 1">
 
@@ -164,7 +191,7 @@
 
             <div class="card-body p-0">
               <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
-                
+
                 <table class="table table-striped mb-0" #table1>
                   <thead style="background-color: #002d72;position: sticky;top: 0;">
                     <tr>
@@ -309,7 +336,7 @@
                           &#9989;<br>
                           Ufficio Personale &#9989;
                         </ng-container>
-                        
+
                         <ng-container *ngIf="permesso?.status===31">
                           Ufficio Personale &#9989;
                         </ng-container>
@@ -511,21 +538,23 @@
             del {{ permessoSelezionato?.dataInizio }} ?
           </h3>
         </div>
-        <div class="form-group">
-          <label for="note">Inserisci il motivo per cui stai respingendo il permesso:</label>
-          <textarea [(ngModel)]="note" name="note" class="form-control" id="note" placeholder="Motivo"
-            title="Inserisci il motivo per cui stai respingendo il permesso" maxlength="200" required></textarea>
-        </div>
-        <h4 style="color: red;">Attenzione: l'azione non è reversibile. </h4>
+        <form #confermaForm="ngForm" ngNativeValidate>
+          <div class="form-group">
+            <label for="note">Inserisci il motivo per cui stai respingendo il permesso:</label>
+            <textarea [(ngModel)]="note" name="note" class="form-control" id="note" placeholder="Motivo"
+              title="Inserisci il motivo per cui stai respingendo il permesso" maxlength="200" required></textarea>
+          </div>
+          <h4 style="color: red;">Attenzione: l'azione non è reversibile. </h4>
 
-        <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal"
-            (click)="respingiPermesso()">Respingi</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+          <div class="alert alert-danger" role="alert" style="display: none;" id="selectFileAlert">Seleziona dei file!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"
+              (click)="respingiPermesso()">Respingi</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
 
-        </div>
+          </div>
+        </form>
       </div>
 
 

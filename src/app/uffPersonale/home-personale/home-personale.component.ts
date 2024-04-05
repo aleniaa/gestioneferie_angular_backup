@@ -20,13 +20,13 @@ export class HomePersonaleComponent {
     this.navbarlinks.push({ header: "Ricerca permessi", link: "ricercaPermessi" });
     //this.navbarlinks.push({ header: "Richiedi permessi", link: "richiediPermessi" });
     //this.navbarlinks.push({ header: "I miei permessi", link: "iMieiPermessi" });
-    this.navbarlinks.push({ header: "Modifica password", link: "modificaPass" });
+    //this.navbarlinks.push({ header: "Modifica password", link: "modificaPass" });
     this.titlelink = "/personale/ricercaPermessi";
   }
 
   ngOnInit(): void {
     this.route.navigate(['/personale/ricercaPermessi']);
-    this.checkPassword();
+    //this.checkPassword();
   }
 
   checkPassword(){
@@ -36,13 +36,14 @@ export class HomePersonaleComponent {
       (response: any) => { //jfoiewfjwoiej
         this.message=response.message;
         //console.log(this.message)
-        if(this.message==="Password da cambiare"){
-          alert("La tua password è quella di default, verrai reindirizzato alla pagina per modificarla.")
-          this.route.navigate(['/personale/modificaPass']);
-        }else{
-          this.route.navigate(['/personale/ricercaPermessi']);
+                // --- da decommentare se il login non si fa con ldap dipvvf.it ufficilale
+        // if(this.message==="Password da cambiare"){
+        //   alert("La tua password è quella di default, verrai reindirizzato alla pagina per modificarla.")
+        //   this.route.navigate(['/personale/modificaPass']);
+        // }else{
+        //   this.route.navigate(['/personale/ricercaPermessi']);
 
-        }
+        // }
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

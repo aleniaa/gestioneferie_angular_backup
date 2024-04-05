@@ -1,5 +1,5 @@
 /* Reset CSS */
-body, figure, h1, h2, h3, h4, h5, h6, p, ol, ul, dl, li, dt, dd, blockquote, pre, form, fieldset, input, textarea, p, hr, table, th, td {
+body, figure, h1, h2, h3, h4, h5, h6, p, ol, ul, dl, li, dt, dd, blockquote, pre, form, fieldset, input, textarea, p, hr, table, th, td, span {
     margin: 0;
     padding: 0;
     font-size: 100%;
