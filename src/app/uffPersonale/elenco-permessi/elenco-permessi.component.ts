@@ -155,6 +155,8 @@ export class ElencoPermessiComponent implements OnInit {
   resettaCampiSearchForm() {
     this.tipoPermesso = "tutti i permessi"
     this.utenteRichiedente = null
+    this.infoApprovatore = null
+    this.infoRichiedente = null
     this.utenteApprovatore = null
     this.dataApprovazione = null
     this.dataAssenza = null
