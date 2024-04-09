@@ -105,6 +105,10 @@ export class SchedaUtentiComponent implements OnInit{
     this.message=""
     this.errorMsg=""
     this.password= null;
+    if(this.key_messaggio){
+      //console.log("sono dentro l'if")
+      this.cercaUtenti(this.key_messaggio);
+    }
   }
 
   public onCloseModalAdd(addForm: NgForm):void{
@@ -160,18 +164,22 @@ export class SchedaUtentiComponent implements OnInit{
   public cancellaUtente(utenteId: number): void{
     this.utenteService.cancellaUtente(utenteId).subscribe(
       (response: void) => { //jfoiewfjwoiej
-        console.log(response);
+        //console.log(response);
         this.getUtenti();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       },
     ); //addform.value è una rappresentaione json dei dati inseriti nel form
+
+    this.onCloseModal();
   }
 
   public cercaUtenti(key: string): void{
+    this.utentiTrovati= [];
+    this.getUtenti();
     this.key_messaggio=key;
-    console.log(key)
+    //console.log(key)
     const risultati: Utente[]=[];
     for(const utente of this.utenti){
       if(key)

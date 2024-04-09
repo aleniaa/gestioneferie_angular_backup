@@ -241,7 +241,7 @@ export class ElencoPermessiComponent implements OnInit {
   }
 
   public respingiPermesso() {
-    document.getElementById('respingiPermesso')?.click();
+    document.getElementById('respingiPermessoModal')?.click();
     console.log("le note sono:")
     console.log(this.note)
     var values = JSON.parse(localStorage.getItem("currentUser"));
@@ -505,7 +505,7 @@ export class ElencoPermessiComponent implements OnInit {
   }
 
   public cercaUtenteRichiedente(key: string): void {
-
+    this.getUtenti();
     const risultati: Utente[] = [];
     //console.log(key)
     for (const utente of this.utenti) {
