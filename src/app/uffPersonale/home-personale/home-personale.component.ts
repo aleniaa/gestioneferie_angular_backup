@@ -17,9 +17,9 @@ export class HomePersonaleComponent {
   message: string;
  
   constructor(private route: Router, private loginService: LoginService) {
-    this.navbarlinks.push({ header: "Gestione permessi", link: "ricercaPermessi" });
-    this.navbarlinks.push({ header: "Richiedi permessi", link: "richiediPermessi" });
-    this.navbarlinks.push({ header: "I miei permessi", link: "iMieiPermessi" });
+    this.navbarlinks.push({ header: "Gestione assenze", link: "ricercaPermessi" });
+    this.navbarlinks.push({ header: "Richiedi assenze", link: "richiediPermessi" });
+    this.navbarlinks.push({ header: "Le mie assenze", link: "iMieiPermessi" });
     //this.navbarlinks.push({ header: "Modifica password", link: "modificaPass" });
     this.titlelink = "/personale/ricercaPermessi";
   }

@@ -21,7 +21,10 @@ body, figure, h1, h2, h3, h4, h5, h6, p, ol, ul, dl, li, dt, dd, blockquote, pre
     min-height: 100vh;
   }
 
-
+  /* .app-container{
+    margin-left: auto;
+    margin-right: auto;
+  } */
   
   
  .container {
@@ -33,6 +36,7 @@ body, figure, h1, h2, h3, h4, h5, h6, p, ol, ul, dl, li, dt, dd, blockquote, pre
     /* background-color: #F5F7FA; */
   
     border-radius: 10px;
+
 
     
   } 

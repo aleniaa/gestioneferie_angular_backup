@@ -16,8 +16,8 @@ export class HomeUserComponent implements OnInit{
   message: string;
  
   constructor(private route: Router, private loginService: LoginService) {
-    this.navbarlinks.push({ header: "Richiedi permessi", link: "richiediPermessi" });
-    this.navbarlinks.push({ header: "I miei permessi", link: "iMieiPermessi" });
+    this.navbarlinks.push({ header: "Richiedi assenza", link: "richiediPermessi" });
+    this.navbarlinks.push({ header: "Le mie assenze", link: "iMieiPermessi" });
     //this.navbarlinks.push({ header: "Modifica password", link: "modificaPass" });
 
     this.titlelink = "/utente";

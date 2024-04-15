@@ -1,6 +1,6 @@
 <div class="container fadeInDown">
   <div class="container_searchForm ">
-    <h2>Ricerca permessi per:</h2>
+    <h2>Ricerca assenze per:</h2>
     <div class="col">
 
       <!-- <form #searchForm="ngForm" (ngSubmit)="searchConfermareOConfermati(searchForm)" id="searchForm" ngNativeValidate> -->
@@ -174,9 +174,9 @@
 
   <section class="tab-container" id="main-container">
     <div class="tab-links">
-      <button class="tab-link" [class.active]="activeTab === 1" (click)="openTab(1)">Permessi da confermare</button>
-      <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Permessi confermati</button>
-      <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button>
+      <button class="tab-link" [class.active]="activeTab === 1" (click)="openTab(1)">Assenze da confermare</button>
+      <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Assenze confermate</button>
+      <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Assenze respinte</button>
       <!-- <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button> -->
     </div>
     <div class="tab-content container2">
@@ -214,7 +214,7 @@
                   <tbody>
 
                     <tr *ngIf="permessiDaConfermare?.length == 0">
-                      <td colspan="12">Nessun permesso da confermare trovato</td>
+                      <td colspan="12">Nessun assenza da confermare trovata</td>
                     </tr>
                     <tr *ngFor="let permesso of permessiDaConfermare" [ngClass]="{'permesso_malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
                                   'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),
@@ -301,7 +301,7 @@
                   <tbody>
 
                     <tr *ngIf="permessiConfermati?.length == 0">
-                      <td colspan="12">Nessun permesso confermato trovato</td>
+                      <td colspan="12">Nessun assenza confermata trovata</td>
                     </tr>
                     <tr *ngFor="let permesso of permessiConfermati" [ngClass]="{'permesso_malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
                                   'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),
@@ -388,7 +388,7 @@
                   <tbody>
 
                     <tr *ngIf="permessiRespinti?.length == 0">
-                      <td colspan="12">Nessun permesso respinto trovato</td>
+                      <td colspan="12">Nessun assenza respinta trovata</td>
                     </tr>
                     <tr *ngFor="let permesso of permessiRespinti" [ngClass]="{'permesso_malattia': permesso.tipoPermesso.includes('Malattia') || permesso.tipoPermesso.includes('Terapia'),
                                   'congedo': permesso.tipoPermesso.includes('Congedo') || permesso.tipoPermesso.includes('Ordinario'),

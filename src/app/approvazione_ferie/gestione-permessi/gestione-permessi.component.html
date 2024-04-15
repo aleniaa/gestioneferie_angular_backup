@@ -1,5 +1,5 @@
 <div class="container wrapper fadeInDown">
-  <h1>Gestione permessi</h1>
+  <h1>Gestione Assenze</h1>
 
   <!-- <h2>Gestione Permessi</h2>
 
@@ -186,9 +186,9 @@
   </section> -->
   <div class="tab-container" id="main-container">
     <div class="tab-links">
-      <button class="tab-link" [class.active]="activeTab === 1" (click)="openTab(1)">Permessi da approvare</button>
-      <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Permessi approvati</button>
-      <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Permessi respinti</button>
+      <button class="tab-link" [class.active]="activeTab === 1" (click)="openTab(1)">Assenze da approvare</button>
+      <button class="tab-link" [class.active]="activeTab === 2" (click)="openTab(2)">Assenze approvate</button>
+      <button class="tab-link" [class.active]="activeTab === 3" (click)="openTab(3)">Assenze respinte</button>
     </div>
     <div class="tab-content container2">
       <div *ngIf="activeTab === 1">
@@ -220,7 +220,7 @@
 
                   <tbody>
                     <tr *ngIf="permessiPending?.length == 0">
-                      <td colspan="10">Nessun permesso da approvare</td>
+                      <td colspan="10">Nessun assenza da approvare</td>
                     </tr>
                     <tr *ngFor="let permesso of permessiPending">
                       <th scope="row">{{permesso?.tipoPermesso}}</th>
@@ -289,7 +289,7 @@
                   </thead>
                   <tbody>
                     <tr *ngIf="permessiApprovati?.length == 0">
-                      <td colspan="10">Nessun permesso approvato</td>
+                      <td colspan="10">Nessun assenza approvata</td>
                     </tr>
                     <tr *ngFor="let permesso of permessiApprovati">
                       <th scope="row">{{permesso?.tipoPermesso}}</th>
@@ -342,7 +342,7 @@
                     </thead>
                     <tbody>
                       <tr *ngIf="permessiRespinti?.length == 0">
-                        <td colspan="11">Nessun permesso respinto</td>
+                        <td colspan="11">Nessun assenza respinta</td>
                       </tr>
                       <tr *ngFor="let permesso of permessiRespinti">
                         <th scope="row">{{permesso?.tipoPermesso}}</th>

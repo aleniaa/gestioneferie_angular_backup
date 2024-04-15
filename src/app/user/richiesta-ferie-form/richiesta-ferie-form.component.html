@@ -1,11 +1,11 @@
 <div class="container wrapper fadeInDown">
-  <h1>Richiedi Permessi</h1>
+  <h1>Richiedi assenza</h1>
   <div class="row">
     <div class="col">
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           mdbDropdownToggle aria-haspopup="true" aria-expanded="false">
-          Scegli il tipo di permesso
+          Scegli il tipo di assenza
         </button>
         <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="tipo_permesso">
           <li><a class="dropdown-item" (click)="toggleForm('congedo')">CONGEDO ORDINARIO</a></li>
@@ -99,7 +99,7 @@
     <h2 style="padding-top: 5px;">MALATTIA</h2>
     <p style=" border-style: groove; border-color:red; padding: 5px;"><b>IMPORTANTE: Anche se inserita qui, la malattia
         deve essere OBBLIGATORIAMENTE comunicata all'ufficio personale telefonicamente o per email! </b> </p>
-    <p><i>Da allegare certificato medico nella pagina "I miei permessi"</i> </p>
+    <p><i>Da allegare certificato medico nella pagina "Le mie assenze"</i> </p>
 
     <form #malattia_form="ngForm" (ngSubmit)="aggiungiPermesso(malattia_form)" id="malattia_form" ngNativeValidate>
       <!-- (ngSubmit)="inviaPermesso(malattia)"  -->
@@ -686,7 +686,7 @@
         </div>
 
 
-        <h4><b>SI ALLEGA/SEGUIRA' DOCUMENTAZIONE GIUSTIFICATIVA (da allegare nella sezione "I miei permessi")</b></h4>
+        <h4><b>SI ALLEGA/SEGUIRA' DOCUMENTAZIONE GIUSTIFICATIVA (da allegare nella sezione "Le mie assenze")</b></h4>
 
 
         <div class="col">
