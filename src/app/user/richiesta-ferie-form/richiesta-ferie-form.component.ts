@@ -8,6 +8,7 @@ import { PermessoService } from 'src/app/core/services/permesso.service';
 import { UtenteService } from 'src/app/core/services/utente.service';
 import { LoginService } from 'src/app/login.service';
 import { Capoturno } from 'src/app/core/models/capoturno.enum';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-richiesta-ferie-form',
@@ -39,8 +40,8 @@ export class RichiestaFerieFormComponent implements OnInit {
   public utenteFerieSelezionato: Utente;
   public infoUtenteFerie: string;
   public tipoPermesso: string;
-  public currentForm: string;
   public key_messaggio: string ;
+  public currentForm: string;
   
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) {
@@ -57,6 +58,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     this.totGiorni=0;
     this.tipo_malattia="Malattia"
     this.key_messaggio= ""
+    this.currentForm="congedo"
 
   }
 
@@ -153,6 +155,7 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   public selezionaUtenteFerie(utenteFerieSelezionato: Utente){
     this.utenteFerieSelezionato= utenteFerieSelezionato;
+    console.log(this.utenteFerieSelezionato)
     this.infoUtenteFerie= this.utenteFerieSelezionato.nome+ " " + this.utenteFerieSelezionato.cognome;
     this.utentiFerieTrovati= [];
     this.key_messaggio=''
@@ -210,38 +213,94 @@ export class RichiestaFerieFormComponent implements OnInit {
     )
   }
 
+  // public aggiungiPermesso(permessoForm: NgForm): void {
+  //   console.log("utente loggato in aggiungi permesso richiesta ferie form component:");
+  //   var tipoPermessoForm = permessoForm.value['tipoPermesso'];
+  //   console.log(tipoPermessoForm)
+  //   this.error="";
+  //   this.message = "";
+  //   console.log(this.idUtenteLoggato);
+  //   this.permessoService.aggiungiPermesso(permessoForm.value, this.idUtenteLoggato).subscribe(
+  //     (response: string) => {
+  //       this.message = response;
+  //       //console.log(response);
+  //       this.tipoPermesso= tipoPermessoForm
+  //       console.log(tipoPermessoForm)
+  //       permessoForm.reset();
+        
+  //       console.log(tipoPermessoForm)
+  //       //this.azzeraVariabili()
+  //       //this.error="";
+  //       var values = JSON.parse(localStorage.getItem("currentUser"));
+  //       this.idUtenteLoggato = values.id;
+  //       this.key_messaggio=""
+
+
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       //alert(error.message);
+  //       this.error = error.error;
+  //       console.log(this.error)
+  //       //this.message = "";
+  //       //permessoForm.reset();
+  //       var values = JSON.parse(localStorage.getItem("currentUser"));
+  //       this.idUtenteLoggato = values.id;
+  //     },
+  //   );
+
+
+  // }
+
   public aggiungiPermesso(permessoForm: NgForm): void {
     console.log("utente loggato in aggiungi permesso richiesta ferie form component:");
+    //var tipoPermessoForm = permessoForm.value['tipoPermesso'];
+    console.log(this.tipoPermesso);
 
-    this.error="";
+    //permessoForm.controls['tipoPermesso'].setValue(this.tipoPermesso);
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    this.idUtenteLoggato = values.id;
+    console.log("ID dell'utente loggato:", this.idUtenteLoggato);
+    //permessoForm.controls['idUtenteRichiedente'].setValue(this.idUtenteLoggato);
+
+
+    console.log(this.tipoPermesso);
+    this.error = "";
     this.message = "";
     console.log(this.idUtenteLoggato);
-    this.permessoService.aggiungiPermesso(permessoForm.value, this.idUtenteLoggato).subscribe(
-      (response: string) => {
+  
+    if(this.currentForm=='congedo'){
+      permessoForm.controls['tipoPermesso'].setValue("Congedo Ordinario");
+    }
+
+    if(this.currentForm=='recupero_ore'){
+      permessoForm.controls['tipoPermesso'].setValue("Recupero ore eccedenti");
+    }
+
+    permessoForm.controls['idUtenteApprovazione'].setValue(this.utenteFerieSelezionato.id);
+
+    console.log(permessoForm.value['tipoPermesso'])
+    console.log(permessoForm.value['idUtenteApprovazione'])
+
+    this.permessoService.aggiungiPermesso(permessoForm.value, this.idUtenteLoggato)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.error = error.error;
+          console.log(this.error);
+          var values = JSON.parse(localStorage.getItem("currentUser"));
+          this.idUtenteLoggato = values.id;
+          return throwError(error);
+        })
+      )
+      .subscribe((response: string) => {
         this.message = response;
-        //console.log(response);
+        //this.tipoPermesso = tipoPermessoForm;
+        //console.log(tipoPermessoForm);
         permessoForm.reset();
-        //this.azzeraVariabili()
-        //this.error="";
+        //console.log(tipoPermessoForm);
         var values = JSON.parse(localStorage.getItem("currentUser"));
         this.idUtenteLoggato = values.id;
-        this.tipoPermesso= this.currentForm
-        this.key_messaggio=""
-
-
-      },
-      (error: HttpErrorResponse) => {
-        //alert(error.message);
-        this.error = error.error;
-        console.log(this.error)
-        //this.message = "";
-        //permessoForm.reset();
-        var values = JSON.parse(localStorage.getItem("currentUser"));
-        this.idUtenteLoggato = values.id;
-      },
-    );
-
-
+        this.key_messaggio = "";
+      });
   }
 
 
@@ -265,7 +324,6 @@ export class RichiestaFerieFormComponent implements OnInit {
 
 
   public toggleForm(form: string): void {
-    this.currentForm= form;
     this.azzeraVariabili();
     var x = document.getElementById("ferie_form");
     var congedo = document.getElementById("congedo_form");
@@ -273,6 +331,7 @@ export class RichiestaFerieFormComponent implements OnInit {
     var recupero_ore = document.getElementById("recupero_ore_form");
     var permessi = document.getElementById("permessi_form");
     var malattia = document.getElementById("malattia_container");
+    this.currentForm=form
 
     if (form === 'congedo') {
       //permesso_breve.style.display = "none";
