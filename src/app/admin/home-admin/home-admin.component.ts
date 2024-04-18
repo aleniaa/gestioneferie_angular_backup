@@ -18,8 +18,8 @@ export class HomeAdminComponent implements OnInit {
 
   constructor(private route: Router, private loginService: LoginService) {
     this.navbarlinks.push({ header: "Gestione Utenti", link: "gestioneUtenti" });
-    this.navbarlinks.push({ header: "Richiedi permessi", link: "richiediPermessi" });
-    this.navbarlinks.push({ header: "I miei permessi", link: "iMieiPermessi" });
+    this.navbarlinks.push({ header: "Richiedi assenze", link: "richiediPermessi" });
+    this.navbarlinks.push({ header: "Le mie assenze", link: "iMieiPermessi" });
     this.navbarlinks.push({ header: "Modifica password", link: "modificaPass" });
     this.titlelink = "/admin/users";
     //this.route.navigate(['/admin/gestioneUtenti']);
@@ -35,14 +35,14 @@ export class HomeAdminComponent implements OnInit {
     //console.log(utente.password);
     this.loginService.checkPassword(utente.password, utente.id).subscribe(
       (response: any) => { //jfoiewfjwoiej
-        this.message=response.message;
-        if(this.message==="Password da cambiare"){
-          alert("La tua password è quella di default, verrai reindirizzato alla pagina per modificarla.")
-          this.route.navigate(['/admin/modificaPass']);
-        }else{
-          this.route.navigate(['/admin/gestioneUtenti']);
+        // this.message=response.message;
+        // if(this.message==="Password da cambiare"){
+        //   alert("La tua password è quella di default, verrai reindirizzato alla pagina per modificarla.")
+        //   this.route.navigate(['/admin/modificaPass']);
+        // }else{
+        //   this.route.navigate(['/admin/gestioneUtenti']);
 
-        }
+        // }
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
