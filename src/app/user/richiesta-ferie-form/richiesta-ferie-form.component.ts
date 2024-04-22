@@ -278,9 +278,11 @@ export class RichiestaFerieFormComponent implements OnInit {
 
     if(this.currentForm=='malattia'){
       permessoForm.controls['tipoPermesso'].setValue(this.tipo_malattia);
+      this.utenteFerieSelezionato.id= null;
     }
-
     permessoForm.controls['idUtenteApprovazione'].setValue(this.utenteFerieSelezionato.id);
+
+
 
     console.log(permessoForm.value['tipoPermesso'])
     console.log(permessoForm.value['idUtenteApprovazione'])
