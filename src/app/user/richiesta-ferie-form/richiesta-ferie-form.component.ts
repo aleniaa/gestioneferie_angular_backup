@@ -73,7 +73,7 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   malattia_radioButtonChanged(){
     
-    //console.log(this.tipo_malattia); // or perform any other action with the selected value
+    console.log(this.tipo_malattia); // or perform any other action with the selected value
 
   }
 
@@ -274,6 +274,10 @@ export class RichiestaFerieFormComponent implements OnInit {
 
     if(this.currentForm=='recupero_ore'){
       permessoForm.controls['tipoPermesso'].setValue("Recupero ore eccedenti");
+    }
+
+    if(this.currentForm=='malattia'){
+      permessoForm.controls['tipoPermesso'].setValue(this.tipo_malattia);
     }
 
     permessoForm.controls['idUtenteApprovazione'].setValue(this.utenteFerieSelezionato.id);
