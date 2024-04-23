@@ -73,7 +73,7 @@ export class RichiestaFerieFormComponent implements OnInit {
 
   malattia_radioButtonChanged(){
     
-    console.log(this.tipo_malattia); // or perform any other action with the selected value
+    //console.log(this.tipo_malattia); // or perform any other action with the selected value
 
   }
 
@@ -252,40 +252,45 @@ export class RichiestaFerieFormComponent implements OnInit {
   // }
 
   public aggiungiPermesso(permessoForm: NgForm): void {
-    console.log("utente loggato in aggiungi permesso richiesta ferie form component:");
+    //console.log("utente loggato in aggiungi permesso richiesta ferie form component:");
     //var tipoPermessoForm = permessoForm.value['tipoPermesso'];
-    console.log(this.tipoPermesso);
+    //console.log(this.tipoPermesso);
 
     //permessoForm.controls['tipoPermesso'].setValue(this.tipoPermesso);
     var values = JSON.parse(localStorage.getItem("currentUser"));
     this.idUtenteLoggato = values.id;
-    console.log("ID dell'utente loggato:", this.idUtenteLoggato);
+    //console.log("ID dell'utente loggato:", this.idUtenteLoggato);
+    //console.log(this.idUtenteLoggato);
     //permessoForm.controls['idUtenteRichiedente'].setValue(this.idUtenteLoggato);
 
 
-    console.log(this.tipoPermesso);
+    //console.log(this.tipoPermesso);
     this.error = "";
     this.message = "";
-    console.log(this.idUtenteLoggato);
+    
   
-    if(this.currentForm=='congedo'){
-      permessoForm.controls['tipoPermesso'].setValue("Congedo Ordinario");
-    }
+    // if(this.currentForm=='congedo'){
+    //   permessoForm.controls['tipoPermesso'].setValue("Congedo Ordinario");
+    // }
 
-    if(this.currentForm=='recupero_ore'){
-      permessoForm.controls['tipoPermesso'].setValue("Recupero ore eccedenti");
-    }
-
-    if(this.currentForm=='malattia'){
-      permessoForm.controls['tipoPermesso'].setValue(this.tipo_malattia);
-      this.utenteFerieSelezionato.id= null;
-    }
-    permessoForm.controls['idUtenteApprovazione'].setValue(this.utenteFerieSelezionato.id);
+    // if(this.currentForm=='recupero_ore'){
+    //   permessoForm.controls['tipoPermesso'].setValue("Recupero ore eccedenti");
+    // }
 
 
+    // if(this.currentForm=='malattia'){
+    //   permessoForm.controls['tipoPermesso'].setValue(this.tipo_malattia);
+    //   this.utenteFerieSelezionato.id== null;
+    // }
+    
+    // console.log(permessoForm.value['tipoPermesso'])
+    // console.log(permessoForm.value['idUtenteApprovazione'])
 
-    console.log(permessoForm.value['tipoPermesso'])
-    console.log(permessoForm.value['idUtenteApprovazione'])
+    //permessoForm.controls['idUtenteApprovazione'].setValue(this.utenteFerieSelezionato.id);
+
+
+
+
 
     this.permessoService.aggiungiPermesso(permessoForm.value, this.idUtenteLoggato)
       .pipe(
@@ -301,7 +306,7 @@ export class RichiestaFerieFormComponent implements OnInit {
         this.message = response;
         //this.tipoPermesso = tipoPermessoForm;
         //console.log(tipoPermessoForm);
-        permessoForm.reset();
+        //permessoForm.reset();
         //console.log(tipoPermessoForm);
         var values = JSON.parse(localStorage.getItem("currentUser"));
         this.idUtenteLoggato = values.id;
