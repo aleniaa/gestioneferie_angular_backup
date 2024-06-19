@@ -234,15 +234,18 @@
 
                       <td>
 
-                        <button type="button" (click)='approvaPermesso(permesso)'
+                        <!-- <button type="button" (click)='approvaPermesso(permesso)' class="btn btn-primary">Approva e inoltra</button> -->
 
-                        class="btn btn-primary">Approva</button>
+                        <button (click)="onconfermaEinoltraPermesso(permesso)" class="btn btn-primary tooltips"
+                          data-placement="top" data-toggle="tooltip" data-original-title="Approva e inoltra"><i
+                            class="fa fa-times">
+                            Approva e inoltra</i></button>
                       </td>
-                      
+
                       <!-- <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td> -->
 
 
-                      <td><button (click)="onRespingiPermesso(permesso)" class="btn btn-secondary tooltips"
+                      <td><button (click)="onRespingiPermesso(permesso)" class="btn btn-danger tooltips"
                           data-placement="top" data-toggle="tooltip" data-original-title="Respingi"><i
                             class="fa fa-times">
                             Respingi</i></button></td>
@@ -316,61 +319,60 @@
       <!-- </div> -->
       <div *ngIf="activeTab === 3">
         <!-- <div class="container"> -->
-          <div class="row justify-content-center">
-            <!-- <div class="col"> -->
-            <div class="card">
-              <div class="card-body p-0">
-                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
-                  style="position: relative;">
+        <div class="row justify-content-center">
+          <!-- <div class="col"> -->
+          <div class="card">
+            <div class="card-body p-0">
+              <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
 
-                  <table class="table table-striped mb-0">
-                    <thead style="background-color: #002d72;position: sticky;top: 0;">
-                      <tr>
-                        <th scope="col">Tipo permesso</th>
-                        <th scope="col">Richiedente</th>
-                        <th scope="col">Dal giorno</th>
-                        <th scope="col">Al giorno</th>
-                        <th scope="col">Giorni totali</th>
-                        <th scope="col">Dalle ore</th>
-                        <th scope="col">Alle ore</th>
-                        <th scope="col">Ore totali</th>
-                        <th scope="col">Respinto in data:</th>
-                        <th scope="col">Note:</th>
-
-
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngIf="permessiRespinti?.length == 0">
-                        <td colspan="11">Nessun assenza respinta</td>
-                      </tr>
-                      <tr *ngFor="let permesso of permessiRespinti">
-                        <th scope="row">{{permesso?.tipoPermesso}}</th>
-                        <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
-                        <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
-                        <td>{{permesso?.totGiorni}}</td>
-                        <td>{{permesso?.dalleOre}}</td>
-                        <td>{{permesso?.alleOre}}</td>
-                        <td>{{permesso?.totOre}}</td>
-                        <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
-                        <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips"
-                            data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i
-                              class="fa fa-times"> Vedi
-                              note</i></button></td>
-                      </tr>
+                <table class="table table-striped mb-0">
+                  <thead style="background-color: #002d72;position: sticky;top: 0;">
+                    <tr>
+                      <th scope="col">Tipo permesso</th>
+                      <th scope="col">Richiedente</th>
+                      <th scope="col">Dal giorno</th>
+                      <th scope="col">Al giorno</th>
+                      <th scope="col">Giorni totali</th>
+                      <th scope="col">Dalle ore</th>
+                      <th scope="col">Alle ore</th>
+                      <th scope="col">Ore totali</th>
+                      <th scope="col">Respinto in data:</th>
+                      <th scope="col">Note:</th>
 
 
-                    </tbody>
-                  </table>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngIf="permessiRespinti?.length == 0">
+                      <td colspan="11">Nessun assenza respinta</td>
+                    </tr>
+                    <tr *ngFor="let permesso of permessiRespinti">
+                      <th scope="row">{{permesso?.tipoPermesso}}</th>
+                      <td>{{permesso?.utenteRichiedente.cognome + " " + permesso?.utenteRichiedente.nome}}</td>
+                      <td>{{permesso?.dataInizio | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.dataFine | date:'dd-MM-yyyy'}}</td>
+                      <td>{{permesso?.totGiorni}}</td>
+                      <td>{{permesso?.dalleOre}}</td>
+                      <td>{{permesso?.alleOre}}</td>
+                      <td>{{permesso?.totOre}}</td>
+                      <td>{{permesso?.dataApprovazione | date:'dd-MM-yyyy'}}</td>
+                      <td><button (click)="visualizzaNote(permesso)" class="btn btn-primary tooltips"
+                          data-placement="top" data-toggle="tooltip" data-original-title="visualizzaNote"><i
+                            class="fa fa-times"> Vedi
+                            note</i></button></td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
 
 
 
-                </div>
               </div>
             </div>
-            <!-- </div> -->
           </div>
+          <!-- </div> -->
+        </div>
         <!-- </div> -->
       </div>
     </div>
@@ -436,7 +438,55 @@
 
           <div class="modal-footer">
             <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-            <button type="submit" class="btn btn-primary">Respingi</button>
+            <button type="submit" class="btn btn-danger">Respingi</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- _____________________ MODAL CONFERMA E INOLTRA ________________ -->
+
+
+<div class="modal fade" id="confermaEinoltra" tabindex="-1" role="dialog" aria-labelledby="confermaEinoltraModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confermaEinoltraModalLabel">A chi vuoi inoltrare questa richiesta di permesso?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form #confermaForm="ngForm" id="confermaForm" (ngSubmit)="approvaPermessoEinoltra()" ngNativeValidate>
+
+          <!-- <div *ngFor="let item of permessoSelezionato | keyvalue">
+          <input type="hidden" [ngModel]="item?.value" [name]="item?.key" class="form-control"
+            id="{{item.key}}">
+        </div> -->
+
+          <!-- <div class="form-group menu-item">
+            <label for="idUtenteApprovazioneDueCongedo">Da sottomettere per approvazione ad un ulteriore
+              capoturno/funzionario
+              (opzionale):</label>
+            <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueCongedo"
+              placeholder="Scegli capoturno" form="permessi">
+
+              <option [ngValue]="">{{" "}}</option>
+              <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
+                {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+            </select>
+          </div> -->
+
+          <div class="modal-footer">
+            <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+            <button type="submit" class="btn btn-primary">Conferma e inoltra</button>
           </div>
         </form>
 

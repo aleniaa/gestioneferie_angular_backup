@@ -238,7 +238,7 @@
       <input type="hidden" ngModel="{{utenteFerieSelezionato?.id}}" name="idUtenteApprovazione" class="form-control">
 
     </div>
-    <div class="form-group menu-item">
+    <!-- <div class="form-group menu-item">
       <label for="idUtenteApprovazioneDueCongedo">Da sottomettere per approvazione ad un ulteriore
         capoturno/funzionario
         (opzionale):</label>
@@ -249,7 +249,7 @@
         <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
           {{approvatore?.cognome + " " + approvatore?.nome}}</option>
       </select>
-    </div>
+    </div> -->
 
 
 
@@ -412,7 +412,9 @@
           id="idUtenteApprovazione">
 
       </div>
-      <div class="form-group menu-item">
+
+
+      <!-- <div class="form-group menu-item">
         <label for="idUtenteApprovazioneDueRecupero">Da sottomettere per approvazione ad un ulteriore
           capoturno/funzionario
           (opzionale):</label>
@@ -422,7 +424,7 @@
           <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
             {{approvatore?.cognome + " " + approvatore?.nome}}</option>
         </select>
-      </div>
+      </div> -->
 
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
@@ -710,7 +712,7 @@
         </div>
 
 
-        <div class="col">
+        <!-- <div class="col">
 
           <div class="form-group menu-item">
             <label for="idUtenteApprovazioneDueAltriPermessi">Da sottomettere per approvazione ad un ulteriore
@@ -725,7 +727,7 @@
 
 
           </div>
-        </div>
+        </div> -->
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
         </div>

@@ -252,6 +252,28 @@ export class GestionePermessiComponent implements OnInit {
 
   }
 
+  public approvaPermessoEinoltra(): void {
+    document.getElementById('confermaEinoltra')?.click();
+    var values = JSON.parse(localStorage.getItem("currentUser"));
+    var idUtenteApp = values.id;
+    console.log(idUtenteApp)
+    this.permessoService.approvaPermesso(this.permessoSelezionato, idUtenteApp).subscribe(
+      (response: Permesso) => { //jfoiewfjwoiej
+        console.log(response);
+        //this.getPermessiApprovatoreByStatus();
+        this.getPermessiApprovatore2();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        //this.getPermessiApprovatoreByStatus();
+        this.getPermessiApprovatore2();
+
+      },
+    );
+
+
+  }
+
   //   public aggiornaPermesso(permesso: Permesso, statusPermesso: number): void{
   //     var values = JSON.parse(localStorage.getItem("currentUser"));
   //     var idUtenteApp = values.id; 
@@ -297,6 +319,19 @@ export class GestionePermessiComponent implements OnInit {
 
   }
 
+  public onconfermaEinoltraPermesso(permesso: Permesso): void {
+    this.permessoSelezionato = permesso;
+    const button = document.createElement('button');
+    const container = document.getElementById('main-container');
+
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#confermaEinoltra');
+    container?.appendChild(button);
+
+    button.click();
+  }
 
 
   public onRespingiPermesso(permesso: Permesso): void {
