@@ -471,18 +471,17 @@
             id="{{item.key}}">
         </div> -->
 
-          <!-- <div class="form-group menu-item">
-            <label for="idUtenteApprovazioneDueCongedo">Da sottomettere per approvazione ad un ulteriore
-              capoturno/funzionario
-              (opzionale):</label>
+          <div class="form-group menu-item">
+            <label for="idUtenteApprovazioneDueCongedo">Inoltra a :</label>
             <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueCongedo"
               placeholder="Scegli capoturno" form="permessi">
 
               <option [ngValue]="">{{" "}}</option>
+              <option [ngValue]="">{{"Uffcio personale "}}</option>
               <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
                 {{approvatore?.cognome + " " + approvatore?.nome}}</option>
             </select>
-          </div> -->
+          </div>
 
           <div class="modal-footer">
             <button type="button" id="annulla" class="btn btn-secondary" data-dismiss="modal">Annulla</button>

@@ -20,10 +20,11 @@ export class GestionePermessiComponent implements OnInit {
   public permessiApprovati: Permesso[] = [];
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
+  public utentiFerie: Utente[] = [];
   public note: string;
   activeTab: number = 1;
 
-  constructor(private permessoService: PermessoService, private loginService: LoginService) {
+  constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) {
     this.note = "";
 
     //console.log(this.utenteLoggato)
@@ -47,7 +48,31 @@ export class GestionePermessiComponent implements OnInit {
 
 
     //this.getPermessiApprovatore();
+    this.getUtentiFerie();
     this.getPermessiApprovatore2();
+  }
+
+  public getUtentiFerie(): void {
+    this.utenteService.getUtentiFerie().subscribe(
+      (response: Utente[]) => {
+
+        //se bisogna dividere gli utenti in funzionari e capiturno:
+        // for(const utenteFerie of response){
+        //   if(values.includes(utenteFerie.qualifica.nome as Capoturno)){
+        //     this.capiturno.push(utenteFerie);
+        //   }else{
+        //     this.funzionari.push(utenteFerie);
+        //   }
+
+
+        // }
+
+        this.utentiFerie = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
   }
 
   public visualizzaNote(permesso: Permesso): void {
