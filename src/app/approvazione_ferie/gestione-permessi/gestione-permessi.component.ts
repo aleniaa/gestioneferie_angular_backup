@@ -213,17 +213,21 @@ export class GestionePermessiComponent implements OnInit {
               }
 
               break;
-            case 2: // permesso approvato dall'approvatore 2
-              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) { // è loggato l'approvatore 2 
+            // case 2: // permesso approvato dall'approvatore 2
+            //   if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) { // è loggato l'approvatore 2 
+            //     this.permessiApprovati.push(permessoTrovato);
+            //   }
+            //   break;
+            case 2: // permesso approvato dall'approvatore 1 e da approvatore 2
                 this.permessiApprovati.push(permessoTrovato);
-              }
-              break;
+              
+              break;            
             case 3:
               //console.log("caso 3");
               //non fare nulla
               break;
             case 4: // respinto da approvatore 1
-              if (idUtenteApp === permessoTrovato.idUtenteApprovazione) // è loggato l'approvatore 2 
+              if (idUtenteApp === permessoTrovato.idUtenteApprovazione) // è loggato l'approvatore 1 
                 this.permessiRespinti.push(permessoTrovato);
               break;
             case 5: // respinto da approvatore 2
@@ -235,15 +239,25 @@ export class GestionePermessiComponent implements OnInit {
                 this.permessiApprovati.push(permessoTrovato);
               }
               break;
-            case 7: // approvato da approvatore 1  e uff personale
+            case 7: // approvato da approvatore 1 ma respinto da uff personale quindi non spunta agli approvatori di ferie
               break;
-            case 8: // permesso approvato dall'approvatore 2 e uff personale
-              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) { // è loggato l'approvatore 2 
-                this.permessiApprovati.push(permessoTrovato);
-              }
-              break;
-            case 9: // approvato da approvatore 1  e uff personale
+            // case 8: // permesso approvato dall'approvatore 2 e uff personale (nel caso di aggiornapermesso2 nel backend)
+            //   if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) { // è loggato l'approvatore 2 
+            //     this.permessiApprovati.push(permessoTrovato);
+            //   }
+            //   break;
+            case 8: // permesso approvato dall'approvatore 1 e 2 e uff personale
+            
+              this.permessiApprovati.push(permessoTrovato);
+            
+            break;
+            case 9: // approvato da approvatore 1 e 2 ma respinto quindi non spunta agli approvatori di ferie
 
+              break;
+            case 12: // permesso approvato dall'approvatore 1 e passato all'approvatore 2
+              if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) { // è loggato l'approvatore 2 
+                this.permessiPending.push(permessoTrovato);
+              }
               break;
             default: console.log("qualcosa non va");
           }
@@ -277,12 +291,11 @@ export class GestionePermessiComponent implements OnInit {
 
   }
 
-  public approvaPermessoEinoltra(): void {
+  public approvaPermessoEinoltra(form: NgForm): void {
     document.getElementById('confermaEinoltra')?.click();
-    var values = JSON.parse(localStorage.getItem("currentUser"));
-    var idUtenteApp = values.id;
-    console.log(idUtenteApp)
-    this.permessoService.approvaPermesso(this.permessoSelezionato, idUtenteApp).subscribe(
+    const idUtenteApp2 = form.value.idUtenteApprovazioneDue;
+    console.log(idUtenteApp2)
+    this.permessoService.approvaPermesso(this.permessoSelezionato, idUtenteApp2).subscribe(
       (response: Permesso) => { //jfoiewfjwoiej
         console.log(response);
         //this.getPermessiApprovatoreByStatus();

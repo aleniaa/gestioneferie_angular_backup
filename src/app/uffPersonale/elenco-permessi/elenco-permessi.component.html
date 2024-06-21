@@ -240,11 +240,12 @@
                         </ng-container> -->
 
                         <ng-container *ngIf="permesso?.status===1">
-                          {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || ''
-                          }}<br>
+                          {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || ''}}<br>
                         </ng-container>
 
                         <ng-container *ngIf="permesso?.status===2">
+                          {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || ''}}<br>
+
                           {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}<br>
 
                         </ng-container>
@@ -326,14 +327,22 @@
                           {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
                         </ng-container> -->
 
-                        <ng-container *ngIf="permesso?.status===6">
+
+                        <!-- ------------ giusto sotto -------- -->
+
+                        <!-- <ng-container *ngIf="permesso?.status===6">
                           {{ permesso?.utenteApprovazione?.cognome || '' }} {{ permesso?.utenteApprovazione?.nome || ''
                           }}<br>
+                        </ng-container> -->
+
+                        <ng-container *ngIf="permesso?.status===6">
+                          {{ permesso?.utenteApprovazione?.cognome + " " + permesso?.utenteApprovazione?.nome }} &#9989;<br>
                         </ng-container>
 
                         <ng-container *ngIf="permesso?.status===8">
-                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
-                          &#9989;<br>
+                          {{ permesso?.utenteApprovazione?.cognome + " " + permesso?.utenteApprovazione?.nome }} &#9989;<br>
+
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}} &#9989;<br>
                           Ufficio Personale &#9989;
                         </ng-container>
 

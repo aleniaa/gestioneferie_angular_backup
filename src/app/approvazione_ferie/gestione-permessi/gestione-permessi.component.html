@@ -422,7 +422,7 @@
       </div>
       <div class="modal-body">
 
-        <form #confermaForm="ngForm" id="confermaForm" (ngSubmit)="respingiPermesso()" ngNativeValidate>
+        <form #respingiForm="ngForm" id="respingiForm" (ngSubmit)="respingiPermesso()" ngNativeValidate>
 
           <!-- <div *ngFor="let item of permessoSelezionato | keyvalue">
           <input type="hidden" [ngModel]="item?.value" [name]="item?.key" class="form-control"
@@ -464,7 +464,8 @@
       </div>
       <div class="modal-body">
 
-        <form #confermaForm="ngForm" id="confermaForm" (ngSubmit)="approvaPermessoEinoltra()" ngNativeValidate>
+        <form #confermaForm="ngForm" id="confermaForm" (ngSubmit)="approvaPermessoEinoltra(confermaForm)"
+          ngNativeValidate>
 
           <!-- <div *ngFor="let item of permessoSelezionato | keyvalue">
           <input type="hidden" [ngModel]="item?.value" [name]="item?.key" class="form-control"
@@ -473,14 +474,23 @@
 
           <div class="form-group menu-item">
             <label for="idUtenteApprovazioneDueCongedo">Inoltra a :</label>
-            <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueCongedo"
-              placeholder="Scegli capoturno" form="permessi">
 
-              <option [ngValue]="">{{" "}}</option>
-              <option [ngValue]="">{{"Uffcio personale "}}</option>
-              <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
-                {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+
+            <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueCongedo"
+              placeholder="Scegli a chi mandare la richiesta" form="confermaForm">
+
+              <!-- <option [ngValue]="">{{" "}}</option> -->
+              <option [ngValue]="1">{{"Uffcio personale "}}</option>
+
+              <ng-container *ngIf="permessoSelezionato?.status!==12">
+                <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
+                  {{approvatore?.cognome + " " + approvatore?.nome}}</option>
+
+
+                
+              </ng-container>
             </select>
+
           </div>
 
           <div class="modal-footer">

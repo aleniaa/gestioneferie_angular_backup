@@ -280,9 +280,18 @@
                         </ng-container>
 
                         <ng-container *ngIf="permesso?.status===2">
-                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}
-                          &#9989;<br>
+                          {{permesso?.utenteApprovazione?.cognome + " " + permesso?.utenteApprovazione?.nome}} &#9989;<br>
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}} &#9989;<br>
+
                           In attesa di conferma dall'ufficio personale
+                        </ng-container>
+
+                        
+                        <ng-container *ngIf="permesso?.status===12">
+                          {{permesso?.utenteApprovazione?.cognome + " " + permesso?.utenteApprovazione?.nome}} &#9989;<br>
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}<br>
+
+                          
                         </ng-container>
 
                         <ng-container *ngIf="permesso?.status===3">
@@ -385,8 +394,9 @@
 
 
                         <ng-container *ngIf="permesso?.status == 8;">
-                          {{permesso?.utenteApprovazioneDue?.cognome + " " +
-                          permesso?.utenteApprovazioneDue?.nome}}<br>
+                          {{permesso?.utenteApprovazione?.cognome + " " + permesso?.utenteApprovazione?.nome}}<br>
+
+                          {{permesso?.utenteApprovazioneDue?.cognome + " " + permesso?.utenteApprovazioneDue?.nome}}<br>
                           Ufficio Personale
                         </ng-container>
 

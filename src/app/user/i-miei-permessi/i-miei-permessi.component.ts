@@ -304,7 +304,7 @@ export class IMieiPermessiComponent {
   //   )
   // }
 
-        // questa funzione è se devono approvare i permessi entrambi gli approvatori
+  // questa funzione è se devono approvare i permessi entrambi gli approvatori
   // public getPermessiRichiedente(): void {
 
   //   //localStorage.getItem("currentUser")
@@ -351,7 +351,7 @@ export class IMieiPermessiComponent {
 
   // }
 
-    //questa funzione è se basta che anche solo 1 dei due approvatori approvi il permesso (APPROCCIO VECCHIO)
+  //questa funzione è se basta che anche solo 1 dei due approvatori approvi il permesso (APPROCCIO VECCHIO)
   public getPermessiRichiedente2(): void {
 
     //localStorage.getItem("currentUser")
@@ -372,7 +372,10 @@ export class IMieiPermessiComponent {
             case 1: // permesso approvato dall'approvatore 1
               this.permessiPending.push(permessoTrovato);
               break;
-            case 2: // permesso approvato dall'approvatore 2
+            case 12: // permesso approvato dall'approvatore 1 e in attesa di approvazione da 2
+              this.permessiPending.push(permessoTrovato);
+              break;
+            case 2: // permesso approvato dall'approvatore 1 e 2 e in attesa di approvazione da uff personale
               this.permessiPending.push(permessoTrovato);
               break;
             case 3: // usato per malattia che deve essere approvato da personale
@@ -389,7 +392,7 @@ export class IMieiPermessiComponent {
             case 6: // approvato da uff personale + approvatore 1 o malattia approvata
 
               this.permessiApprovati.push(permessoTrovato);
-              
+
 
               break;
             case 7: // respinto da uff personale + app 1
@@ -418,7 +421,7 @@ export class IMieiPermessiComponent {
 
   }
 
-  
+
 }
 
 

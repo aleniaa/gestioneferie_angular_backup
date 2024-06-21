@@ -452,7 +452,7 @@ export class ElencoPermessiComponent implements OnInit {
               this.permessiDaConfermare.push(permessoTrovato);
               break;
 
-            case 2: // permesso approvato dall'approvatore 2
+            case 2: // permesso approvato dall'approvatore 2 e dall'approvatore 1
               this.permessiDaConfermare.push(permessoTrovato);
               break;
             case 3: // malattia
@@ -464,7 +464,7 @@ export class ElencoPermessiComponent implements OnInit {
             case 7: // permesso respinto da personale ma approvato dall'approvatore 1
               this.permessiRespinti.push(permessoTrovato);
               break;
-            case 8: // permesso approvato dall'approvatore 2 + Uffpersonale
+            case 8: // permesso approvato dall'approvatore 2 e 1 + Uffpersonale
               this.permessiConfermati.push(permessoTrovato);
               break;
             case 9: // permesso respinto da personale ma approvato dall'approvatore 2
