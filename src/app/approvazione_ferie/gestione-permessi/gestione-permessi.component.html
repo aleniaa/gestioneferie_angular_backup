@@ -483,7 +483,7 @@
               <option [ngValue]="1">{{"Uffcio personale "}}</option>
 
               <ng-container *ngIf="permessoSelezionato?.status!==12">
-                <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
+                <option *ngFor="let approvatore of filteredUtentiFerie" [ngValue]="approvatore.id" >
                   {{approvatore?.cognome + " " + approvatore?.nome}}</option>
 
 

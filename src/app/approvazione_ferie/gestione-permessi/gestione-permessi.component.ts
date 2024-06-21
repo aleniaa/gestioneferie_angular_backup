@@ -21,6 +21,7 @@ export class GestionePermessiComponent implements OnInit {
   public permessiRespinti: Permesso[] = [];
   public permessoSelezionato: Permesso;
   public utentiFerie: Utente[] = [];
+  public filteredUtentiFerie: Utente[] = [];
   public note: string;
   activeTab: number = 1;
 
@@ -50,6 +51,12 @@ export class GestionePermessiComponent implements OnInit {
     //this.getPermessiApprovatore();
     this.getUtentiFerie();
     this.getPermessiApprovatore2();
+  }
+
+  filterUtentiFerie(): void {
+    this.filteredUtentiFerie = this.utentiFerie.filter(approvatore => approvatore.id !== this.permessoSelezionato?.idUtenteApprovazione);
+    //console.log(this.permessoSelezionato?.idUtenteApprovazione)
+    console.log(this.filteredUtentiFerie)
   }
 
   public getUtentiFerie(): void {
@@ -257,6 +264,8 @@ export class GestionePermessiComponent implements OnInit {
             case 12: // permesso approvato dall'approvatore 1 e passato all'approvatore 2
               if (idUtenteApp === permessoTrovato.idUtenteApprovazioneDue) { // è loggato l'approvatore 2 
                 this.permessiPending.push(permessoTrovato);
+              }else{ // è loggato approvatore 1
+                this.permessiApprovati.push(permessoTrovato);
               }
               break;
             default: console.log("qualcosa non va");
@@ -359,6 +368,8 @@ export class GestionePermessiComponent implements OnInit {
 
   public onconfermaEinoltraPermesso(permesso: Permesso): void {
     this.permessoSelezionato = permesso;
+    this.filterUtentiFerie()
+    
     const button = document.createElement('button');
     const container = document.getElementById('main-container');
 
