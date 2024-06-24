@@ -29,6 +29,7 @@ export class SchedaUtentiComponent implements OnInit{
   password: string | null = null;
   public utentiTrovati: Utente[];
   public key_messaggio: string;
+  public valoreFiltro: string = 'FERIE'; // Initialize with a default value
 
   constructor(private utenteService: UtenteService, private qualificaService: QualificaService) { 
     this.message = "";
@@ -39,6 +40,12 @@ export class SchedaUtentiComponent implements OnInit{
   ngOnInit()  {
     this.getUtenti();
     this.getQualifiche();
+  }
+
+  filtra(){
+
+    this.utentiTrovati = this.utenti.filter(utente => utente.ruolo === this.valoreFiltro)
+
   }
 
   updateAccountDipvvf(){

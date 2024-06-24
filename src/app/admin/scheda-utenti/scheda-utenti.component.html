@@ -17,6 +17,28 @@
                   id="searchName" class="form-control mr-sm-2" placeholder="Cerca utenti..">
 
             </form>
+
+         </div>
+
+         <div class="col-md-6 col-xl-3">
+            <div id="filtraUtentibyRuolo">
+               <form #filtraForm id="filtraForm" class="form-inline my-2 px-2 my-lg-0" (submit)="filtra()"
+               ngNativeValidate>
+                 <select name="filtro" class="form-control " id="filtro" [(ngModel)]="valoreFiltro"
+                   placeholder="Scegli il ruolo:" form="filtraForm">
+     
+                   <option value="FERIE" selected>FERIE</option>
+                   <option value="PERSONALE" >PERSONALE</option>
+                   <option value="ADMIN" >ADMIN</option>
+                   <!-- <option value="1" >Uffcio personale </option> -->
+
+     
+                 </select>
+   
+                <br> 
+               <button type="submit" class="btn btn-primary">Filtra</button>
+             </form>
+            </div>
          </div>
       </div>
    </div>
