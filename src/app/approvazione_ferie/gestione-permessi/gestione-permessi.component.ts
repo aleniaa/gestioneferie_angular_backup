@@ -22,8 +22,10 @@ export class GestionePermessiComponent implements OnInit {
   public permessoSelezionato: Permesso;
   public utentiFerie: Utente[] = [];
   public filteredUtentiFerie: Utente[] = [];
+  idUtenteApprovazioneDue: number = 1;
   public note: string;
   activeTab: number = 1;
+  public error: string;
 
   constructor(private utenteService: UtenteService, private permessoService: PermessoService, private loginService: LoginService) {
     this.note = "";
@@ -54,9 +56,10 @@ export class GestionePermessiComponent implements OnInit {
   }
 
   filterUtentiFerie(): void {
-    this.filteredUtentiFerie = this.utentiFerie.filter(approvatore => approvatore.id !== this.permessoSelezionato?.idUtenteApprovazione);
+    this.filteredUtentiFerie = this.utentiFerie.filter(approvatore => approvatore.id !== this.permessoSelezionato?.idUtenteApprovazione)
+    .sort((a, b) => a.cognome.localeCompare(b.cognome));
     //console.log(this.permessoSelezionato?.idUtenteApprovazione)
-    console.log(this.filteredUtentiFerie)
+    //console.log(this.filteredUtentiFerie)
   }
 
   public getUtentiFerie(): void {
@@ -301,22 +304,29 @@ export class GestionePermessiComponent implements OnInit {
   }
 
   public approvaPermessoEinoltra(form: NgForm): void {
-    document.getElementById('confermaEinoltra')?.click();
+    
     const idUtenteApp2 = form.value.idUtenteApprovazioneDue;
     console.log(idUtenteApp2)
-    this.permessoService.approvaPermesso(this.permessoSelezionato, idUtenteApp2).subscribe(
-      (response: Permesso) => { //jfoiewfjwoiej
-        console.log(response);
-        //this.getPermessiApprovatoreByStatus();
-        this.getPermessiApprovatore2();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        //this.getPermessiApprovatoreByStatus();
-        this.getPermessiApprovatore2();
+    if(idUtenteApp2===null || idUtenteApp2===""){
+      this.error= "Devi selezionare qualcuno!"
+    }else{
+      document.getElementById('confermaEinoltra')?.click();
+      this.permessoService.approvaPermesso(this.permessoSelezionato, idUtenteApp2).subscribe(
+        (response: Permesso) => { //jfoiewfjwoiej
+          console.log(response);
+          //this.getPermessiApprovatoreByStatus();
+          this.getPermessiApprovatore2();
+        },
+        (error: HttpErrorResponse) => {
+          this.error = error.error;
+          alert(error.message);
+          //this.getPermessiApprovatoreByStatus();
+          this.getPermessiApprovatore2();
+  
+        },
+      );
+    }
 
-      },
-    );
 
 
   }

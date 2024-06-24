@@ -476,11 +476,11 @@
             <label for="idUtenteApprovazioneDueCongedo">Inoltra a :</label>
 
 
-            <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueCongedo"
+            <select ngModel name="idUtenteApprovazioneDue" class="form-control " id="idUtenteApprovazioneDueCongedo" 
               placeholder="Scegli a chi mandare la richiesta" form="confermaForm">
 
               <!-- <option [ngValue]="">{{" "}}</option> -->
-              <option [ngValue]="1">{{"Uffcio personale "}}</option>
+              <option [ngValue]="1" selected>{{"Uffcio personale "}}</option>
 
               <ng-container *ngIf="permessoSelezionato?.status!==12">
                 <option *ngFor="let approvatore of filteredUtentiFerie" [ngValue]="approvatore.id" >
@@ -491,6 +491,12 @@
               </ng-container>
             </select>
 
+          </div>
+
+          <div class="avvisi">
+            <div class="alert alert-danger" role="alert" *ngIf="error">
+              {{error}}
+            </div>
           </div>
 
           <div class="modal-footer">
