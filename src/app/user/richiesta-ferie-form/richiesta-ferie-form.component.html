@@ -12,7 +12,7 @@
           <!-- <li><a class="dropdown-item" (click)="toggleForm('permesso_breve')">PERMESSO BREVE</a></li> -->
           <li><a class="dropdown-item" (click)="toggleForm('recupero_ore')">RECUPERO ORE ECCEDENTI</a></li>
           <li><a class="dropdown-item" (click)="toggleForm('permessi')">ALTRI PERMESSI</a></li>
-          <li><a class="dropdown-item" (click)="toggleForm('malattia')">MALATTIA</a></li>
+          <!-- <li><a class="dropdown-item" (click)="toggleForm('malattia')">MALATTIA</a></li> -->
         </ul>
       </div>
     </div>
@@ -211,7 +211,7 @@
 
 
     <div class="form-group menu-item">
-      <label for="searchutenteFerie">Da sottomettere per approvazione al capoturno/funzionario (selezionare dal menu a
+      <label for="searchutenteFerie">Da sottomettere per approvazione al capoufficio o capoturno (selezionare dal menu a
         tendina):</label>
       <!-- <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
         placeholder="Scegli funzionario" form="congedo" required>
@@ -389,7 +389,7 @@
         </div>
       </div>
       <div class="form-group menu-item">
-        <label for="searchutenteFerie">Da sottomettere per approvazione al capoturno/funzionario (selezionare dal
+        <label for="searchutenteFerie">Da sottomettere per approvazione al capoufficio o capoturno (selezionare dal
           menu a tendina):</label>
 
         <input type="text" (ngModelChange)="cercaApprovatoreFerie(keyInput2.value)" #keyInput2="ngModel"
@@ -698,7 +698,7 @@
 
         <div class="col">
           <div class="form-group menu-item">
-            <label for="idUtenteApprovazioneAltri">Da sottomettere per approvazione al capoturno/funzionario:</label>
+            <label for="idUtenteApprovazioneAltri">Da sottomettere per approvazione al capoufficio o capoturno:</label>
             <!-- <select [(ngModel)]="selectedUtenteApprovazioneId" name="idUtenteApprovazione" class="form-control" -->
             <select ngModel name="idUtenteApprovazione" class="form-control"
               id="idUtenteApprovazioneAltri" placeholder="Scegli funzionario" form="permessi" required>

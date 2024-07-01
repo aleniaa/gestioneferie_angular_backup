@@ -480,7 +480,8 @@
               placeholder="Scegli a chi mandare la richiesta" form="confermaForm">
 
               <!-- <option [ngValue]="">{{" "}}</option> -->
-              <option [ngValue]="1" selected>{{"Uffcio personale "}}</option>
+              <option [ngValue]="1" selected >{{"Uffcio personale "}}</option>
+              <option disabled>----------</option>
 
               <ng-container *ngIf="permessoSelezionato?.status!==12">
                 <option *ngFor="let approvatore of filteredUtentiFerie" [ngValue]="approvatore.id" >
