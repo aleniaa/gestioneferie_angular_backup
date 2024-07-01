@@ -211,7 +211,7 @@
 
 
     <div class="form-group menu-item">
-      <label for="searchutenteFerie">Da sottomettere per approvazione al capoufficio o capoturno (selezionare dal menu a
+      <label for="searchutenteFerie">Da sottoporre per approvazione al capoufficio o capoturno (selezionare dal menu a
         tendina):</label>
       <!-- <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
         placeholder="Scegli funzionario" form="congedo" required>
@@ -239,7 +239,7 @@
 
     </div>
     <!-- <div class="form-group menu-item">
-      <label for="idUtenteApprovazioneDueCongedo">Da sottomettere per approvazione ad un ulteriore
+      <label for="idUtenteApprovazioneDueCongedo">Da sottoporre per approvazione ad un ulteriore
         capoturno/funzionario
         (opzionale):</label>
       <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueCongedo"
@@ -310,7 +310,7 @@
       </div>
 
       <div class="form-group">
-        <label for="approvazione">Da sottomettere per approvazione a:</label>
+        <label for="approvazione">Da sottoporre per approvazione a:</label>
         <select ngModel name="idUtenteApprovazione" class="form-control" id="idUtenteApprovazione"
           placeholder="Scegli funzionario" form="permesso_breve" required>
           <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
@@ -318,7 +318,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="approvazione">Da sottomettere per approvazione al capoturno (per personale operativo):</label>
+        <label for="approvazione">Da sottoporre per approvazione al capoturno (per personale operativo):</label>
         <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDue"
           placeholder="Scegli capoturno" form="permessi">
           <option *ngFor="let approvatore of utentiFerie" [ngValue]="approvatore.id">
@@ -388,8 +388,9 @@
 
         </div>
       </div>
+      <br>
       <div class="form-group menu-item">
-        <label for="searchutenteFerie">Da sottomettere per approvazione al capoufficio o capoturno (selezionare dal
+        <label for="searchutenteFerie">Da sottoporre per approvazione al capoufficio o capoturno (selezionare dal
           menu a tendina):</label>
 
         <input type="text" (ngModelChange)="cercaApprovatoreFerie(keyInput2.value)" #keyInput2="ngModel"
@@ -415,7 +416,7 @@
 
 
       <!-- <div class="form-group menu-item">
-        <label for="idUtenteApprovazioneDueRecupero">Da sottomettere per approvazione ad un ulteriore
+        <label for="idUtenteApprovazioneDueRecupero">Da sottoporre per approvazione ad un ulteriore
           capoturno/funzionario
           (opzionale):</label>
         <select ngModel name="idUtenteApprovazioneDue" class="form-control" id="idUtenteApprovazioneDueRecupero"
@@ -430,6 +431,7 @@
         <button type="submit" class="btn btn-primary">Invia</button> <!-- [disabled]="addForm.invalid" -->
       </div>
     </form>
+    <br>
     <div class="alert alert-success" role="alert" *ngIf="message">
       {{message}}
     </div>
@@ -698,7 +700,7 @@
 
         <div class="col">
           <div class="form-group menu-item">
-            <label for="idUtenteApprovazioneAltri">Da sottomettere per approvazione al capoufficio o capoturno:</label>
+            <label for="idUtenteApprovazioneAltri">Da sottoporre per approvazione al capoufficio o capoturno:</label>
             <!-- <select [(ngModel)]="selectedUtenteApprovazioneId" name="idUtenteApprovazione" class="form-control" -->
             <select ngModel name="idUtenteApprovazione" class="form-control"
               id="idUtenteApprovazioneAltri" placeholder="Scegli funzionario" form="permessi" required>
@@ -715,7 +717,7 @@
         <!-- <div class="col">
 
           <div class="form-group menu-item">
-            <label for="idUtenteApprovazioneDueAltriPermessi">Da sottomettere per approvazione ad un ulteriore
+            <label for="idUtenteApprovazioneDueAltriPermessi">Da sottoporre per approvazione ad un ulteriore
               capoturno/funzionario
               (opzionale):</label>
             <select [(ngModel)]="selectedUtenteApprovazioneDueId" name="idUtenteApprovazioneDue" class="form-control"

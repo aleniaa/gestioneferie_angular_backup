@@ -213,6 +213,7 @@
                       <th scope="col">Ore totali</th>
                       <th scope="col"></th>
                       <th scope="col"></th>
+                      <th scope="col"></th>
 
 
                     </tr>
@@ -232,14 +233,21 @@
                       <td>{{permesso?.alleOre}}</td>
                       <td>{{permesso?.totOre}}</td>
 
+
+                      <td>
+
+                        <button type="button" (click)='confermaPermessoPersonale(permesso)' class="btn btn-success">Approva</button>
+
+                      </td>
+
                       <td>
 
                         <!-- <button type="button" (click)='approvaPermesso(permesso)' class="btn btn-primary">Approva e inoltra</button> -->
 
                         <button (click)="onconfermaEinoltraPermesso(permesso)" class="btn btn-primary tooltips"
-                          data-placement="top" data-toggle="tooltip" data-original-title="Approva e inoltra"><i
+                          data-placement="top" data-toggle="tooltip" data-original-title="Inoltra"><i
                             class="fa fa-times">
-                            Approva e inoltra</i></button>
+                            Inoltra</i></button>
                       </td>
 
                       <!-- <td><button type="button" (click)="conferma('rifiuta', permesso)" class="btn btn-secondary" >Respingi </button> </td> -->
@@ -480,8 +488,8 @@
               placeholder="Scegli a chi mandare la richiesta" form="confermaForm">
 
               <!-- <option [ngValue]="">{{" "}}</option> -->
-              <option [ngValue]="1" selected >{{"Uffcio personale "}}</option>
-              <option disabled>----------</option>
+              <!-- <option [ngValue]="1" selected >{{"Uffcio personale "}}</option>
+              <option disabled>----------</option> -->
 
               <ng-container *ngIf="permessoSelezionato?.status!==12">
                 <option *ngFor="let approvatore of filteredUtentiFerie" [ngValue]="approvatore.id" >

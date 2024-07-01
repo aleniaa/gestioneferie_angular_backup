@@ -325,9 +325,28 @@ export class GestionePermessiComponent implements OnInit {
   
         },
       );
-    }
+    }    
 
+  }
 
+  public confermaPermessoPersonale(permesso: Permesso): void {
+    
+    const idUtenteApp2 = 1;
+
+      this.permessoService.approvaPermesso(permesso, idUtenteApp2).subscribe(
+        (response: Permesso) => { //jfoiewfjwoiej
+          console.log(response);
+          //this.getPermessiApprovatoreByStatus();
+          this.getPermessiApprovatore2();
+        },
+        (error: HttpErrorResponse) => {
+          this.error = error.error;
+          alert(error.message);
+          //this.getPermessiApprovatoreByStatus();
+          this.getPermessiApprovatore2();
+  
+        },
+      );  
 
   }
 
